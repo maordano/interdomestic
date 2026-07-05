@@ -67,7 +67,7 @@ format:
     css: styles.css
     include-after-body:
       text: |
-        <script>
+         <script>
           function cambiarPercepcion(modo) {
             document.body.classList.remove('alto-contraste', 'filtro-suave', 'daltonismo');
             if (modo !== 'normal') {

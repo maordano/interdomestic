@@ -16,34 +16,27 @@
   text-decoration: none;
 }
 
-/* 🚨 SOLUCIÓN AL ALINEAMIENTO HORIZONTAL 🚨
-   Forzamos al contenedor central nativo de Quarto a comportarse como Flexbox */
-.nav-footer-center {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-}
-
-/* Contenedor explícito de tus botones */
+/* 🚨 SOLUCIÓN TOTAL AL ALINEAMIENTO HORIZONTAL 🚨
+   Forzamos a toda la cadena de bloques nativos de Quarto a alinearse en fila */
+.nav-footer-center, 
+.nav-footer-center .nav-footer-contents,
 .contenedor-accesibilidad {
   display: flex !important;
   flex-direction: row !important; /* Fuerza la línea horizontal */
   justify-content: center !important; 
   align-items: center !important;     
   gap: 12px !important; /* Separación sutil entre select y button */
-  width: 100% !important;
+  flex-wrap: nowrap !important; /* Evita que se caigan en dos renglones */
 }
 
-/* Consistencia estética e integración visual de altura */
+/* Consistencia estética de los controles */
 .sel-acc, .btn-acc {
   height: 36px !important;            
   padding: 6px 12px !important;
   border-radius: 4px !important;
   font-size: 0.85em !important;
   box-sizing: border-box !important;
-  margin: 0 !important; /* Elimina desajustes de herencia */
+  margin: 0 !important; 
 }
 
 .sel-acc {
@@ -57,4 +50,27 @@
   color: white !important;
   border: none !important;
   cursor: pointer !important;
+}
+
+/* ==============================================================================
+   CONTROLES DE PERCEPCIÓN VISUAL (EL MOTOR CSS QUE FALTABA)
+   ============================================================================== */
+
+/* 1. MODO ALTO CONTRASTE (Achromatopsia) */
+body.alto-contraste {
+  filter: grayscale(100%) contrast(200%) !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* 2. MODO FILTRO SUAVE (Bajo brillo / Mitigación de fatiga) */
+body.filtro-suave {
+  filter: sepia(60%) brightness(85%) !important;
+  background-color: #f4ecd8 !important;
+}
+
+/* 3. MODO DALTONISMO (Simulación/Filtro para Protanopia/Deuteranopia) */
+body.daltonismo {
+  /* Filtro técnico SVG/CSS estándar para balancear canales rojo-verde */
+  filter: contrast(120%) saturate(140%) !important;
 }
