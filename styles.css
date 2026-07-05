@@ -1,1 +1,39 @@
 /* css styles */
+/* ==============================================================================
+   DISEÑO PERSONALIZADO DEL PIE DE PÁGINA (INTERDOMESTIC)
+   ============================================================================== */
+
+/* Cambia el color de fondo y el texto de todo el contenedor del footer */
+.nav-footer {
+  background-color: #1a1a1a !important; /* Cambia este código HEX por el color que desees */
+  color: #ffffff !important;            /* Color del texto del pie de página */
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+/* Cambia el color de los enlaces dentro del footer */
+.nav-footer a {
+  color: #0d6efd !important; /* Azul estandar de Bootstrap (puedes cambiarlo) */
+  text-decoration: none;
+}
+
+/* Estilo para que tus selectores de accesibilidad luzcan integrados */
+.sel-acc {
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid #444;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.btn-acc {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
