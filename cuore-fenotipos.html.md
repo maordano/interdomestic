@@ -1,5 +1,5 @@
 ---
-title: "cuore-fenotipos"
+title: "proyectos componentes"
 format: html
 ---
 

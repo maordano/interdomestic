@@ -8,8 +8,8 @@ project:
 lang: es # idioma de base
 
 website:
-  title: "interdomestic"
-  # 1 Le dice a Quarto que calcule las rutas dentro de la subcarpeta
+  title: "<i class='bi-house-door'></i> interdomestic"
+  
   site-url: "https://maordano.github.io/interdomestic/"
   description: "Dispositivo interactivo para la articulación de métodos de trabajo en investigación"
   search: true
@@ -17,7 +17,7 @@ website:
   site-path: "/interdomestic/"
 
   navbar:
-    background: primary
+    background: dark
     left:
       - href: index.qmd
         text: "Inicio"
