@@ -1,22 +1,60 @@
 project:
   type: website
+  # Activa el soporte nativo multilingüe de Quarto (Español e Inglés)
+  # Esto generará automáticamente el globo terráqueo en la barra de navegación
   output-dir: docs
+  resources: 
+      - "index.html"
+lang: es # idioma de base
 
 website:
-  title: "Interdomestic"
-  # 1. El secreto: Esto le dice a Quarto que calcule las rutas dentro de la subcarpeta
+  title: "interdomestic"
+  # 1 Le dice a Quarto que calcule las rutas dentro de la subcarpeta
   site-url: "https://maordano.github.io/interdomestic/"
-  
+  description: "Dispositivo interactivo para la articulación de métodos de trabajo en investigación"
+  search: true
+
+  site-path: "/interdomestic/"
+
   navbar:
     background: primary
     left:
       - href: index.qmd
         text: "Inicio"
       # ... (el resto de tu menú que diseñamos antes)
+      - icon: heart-pulse
+        text: "Fuente de Proyecto"
+        menu:
+          - text: "Variación Fenotípica"
+            href: cuore-fenotipos.qmd
+          - text: "Puntos de Partida"
+            href: puntos-partida.qmd
+          - text: "Bitácora"
+            href: bitacora.qmd
+      - icon: gear-wide-connected
+        text: "Modo de Uso"
+        href: identidad.qmd
+
+# 4. ICONOS DE REDES Y LA TRASTIENDA ABIERTA (Derecha)
+    right:
+      - icon: github
+        href: https://github.com
+        aria-label: "Repositorio Informático"
+      - icon: share
+        text: "OSF"
+        href: https://osf.io # Enlace a tu prerregistro y componentes-proyectos
+      - icon: kanban
+        text: "STAPLE"
+        href: https://staplescience.com # Enlace a tu espacio de gestión diaria
 
 format:
   html:
     theme: cosmo
     # 2. El segundo secreto: Hace que todos los menús usen rutas compatibles con subcarpetas
-    resources: 
-      - "index.html"
+    css: styles.css
+    toc: true # Tabla de contenidos a la derecha automática
+    toc-title: "Estructura del Dispositivo"
+    code-fold: true # Pizarrón de código ocultable para el usuario
+    keep-md: true # Crucial para interoperabilidad y auditoría científica externa
+
+   
