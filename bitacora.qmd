@@ -1,10 +1,7 @@
 ---
-title: "bitacora"
+title: "Bitácora"
 format: html
----
----
-title: "Notas de Campo"
-subtitle: "Registro cronológico del laboratorio y el proceso doméstico"
+subtitle: "Registro cronológico del proceso de aprendizaje e investigación"
 date: 2026-07-05
 author: "M.A.Ordano"
 # Metadatos del ciclo de vida del proyecto
@@ -12,7 +9,11 @@ project_phase: "Ideación Interactiva"
 data_status: "Borrador Conceptual"
 ---
 
-Esta sección funciona como nuestro **Lab Logbook**. Aquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica en el ámbito doméstico. Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento.
+Esta sección funciona como nuestro **Lab Logbook** o "bitácora". 
+
+ - ¿En qué medida pudo haber representado un hito, para una definición de límite de tiempo del Antropoceno, haber tenido un **device** para soporte de códigos para y entre seres humanos? 
+ 
+Aquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica en el ámbito doméstico. Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento.
 
 ---
 

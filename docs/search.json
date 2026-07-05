@@ -1,22 +1,50 @@
 [
   {
+    "objectID": "marco.html",
+    "href": "marco.html",
+    "title": "Puntos de Partida",
+    "section": "",
+    "text": "En esta sección se detallan las bases de componentes metodológicos y éticas, a partir de los cuales decidimos construir este ecosistema de investigación abierta.\nDefinimos nuestra labor formateando una claridad identitaria, entendiendo el conocimiento como un collage vivo y situado."
+  },
+  {
+    "objectID": "marco.html#conocimiento-situado-y-redes",
+    "href": "marco.html#conocimiento-situado-y-redes",
+    "title": "Puntos de Partida",
+    "section": "🧭 1. Conocimiento Situado y Redes",
+    "text": "🧭 1. Conocimiento Situado y Redes\nNuestras observaciones (biológicas o no) operan bajo un marco de Conocimiento Situado, entendiendo que la investigación que genera sistemas de aprendizaje y productos que representan base de conocimiento están siendo apropiadas en multiplicidad y diversidad por la población humana de manera libre y abierta, como una propiedad emergente colectiva; la cual se genera desde cuerpos y entornos concretos (por ejemplo, la oficina, el laboratorio, el aula, el patio de la escuela, la casa, el hogar, la cotidianidad humana, los centros de investigación, los instituciones de desarrollo educativo. Y herramientas típicamente inorgánicas: dispositivos de interacción)."
+  },
+  {
+    "objectID": "marco.html#agencialidad-simétrica",
+    "href": "marco.html#agencialidad-simétrica",
+    "title": "Puntos de Partida",
+    "section": "🤝 2. Agencialidad Simétrica",
+    "text": "🤝 2. Agencialidad Simétrica\nReconocemos y documentamos explícitamente tres rutas de interacción para la construcción de nuestros saberes: * Humana: La red de proximidad ciudadana y coautores tradicionales (pedigrees, historias de vida). * Híbrida: Sesiones de ideación interactiva y andamiaje mental asistido por IA. * Sintética: Procesamiento analítico automatizado de datos mediante código de R interoperable a otras codificaciones."
+  },
+  {
+    "objectID": "marco.html#el-bucle-de-segundo-orden",
+    "href": "marco.html#el-bucle-de-segundo-orden",
+    "title": "Puntos de Partida",
+    "section": "🍃 3. El Bucle de Segundo Orden",
+    "text": "🍃 3. El Bucle de Segundo Orden\nLa infraestructura que sostiene este sitio web se asume como parte del fenómeno. Esta meta-investigación abre las puertas a colaboraciones transdisciplinares orientadas a herramientas de libre desarrollo y aplicación educativa y para base de conocimiento, buscando que el dispositivo interactivo evolucione hacia un dispositivo lo más ambientalmente amigable posible, incluyendo todo el espacio de posibilidades de nuestra relación como humanos con el entorno y la vida silvestre."
+  },
+  {
     "objectID": "bitacora.html",
     "href": "bitacora.html",
-    "title": "Notas de Campo",
+    "title": "Bitácora",
     "section": "",
-    "text": "Esta sección funciona como nuestro Lab Logbook. Aquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica en el ámbito doméstico. Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento."
+    "text": "Esta sección funciona como nuestro Lab Logbook o “bitácora”.\nAquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica en el ámbito doméstico. Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento."
   },
   {
     "objectID": "bitacora.html#registros-recientes",
     "href": "bitacora.html#registros-recientes",
-    "title": "Notas de Campo",
+    "title": "Bitácora",
     "section": "🗒️ Registros Recientes",
     "text": "🗒️ Registros Recientes\n\n\n\n\n\n\nNotaRegistro #001: Diseño de la Membrana Digital\n\n\n\n\nFecha: 2026-07-05\nRuta de Co-participación: Modelo B (Agencialidad Híbrida / Asistencia de IA)\nEstado: Consolidación de la infraestructura del dispositivo en RStudio y Quarto.\nDescripción: Soldadura del puente de Git entre la computadora local y la subcarpeta /interdomestic/, habilitando controles de percepción y accesibilidad en el pie de página. El chasis del sistema queda estable -candidate release- para recibir los datos de las metas de proyecto."
   },
   {
     "objectID": "bitacora.html#archivo-histórico",
     "href": "bitacora.html#archivo-histórico",
-    "title": "Notas de Campo",
+    "title": "Bitácora",
     "section": "🔍 Archivo Histórico",
     "text": "🔍 Archivo Histórico\nA medida que la “orquesta” avance y sumemos nuevas observaciones sobre el proyecto, esta sección utilizará motores de listado dinámico para organizar los hilos del proceso por categorías y fechas de registro."
   },

@@ -1,4 +1,24 @@
 ---
-title: "Marco"
+title: "Puntos de Partida"
 format: html
+subtitle: "Bases filosóficas y reflexivas del dispositivo"
+date: 2026-07-05
+author: "M.A.Ordano"
 ---
+
+En esta sección se detallan las bases de componentes metodológicos y éticas, a partir de los cuales decidimos construir este ecosistema de investigación abierta. 
+
+Definimos nuestra labor formateando una claridad identitaria, entendiendo el conocimiento como un **collage** vivo y situado.
+
+## 🧭 1. Conocimiento Situado y Redes
+Nuestras observaciones (biológicas o no) operan bajo un marco de **Conocimiento Situado**, entendiendo que la investigación que genera sistemas de aprendizaje y productos que representan base de conocimiento están siendo  apropiadas en multiplicidad y diversidad por la población humana de manera libre y abierta, como una propiedad emergente colectiva; la cual se genera desde cuerpos y entornos concretos (por ejemplo, la oficina, el laboratorio, el aula, el patio de la escuela, la casa, el hogar, la cotidianidad humana, los centros de investigación, los instituciones de desarrollo educativo. Y herramientas típicamente inorgánicas: dispositivos de interacción).
+
+## 🤝 2. Agencialidad Simétrica
+Reconocemos y documentamos explícitamente tres rutas de interacción para la construcción de nuestros saberes:
+*   **Humana:** La red de proximidad ciudadana y coautores tradicionales (**pedigrees**, historias de vida).
+*   **Híbrida:** Sesiones de ideación interactiva y andamiaje mental asistido por IA.
+*   **Sintética:** Procesamiento analítico automatizado de datos mediante código de R interoperable a otras codificaciones.
+
+## 🍃 3. El Bucle de Segundo Orden
+La infraestructura que sostiene este sitio web se asume como parte del fenómeno. Esta meta-investigación abre las puertas a colaboraciones transdisciplinares orientadas a herramientas de libre desarrollo y aplicación educativa y para base de conocimiento, buscando que el dispositivo interactivo evolucione hacia un dispositivo lo más ambientalmente amigable posible, incluyendo todo el espacio de posibilidades de nuestra relación como humanos con el entorno y la vida silvestre.
+
