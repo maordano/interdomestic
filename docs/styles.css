@@ -1,64 +1,49 @@
-/* css styles */
 /* ==============================================================================
-   DISEÑO PERSONALIZADO DEL PIE DE PÁGINA (INTERDOMESTIC)
+   DISEÑO ESTRUCTURAL DEL PIE DE PÁGINA (INTERDOMESTIC)
    ============================================================================== */
 
-/* Cambia el color de fondo y el texto de todo el contenedor del footer */
+/* Fondo e identidad del contenedor general */
 .nav-footer {
-  background-color: #1a1a1a !important; /* Cambia este código HEX por el color que desees */
-  color: #ffffff !important;            /* Color del texto del pie de página */
-  padding-top: 15px;
-  padding-bottom: 15px;
+  background-color: #1a1a1a !important; 
+  color: #ffffff !important;            
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
 }
 
-/* Cambia el color de los enlaces dentro del footer */
+/* Enlaces del pie de página */
 .nav-footer a {
-  color: #0d6efd !important; /* Azul estandar de Bootstrap (puedes cambiarlo) */
+  color: #0d6efd !important; 
   text-decoration: none;
 }
 
-/* Estilo para que tus selectores de accesibilidad luzcan integrados */
-.sel-acc {
-  background-color: #2b2b2b;
-  color: white;
-  border: 1px solid #444;
-  padding: 5px;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-
-.btn-acc {
-  background-color: #0d6efd;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 0.9em;
-  cursor: pointer;
-}
-
-/* ==============================================================================
-   DISEÑO HORIZONTAL DEL CONTENEDOR DE ACCESIBILIDAD (INTERDOMESTIC)
-   ============================================================================== */
-
-/* Fuerza a que el selector y el botón convivan en una sola fila horizontal */
-.contenedor-accesibilidad {
+/* 🚨 SOLUCIÓN AL ALINEAMIENTO HORIZONTAL 🚨
+   Forzamos al contenedor central nativo de Quarto a comportarse como Flexbox */
+.nav-footer-center {
   display: flex !important;
   flex-direction: row !important;
-  justify-content: center !important; /* Los centra en medio del footer */
-  align-items: center !important;     /* Los nivela a la misma altura visual */
-  gap: 12px !important;               /* Separación sutil e idéntica entre ambos */
-  width: auto !important;
-  margin: 0 auto !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
 }
 
-/* Forzar que compartan una estética integrada */
+/* Contenedor explícito de tus botones */
+.contenedor-accesibilidad {
+  display: flex !important;
+  flex-direction: row !important; /* Fuerza la línea horizontal */
+  justify-content: center !important; 
+  align-items: center !important;     
+  gap: 12px !important; /* Separación sutil entre select y button */
+  width: 100% !important;
+}
+
+/* Consistencia estética e integración visual de altura */
 .sel-acc, .btn-acc {
-  height: 36px !important;            /* Misma altura exacta para consistencia */
+  height: 36px !important;            
   padding: 6px 12px !important;
   border-radius: 4px !important;
   font-size: 0.85em !important;
   box-sizing: border-box !important;
+  margin: 0 !important; /* Elimina desajustes de herencia */
 }
 
 .sel-acc {

@@ -32,6 +32,7 @@ website:
       - icon: gear-wide-connected
         text: "Manual"
         href: identidad.qmd
+      # CORRECCIÓN TÉCNICA: Enlace multilingüe global con subcarpeta 100% codificada (%2F)
       - text: "🌐 seleccione idioma"  
         href: "https://translate.google.com/translate?sl=es&tl=en&u=https%3A%2F%2Fmaordano.github.io/interdomestic/"
         target: "_blank"  
