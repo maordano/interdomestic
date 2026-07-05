@@ -32,13 +32,14 @@ website:
       - icon: gear-wide-connected
         text: "Manual"
         href: identidad.qmd
+      - text: "ℹ️ [🌐 seleccionar idioma]"
       - text: "🌐"  
         href: "https://translate.google.com/translate?sl=es&tl=en&u=https%3A%2F%2Fmaordano.github.io/interdomestic/"
         target: "_blank"  
 
   page-footer:
     left: |
-      [CC BY 4.0](https://creativecommons.org) 2026 hecho con [Quarto](https://quarto.org) 
+      [CC BY 4.0](https://creativecommons.org) 2026 ~ hecho con [Quarto](https://quarto.org) 
     center: |
       <select id="modo-vision" onchange="cambiarPercepcion(this.value)" class="sel-acc">
         <option value="normal">👁️ Percepción Estándar</option>
