@@ -33,7 +33,7 @@ website:
         text: "Manual"
         href: identidad.qmd
       - text: "🌐"  
-        href: "https://google.com"
+        href: "https://translate.google.com/translate?sl=es&tl=en&u=https%3A%2F%2Fmaordano.github.io"
         target: "_blank"  
 
   page-footer:
