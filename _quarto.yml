@@ -101,7 +101,8 @@ format:
               alert("Tu navegador no soporta transcripción de voz automática.");
             }
           }
-        </script>
+         </script>
+  
     toc: true 
     toc-title: "Estructura del Dispositivo"
     code-fold: true 

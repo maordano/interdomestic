@@ -16,34 +16,26 @@
   text-decoration: none;
 }
 
-/* 🚨 SOLUCIÓN AL ALINEAMIENTO HORIZONTAL 🚨
-   Forzamos al contenedor central nativo de Quarto a comportarse como Flexbox */
-.nav-footer-center {
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-}
-
-/* Contenedor explícito de tus botones */
+/* Forzamos a toda la cadena de bloques nativos de Quarto a alinearse en fila */
+.nav-footer-center, 
+.nav-footer-center .nav-footer-contents,
 .contenedor-accesibilidad {
   display: flex !important;
-  flex-direction: row !important; /* Fuerza la línea horizontal */
+  flex-direction: row !important; 
   justify-content: center !important; 
   align-items: center !important;     
-  gap: 12px !important; /* Separación sutil entre select y button */
-  width: 100% !important;
+  gap: 12px !important; 
+  flex-wrap: nowrap !important; 
 }
 
-/* Consistencia estética e integración visual de altura */
+/* Consistencia estética de los controles */
 .sel-acc, .btn-acc {
   height: 36px !important;            
   padding: 6px 12px !important;
   border-radius: 4px !important;
   font-size: 0.85em !important;
   box-sizing: border-box !important;
-  margin: 0 !important; /* Elimina desajustes de herencia */
+  margin: 0 !important; 
 }
 
 .sel-acc {
@@ -57,4 +49,34 @@
   color: white !important;
   border: none !important;
   cursor: pointer !important;
+}
+
+/* ==============================================================================
+   CONTROLES DE PERCEPCIÓN VISUAL (SELECTOR CORREGIDO GLOBALMENTE)
+   ============================================================================== */
+
+/* 1. MODO ALTO CONTRASTE (Achromatopsia) 
+   Fuerza monocromía absoluta y alto contraste en todos los elementos del sitio */
+body.alto-contraste,
+body.alto-contraste * {
+  filter: grayscale(100%) contrast(200%) !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+/* 2. MODO FILTRO SUAVE (Bajo brillo / Mitigación de fatiga)
+   Inyecta un tono sepia y baja el brillo para lectura en entornos oscuros */
+body.filtro-suave,
+body.filtro-suave * {
+  filter: sepia(50%) brightness(85%) !important;
+  background-color: #f4ecd8 !important;
+  color: #2b2b2b !important;
+}
+
+/* 3. MODO DALTONISMO (Filtro para Protanopia/Deuteranopia)
+   Satura canales cromáticos para mejorar la distinción de variaciones biológicas */
+body.daltonismo,
+body.daltonismo * {
+  filter: contrast(125%) saturate(150%) !important;
 }

@@ -649,39 +649,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </footer>
 <script>
-  function cambiarPercepcion(modo) {
-    document.body.classList.remove('alto-contraste', 'filtro-suave', 'daltonismo');
-    if (modo !== 'normal') {
-      document.body.classList.add(modo);
-    }
-  }
+ function cambiarPercepcion(modo) {
+   document.body.classList.remove('alto-contraste', 'filtro-suave', 'daltonismo');
+   if (modo !== 'normal') {
+     document.body.classList.add(modo);
+   }
+ }
 
-  let lector = null;
-  function toggleTextoAVoz() {
-    let boton = document.getElementById('btn-voz');
-    if ('speechSynthesis' in window) {
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-        boton.innerText = "🔊 Escuchar Página";
-        boton.classList.remove('activo-voz');
-      } else {
-        let texto = document.querySelector('main')?.innerText || document.body.innerText;
-        lector = new SpeechSynthesisUtterance(texto);
-        lector.lang = 'es-AR';
-        
-        lector.onend = function() {
-          boton.innerText = "🔊 Escuchar Página";
-          boton.classList.remove('activo-voz');
-        };
+ let lector = null;
+ function toggleTextoAVoz() {
+   let boton = document.getElementById('btn-voz');
+   if ('speechSynthesis' in window) {
+     if (window.speechSynthesis.speaking) {
+       window.speechSynthesis.cancel();
+       boton.innerText = "🔊 Escuchar Página";
+       boton.classList.remove('activo-voz');
+     } else {
+       let texto = document.querySelector('main')?.innerText || document.body.innerText;
+       lector = new SpeechSynthesisUtterance(texto);
+       lector.lang = 'es-AR';
+       
+       lector.onend = function() {
+         boton.innerText = "🔊 Escuchar Página";
+         boton.classList.remove('activo-voz');
+       };
 
-        window.speechSynthesis.speak(lector);
-        boton.innerText = "🛑 Detener Lectura";
-        boton.classList.add('activo-voz');
-      }
-    } else {
-      alert("Tu navegador no soporta transcripción de voz automática.");
-    }
-  }
+       window.speechSynthesis.speak(lector);
+       boton.innerText = "🛑 Detener Lectura";
+       boton.classList.add('activo-voz');
+     }
+   } else {
+     alert("Tu navegador no soporta transcripción de voz automática.");
+   }
+ }
 </script>
 
 

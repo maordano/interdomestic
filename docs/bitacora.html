@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="M.A.Ordano">
+<meta name="dcterms.date" content="2026-07-05">
 
-<title>bitacora –  interdomestic</title>
+<title>Notas de Campo –  interdomestic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -139,22 +141,42 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Estructura del Dispositivo</h2>
+   
+  <ul>
+  <li><a href="#registros-recientes" id="toc-registros-recientes" class="nav-link active" data-scroll-target="#registros-recientes">🗒️ Registros Recientes</a></li>
+  <li><a href="#archivo-histórico" id="toc-archivo-histórico" class="nav-link" data-scroll-target="#archivo-histórico">🔍 Archivo Histórico</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">bitacora</h1>
+<h1 class="title">Notas de Campo</h1>
+<p class="subtitle lead">Registro cronológico del laboratorio y el proceso doméstico</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>M.A.Ordano </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026-07-05</p>
+    </div>
+  </div>
   
     
   </div>
@@ -164,8 +186,36 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Esta sección funciona como nuestro <strong>Lab Logbook</strong>. Aquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica en el ámbito doméstico. Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento.</p>
+<hr>
+<section id="registros-recientes" class="level2">
+<h2 class="anchored" data-anchor-id="registros-recientes">🗒️ Registros Recientes</h2>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Registro #001: Diseño de la Membrana Digital
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Fecha:</strong> 2026-07-05</li>
+<li><strong>Ruta de Co-participación:</strong> Modelo B (Agencialidad Híbrida / Asistencia de IA)</li>
+<li><strong>Estado:</strong> Consolidación de la infraestructura del dispositivo en RStudio y Quarto.</li>
+<li><strong>Descripción:</strong> Soldadura del puente de Git entre la computadora local y la subcarpeta <code>/interdomestic/</code>, habilitando controles de percepción y accesibilidad en el pie de página. El chasis del sistema queda estable -candidate release- para recibir los datos de las metas de proyecto.</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="archivo-histórico" class="level2">
+<h2 class="anchored" data-anchor-id="archivo-histórico">🔍 Archivo Histórico</h2>
+<p><em>A medida que la “orquesta” avance y sumemos nuevas observaciones sobre el proyecto, esta sección utilizará motores de listado dinámico para organizar los hilos del proceso por categorías y fechas de registro.</em></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -604,39 +654,39 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </footer>
 <script>
-  function cambiarPercepcion(modo) {
-    document.body.classList.remove('alto-contraste', 'filtro-suave', 'daltonismo');
-    if (modo !== 'normal') {
-      document.body.classList.add(modo);
-    }
-  }
+ function cambiarPercepcion(modo) {
+   document.body.classList.remove('alto-contraste', 'filtro-suave', 'daltonismo');
+   if (modo !== 'normal') {
+     document.body.classList.add(modo);
+   }
+ }
 
-  let lector = null;
-  function toggleTextoAVoz() {
-    let boton = document.getElementById('btn-voz');
-    if ('speechSynthesis' in window) {
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-        boton.innerText = "🔊 Escuchar Página";
-        boton.classList.remove('activo-voz');
-      } else {
-        let texto = document.querySelector('main')?.innerText || document.body.innerText;
-        lector = new SpeechSynthesisUtterance(texto);
-        lector.lang = 'es-AR';
-        
-        lector.onend = function() {
-          boton.innerText = "🔊 Escuchar Página";
-          boton.classList.remove('activo-voz');
-        };
+ let lector = null;
+ function toggleTextoAVoz() {
+   let boton = document.getElementById('btn-voz');
+   if ('speechSynthesis' in window) {
+     if (window.speechSynthesis.speaking) {
+       window.speechSynthesis.cancel();
+       boton.innerText = "🔊 Escuchar Página";
+       boton.classList.remove('activo-voz');
+     } else {
+       let texto = document.querySelector('main')?.innerText || document.body.innerText;
+       lector = new SpeechSynthesisUtterance(texto);
+       lector.lang = 'es-AR';
+       
+       lector.onend = function() {
+         boton.innerText = "🔊 Escuchar Página";
+         boton.classList.remove('activo-voz');
+       };
 
-        window.speechSynthesis.speak(lector);
-        boton.innerText = "🛑 Detener Lectura";
-        boton.classList.add('activo-voz');
-      }
-    } else {
-      alert("Tu navegador no soporta transcripción de voz automática.");
-    }
-  }
+       window.speechSynthesis.speak(lector);
+       boton.innerText = "🛑 Detener Lectura";
+       boton.classList.add('activo-voz');
+     }
+   } else {
+     alert("Tu navegador no soporta transcripción de voz automática.");
+   }
+ }
 </script>
 
 

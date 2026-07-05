@@ -16,17 +16,16 @@
   text-decoration: none;
 }
 
-/* 🚨 SOLUCIÓN TOTAL AL ALINEAMIENTO HORIZONTAL 🚨
-   Forzamos a toda la cadena de bloques nativos de Quarto a alinearse en fila */
+/* Forzamos a toda la cadena de bloques nativos de Quarto a alinearse en fila */
 .nav-footer-center, 
 .nav-footer-center .nav-footer-contents,
 .contenedor-accesibilidad {
   display: flex !important;
-  flex-direction: row !important; /* Fuerza la línea horizontal */
+  flex-direction: row !important; 
   justify-content: center !important; 
   align-items: center !important;     
-  gap: 12px !important; /* Separación sutil entre select y button */
-  flex-wrap: nowrap !important; /* Evita que se caigan en dos renglones */
+  gap: 12px !important; 
+  flex-wrap: nowrap !important; 
 }
 
 /* Consistencia estética de los controles */
@@ -53,24 +52,31 @@
 }
 
 /* ==============================================================================
-   CONTROLES DE PERCEPCIÓN VISUAL (EL MOTOR CSS QUE FALTABA)
+   CONTROLES DE PERCEPCIÓN VISUAL (SELECTOR CORREGIDO GLOBALMENTE)
    ============================================================================== */
 
-/* 1. MODO ALTO CONTRASTE (Achromatopsia) */
-body.alto-contraste {
+/* 1. MODO ALTO CONTRASTE (Achromatopsia) 
+   Fuerza monocromía absoluta y alto contraste en todos los elementos del sitio */
+body.alto-contraste,
+body.alto-contraste * {
   filter: grayscale(100%) contrast(200%) !important;
   background-color: #000000 !important;
   color: #ffffff !important;
+  border-color: #ffffff !important;
 }
 
-/* 2. MODO FILTRO SUAVE (Bajo brillo / Mitigación de fatiga) */
-body.filtro-suave {
-  filter: sepia(60%) brightness(85%) !important;
+/* 2. MODO FILTRO SUAVE (Bajo brillo / Mitigación de fatiga)
+   Inyecta un tono sepia y baja el brillo para lectura en entornos oscuros */
+body.filtro-suave,
+body.filtro-suave * {
+  filter: sepia(50%) brightness(85%) !important;
   background-color: #f4ecd8 !important;
+  color: #2b2b2b !important;
 }
 
-/* 3. MODO DALTONISMO (Simulación/Filtro para Protanopia/Deuteranopia) */
-body.daltonismo {
-  /* Filtro técnico SVG/CSS estándar para balancear canales rojo-verde */
-  filter: contrast(120%) saturate(140%) !important;
+/* 3. MODO DALTONISMO (Filtro para Protanopia/Deuteranopia)
+   Satura canales cromáticos para mejorar la distinción de variaciones biológicas */
+body.daltonismo,
+body.daltonismo * {
+  filter: contrast(125%) saturate(150%) !important;
 }

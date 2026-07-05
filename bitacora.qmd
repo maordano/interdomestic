@@ -2,4 +2,32 @@
 title: "bitacora"
 format: html
 ---
+---
+title: "Notas de Campo"
+subtitle: "Registro cronológico del laboratorio y el proceso doméstico"
+date: 2026-07-05
+author: "M.A.Ordano"
+# Metadatos del ciclo de vida del proyecto
+project_phase: "Ideación Interactiva"
+data_status: "Borrador Conceptual"
+---
+
+Esta sección funciona como nuestro **Lab Logbook**. Aquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica en el ámbito doméstico. Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento.
+
+---
+
+## 🗒️ Registros Recientes
+
+::: {.callout-note appearance="simple"}
+### Registro #001: Diseño de la Membrana Digital
+* **Fecha:** 2026-07-05
+* **Ruta de Co-participación:** Modelo B (Agencialidad Híbrida / Asistencia de IA)
+* **Estado:** Consolidación de la infraestructura del dispositivo en RStudio y Quarto.
+* **Descripción:** Soldadura del puente de Git entre la computadora local y la subcarpeta `/interdomestic/`, habilitando controles de percepción y accesibilidad en el pie de página. El chasis del sistema queda estable -candidate release- para recibir los datos de las metas de proyecto.
+:::
+
+---
+
+## 🔍 Archivo Histórico
+*A medida que la "orquesta" avance y sumemos nuevas observaciones sobre el proyecto, esta sección utilizará motores de listado dinámico para organizar los hilos del proceso por categorías y fechas de registro.*
 
