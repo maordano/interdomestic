@@ -1,29 +1,25 @@
 project:
   type: website
-  # Activa el soporte nativo multilingüe de Quarto (Español e Inglés)
-  # Esto generará automáticamente el globo terráqueo en la barra de navegación
   output-dir: docs
   resources: 
     - "google78e3f1e62d7e147c.html"
 
-lang: es # idioma de base
+lang: es # Idioma de base
 
 website:
   title: "<i class='bi-house-door'></i> interdomestic"
-  
   site-url: "https://maordano.github.io/interdomestic/"
   description: "Dispositivo interactivo para la articulación de métodos de trabajo en investigación"
   search: true
-
   site-path: "/interdomestic/"
 
+  # BARRA DE NAVEGACIÓN SUPERIOR (Sintaxis corregida)
   navbar:
     background: dark
     foreground: light
     left:
       - href: index.qmd
         text: "Inicio"
-      # ... (el resto de tu menú que diseñamos antes)
     right:
       - icon: heart-pulse
         text: "Fuente de Proyecto"
@@ -31,16 +27,17 @@ website:
           - text: "Variación Fenotípica"
             href: cuore-fenotipos.qmd
           - text: "Marco"
-            href: puntos-partida.qmd
+            href: marco.qmd
           - text: "Bitácora"
             href: bitacora.qmd
       - icon: gear-wide-connected
         text: "Manual"
         href: identidad.qmd
       - text: "🌐"  
-        href: "https://translate.google.com/translate?sl=es&tl=en&u=https%3A%2F%2Fmaordano.github.io"
+        href: "https://google.com"
         target: "_blank"  
 
+  # PIE DE PÁGINA (Tus scripts de accesibilidad CARE)
   page-footer:
     left: |
       [CC BY 4.0](https://creativecommons.org) 2026 hecho con [Quarto](https://quarto.org) 
@@ -50,23 +47,22 @@ website:
         <option value="alto-contraste">🌓 Alto Contraste (Achromatopsia)</option>
         <option value="filtro-suave">🌅 Filtro Suave (Bajo Brillo / Fatiga)</option>
         <option value="daltonismo">🎨 Modo Protanopia/Deuteranopia</option>  
-        </select>  
-        <button onclick="toggleTextoAVoz()" id="btn-voz" class="btn-acc">🔊 Escuchar Página</button>
+      </select>  
+      <button onclick="toggleTextoAVoz()" id="btn-voz" class="btn-acc">🔊 Escuchar Página</button>
     right:
       - icon: github
         href: https://github.com
         aria-label: "Repositorio Informático"
       - icon: share
         text: "OSF"
-        href: https://osf.io # Enlace a tu prerregistro y componentes-proyectos
+        href: https://osf.io 
       - icon: kanban
         text: "STAPLE"
-        href: https://staplescience.com # Enlace a tu espacio de gestión diaria
+        href: https://staplescience.com 
 
 format:
   html:
     theme: cosmo
-    # 2. El segundo secreto: Hace que todos los menús usen rutas compatibles con subcarpetas
     css: styles.css
     include-after-body:
       text: |
@@ -105,15 +101,12 @@ format:
             }
           }
         </script>
-
-    toc: true # Tabla de contenidos a la derecha automática
+    toc: true 
     toc-title: "Estructura del Dispositivo"
-    code-fold: true # Pizarrón de código ocultable para el usuario
-    keep-md: true # Crucial para interoperabilidad y auditoría científica externa
+    code-fold: true 
+    keep-md: true 
 
-        
 execute:
   freeze: true
-
 
    
