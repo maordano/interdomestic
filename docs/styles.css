@@ -38,27 +38,27 @@
 }
 
 /* ==============================================================================
-   DISEÑO HORIZONTAL Y FLEXIBLE DEL CONTENEDOR DE ACCESIBILIDAD
+   DISEÑO HORIZONTAL DEL CONTENEDOR DE ACCESIBILIDAD (INTERDOMESTIC)
    ============================================================================== */
 
-/* Fuerza a que el contenido del centro del footer se organice en fila horizontal */
-.nav-footer-center {
+/* Fuerza a que el selector y el botón convivan en una sola fila horizontal */
+.contenedor-accesibilidad {
   display: flex !important;
   flex-direction: row !important;
-  flex-wrap: wrap !important;     /* Permite que se acomoden en pantallas chicas (celulares) */
-  justify-content: center !important; /* Los centra horizontalmente */
-  align-items: center !important;     /* Los alinea verticalmente */
-  gap: 12px !important;              /* El espacio sutil y exacto entre cada botón */
-  width: 100% !important;
+  justify-content: center !important; /* Los centra en medio del footer */
+  align-items: center !important;     /* Los nivela a la misma altura visual */
+  gap: 12px !important;               /* Separación sutil e idéntica entre ambos */
+  width: auto !important;
+  margin: 0 auto !important;
 }
 
-/* Estilos estilizados para el selector y el botón de voz */
+/* Forzar que compartan una estética integrada */
 .sel-acc, .btn-acc {
-  margin: 0 !important;              /* Resetea márgenes molestos */
-  padding: 6px 12px !important;      /* Espaciado interno cómodo para hacer clic */
+  height: 36px !important;            /* Misma altura exacta para consistencia */
+  padding: 6px 12px !important;
   border-radius: 4px !important;
   font-size: 0.85em !important;
-  height: 36px !important;           /* Mismo tamaño vertical para consistencia visual */
+  box-sizing: border-box !important;
 }
 
 .sel-acc {
