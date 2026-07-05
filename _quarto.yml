@@ -32,7 +32,7 @@ website:
       - icon: gear-wide-connected
         text: "Manual"
         href: identidad.qmd
-      - text: "ℹ️ [🌐 seleccionar idioma]"
+      - text: "ℹ️ use 🌐 para seleccionar idioma >"
       - text: "🌐"  
         href: "https://translate.google.com/translate?sl=es&tl=en&u=https%3A%2F%2Fmaordano.github.io/interdomestic/"
         target: "_blank"  
