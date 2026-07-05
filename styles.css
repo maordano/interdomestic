@@ -37,3 +37,39 @@
   cursor: pointer;
 }
 
+/* ==============================================================================
+   DISEÑO HORIZONTAL Y FLEXIBLE DEL CONTENEDOR DE ACCESIBILIDAD
+   ============================================================================== */
+
+/* Fuerza a que el contenido del centro del footer se organice en fila horizontal */
+.nav-footer-center {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;     /* Permite que se acomoden en pantallas chicas (celulares) */
+  justify-content: center !important; /* Los centra horizontalmente */
+  align-items: center !important;     /* Los alinea verticalmente */
+  gap: 12px !important;              /* El espacio sutil y exacto entre cada botón */
+  width: 100% !important;
+}
+
+/* Estilos estilizados para el selector y el botón de voz */
+.sel-acc, .btn-acc {
+  margin: 0 !important;              /* Resetea márgenes molestos */
+  padding: 6px 12px !important;      /* Espaciado interno cómodo para hacer clic */
+  border-radius: 4px !important;
+  font-size: 0.85em !important;
+  height: 36px !important;           /* Mismo tamaño vertical para consistencia visual */
+}
+
+.sel-acc {
+  background-color: #2b2b2b !important;
+  color: white !important;
+  border: 1px solid #444 !important;
+}
+
+.btn-acc {
+  background-color: #0d6efd !important;
+  color: white !important;
+  border: none !important;
+  cursor: pointer !important;
+}
