@@ -1,21 +1,22 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "interdomestic"
+  title: "Interdomestic"
+  # 1. El secreto: Esto le dice a Quarto que calcule las rutas dentro de la subcarpeta
+  site-url: "https://maordano.github.io/interdomestic/"
+  
   navbar:
+    background: primary
     left:
       - href: index.qmd
-        text: Home
-      - about.qmd
+        text: "Inicio"
+      # ... (el resto de tu menú que diseñamos antes)
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
-    css: styles.css
-    toc: true
-
-editor: visual
-
+    theme: cosmo
+    # 2. El segundo secreto: Hace que todos los menús usen rutas compatibles con subcarpetas
+    resources: 
+      - "index.html"
