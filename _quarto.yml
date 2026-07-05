@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: docs
+  
   resources: 
     - "google78e3f1e62d7e147c.html"
 
@@ -11,9 +12,7 @@ website:
   site-url: "https://maordano.github.io/interdomestic/"
   description: "Dispositivo interactivo para la articulación de métodos de trabajo en investigación"
   search: true
-  site-path: "/interdomestic/"
 
-  # BARRA DE NAVEGACIÓN SUPERIOR (Sintaxis corregida)
   navbar:
     background: dark
     foreground: light
@@ -37,7 +36,6 @@ website:
         href: "https://google.com"
         target: "_blank"  
 
-  # PIE DE PÁGINA (Tus scripts de accesibilidad CARE)
   page-footer:
     left: |
       [CC BY 4.0](https://creativecommons.org) 2026 hecho con [Quarto](https://quarto.org) 
@@ -104,7 +102,6 @@ format:
     toc: true 
     toc-title: "Estructura del Dispositivo"
     code-fold: true 
-    keep-md: true 
 
 execute:
   freeze: true

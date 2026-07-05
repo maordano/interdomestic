@@ -1,5 +1,0 @@
----
-title: "proyectos componentes"
-format: html
----
-
