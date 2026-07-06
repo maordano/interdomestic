@@ -13,11 +13,12 @@ Esta sección funciona como nuestro **Lab Logbook** o "bitácora".
 
  - ¿En qué medida pudo haber representado un hito, para una definición de límite de tiempo del Antropoceno, haber tenido un **device** para soporte de códigos para y entre seres humanos? 
  
-Aquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica en el ámbito doméstico. Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento.
+Aquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica de la vida silvestre en el ámbito doméstico. 
+Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento.
 
 ---
 
-## 🗒️ Registros Recientes
+## Registros Recientes
 
 ::: {.callout-note appearance="simple"}
 ### Registro #001: Diseño de la Membrana Digital
@@ -29,6 +30,6 @@ Aquí se asientan, registran, con una interfase verificable; hallazgos empírico
 
 ---
 
-## 🔍 Archivo Histórico
+## Archivo Histórico
 *A medida que la "orquesta" avance y sumemos nuevas observaciones sobre el proyecto, esta sección utilizará motores de listado dinámico para organizar los hilos del proceso por categorías y fechas de registro.*
 

@@ -10,7 +10,7 @@ lang: es # Idioma de base
 website:
   title: "<i class='bi-house-door'></i> interdomestic"
   site-url: "https://maordano.github.io/interdomestic/"
-  description: "Dispositivo interactivo para la articulación de métodos de trabajo en investigación"
+  description: "un dispositivo de interacción mediado por personas humanas diseñado para el aprendizaje y la investigación de la vida silvestre en el ámbito doméstico"
   search: true
 
   navbar:
