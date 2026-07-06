@@ -41,7 +41,7 @@ website:
     left: |
       [CC BY 4.0](https://creativecommons.org) 2026 ~ hecho con [Quarto](https://quarto.org) 
     center: |
-       <div class="contenedor-accesibilidad">
+       <div class="contenedor-accesibilidad" style="display: flex !important; flex-direction: row !important; justify-content: center !important; align-items: center !important; gap: 12px !important; flex-wrap: nowrap !important;">
         <select id="modo-vision" onchange="cambiarPercepcion(this.value)" class="sel-acc">
           <option value="normal">👁️ Percepción Estándar</option>
           <option value="alto-contraste">🌓 Alto Contraste (Achromatopsia)</option>
@@ -49,7 +49,7 @@ website:
           <option value="daltonismo">🎨 Modo Protanopia/Deuteranopia</option>  
         </select>  
         <button onclick="toggleTextoAVoz()" id="btn-voz" class="btn-acc">🔊 Escuchar Página</button>
-       </div>
+       </div> 
     right:
       - icon: github
         href: https://github.com
