@@ -1,6 +1,6 @@
 ---
 title: "Manual de Operaciones"
-subtitle: "Reglas de juego y gobernanza del dispositivo"
+subtitle: "Reglas y toma de decisiones en el uso del dispositivo"
 ---
 
 <!-- ==========================================================================
@@ -9,7 +9,7 @@ subtitle: "Reglas de juego y gobernanza del dispositivo"
      ========================================================================== -->
 ::: {.callout-tip appearance="simple"}
 ### Guía de la Plantilla
-Esta sección del dispositivo opera como nuestra Wiki de Gobernanza. Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación.
+Esta sección del dispositivo opera como nuestra fuente de toma de decisiones (o "Wiki de Gobernanza"). Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación.
 
 :::
 

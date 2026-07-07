@@ -60,7 +60,7 @@
     "href": "identidad.html",
     "title": "Manual de Operaciones",
     "section": "",
-    "text": "TipGuía de la Plantilla\n\n\n\nEsta sección del dispositivo opera como nuestra Wiki de Gobernanza. Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación."
+    "text": "TipGuía de la Plantilla\n\n\n\nEsta sección del dispositivo opera como nuestra fuente de toma de decisiones (o “Wiki de Gobernanza”). Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación."
   },
   {
     "objectID": "identidad.html#nuestra-mediación-humana",
