@@ -40,7 +40,7 @@ metaAnalysisServer <- function(id) {
       yi <- rnorm(k, mean = 0.5, sd = 0.1 + input$hetero) # Effect sizes (ej. d de Cohen)
       vi <- runif(k, 0.02, 0.05) # Varianzas
       data.frame(
-        estudio = paste("Comunidad Número", 1:k),
+        estudio = paste("Ensamble Número", 1:k),
         yi = yi,
         vi = vi
       )
