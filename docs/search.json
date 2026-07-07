@@ -56,6 +56,20 @@
     "text": "Archivo Histórico\nA medida que la “orquesta” avance y sumemos nuevas observaciones sobre el proyecto, esta sección utilizará motores de listado dinámico para organizar los hilos del proceso por categorías y fechas de registro."
   },
   {
+    "objectID": "identidad.html",
+    "href": "identidad.html",
+    "title": "Manual de Operaciones",
+    "section": "",
+    "text": "TipGuía de la Plantilla\n\n\n\nEsta sección del dispositivo opera como nuestra Wiki de Gobernanza. Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación."
+  },
+  {
+    "objectID": "identidad.html#nuestra-mediación-humana",
+    "href": "identidad.html#nuestra-mediación-humana",
+    "title": "Manual de Operaciones",
+    "section": "Nuestra Mediación Humana",
+    "text": "Nuestra Mediación Humana\nA medida que el proyecto cuore madure, aquí se detallarán nuestras reglas de interacción, co-participación y convivencia."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Sobre interdomestic",

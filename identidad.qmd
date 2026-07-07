@@ -1,4 +1,24 @@
 ---
-title: "identidad"
-format: html
+title: "Manual de Operaciones"
+subtitle: "Reglas de juego y gobernanza del dispositivo"
 ---
+
+<!-- ==========================================================================
+     BLOQUE 1: PLANTILLA DE INFRAESTRUCTURA (Metodología Abierta)
+     Este bloque describe CÓMO funciona la sección técnica para que otras personas o dispositivos la repliquen.
+     ========================================================================== -->
+::: {.callout-tip appearance="simple"}
+### Guía de la Plantilla
+Esta sección del dispositivo opera como nuestra Wiki de Gobernanza. Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación.
+
+:::
+
+---
+
+<!-- ==========================================================================
+     BLOQUE 2: EL CONTENIDO SITUADO (Tu texto real)
+     Aquí es donde tú cocinas tus definiciones reales a tu propio ritmo.
+     ========================================================================== -->
+## Nuestra Mediación Humana
+
+A medida que el proyecto *cuore* madure, aquí se detallarán nuestras reglas de interacción, co-participación y convivencia.
