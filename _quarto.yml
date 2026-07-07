@@ -29,6 +29,8 @@ website:
             href: marco.qmd
           - text: "Bitácora"
             href: bitacora.qmd
+          - text: "Apéndice Interactivo"
+            href: appendix.qmd      
       - icon: gear-wide-connected
         text: "Manual"
         href: identidad.qmd
