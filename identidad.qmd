@@ -1,6 +1,6 @@
 ---
 title: "Manual de Operaciones"
-subtitle: "Reglas y toma de decisiones en el uso del dispositivo"
+subtitle: "Reglas y toma de decisiones en la construcción, mantenimiento y uso del dispositivo"
 ---
 
 <!-- ==========================================================================
