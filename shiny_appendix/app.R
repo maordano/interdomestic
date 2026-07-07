@@ -1,7 +1,7 @@
 library(shiny)
-library(leaflet)
+#library(leaflet)
 library(dplyr)
-library(rgbif)
+#library(rgbif)
 library(metafor)
 
 # 1. Cargar obligatoriamente los módulos (Paths relativos)

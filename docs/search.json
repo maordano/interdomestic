@@ -28,11 +28,25 @@
     "text": "3. Bucles de Segundo Orden y Escalamiento Multidimensional\nLa infraestructura que sostiene este sitio web forma parte del proceso de ideación interactiva, usamos dispositivos de interacción que median nuestras relaciones y la interacción con el entorno y otras formas de vida.\nLa construcción de una meta-investigación es abierta a colaboraciones transdisciplinares orientadas a herramientas de libre desarrollo, con aplicaciones educativas, de aprendizaje y para construcción de base de conocimiento; buscando que el dispositivo interactivo evolucione hacia un dispositivo lo más ambientalmente amigable posible, abarcando el espacio de posibilidades que nos da el conocimiento disponible sobre el desarrollo y uso de dispositivos, y nuestra relación como personas humanas, con el entorno, y la vida silvestre o formas no humanas de vida."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "interdomestic",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sobre interdomestic",
     "section": "",
-    "text": "en breve: un dispositivo de interacción mediado por personas humanas diseñado para el aprendizaje y la investigación de la vida silvestre en el ámbito doméstico\nen extenso: un dispositivo de ideación interactiva, con infraestructura de artefacto, co-creado y mediado por personas humanas, diseñado para el aprendizaje, la investigación y la síntesis de conocimiento sobre la vida silvestre en el ámbito doméstico"
+    "text": "interdomestic [lang: es] - un dispositivo de interacción mediado por personas humanas diseñado para el aprendizaje y la investigación de la vida silvestre en el ámbito doméstico"
+  },
+  {
+    "objectID": "identidad.html",
+    "href": "identidad.html",
+    "title": "Manual de Operaciones",
+    "section": "",
+    "text": "TipGuía de la Plantilla\n\n\n\nEsta sección del dispositivo opera como nuestra fuente de toma de decisiones (o “Wiki de Gobernanza”). Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación."
+  },
+  {
+    "objectID": "identidad.html#nuestra-mediación-humana",
+    "href": "identidad.html#nuestra-mediación-humana",
+    "title": "Manual de Operaciones",
+    "section": "Nuestra Mediación Humana",
+    "text": "Nuestra Mediación Humana\nA medida que el proyecto cuore madure, aquí se detallarán nuestras reglas de interacción, co-participación y convivencia."
   },
   {
     "objectID": "bitacora.html",
@@ -56,24 +70,17 @@
     "text": "Archivo Histórico\nA medida que la “orquesta” avance y sumemos nuevas observaciones sobre el proyecto, esta sección utilizará motores de listado dinámico para organizar los hilos del proceso por categorías y fechas de registro."
   },
   {
-    "objectID": "identidad.html",
-    "href": "identidad.html",
-    "title": "Manual de Operaciones",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "interdomestic",
     "section": "",
-    "text": "TipGuía de la Plantilla\n\n\n\nEsta sección del dispositivo opera como nuestra fuente de toma de decisiones (o “Wiki de Gobernanza”). Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación."
+    "text": "en breve: un dispositivo de interacción mediado por personas humanas diseñado para el aprendizaje y la investigación de la vida silvestre en el ámbito doméstico\nen extenso: un dispositivo de ideación interactiva, con infraestructura de artefacto, co-creado y mediado por personas humanas, diseñado para el aprendizaje, la investigación y la síntesis de conocimiento sobre la vida silvestre en el ámbito doméstico"
   },
   {
-    "objectID": "identidad.html#nuestra-mediación-humana",
-    "href": "identidad.html#nuestra-mediación-humana",
-    "title": "Manual de Operaciones",
-    "section": "Nuestra Mediación Humana",
-    "text": "Nuestra Mediación Humana\nA medida que el proyecto cuore madure, aquí se detallarán nuestras reglas de interacción, co-participación y convivencia."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Sobre interdomestic",
+    "objectID": "appendix.html",
+    "href": "appendix.html",
+    "title": "Apéndice Interoperable",
     "section": "",
-    "text": "interdomestic [lang: es] - un dispositivo de interacción mediado por personas humanas diseñado para el aprendizaje y la investigación de la vida silvestre en el ámbito doméstico"
+    "text": "Apéndice Dinámico e Interoperable (FAIR/CARE)\nEste dispositivo interactivo consolida las capas de investigación co-creadas mediante flujos de datos en tiempo real.\nA continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:"
   }
 ]
