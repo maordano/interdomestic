@@ -10,6 +10,18 @@ format:
       - "*-shinylive-app/*"
 ---
 
+<!-- Script de Soberanía Digital: Habilitar COOP/COEP en GitHub Pages -->
+<script>
+  if (window.location.hostname.includes("github.io") && !window.crossOriginIsolated) {
+    const swUrl = "https://jsdelivr.net";
+    navigator.serviceWorker.register(swUrl).then(() => {
+      // Recarga transparente para aplicar los permisos de aislamiento de origen requeridos por WebAssembly
+      window.location.reload();
+    }).catch(err => console.error("Error al registrar service worker:", err));
+  }
+</script>
+
+
 A continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:
 
 ```{shinylive-r}
