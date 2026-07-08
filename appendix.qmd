@@ -1,6 +1,13 @@
 ---
 title: "Apéndice Interoperable"
 subtitle: "Dispositivo dinámico de síntesis de conocimiento (FAIR/CARE / WebAssembly)"
+format:
+  html:
+    grid:
+      sidebar-width: 250px
+    # 🆕 ESTA LÍNEA ES LA CLAVE: Desactiva las restricciones del iframe de Quarto
+    resources: 
+      - "*-shinylive-app/*"
 ---
 
 A continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:
