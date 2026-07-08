@@ -175,15 +175,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <!-- Script de Soberanía Digital: Habilitar COOP/COEP en GitHub Pages -->
-<script>
-  if (window.location.hostname.includes("github.io") && !window.crossOriginIsolated) {
-    const swUrl = "https://jsdelivr.net";
-    navigator.serviceWorker.register(swUrl).then(() => {
-      // Recarga transparente para aplicar los permisos de aislamiento de origen requeridos por WebAssembly
-      window.location.reload();
-    }).catch(err => console.error("Error al registrar service worker:", err));
-  }
-</script>
+<script src="coi-serviceworker.js"></script>
 <p>A continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:</p>
 <pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
@@ -194,8 +186,24 @@ ul.task-list li input[type="checkbox"] {
 library(shiny)
 library(leaflet)
 library(dplyr)
-library(rgbif)
 library(metafor)
+library(jsonlite)
+
+# ==========================================
+# HELPER: consulta directa a la API REST de GBIF
+# (reemplaza rgbif::occ_search, que depende de httr/crul,
+#  no soportado en webR/shinylive)
+# ==========================================
+gbif_occ_search &lt;- function(scientificName, limit = 50) {
+  url &lt;- paste0(
+    "https://api.gbif.org/v1/occurrence/search?",
+    "scientificName=", URLencode(scientificName),
+    "&amp;hasCoordinate=true&amp;limit=", limit
+  )
+  res &lt;- tryCatch(fromJSON(url), error = function(e) NULL)
+  if (is.null(res) || is.null(res$results)) return(NULL)
+  res$results
+}
 
 # ==========================================
 # DEFINICIÓN DE MÓDULOS INTEGRADOS
@@ -224,9 +232,9 @@ biodiversityServer &lt;- function(id) {
   moduleServer(id, function(input, output, session) {
     datos &lt;- eventReactive(input$run, {
       req(input$sp1, input$sp2)
-      occ1 &lt;- occ_search(scientificName = input$sp1, limit = input$max_reg, hasCoordinate = TRUE)$data
-      occ2 &lt;- occ_search(scientificName = input$sp2, limit = input$max_reg, hasCoordinate = TRUE)$data
-      df1 &lt;- if(!is.null(occ1) &amp;&amp; "decimalLatitude" %in% colnames(occ1)) occ1 %&gt;% select(decimalLatitude, decimalLongitude, scientificName, datasetKey) else NULL
+    occ1 &lt;- gbif_occ_search(input$sp1, limit = input$max_reg)
+    occ2 &lt;- gbif_occ_search(input$sp2, limit = input$max_reg)
+    df1 &lt;- if(!is.null(occ1) &amp;&amp; "decimalLatitude" %in% colnames(occ1)) occ1 %&gt;% select(decimalLatitude, decimalLongitude, scientificName, datasetKey) else NULL
       df2 &lt;- if(!is.null(occ2) &amp;&amp; "decimalLatitude" %in% colnames(occ2)) occ2 %&gt;% select(decimalLatitude, decimalLongitude, scientificName, datasetKey) else NULL
       bind_rows(df1, df2)
     })

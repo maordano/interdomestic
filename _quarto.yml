@@ -3,9 +3,11 @@ project:
   output-dir: docs
   
   resources: 
+    - "*-shinylive-app/*"
+    - "coi-serviceworker.js"
     - "google78e3f1e62d7e147c.html"
     - "docs/appendix_live/*"  
-    
+    - ".nojekyll"
 lang: es # Idioma de base
 
 website:
