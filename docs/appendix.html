@@ -41,6 +41,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-e2c07c50f1a5a1f2c38ab518d02d0cf5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content=".">
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -143,14 +148,8 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Estructura del Dispositivo</h2>
-   
-  <ul>
-  <li><a href="#apéndice-dinámico-e-interoperable-faircare" id="toc-apéndice-dinámico-e-interoperable-faircare" class="nav-link active" data-scroll-target="#apéndice-dinámico-e-interoperable-faircare">Apéndice Dinámico e Interoperable (FAIR/CARE)</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -175,16 +174,126 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="apéndice-dinámico-e-interoperable-faircare" class="level1">
-<h1>Apéndice Dinámico e Interoperable (FAIR/CARE)</h1>
-<p>Este dispositivo interactivo consolida las capas de investigación co-creadas mediante flujos de datos en tiempo real.</p>
+<!-- Script de Soberanía Digital: Habilitar COOP/COEP en GitHub Pages -->
+<script>
+  if (window.location.hostname.includes("github.io") && !window.crossOriginIsolated) {
+    const swUrl = "https://jsdelivr.net";
+    navigator.serviceWorker.register(swUrl).then(() => {
+      // Recarga transparente para aplicar los permisos de aislamiento de origen requeridos por WebAssembly
+      window.location.reload();
+    }).catch(err => console.error("Error al registrar service worker:", err));
+  }
+</script>
 <p>A continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:</p>
-<div class="shinylive-container" style="position: relative; overflow: hidden; width: 100%; padding-top: 65%;">
-<p><iframe src="./appendix_live/" style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);" allowfullscreen=""> </iframe></p>
-</div>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 500
+
+library(shiny)
+library(leaflet)
+library(dplyr)
+library(rgbif)
+library(metafor)
+
+# ==========================================
+# DEFINICIÓN DE MÓDULOS INTEGRADOS
+# ==========================================
+biodiversityUI &lt;- function(id) {
+  ns &lt;- NS(id)
+  tagList(
+    wellPanel(
+      style = "background: #f8fafc; border: 1px solid #e2e8f0;",
+      fluidRow(
+        column(6, textInput(ns("sp1"), "Especie A (Azul):", "Panthera onca")),
+        column(6, textInput(ns("sp2"), "Especie B (Rojo):", "Puma concolor"))
+      ),
+      fluidRow(
+        column(6, numericInput(ns("max_reg"), "Registros máx:", 50, min = 10)),
+        column(6, br(), actionButton(ns("run"), "Sincronizar Ecosistemas", class = "btn-primary", style = "width: 100%;"))
+      )
+    ),
+    leafletOutput(ns("map"), height = "350px"),
+    br(),
+    verbatimTextOutput(ns("metadata"))
+  )
+}
+
+biodiversityServer &lt;- function(id) {
+  moduleServer(id, function(input, output, session) {
+    datos &lt;- eventReactive(input$run, {
+      req(input$sp1, input$sp2)
+      occ1 &lt;- occ_search(scientificName = input$sp1, limit = input$max_reg, hasCoordinate = TRUE)$data
+      occ2 &lt;- occ_search(scientificName = input$sp2, limit = input$max_reg, hasCoordinate = TRUE)$data
+      df1 &lt;- if(!is.null(occ1) &amp;&amp; "decimalLatitude" %in% colnames(occ1)) occ1 %&gt;% select(decimalLatitude, decimalLongitude, scientificName, datasetKey) else NULL
+      df2 &lt;- if(!is.null(occ2) &amp;&amp; "decimalLatitude" %in% colnames(occ2)) occ2 %&gt;% select(decimalLatitude, decimalLongitude, scientificName, datasetKey) else NULL
+      bind_rows(df1, df2)
+    })
+    
+    output$map &lt;- renderLeaflet({
+      df &lt;- datos()
+      m &lt;- leaflet() %&gt;% addTiles() %&gt;% addSimpleGraticule(interval = 10)
+      if (is.null(df) || nrow(df) == 0) return(m %&gt;% setView(0, 0, 2))
+      
+      sp1_clean &lt;- trimws(tolower(input$sp1))
+      sp2_clean &lt;- trimws(tolower(input$sp2))
+      
+      df_color &lt;- df %&gt;% mutate(color_asignado = case_when(
+        grepl(sp1_clean, tolower(scientificName), fixed = TRUE) ~ "#2563eb",
+        grepl(sp2_clean, tolower(scientificName), fixed = TRUE) ~ "#dc2626",
+        TRUE ~ "#64748b"
+      ))
+      
+      m %&gt;% addCircleMarkers(data = df_color, lng = ~decimalLongitude, lat = ~decimalLatitude,
+                               color = ~color_asignado, radius = 6, fillOpacity = 0.7, popup = ~scientificName)
+    })
+    
+    output$metadata &lt;- renderText({
+      df &lt;- datos(); req(df)
+      paste0("--- METADATA PROFILE (FAIR/CARE) ---\nEstandar: Darwin Core\nDatasets: ", length(unique(df$datasetKey)))
+    })
+  })
+}
+
+metaUI &lt;- function(id) {
+  ns &lt;- NS(id)
+  tagList(
+    sliderInput(ns("hetero"), "Heterogeneidad:", min = 0, max = 1, value = 0.3, step = 0.1),
+    plotOutput(ns("forest")),
+    verbatimTextOutput(ns("results"))
+  )
+}
+
+metaServer &lt;- function(id) {
+  moduleServer(id, function(input, output, session) {
+    res_react &lt;- reactive({
+      set.seed(123); k &lt;- 8
+      rma(yi = rnorm(k, 0.5, 0.1 + input$hetero), vi = runif(k, 0.02, 0.05), method = "FE")
+    })
+    output$forest &lt;- renderPlot({ forest(res_react(), xlab = "Effect Size", theme = "light") })
+    output$results &lt;- renderText({ paste("Efecto Global:", round(res_react()$b, 3)) })
+  })
+}
+
+# ==========================================
+# INTERFAZ Y SERVIDOR CENTRAL DE SHINY
+# ==========================================
+ui &lt;- fluidPage(
+  tabsetPanel(
+    tabPanel("🗺️ Biodiversidad", br(), biodiversityUI("bio")),
+    tabPanel("📊 Meta-Análisis", br(), metaUI("meta"))
+  )
+)
+
+server &lt;- function(input, output, session) {
+  biodiversityServer("bio")
+  metaServer("meta")
+}
+
+shinyApp(ui, server)</code></pre>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
