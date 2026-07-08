@@ -11,7 +11,7 @@ A continuación se despliega el nodo modular de consulta biológica interactiva 
 
 <div class="shinylive-container" style="position: relative; overflow: hidden; width: 100%; padding-top: 65%;">
   <iframe 
-    src="./appendix_live/" 
+    src="https://github.io" 
     style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);"
     allowfullscreen>
   </iframe>
