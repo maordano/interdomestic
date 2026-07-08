@@ -109,6 +109,6 @@ format:
     code-fold: true 
 
 execute:
-  freeze: false
+  freeze: true
 
    
