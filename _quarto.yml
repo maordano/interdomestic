@@ -111,4 +111,5 @@ format:
 execute:
   freeze: true
 
-   
+filters:
+  - shinylive 
