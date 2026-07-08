@@ -21,7 +21,6 @@ format:
   }
 </script>
 
-
 A continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:
 
 ```{shinylive-r}
