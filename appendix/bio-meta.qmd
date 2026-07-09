@@ -1,5 +1,54 @@
 ---
-title: "bio-meta"
-format: html
+title: "Meta-análisis"
+subtitle: "Síntesis cuantitativa de evidencia (WebAssembly)"
+format:
+  html:
+    resources:
+      - "*-shinylive-app/*"
 ---
 
+<!-- Script de aislamiento cross-origin: habilita SharedArrayBuffer/webR en GitHub Pages -->
+<script src="../coi-serviceworker.js"></script>
+
+::: {.callout-note appearance="simple" icon=false}
+⏳ **Primera carga:** el entorno estadístico (R) se descarga y arranca dentro de su navegador — puede tardar un minuto la primera vez.
+:::
+
+::: {.callout-tip collapse="true" title="Sobre esta demo"}
+Esta es una demostración funcional de meta-análisis de efectos aleatorios/fijos con datos simulados, para probar el mecanismo de forest plot dentro de shinylive. Está pendiente escalarla a un flujo de búsqueda por palabras clave con proceso tipo PRISMA, aplicado al proyecto de variación fenotípica (en desarrollo).
+:::
+
+A continuación, un ejemplo interactivo de forest plot con `metafor`, ejecutado vía WebAssembly directamente en su navegador:
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 450
+
+library(shiny)
+library(metafor)
+
+ui <- fluidPage(
+  sliderInput("hetero", "Heterogeneidad:", min = 0, max = 1, value = 0.3, step = 0.1),
+  plotOutput("forest"),
+  verbatimTextOutput("results"),
+  hr(),
+  div(
+    style = "font-size: 0.85em; color: #64748b;",
+    strong("Fuentes y créditos: "),
+    "esta demo usa el paquete ",
+    tags$a(href = "https://www.metafor-project.org", target = "_blank", "metafor"),
+    " y corre vía Shiny/shinylive-webR, embebida con Quarto."
+  )
+)
+
+server <- function(input, output, session) {
+  res_react <- reactive({
+    set.seed(123); k <- 8
+    rma(yi = rnorm(k, 0.5, 0.1 + input$hetero), vi = runif(k, 0.02, 0.05), method = "FE")
+  })
+  output$forest <- renderPlot({ forest(res_react(), xlab = "Effect Size", theme = "light") })
+  output$results <- renderText({ paste("Efecto Global:", round(res_react()$b, 3)) })
+}
+
+shinyApp(ui, server)
+```

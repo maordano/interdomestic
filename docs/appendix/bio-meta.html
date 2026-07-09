@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>bio-meta –  interdomestic</title>
+<title>Meta-análisis –  interdomestic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -41,6 +41,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-e2c07c50f1a5a1f2c38ab518d02d0cf5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -188,7 +193,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">bio-meta</h1>
+<h1 class="title">Meta-análisis</h1>
+<p class="subtitle lead">Síntesis cuantitativa de evidencia (WebAssembly)</p>
 </div>
 
 
@@ -205,6 +211,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<!-- Script de aislamiento cross-origin: habilita SharedArrayBuffer/webR en GitHub Pages -->
+<script src="../coi-serviceworker.js"></script>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>⏳ <strong>Primera carga:</strong> el entorno estadístico (R) se descarga y arranca dentro de su navegador — puede tardar un minuto la primera vez.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Sobre esta demo">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Sobre esta demo
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Esta es una demostración funcional de meta-análisis de efectos aleatorios/fijos con datos simulados, para probar el mecanismo de forest plot dentro de shinylive. Está pendiente escalarla a un flujo de búsqueda por palabras clave con proceso tipo PRISMA, aplicado al proyecto de variación fenotípica (en desarrollo).</p>
+</div>
+</div>
+</div>
+<p>A continuación, un ejemplo interactivo de forest plot con <code>metafor</code>, ejecutado vía WebAssembly directamente en su navegador:</p>
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 450
+
+library(shiny)
+library(metafor)
+
+ui &lt;- fluidPage(
+  sliderInput("hetero", "Heterogeneidad:", min = 0, max = 1, value = 0.3, step = 0.1),
+  plotOutput("forest"),
+  verbatimTextOutput("results"),
+  hr(),
+  div(
+    style = "font-size: 0.85em; color: #64748b;",
+    strong("Fuentes y créditos: "),
+    "esta demo usa el paquete ",
+    tags$a(href = "https://www.metafor-project.org", target = "_blank", "metafor"),
+    " y corre vía Shiny/shinylive-webR, embebida con Quarto."
+  )
+)
+
+server &lt;- function(input, output, session) {
+  res_react &lt;- reactive({
+    set.seed(123); k &lt;- 8
+    rma(yi = rnorm(k, 0.5, 0.1 + input$hetero), vi = runif(k, 0.02, 0.05), method = "FE")
+  })
+  output$forest &lt;- renderPlot({ forest(res_react(), xlab = "Effect Size", theme = "light") })
+  output$results &lt;- renderText({ paste("Efecto Global:", round(res_react()$b, 3)) })
+}
+
+shinyApp(ui, server)</code></pre>
 
 
 
