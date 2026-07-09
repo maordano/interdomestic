@@ -27,6 +27,15 @@ library(dplyr)
 library(metafor)
 library(jsonlite)
 
+# Workaround para Chromium Issue 468227
+# Necesario para que la descarga de CSV funcione en shinylive
+# (no hace falta en una app Shiny corriendo en servidor normal)
+downloadButton <- function(...) {
+  tag <- shiny::downloadButton(...)
+  tag$attribs$download <- NULL
+  tag
+}
+
 # ==========================================
 # HELPER: consulta directa a la API REST de GBIF
 # (reemplaza rgbif::occ_search, que depende de httr/crul,
