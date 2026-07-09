@@ -38,7 +38,7 @@ website:
             href: fuente-proyecto/sintesis.qmd
       - text: "Appendix"
         menu:
-          - text: "Bio-distribution"
+          - text: "Bio-distribución"
             href: appendix/bio-distribution.qmd
           - text: "Meta-análisis"
             href: appendix/bio-meta.qmd
