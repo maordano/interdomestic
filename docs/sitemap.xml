@@ -1,31 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://maordano.github.io/interdomestic/marco.html</loc>
-    <lastmod>2026-07-06T01:54:31.249Z</lastmod>
+    <loc>https://maordano.github.io/interdomestic/manual/identidad.html</loc>
+    <lastmod>2026-07-07T15:56:14.789Z</lastmod>
   </url>
   <url>
     <loc>https://maordano.github.io/interdomestic/about.html</loc>
     <lastmod>2026-07-06T01:55:53.868Z</lastmod>
   </url>
   <url>
-    <loc>https://maordano.github.io/interdomestic/identidad.html</loc>
-    <lastmod>2026-07-07T15:56:14.789Z</lastmod>
+    <loc>https://maordano.github.io/interdomestic/fuente-proyecto/marco.html</loc>
+    <lastmod>2026-07-06T01:54:31.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://maordano.github.io/interdomestic/fuente-proyecto/metodos.html</loc>
+    <lastmod>2026-07-09T01:09:32.325Z</lastmod>
+  </url>
+  <url>
+    <loc>https://maordano.github.io/interdomestic/fuente-proyecto/variables.html</loc>
+    <lastmod>2026-07-09T01:09:47.142Z</lastmod>
   </url>
   <url>
     <loc>https://maordano.github.io/interdomestic/cuore-fenotipos.html</loc>
     <lastmod>2026-07-06T03:22:10.779Z</lastmod>
   </url>
   <url>
-    <loc>https://maordano.github.io/interdomestic/bitacora.html</loc>
-    <lastmod>2026-07-06T01:57:44.028Z</lastmod>
+    <loc>https://maordano.github.io/interdomestic/appendix/bio-info.html</loc>
+    <lastmod>2026-07-09T00:39:39.938Z</lastmod>
+  </url>
+  <url>
+    <loc>https://maordano.github.io/interdomestic/appendix/bio-meta.html</loc>
+    <lastmod>2026-07-09T00:39:15.788Z</lastmod>
+  </url>
+  <url>
+    <loc>https://maordano.github.io/interdomestic/appendix/bio-distribution.html</loc>
+    <lastmod>2026-07-09T00:24:30.354Z</lastmod>
+  </url>
+  <url>
+    <loc>https://maordano.github.io/interdomestic/fuente-proyecto/sintesis.html</loc>
+    <lastmod>2026-07-09T01:08:54.707Z</lastmod>
+  </url>
+  <url>
+    <loc>https://maordano.github.io/interdomestic/fuente-proyecto/resultados.html</loc>
+    <lastmod>2026-07-09T01:09:14.805Z</lastmod>
+  </url>
+  <url>
+    <loc>https://maordano.github.io/interdomestic/fuente-proyecto/sistema-estudio.html</loc>
+    <lastmod>2026-07-09T01:10:01.905Z</lastmod>
   </url>
   <url>
     <loc>https://maordano.github.io/interdomestic/index.html</loc>
     <lastmod>2026-07-07T16:00:21.402Z</lastmod>
   </url>
   <url>
-    <loc>https://maordano.github.io/interdomestic/appendix.html</loc>
-    <lastmod>2026-07-08T20:40:13.927Z</lastmod>
+    <loc>https://maordano.github.io/interdomestic/manual/bitacora.html</loc>
+    <lastmod>2026-07-06T01:57:44.028Z</lastmod>
   </url>
 </urlset>

@@ -6,7 +6,6 @@ project:
     - "*-shinylive-app/*"
     - "coi-serviceworker.js"
     - "google78e3f1e62d7e147c.html"
-    - "docs/appendix_live/*"  
     - ".nojekyll"
 lang: es # Idioma de base
 
@@ -23,24 +22,39 @@ website:
       - href: index.qmd
         text: "Inicio"
     right:
-      - icon: heart-pulse
-        text: "Fuente de Proyecto"
+      - text: "Fuente de proyecto"
         menu:
-          - text: "Variación Fenotípica"
-            href: cuore-fenotipos.qmd
           - text: "Marco"
-            href: marco.qmd
-          - text: "Bitácora"
-            href: bitacora.qmd
-          - text: "Apéndice Interactivo"
-            href: appendix.qmd      
-      - icon: gear-wide-connected
-        text: "Manual"
-        href: identidad.qmd
-      # CORRECCIÓN TÉCNICA: Enlace multilingüe global con subcarpeta 100% codificada (%2F)
-      - text: "🌐 seleccione idioma"  
+            href: fuente-proyecto/marco.qmd
+          - text: "Sistema de estudio"
+            href: fuente-proyecto/sistema-estudio.qmd
+          - text: "Variables"
+            href: fuente-proyecto/variables.qmd
+          - text: "Métodos"
+            href: fuente-proyecto/metodos.qmd
+          - text: "Resultados"
+            href: fuente-proyecto/resultados.qmd
+          - text: "Síntesis"
+            href: fuente-proyecto/sintesis.qmd
+      - text: "Appendix"
+        menu:
+          - text: "Bio-distribution"
+            href: appendix/bio-distribution.qmd
+          - text: "Meta-análisis"
+            href: appendix/bio-meta.qmd
+          - text: "Apps"
+            href: appendix/bio-info.qmd
+      - text: "Manual"
+        menu:
+          - icon: heart-pulse
+            text: "Bitácora"
+            href: manual/bitacora.qmd
+          - icon: gear-wide-connected
+            text: "Manual"
+            href: manual/identidad.qmd
+      - text: "🌐 seleccione idioma"
         href: "https://translate.google.com/translate?sl=es&tl=en&u=https%3A%2F%2Fmaordano.github.io/interdomestic/"
-        target: "_blank"  
+        target: "_blank"
 
   page-footer:
     left: |
@@ -62,7 +76,7 @@ website:
         href: https://osf.io 
       - icon: kanban
         text: "STAPLE"
-        href: https://staplescience.com 
+        href: https://staple.science 
 
 format:
   html:
@@ -114,4 +128,4 @@ execute:
   freeze: true
 
 filters:
-  - shinylive 
+  - shinylive

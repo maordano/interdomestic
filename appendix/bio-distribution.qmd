@@ -1,0 +1,183 @@
+---
+title: "Apéndice Interoperable"
+subtitle: "Dispositivo dinámico de síntesis de conocimiento (FAIR/CARE / WebAssembly)"
+format:
+  html:
+    grid:
+      sidebar-width: 250px
+    # 🆕 ESTA LÍNEA ES LA CLAVE: Desactiva las restricciones del iframe de Quarto
+    resources: 
+      - "*-shinylive-app/*"
+      - "../coi-serviceworker.js"
+---
+
+<!-- Script de Soberanía Digital: Habilitar COOP/COEP en GitHub Pages -->
+<script src="../coi-serviceworker.js"></script>
+
+A continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:
+
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 500
+
+library(shiny)
+library(leaflet)
+library(dplyr)
+library(metafor)
+library(jsonlite)
+
+# ==========================================
+# HELPER: consulta directa a la API REST de GBIF
+# (reemplaza rgbif::occ_search, que depende de httr/crul,
+#  no soportado en webR/shinylive)
+# ==========================================
+gbif_occ_search <- function(scientificName, limit = 50) {
+  url <- paste0(
+    "https://api.gbif.org/v1/occurrence/search?",
+    "scientificName=", URLencode(scientificName),
+    "&hasCoordinate=true&limit=", limit
+  )
+  res <- tryCatch(fromJSON(url), error = function(e) NULL)
+  if (is.null(res) || is.null(res$results)) return(NULL)
+  res$results
+}
+
+# ==========================================
+# DEFINICIÓN DE MÓDULOS INTEGRADOS
+# ==========================================
+biodiversityUI <- function(id) {
+  ns <- NS(id)
+  tagList(
+    wellPanel(
+      style = "background: #f8fafc; border: 1px solid #e2e8f0;",
+      textAreaInput(ns("especies"), "Especies (una por línea):",
+                    value = "Panthera onca\nPuma concolor",
+                    rows = 4, resize = "vertical"),
+      fluidRow(
+        column(6, numericInput(ns("max_reg"), "Registros máx. por especie:", 50, min = 10, max = 300)),
+        column(6, br(), actionButton(ns("run"), "Sincronizar Distribución Geográfica",
+                                      class = "btn-primary", style = "width: 100%;"))
+      )
+    ),
+    leafletOutput(ns("map"), height = "350px"),
+    br(),
+    fluidRow(
+      column(8, verbatimTextOutput(ns("metadata"))),
+      column(4, br(), downloadButton(ns("descargar"), "Descargar datos (.csv)",
+                                      class = "btn-outline-secondary", style = "width: 100%;"))
+    ),
+    br(),
+    wellPanel(
+      style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
+      tags$strong("Fuentes y créditos:"),
+      tags$p("Los datos de ocurrencia provienen de GBIF.org bajo estándar Darwin Core. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
+      tags$div(
+        style = "display: flex; gap: 8px; flex-wrap: wrap;",
+        tags$a(href = "https://www.gbif.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GBIF.org"),
+        tags$a(href = "https://shiny.posit.co", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Shiny"),
+        tags$a(href = "https://posit-dev.github.io/r-shinylive/", target = "_blank", class = "btn btn-sm btn-outline-secondary", "shinylive / webR"),
+        tags$a(href = "https://quarto.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Quarto")
+      )
+    )
+  )
+}
+
+biodiversityServer <- function(id) {
+  moduleServer(id, function(input, output, session) {
+
+    especies_lista <- reactive({
+      sp <- strsplit(input$especies, "\n")[[1]]
+      sp <- trimws(sp)
+      sp[sp != ""]
+    })
+
+    datos <- eventReactive(input$run, {
+      sp_list <- especies_lista()
+      req(length(sp_list) > 0)
+
+      resultados <- lapply(sp_list, function(sp) {
+        occ <- gbif_occ_search(sp, limit = input$max_reg)
+        if (is.null(occ) || !"decimalLatitude" %in% colnames(occ)) return(NULL)
+        occ %>%
+          select(decimalLatitude, decimalLongitude, scientificName, datasetKey) %>%
+          mutate(especie_consultada = sp)
+      })
+
+      bind_rows(resultados)
+    })
+
+    output$map <- renderLeaflet({
+      df <- datos()
+      m <- leaflet() %>% addTiles() %>% addSimpleGraticule(interval = 10)
+      if (is.null(df) || nrow(df) == 0) return(m %>% setView(0, 0, 2))
+
+      pal <- colorFactor(palette = "Set1", domain = df$especie_consultada)
+
+      m %>%
+        addCircleMarkers(data = df, lng = ~decimalLongitude, lat = ~decimalLatitude,
+                          color = ~pal(especie_consultada), radius = 6, fillOpacity = 0.7,
+                          popup = ~scientificName) %>%
+        addLegend("bottomright", pal = pal, values = df$especie_consultada, title = "Especie")
+    })
+
+    output$metadata <- renderText({
+      df <- datos(); req(df)
+      paste0(
+        "--- METADATA PROFILE (FAIR/CARE) ---\n",
+        "Estándar: Darwin Core\n",
+        "Especies consultadas: ", length(unique(df$especie_consultada)), "\n",
+        "Registros totales: ", nrow(df), "\n",
+        "Datasets GBIF de origen: ", length(unique(df$datasetKey))
+      )
+    })
+
+    output$descargar <- downloadHandler(
+      filename = function() paste0("interdomestic_gbif_", Sys.Date(), ".csv"),
+      content = function(file) {
+        df <- datos()
+        req(df)
+        write.csv(df, file, row.names = FALSE)
+      }
+    )
+  })
+}
+
+metaUI <- function(id) {
+  ns <- NS(id)
+  tagList(
+    sliderInput(ns("hetero"), "Heterogeneidad:", min = 0, max = 1, value = 0.3, step = 0.1),
+    plotOutput(ns("forest")),
+    verbatimTextOutput(ns("results"))
+  )
+}
+
+metaServer <- function(id) {
+  moduleServer(id, function(input, output, session) {
+    res_react <- reactive({
+      set.seed(123); k <- 8
+      rma(yi = rnorm(k, 0.5, 0.1 + input$hetero), vi = runif(k, 0.02, 0.05), method = "FE")
+    })
+    output$forest <- renderPlot({ forest(res_react(), xlab = "Effect Size", theme = "light") })
+    output$results <- renderText({ paste("Efecto Global:", round(res_react()$b, 3)) })
+  })
+}
+
+# ==========================================
+# INTERFAZ Y SERVIDOR CENTRAL DE SHINY
+# ==========================================
+ui <- fluidPage(
+  tabsetPanel(
+    tabPanel("🗺️ Biodiversidad", br(), biodiversityUI("bio")),
+    tabPanel("📊 Meta-Análisis", br(), metaUI("meta"))
+  )
+)
+
+server <- function(input, output, session) {
+  biodiversityServer("bio")
+  metaServer("meta")
+}
+
+shinyApp(ui, server)
+```
+

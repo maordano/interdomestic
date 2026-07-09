@@ -1,31 +1,17 @@
 [
   {
-    "objectID": "marco.html",
-    "href": "marco.html",
-    "title": "Puntos de Partida",
+    "objectID": "manual/identidad.html",
+    "href": "manual/identidad.html",
+    "title": "Manual de Operaciones",
     "section": "",
-    "text": "En esta sección se detallan las bases de componentes metodológicos y éticos, a partir de los cuales decidimos construir este ecosistema de aprendizaje e investigación abierta.\nDefinimos nuestra labor buscando claridad identitaria, entendiendo el conocimiento como un collage vivo y situado."
+    "text": "TipGuía de la Plantilla\n\n\n\nEsta sección del dispositivo opera como nuestra fuente de toma de decisiones (o “Wiki de Gobernanza”). Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación."
   },
   {
-    "objectID": "marco.html#conocimiento-situado-y-redes",
-    "href": "marco.html#conocimiento-situado-y-redes",
-    "title": "Puntos de Partida",
-    "section": "1. Conocimiento Situado y Redes",
-    "text": "1. Conocimiento Situado y Redes\nNuestras observaciones (biológicas o no) operan bajo un marco de Conocimiento Situado, entendiendo que la investigación -que genera sistemas de aprendizaje, experiencias y dispositivos para productos publicados que representan base de conocimiento- está siendo apropiada en multiplicidad y diversidad por la población humana de manera libre y abierta, como una propiedad emergente colectiva; la cual se genera desde cuerpos y entornos concretos. Por ejemplo, una oficina, un laboratorio, un área natural, un campo agrícola, un entorno productivo, un aula, un parque, un patio de escuela, una casa, un hogar, espacios y tiempos de cotidianidad humana, centros de investigación, instituciones de desarrollo educativo, tantas esferas humanas! Y herramientas típicamente inorgánicas: dispositivos de interacción."
-  },
-  {
-    "objectID": "marco.html#agencialidad-simétrica",
-    "href": "marco.html#agencialidad-simétrica",
-    "title": "Puntos de Partida",
-    "section": "2. Agencialidad Simétrica",
-    "text": "2. Agencialidad Simétrica\nReconocemos y documentamos explícitamente tres rutas de interacción para la construcción de nuestras bases de “saberes”: * Humana: red de interacción humana definida por proximidad, historia de vida, ciudadanía y coautoría tradicional (pedigrees, historias de vida). * Híbrida: Sesiones de ideación interactiva y andamiaje mental asistido por IA (este documento). * Sintética: Procesamiento analítico automatizado de datos mediante código de R interoperable a otras codificaciones, agentes de IA, dispositivos no humanos."
-  },
-  {
-    "objectID": "marco.html#bucles-de-segundo-orden-y-escalamiento-multidimensional",
-    "href": "marco.html#bucles-de-segundo-orden-y-escalamiento-multidimensional",
-    "title": "Puntos de Partida",
-    "section": "3. Bucles de Segundo Orden y Escalamiento Multidimensional",
-    "text": "3. Bucles de Segundo Orden y Escalamiento Multidimensional\nLa infraestructura que sostiene este sitio web forma parte del proceso de ideación interactiva, usamos dispositivos de interacción que median nuestras relaciones y la interacción con el entorno y otras formas de vida.\nLa construcción de una meta-investigación es abierta a colaboraciones transdisciplinares orientadas a herramientas de libre desarrollo, con aplicaciones educativas, de aprendizaje y para construcción de base de conocimiento; buscando que el dispositivo interactivo evolucione hacia un dispositivo lo más ambientalmente amigable posible, abarcando el espacio de posibilidades que nos da el conocimiento disponible sobre el desarrollo y uso de dispositivos, y nuestra relación como personas humanas, con el entorno, y la vida silvestre o formas no humanas de vida."
+    "objectID": "manual/identidad.html#nuestra-mediación-humana",
+    "href": "manual/identidad.html#nuestra-mediación-humana",
+    "title": "Manual de Operaciones",
+    "section": "Nuestra Mediación Humana",
+    "text": "Nuestra Mediación Humana\nA medida que el proyecto cuore madure, aquí se detallarán nuestras reglas de interacción, co-participación y convivencia."
   },
   {
     "objectID": "about.html",
@@ -35,39 +21,39 @@
     "text": "interdomestic [lang: es] - un dispositivo de interacción mediado por personas humanas diseñado para el aprendizaje y la investigación de la vida silvestre en el ámbito doméstico"
   },
   {
-    "objectID": "identidad.html",
-    "href": "identidad.html",
-    "title": "Manual de Operaciones",
+    "objectID": "fuente-proyecto/marco.html",
+    "href": "fuente-proyecto/marco.html",
+    "title": "Puntos de Partida",
     "section": "",
-    "text": "TipGuía de la Plantilla\n\n\n\nEsta sección del dispositivo opera como nuestra fuente de toma de decisiones (o “Wiki de Gobernanza”). Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación."
+    "text": "En esta sección se detallan las bases de componentes metodológicos y éticos, a partir de los cuales decidimos construir este ecosistema de aprendizaje e investigación abierta.\nDefinimos nuestra labor buscando claridad identitaria, entendiendo el conocimiento como un collage vivo y situado."
   },
   {
-    "objectID": "identidad.html#nuestra-mediación-humana",
-    "href": "identidad.html#nuestra-mediación-humana",
-    "title": "Manual de Operaciones",
-    "section": "Nuestra Mediación Humana",
-    "text": "Nuestra Mediación Humana\nA medida que el proyecto cuore madure, aquí se detallarán nuestras reglas de interacción, co-participación y convivencia."
+    "objectID": "fuente-proyecto/marco.html#conocimiento-situado-y-redes",
+    "href": "fuente-proyecto/marco.html#conocimiento-situado-y-redes",
+    "title": "Puntos de Partida",
+    "section": "1. Conocimiento Situado y Redes",
+    "text": "1. Conocimiento Situado y Redes\nNuestras observaciones (biológicas o no) operan bajo un marco de Conocimiento Situado, entendiendo que la investigación -que genera sistemas de aprendizaje, experiencias y dispositivos para productos publicados que representan base de conocimiento- está siendo apropiada en multiplicidad y diversidad por la población humana de manera libre y abierta, como una propiedad emergente colectiva; la cual se genera desde cuerpos y entornos concretos. Por ejemplo, una oficina, un laboratorio, un área natural, un campo agrícola, un entorno productivo, un aula, un parque, un patio de escuela, una casa, un hogar, espacios y tiempos de cotidianidad humana, centros de investigación, instituciones de desarrollo educativo, tantas esferas humanas! Y herramientas típicamente inorgánicas: dispositivos de interacción."
   },
   {
-    "objectID": "bitacora.html",
-    "href": "bitacora.html",
-    "title": "Bitácora",
+    "objectID": "fuente-proyecto/marco.html#agencialidad-simétrica",
+    "href": "fuente-proyecto/marco.html#agencialidad-simétrica",
+    "title": "Puntos de Partida",
+    "section": "2. Agencialidad Simétrica",
+    "text": "2. Agencialidad Simétrica\nReconocemos y documentamos explícitamente tres rutas de interacción para la construcción de nuestras bases de “saberes”: * Humana: red de interacción humana definida por proximidad, historia de vida, ciudadanía y coautoría tradicional (pedigrees, historias de vida). * Híbrida: Sesiones de ideación interactiva y andamiaje mental asistido por IA (este documento). * Sintética: Procesamiento analítico automatizado de datos mediante código de R interoperable a otras codificaciones, agentes de IA, dispositivos no humanos."
+  },
+  {
+    "objectID": "fuente-proyecto/marco.html#bucles-de-segundo-orden-y-escalamiento-multidimensional",
+    "href": "fuente-proyecto/marco.html#bucles-de-segundo-orden-y-escalamiento-multidimensional",
+    "title": "Puntos de Partida",
+    "section": "3. Bucles de Segundo Orden y Escalamiento Multidimensional",
+    "text": "3. Bucles de Segundo Orden y Escalamiento Multidimensional\nLa infraestructura que sostiene este sitio web forma parte del proceso de ideación interactiva, usamos dispositivos de interacción que median nuestras relaciones y la interacción con el entorno y otras formas de vida.\nLa construcción de una meta-investigación es abierta a colaboraciones transdisciplinares orientadas a herramientas de libre desarrollo, con aplicaciones educativas, de aprendizaje y para construcción de base de conocimiento; buscando que el dispositivo interactivo evolucione hacia un dispositivo lo más ambientalmente amigable posible, abarcando el espacio de posibilidades que nos da el conocimiento disponible sobre el desarrollo y uso de dispositivos, y nuestra relación como personas humanas, con el entorno, y la vida silvestre o formas no humanas de vida."
+  },
+  {
+    "objectID": "appendix/bio-distribution.html",
+    "href": "appendix/bio-distribution.html",
+    "title": "Apéndice Interoperable",
     "section": "",
-    "text": "Esta sección funciona como nuestro Lab Logbook o “bitácora”.\nAquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica de la vida silvestre en el ámbito doméstico. Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento."
-  },
-  {
-    "objectID": "bitacora.html#registros-recientes",
-    "href": "bitacora.html#registros-recientes",
-    "title": "Bitácora",
-    "section": "Registros Recientes",
-    "text": "Registros Recientes\n\n\n\n\n\n\nNotaRegistro #001: Diseño de la Membrana Digital\n\n\n\n\nFecha: 2026-07-05\nRuta de Co-participación: Modelo B (Agencialidad Híbrida / Asistencia de IA)\nEstado: Consolidación de la infraestructura del dispositivo en RStudio y Quarto.\nDescripción: Soldadura del puente de Git entre la computadora local y la subcarpeta /interdomestic/, habilitando controles de percepción y accesibilidad en el pie de página. El chasis del sistema queda estable -candidate release- para recibir los datos de las metas de proyecto."
-  },
-  {
-    "objectID": "bitacora.html#archivo-histórico",
-    "href": "bitacora.html#archivo-histórico",
-    "title": "Bitácora",
-    "section": "Archivo Histórico",
-    "text": "Archivo Histórico\nA medida que la “orquesta” avance y sumemos nuevas observaciones sobre el proyecto, esta sección utilizará motores de listado dinámico para organizar los hilos del proceso por categorías y fechas de registro."
+    "text": "A continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 500\n\nlibrary(shiny)\nlibrary(leaflet)\nlibrary(dplyr)\nlibrary(metafor)\nlibrary(jsonlite)\n\n# ==========================================\n# HELPER: consulta directa a la API REST de GBIF\n# (reemplaza rgbif::occ_search, que depende de httr/crul,\n#  no soportado en webR/shinylive)\n# ==========================================\ngbif_occ_search &lt;- function(scientificName, limit = 50) {\n  url &lt;- paste0(\n    \"https://api.gbif.org/v1/occurrence/search?\",\n    \"scientificName=\", URLencode(scientificName),\n    \"&hasCoordinate=true&limit=\", limit\n  )\n  res &lt;- tryCatch(fromJSON(url), error = function(e) NULL)\n  if (is.null(res) || is.null(res$results)) return(NULL)\n  res$results\n}\n\n# ==========================================\n# DEFINICIÓN DE MÓDULOS INTEGRADOS\n# ==========================================\nbiodiversityUI &lt;- function(id) {\n  ns &lt;- NS(id)\n  tagList(\n    wellPanel(\n      style = \"background: #f8fafc; border: 1px solid #e2e8f0;\",\n      textAreaInput(ns(\"especies\"), \"Especies (una por línea):\",\n                    value = \"Panthera onca\\nPuma concolor\",\n                    rows = 4, resize = \"vertical\"),\n      fluidRow(\n        column(6, numericInput(ns(\"max_reg\"), \"Registros máx. por especie:\", 50, min = 10, max = 300)),\n        column(6, br(), actionButton(ns(\"run\"), \"Sincronizar Distribución Geográfica\",\n                                      class = \"btn-primary\", style = \"width: 100%;\"))\n      )\n    ),\n    leafletOutput(ns(\"map\"), height = \"350px\"),\n    br(),\n    fluidRow(\n      column(8, verbatimTextOutput(ns(\"metadata\"))),\n      column(4, br(), downloadButton(ns(\"descargar\"), \"Descargar datos (.csv)\",\n                                      class = \"btn-outline-secondary\", style = \"width: 100%;\"))\n    ),\n    br(),\n    wellPanel(\n      style = \"background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;\",\n      tags$strong(\"Fuentes y créditos:\"),\n      tags$p(\"Los datos de ocurrencia provienen de GBIF.org bajo estándar Darwin Core. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto.\"),\n      tags$div(\n        style = \"display: flex; gap: 8px; flex-wrap: wrap;\",\n        tags$a(href = \"https://www.gbif.org\", target = \"_blank\", class = \"btn btn-sm btn-outline-secondary\", \"GBIF.org\"),\n        tags$a(href = \"https://shiny.posit.co\", target = \"_blank\", class = \"btn btn-sm btn-outline-secondary\", \"Shiny\"),\n        tags$a(href = \"https://posit-dev.github.io/r-shinylive/\", target = \"_blank\", class = \"btn btn-sm btn-outline-secondary\", \"shinylive / webR\"),\n        tags$a(href = \"https://quarto.org\", target = \"_blank\", class = \"btn btn-sm btn-outline-secondary\", \"Quarto\")\n      )\n    )\n  )\n}\n\nbiodiversityServer &lt;- function(id) {\n  moduleServer(id, function(input, output, session) {\n\n    especies_lista &lt;- reactive({\n      sp &lt;- strsplit(input$especies, \"\\n\")[[1]]\n      sp &lt;- trimws(sp)\n      sp[sp != \"\"]\n    })\n\n    datos &lt;- eventReactive(input$run, {\n      sp_list &lt;- especies_lista()\n      req(length(sp_list) &gt; 0)\n\n      resultados &lt;- lapply(sp_list, function(sp) {\n        occ &lt;- gbif_occ_search(sp, limit = input$max_reg)\n        if (is.null(occ) || !\"decimalLatitude\" %in% colnames(occ)) return(NULL)\n        occ %&gt;%\n          select(decimalLatitude, decimalLongitude, scientificName, datasetKey) %&gt;%\n          mutate(especie_consultada = sp)\n      })\n\n      bind_rows(resultados)\n    })\n\n    output$map &lt;- renderLeaflet({\n      df &lt;- datos()\n      m &lt;- leaflet() %&gt;% addTiles() %&gt;% addSimpleGraticule(interval = 10)\n      if (is.null(df) || nrow(df) == 0) return(m %&gt;% setView(0, 0, 2))\n\n      pal &lt;- colorFactor(palette = \"Set1\", domain = df$especie_consultada)\n\n      m %&gt;%\n        addCircleMarkers(data = df, lng = ~decimalLongitude, lat = ~decimalLatitude,\n                          color = ~pal(especie_consultada), radius = 6, fillOpacity = 0.7,\n                          popup = ~scientificName) %&gt;%\n        addLegend(\"bottomright\", pal = pal, values = df$especie_consultada, title = \"Especie\")\n    })\n\n    output$metadata &lt;- renderText({\n      df &lt;- datos(); req(df)\n      paste0(\n        \"--- METADATA PROFILE (FAIR/CARE) ---\\n\",\n        \"Estándar: Darwin Core\\n\",\n        \"Especies consultadas: \", length(unique(df$especie_consultada)), \"\\n\",\n        \"Registros totales: \", nrow(df), \"\\n\",\n        \"Datasets GBIF de origen: \", length(unique(df$datasetKey))\n      )\n    })\n\n    output$descargar &lt;- downloadHandler(\n      filename = function() paste0(\"interdomestic_gbif_\", Sys.Date(), \".csv\"),\n      content = function(file) {\n        df &lt;- datos()\n        req(df)\n        write.csv(df, file, row.names = FALSE)\n      }\n    )\n  })\n}\n\nmetaUI &lt;- function(id) {\n  ns &lt;- NS(id)\n  tagList(\n    sliderInput(ns(\"hetero\"), \"Heterogeneidad:\", min = 0, max = 1, value = 0.3, step = 0.1),\n    plotOutput(ns(\"forest\")),\n    verbatimTextOutput(ns(\"results\"))\n  )\n}\n\nmetaServer &lt;- function(id) {\n  moduleServer(id, function(input, output, session) {\n    res_react &lt;- reactive({\n      set.seed(123); k &lt;- 8\n      rma(yi = rnorm(k, 0.5, 0.1 + input$hetero), vi = runif(k, 0.02, 0.05), method = \"FE\")\n    })\n    output$forest &lt;- renderPlot({ forest(res_react(), xlab = \"Effect Size\", theme = \"light\") })\n    output$results &lt;- renderText({ paste(\"Efecto Global:\", round(res_react()$b, 3)) })\n  })\n}\n\n# ==========================================\n# INTERFAZ Y SERVIDOR CENTRAL DE SHINY\n# ==========================================\nui &lt;- fluidPage(\n  tabsetPanel(\n    tabPanel(\"🗺️ Biodiversidad\", br(), biodiversityUI(\"bio\")),\n    tabPanel(\"📊 Meta-Análisis\", br(), metaUI(\"meta\"))\n  )\n)\n\nserver &lt;- function(input, output, session) {\n  biodiversityServer(\"bio\")\n  metaServer(\"meta\")\n}\n\nshinyApp(ui, server)"
   },
   {
     "objectID": "index.html",
@@ -77,10 +63,24 @@
     "text": "en breve: un dispositivo de interacción mediado por personas humanas diseñado para el aprendizaje y la investigación de la vida silvestre en el ámbito doméstico\nen extenso: un dispositivo de ideación interactiva, con infraestructura de artefacto, co-creado y mediado por personas humanas, diseñado para el aprendizaje, la investigación y la síntesis de conocimiento sobre la vida silvestre en el ámbito doméstico"
   },
   {
-    "objectID": "appendix.html",
-    "href": "appendix.html",
-    "title": "Apéndice Interoperable",
+    "objectID": "manual/bitacora.html",
+    "href": "manual/bitacora.html",
+    "title": "Bitácora",
     "section": "",
-    "text": "A continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 500\n\nlibrary(shiny)\nlibrary(leaflet)\nlibrary(dplyr)\nlibrary(metafor)\nlibrary(jsonlite)\n\n# ==========================================\n# HELPER: consulta directa a la API REST de GBIF\n# (reemplaza rgbif::occ_search, que depende de httr/crul,\n#  no soportado en webR/shinylive)\n# ==========================================\ngbif_occ_search &lt;- function(scientificName, limit = 50) {\n  url &lt;- paste0(\n    \"https://api.gbif.org/v1/occurrence/search?\",\n    \"scientificName=\", URLencode(scientificName),\n    \"&hasCoordinate=true&limit=\", limit\n  )\n  res &lt;- tryCatch(fromJSON(url), error = function(e) NULL)\n  if (is.null(res) || is.null(res$results)) return(NULL)\n  res$results\n}\n\n# ==========================================\n# DEFINICIÓN DE MÓDULOS INTEGRADOS\n# ==========================================\nbiodiversityUI &lt;- function(id) {\n  ns &lt;- NS(id)\n  tagList(\n    wellPanel(\n      style = \"background: #f8fafc; border: 1px solid #e2e8f0;\",\n      textAreaInput(ns(\"especies\"), \"Especies (una por línea):\",\n                    value = \"Panthera onca\\nPuma concolor\",\n                    rows = 4, resize = \"vertical\"),\n      fluidRow(\n        column(6, numericInput(ns(\"max_reg\"), \"Registros máx. por especie:\", 50, min = 10, max = 300)),\n        column(6, br(), actionButton(ns(\"run\"), \"Sincronizar Distribución Geográfica\",\n                                      class = \"btn-primary\", style = \"width: 100%;\"))\n      )\n    ),\n    leafletOutput(ns(\"map\"), height = \"350px\"),\n    br(),\n    fluidRow(\n      column(8, verbatimTextOutput(ns(\"metadata\"))),\n      column(4, br(), downloadButton(ns(\"descargar\"), \"Descargar datos (.csv)\",\n                                      class = \"btn-outline-secondary\", style = \"width: 100%;\"))\n    ),\n    br(),\n    wellPanel(\n      style = \"background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;\",\n      tags$strong(\"Fuentes y créditos:\"),\n      tags$p(\"Los datos de ocurrencia provienen de GBIF.org bajo estándar Darwin Core. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto.\"),\n      tags$div(\n        style = \"display: flex; gap: 8px; flex-wrap: wrap;\",\n        tags$a(href = \"https://www.gbif.org\", target = \"_blank\", class = \"btn btn-sm btn-outline-secondary\", \"GBIF.org\"),\n        tags$a(href = \"https://shiny.posit.co\", target = \"_blank\", class = \"btn btn-sm btn-outline-secondary\", \"Shiny\"),\n        tags$a(href = \"https://posit-dev.github.io/r-shinylive/\", target = \"_blank\", class = \"btn btn-sm btn-outline-secondary\", \"shinylive / webR\"),\n        tags$a(href = \"https://quarto.org\", target = \"_blank\", class = \"btn btn-sm btn-outline-secondary\", \"Quarto\")\n      )\n    )\n  )\n}\n\nbiodiversityServer &lt;- function(id) {\n  moduleServer(id, function(input, output, session) {\n\n    especies_lista &lt;- reactive({\n      sp &lt;- strsplit(input$especies, \"\\n\")[[1]]\n      sp &lt;- trimws(sp)\n      sp[sp != \"\"]\n    })\n\n    datos &lt;- eventReactive(input$run, {\n      sp_list &lt;- especies_lista()\n      req(length(sp_list) &gt; 0)\n\n      resultados &lt;- lapply(sp_list, function(sp) {\n        occ &lt;- gbif_occ_search(sp, limit = input$max_reg)\n        if (is.null(occ) || !\"decimalLatitude\" %in% colnames(occ)) return(NULL)\n        occ %&gt;%\n          select(decimalLatitude, decimalLongitude, scientificName, datasetKey) %&gt;%\n          mutate(especie_consultada = sp)\n      })\n\n      bind_rows(resultados)\n    })\n\n    output$map &lt;- renderLeaflet({\n      df &lt;- datos()\n      m &lt;- leaflet() %&gt;% addTiles() %&gt;% addSimpleGraticule(interval = 10)\n      if (is.null(df) || nrow(df) == 0) return(m %&gt;% setView(0, 0, 2))\n\n      pal &lt;- colorFactor(palette = \"Set1\", domain = df$especie_consultada)\n\n      m %&gt;%\n        addCircleMarkers(data = df, lng = ~decimalLongitude, lat = ~decimalLatitude,\n                          color = ~pal(especie_consultada), radius = 6, fillOpacity = 0.7,\n                          popup = ~scientificName) %&gt;%\n        addLegend(\"bottomright\", pal = pal, values = df$especie_consultada, title = \"Especie\")\n    })\n\n    output$metadata &lt;- renderText({\n      df &lt;- datos(); req(df)\n      paste0(\n        \"--- METADATA PROFILE (FAIR/CARE) ---\\n\",\n        \"Estándar: Darwin Core\\n\",\n        \"Especies consultadas: \", length(unique(df$especie_consultada)), \"\\n\",\n        \"Registros totales: \", nrow(df), \"\\n\",\n        \"Datasets GBIF de origen: \", length(unique(df$datasetKey))\n      )\n    })\n\n    output$descargar &lt;- downloadHandler(\n      filename = function() paste0(\"interdomestic_gbif_\", Sys.Date(), \".csv\"),\n      content = function(file) {\n        df &lt;- datos()\n        req(df)\n        write.csv(df, file, row.names = FALSE)\n      }\n    )\n  })\n}\n\nmetaUI &lt;- function(id) {\n  ns &lt;- NS(id)\n  tagList(\n    sliderInput(ns(\"hetero\"), \"Heterogeneidad:\", min = 0, max = 1, value = 0.3, step = 0.1),\n    plotOutput(ns(\"forest\")),\n    verbatimTextOutput(ns(\"results\"))\n  )\n}\n\nmetaServer &lt;- function(id) {\n  moduleServer(id, function(input, output, session) {\n    res_react &lt;- reactive({\n      set.seed(123); k &lt;- 8\n      rma(yi = rnorm(k, 0.5, 0.1 + input$hetero), vi = runif(k, 0.02, 0.05), method = \"FE\")\n    })\n    output$forest &lt;- renderPlot({ forest(res_react(), xlab = \"Effect Size\", theme = \"light\") })\n    output$results &lt;- renderText({ paste(\"Efecto Global:\", round(res_react()$b, 3)) })\n  })\n}\n\n# ==========================================\n# INTERFAZ Y SERVIDOR CENTRAL DE SHINY\n# ==========================================\nui &lt;- fluidPage(\n  tabsetPanel(\n    tabPanel(\"🗺️ Biodiversidad\", br(), biodiversityUI(\"bio\")),\n    tabPanel(\"📊 Meta-Análisis\", br(), metaUI(\"meta\"))\n  )\n)\n\nserver &lt;- function(input, output, session) {\n  biodiversityServer(\"bio\")\n  metaServer(\"meta\")\n}\n\nshinyApp(ui, server)"
+    "text": "Esta sección funciona como nuestro Lab Logbook o “bitácora”.\nAquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica de la vida silvestre en el ámbito doméstico. Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento."
+  },
+  {
+    "objectID": "manual/bitacora.html#registros-recientes",
+    "href": "manual/bitacora.html#registros-recientes",
+    "title": "Bitácora",
+    "section": "Registros Recientes",
+    "text": "Registros Recientes\n\n\n\n\n\n\nNotaRegistro #001: Diseño de la Membrana Digital\n\n\n\n\nFecha: 2026-07-05\nRuta de Co-participación: Modelo B (Agencialidad Híbrida / Asistencia de IA)\nEstado: Consolidación de la infraestructura del dispositivo en RStudio y Quarto.\nDescripción: Soldadura del puente de Git entre la computadora local y la subcarpeta /interdomestic/, habilitando controles de percepción y accesibilidad en el pie de página. El chasis del sistema queda estable -candidate release- para recibir los datos de las metas de proyecto."
+  },
+  {
+    "objectID": "manual/bitacora.html#archivo-histórico",
+    "href": "manual/bitacora.html#archivo-histórico",
+    "title": "Bitácora",
+    "section": "Archivo Histórico",
+    "text": "Archivo Histórico\nA medida que la “orquesta” avance y sumemos nuevas observaciones sobre el proyecto, esta sección utilizará motores de listado dinámico para organizar los hilos del proceso por categorías y fechas de registro."
   }
 ]
