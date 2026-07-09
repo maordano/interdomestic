@@ -49,6 +49,20 @@
     "text": "3. Bucles de Segundo Orden y Escalamiento Multidimensional\nLa infraestructura que sostiene este sitio web forma parte del proceso de ideación interactiva, usamos dispositivos de interacción que median nuestras relaciones y la interacción con el entorno y otras formas de vida.\nLa construcción de una meta-investigación es abierta a colaboraciones transdisciplinares orientadas a herramientas de libre desarrollo, con aplicaciones educativas, de aprendizaje y para construcción de base de conocimiento; buscando que el dispositivo interactivo evolucione hacia un dispositivo lo más ambientalmente amigable posible, abarcando el espacio de posibilidades que nos da el conocimiento disponible sobre el desarrollo y uso de dispositivos, y nuestra relación como personas humanas, con el entorno, y la vida silvestre o formas no humanas de vida."
   },
   {
+    "objectID": "fuente-proyecto/metodos.html",
+    "href": "fuente-proyecto/metodos.html",
+    "title": "Métodos",
+    "section": "",
+    "text": "Métodos de construcción del conocimiento:\nSe establecen 3 rutas básicas o modelos de construcción del conocimiento, de manera de distinguir el rol de los dispositivos de interacción en el proceso de aprendizaje, investigación y síntesis.\nTodos los modelos resultantes se diseñan con principios FAIR/CARE, con consideración de términos y condiciones para la protección de datos personales.\n\nModelo humano. Modelo de red de relaciones humanas, grupos, pedigrees). Personas humanas interactuamos y convenimos colaborar en un proyecto. Se establecen relaciones vinculadas a las historias de vida de las personas para el desarrollo del proyecto. La toma de decisiones es realizada por personas humanas.\nModelo híbrido. Personas humanas usamos dispositivos con asistencia de Inteligencia Artificial para desarrollar el proyecto a todos los niveles hasta donde llega la mediación humana. La toma de decisiones es co-participada con asistentes de IA.\nModelo autónomo. Sistemas automatizados de desarrollo del proyecto mediado por agentes de IA."
+  },
+  {
+    "objectID": "fuente-proyecto/variables.html",
+    "href": "fuente-proyecto/variables.html",
+    "title": "Variables",
+    "section": "",
+    "text": "Tipos de variables en la interacción con el registro de datos:\nSe establecen 3 tipos de variables básicas, para distinguir el rol de los dispositivos de interacción en el proceso de toma y registro de datos.\nTodos los tipos resultantes se diseñan con principios FAIR/CARE, con consideración de términos y condiciones para la protección de datos personales.\n\nInteracción humana. Personas humanas interactuamos con la vida silvestre y registramos el dato con algún dispositivo. El registro del dato en la base de datos del proyecto se realiza posteriormente al momento de la interacción-registro (por ejemplo, observación de aves comiendo frutos, escritura con lápiz en un cuaderno, toma de fotos, grabaciones con el celular).\nInteracción híbrida. Personas humanas usamos dispositivos con asistencia de Inteligencia Artificial para la captura de datos y el registro en la base de datos (por ejemplo, trampas-cámara multifunción, drones).\nInteracción Autónoma. Sistemas automatizados de captura y registro en base de datos, mediado por agentes de IA (por ejemplo, datos climáticos, percepción remota satelital)."
+  },
+  {
     "objectID": "appendix/bio-meta.html",
     "href": "appendix/bio-meta.html",
     "title": "Meta-análisis",

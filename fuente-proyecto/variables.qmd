@@ -1,5 +1,22 @@
 ---
-title: "variables"
+title: "Variables"
+subtitle: "Descripción de tipos de variables e interacciones"
 format: html
 ---
+
+
+::: {.callout-note appearance="minimal" icon=true}
+**Tipos de variables en la interacción con el registro de datos:** 
+
+Se establecen 3 tipos de variables básicas, para  distinguir el rol de los dispositivos de interacción en el proceso de toma y registro de datos.
+
+Todos los tipos resultantes se diseñan con principios FAIR/CARE, con consideración de términos y condiciones para la protección de datos personales.
+
+  1. **Interacción humana**. Personas humanas interactuamos con la vida silvestre y registramos el dato con algún dispositivo. El registro del dato en la base de datos del proyecto se realiza posteriormente al momento de la interacción-registro (por ejemplo, observación de aves comiendo frutos, escritura con lápiz en un cuaderno, toma de fotos, grabaciones con el celular).
+  
+  2. **Interacción híbrida**. Personas humanas usamos dispositivos con asistencia de Inteligencia Artificial para la captura de datos y el registro en la base de datos (por ejemplo, trampas-cámara multifunción, drones).
+  
+  3. **Interacción Autónoma**. Sistemas automatizados de captura y registro en base de datos, mediado por agentes de IA (por ejemplo, datos climáticos, percepción remota satelital).
+
+:::
 
