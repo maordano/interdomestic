@@ -15,7 +15,10 @@ format:
 <script src="../coi-serviceworker.js"></script>
 
 ::: {.callout-note appearance="minimal" icon=true}
-**Distribución geográfica de especies:** la co-existencia de especies en un espacio y tiempo brinda un marco regional para la ocurrencia de interacciones entre especies, incluyéndonos.  
+**Distribución geográfica de especies:** la co-existencia de especies en un espacio y tiempo brinda un marco regional para la ocurrencia de interacciones entre especies, incluyéndonos. 
+
+La visualización de la distribución de especies de la vida silvestre, mediante mapas, ayuda en la interpretación multidisciplinar de la consulta.
+
 :::
 
 ::: {.callout-note appearance="simple" icon=false}
