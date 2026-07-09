@@ -1,5 +1,5 @@
 ---
-title: "Bio-distribution"
+title: "Bio-distribución"
 subtitle: "Dispositivo dinámico de síntesis de conocimiento (FAIR/CARE / WebAssembly)"
 format:
   html:
@@ -13,6 +13,10 @@ format:
 <!-- Script de aislamiento cross-origin: habilita SharedArrayBuffer/webR en GitHub Pages -->
 <!-- ver: https://github.com/gzuidhof/coi-serviceworker -->
 <script src="../coi-serviceworker.js"></script>
+
+::: {.callout-note appearance="minimal" icon=true}
+**Distribución geográfica de especies:** la co-existencia de especies en un espacio y tiempo brinda un marco regional para la ocurrencia de interacciones entre especies, incluyéndonos.  
+:::
 
 ::: {.callout-note appearance="simple" icon=false}
 ⏳ **Primera carga:** el entorno estadístico (R) se descarga y arranca completo dentro de la ventana de tu navegador — puede tardar un minuto la primera vez. Después de esa carga inicial, la app responde al instante. ¡Gracias por la paciencia!
