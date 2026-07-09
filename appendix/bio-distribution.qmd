@@ -1,31 +1,52 @@
 ---
-title: "Apéndice Interoperable"
+title: "Bio-distribution"
 subtitle: "Dispositivo dinámico de síntesis de conocimiento (FAIR/CARE / WebAssembly)"
 format:
   html:
     grid:
       sidebar-width: 250px
-    # 🆕 ESTA LÍNEA ES LA CLAVE: Desactiva las restricciones del iframe de Quarto
-    resources: 
+    resources:
       - "*-shinylive-app/*"
       - "../coi-serviceworker.js"
 ---
 
-<!-- Script de Soberanía Digital: Habilitar COOP/COEP en GitHub Pages -->
+<!-- Script de aislamiento cross-origin: habilita SharedArrayBuffer/webR en GitHub Pages -->
+<!-- ver: https://github.com/gzuidhof/coi-serviceworker -->
 <script src="../coi-serviceworker.js"></script>
+
+::: {.callout-note appearance="simple" icon=false}
+⏳ **Primera carga:** el entorno estadístico (R) se descarga y arranca completo dentro de la ventana de tu navegador — puede tardar un minuto la primera vez. Después de esa carga inicial, la app responde al instante. ¡Gracias por la paciencia!
+:::
+
+::: {.callout-tip collapse="true" title="💡 Cómo usar este apéndice interactivo"}
+1. **Escribe una o más especies**, un nombre científico por línea (precargado con *Panthera onca* y *Puma concolor* como ejemplo).
+2. **Verifica los nombres** con el botón "🔎 Verificar nombres" antes de sincronizar — se  confirma si GBIF reconoce cada nombre tal cual, si hay una coincidencia aproximada, o si no lo encuentra (corregir nombre).
+3. **Define cuántos registros** traer por especie con el campo "Registros máx."
+4. **Aprieta "Sincronizar Distribución Geográfica"** para consultar GBIF y ver los puntos de ocurrencia en el mapa — cada especie con su propio color.
+5. **Explorá el mapa** (zoom, desplazamiento, popups con el nombre al hacer clic). Puedes  descargar los datos crudos en `.csv`.
+:::
+
+::: {.callout-important collapse="true" title="🔎 Si dudas del nombre científico"}
+Para que la búsqueda funcione bien, necesitas el nombre tal como lo reconoce el backbone taxonómico de GBIF. Si tienes dudas, verificalo antes en:
+
+- [**GBIF Species Search**](https://www.gbif.org/species/search) — la fuente misma que consulta esta app.
+- [**iNaturalist**](https://www.inaturalist.org) — identificación asistida por comunidad y por IA; puerta de entrada sugerida si solo tienes una foto o un nombre común.
+- [**Tropicos.org**](https://www.tropicos.org) (Missouri Botanical Garden) — referencia nomenclatural para plantas.
+- [**Catalogue of Life**](https://www.catalogueoflife.org) — checklist taxonómico global de consenso, punto de partida para cualquier grupo.
+- [**Open Tree of Life**](https://opentreeoflife.org) — árbol filogenético navegable, mantenido activamente (el histórico Tree of Life Web Project está fuera de línea desde noviembre 2025).
+:::
 
 A continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:
 
-
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 500
+#| viewerHeight: 550
 
 library(shiny)
 library(leaflet)
 library(dplyr)
-library(metafor)
 library(jsonlite)
+library(metafor)
 
 # Workaround para Chromium Issue 468227
 # Necesario para que la descarga de CSV funcione en shinylive
@@ -37,10 +58,15 @@ downloadButton <- function(...) {
 }
 
 # ==========================================
-# HELPER: consulta directa a la API REST de GBIF
-# (reemplaza rgbif::occ_search, que depende de httr/crul,
-#  no soportado en webR/shinylive)
+# HELPERS: consultas directas a la API REST de GBIF
+# (reemplazan rgbif, que depende de httr/crul, no soportado en webR
+#  porque WebAssembly no permite abrir sockets de red crudos)
 # ==========================================
+gbif_name_match <- function(name) {
+  url <- paste0("https://api.gbif.org/v1/species/match?name=", URLencode(name))
+  tryCatch(fromJSON(url), error = function(e) NULL)
+}
+
 gbif_occ_search <- function(scientificName, limit = 50) {
   url <- paste0(
     "https://api.gbif.org/v1/occurrence/search?",
@@ -53,7 +79,7 @@ gbif_occ_search <- function(scientificName, limit = 50) {
 }
 
 # ==========================================
-# DEFINICIÓN DE MÓDULOS INTEGRADOS
+# MÓDULO: BIODIVERSIDAD / DISTRIBUCIÓN GEOGRÁFICA
 # ==========================================
 biodiversityUI <- function(id) {
   ns <- NS(id)
@@ -63,6 +89,10 @@ biodiversityUI <- function(id) {
       textAreaInput(ns("especies"), "Especies (una por línea):",
                     value = "Panthera onca\nPuma concolor",
                     rows = 4, resize = "vertical"),
+      uiOutput(ns("aviso_especies")),
+      actionButton(ns("verificar"), "🔎 Verificar nombres antes de sincronizar",
+                   class = "btn-outline-info btn-sm", style = "margin-top: 6px;"),
+      uiOutput(ns("validacion_nombres")),
       fluidRow(
         column(6, numericInput(ns("max_reg"), "Registros máx. por especie:", 50, min = 10, max = 300)),
         column(6, br(), actionButton(ns("run"), "Sincronizar Distribución Geográfica",
@@ -101,16 +131,57 @@ biodiversityServer <- function(id) {
       sp[sp != ""]
     })
 
+    output$aviso_especies <- renderUI({
+      n <- length(especies_lista())
+      if (n == 0) return(NULL)
+      if (n > 8) {
+        div(class = "alert alert-warning", style = "padding: 8px; margin-top: 8px; font-size: 0.85em;",
+            paste0("⚠️ Elegiste ", n, " especies. Con más de 8, los colores del mapa y la consulta a GBIF se vuelven más lentos de leer/esperar. Funciona igual, pero para mejor legibilidad se recomienda 8 o menos."))
+      } else {
+        div(style = "font-size: 0.8em; color: #64748b; margin-top: 4px;",
+            paste0(n, " especie(s) lista(s) para consultar."))
+      }
+    })
+
+    validacion <- eventReactive(input$verificar, {
+      sp_list <- especies_lista()
+      req(length(sp_list) > 0)
+      lapply(sp_list, function(sp) list(consulta = sp, match = gbif_name_match(sp)))
+    })
+
+    output$validacion_nombres <- renderUI({
+      resultados <- validacion()
+      tagList(lapply(resultados, function(r) {
+        m <- r$match
+        if (is.null(m) || is.null(m$matchType) || m$matchType == "NONE") {
+          div(class = "alert alert-danger", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+              paste0("❌ '", r$consulta, "' no se encontró en el backbone de GBIF. Revisá la ortografía o buscalo en los enlaces de arriba."))
+        } else if (m$matchType == "EXACT") {
+          div(class = "alert alert-success", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+              paste0("✅ '", r$consulta, "' reconocido como ", m$scientificName, " (", m$status, ")"))
+        } else {
+          div(class = "alert alert-warning", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+              paste0("⚠️ '", r$consulta, "' es una coincidencia aproximada. GBIF sugiere: ", m$canonicalName, ". Revisalo antes de sincronizar."))
+        }
+      }))
+    })
+
     datos <- eventReactive(input$run, {
       sp_list <- especies_lista()
       req(length(sp_list) > 0)
 
-      resultados <- lapply(sp_list, function(sp) {
-        occ <- gbif_occ_search(sp, limit = input$max_reg)
-        if (is.null(occ) || !"decimalLatitude" %in% colnames(occ)) return(NULL)
-        occ %>%
-          select(decimalLatitude, decimalLongitude, scientificName, datasetKey) %>%
-          mutate(especie_consultada = sp)
+      resultados <- list()
+      withProgress(message = "Sincronizando distribución geográfica...", value = 0, {
+        for (i in seq_along(sp_list)) {
+          sp <- sp_list[i]
+          incProgress(1 / length(sp_list), detail = paste0("Consultando: ", sp))
+          occ <- gbif_occ_search(sp, limit = input$max_reg)
+          if (!is.null(occ) && "decimalLatitude" %in% colnames(occ)) {
+            resultados[[i]] <- occ %>%
+              select(decimalLatitude, decimalLongitude, scientificName, datasetKey) %>%
+              mutate(especie_consultada = sp)
+          }
+        }
       })
 
       bind_rows(resultados)
@@ -121,7 +192,8 @@ biodiversityServer <- function(id) {
       m <- leaflet() %>% addTiles() %>% addSimpleGraticule(interval = 10)
       if (is.null(df) || nrow(df) == 0) return(m %>% setView(0, 0, 2))
 
-      pal <- colorFactor(palette = "Set1", domain = df$especie_consultada)
+      pal_colors <- grDevices::rainbow(length(unique(df$especie_consultada)))
+      pal <- colorFactor(palette = pal_colors, domain = df$especie_consultada)
 
       m %>%
         addCircleMarkers(data = df, lng = ~decimalLongitude, lat = ~decimalLatitude,
@@ -152,6 +224,9 @@ biodiversityServer <- function(id) {
   })
 }
 
+# ==========================================
+# MÓDULO: META-ANÁLISIS (demostrativo)
+# ==========================================
 metaUI <- function(id) {
   ns <- NS(id)
   tagList(
@@ -189,4 +264,3 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
-

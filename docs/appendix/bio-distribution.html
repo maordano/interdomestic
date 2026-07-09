@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Apéndice Interoperable –  interdomestic</title>
+<title>Bio-distribution –  interdomestic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -193,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Apéndice Interoperable</h1>
+<h1 class="title">Bio-distribution</h1>
 <p class="subtitle lead">Dispositivo dinámico de síntesis de conocimiento (FAIR/CARE / WebAssembly)</p>
 </div>
 
@@ -211,20 +211,76 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- Script de Soberanía Digital: Habilitar COOP/COEP en GitHub Pages -->
+<!-- Script de aislamiento cross-origin: habilita SharedArrayBuffer/webR en GitHub Pages -->
+<!-- ver: https://github.com/gzuidhof/coi-serviceworker -->
 <script src="../coi-serviceworker.js"></script>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>⏳ <strong>Primera carga:</strong> el entorno estadístico (R) se descarga y arranca completo dentro de la ventana de tu navegador — puede tardar un minuto la primera vez. Después de esa carga inicial, la app responde al instante. ¡Gracias por la paciencia!</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="💡 Cómo usar este apéndice interactivo">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>💡 Cómo usar este apéndice interactivo
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Escribe una o más especies</strong>, un nombre científico por línea (precargado con <em>Panthera onca</em> y <em>Puma concolor</em> como ejemplo).</li>
+<li><strong>Verifica los nombres</strong> con el botón “🔎 Verificar nombres” antes de sincronizar — se confirma si GBIF reconoce cada nombre tal cual, si hay una coincidencia aproximada, o si no lo encuentra (corregir nombre).</li>
+<li><strong>Define cuántos registros</strong> traer por especie con el campo “Registros máx.”</li>
+<li><strong>Aprieta “Sincronizar Distribución Geográfica”</strong> para consultar GBIF y ver los puntos de ocurrencia en el mapa — cada especie con su propio color.</li>
+<li><strong>Explorá el mapa</strong> (zoom, desplazamiento, popups con el nombre al hacer clic). Puedes descargar los datos crudos en <code>.csv</code>.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="🔎 Si dudas del nombre científico">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>🔎 Si dudas del nombre científico
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Para que la búsqueda funcione bien, necesitas el nombre tal como lo reconoce el backbone taxonómico de GBIF. Si tienes dudas, verificalo antes en:</p>
+<ul>
+<li><a href="https://www.gbif.org/species/search"><strong>GBIF Species Search</strong></a> — la fuente misma que consulta esta app.</li>
+<li><a href="https://www.inaturalist.org"><strong>iNaturalist</strong></a> — identificación asistida por comunidad y por IA; puerta de entrada sugerida si solo tienes una foto o un nombre común.</li>
+<li><a href="https://www.tropicos.org"><strong>Tropicos.org</strong></a> (Missouri Botanical Garden) — referencia nomenclatural para plantas.</li>
+<li><a href="https://www.catalogueoflife.org"><strong>Catalogue of Life</strong></a> — checklist taxonómico global de consenso, punto de partida para cualquier grupo.</li>
+<li><a href="https://opentreeoflife.org"><strong>Open Tree of Life</strong></a> — árbol filogenético navegable, mantenido activamente (el histórico Tree of Life Web Project está fuera de línea desde noviembre 2025).</li>
+</ul>
+</div>
+</div>
+</div>
 <p>A continuación se despliega el nodo modular de consulta biológica interactiva co-creado para el proyecto interdomestic, ejecutado mediante WebAssembly directamente en su navegador:</p>
 <pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
 #| standalone: true
-#| viewerHeight: 500
+#| viewerHeight: 550
 
 library(shiny)
 library(leaflet)
 library(dplyr)
-library(metafor)
 library(jsonlite)
+library(metafor)
 
 # Workaround para Chromium Issue 468227
 # Necesario para que la descarga de CSV funcione en shinylive
@@ -236,10 +292,15 @@ downloadButton &lt;- function(...) {
 }
 
 # ==========================================
-# HELPER: consulta directa a la API REST de GBIF
-# (reemplaza rgbif::occ_search, que depende de httr/crul,
-#  no soportado en webR/shinylive)
+# HELPERS: consultas directas a la API REST de GBIF
+# (reemplazan rgbif, que depende de httr/crul, no soportado en webR
+#  porque WebAssembly no permite abrir sockets de red crudos)
 # ==========================================
+gbif_name_match &lt;- function(name) {
+  url &lt;- paste0("https://api.gbif.org/v1/species/match?name=", URLencode(name))
+  tryCatch(fromJSON(url), error = function(e) NULL)
+}
+
 gbif_occ_search &lt;- function(scientificName, limit = 50) {
   url &lt;- paste0(
     "https://api.gbif.org/v1/occurrence/search?",
@@ -252,7 +313,7 @@ gbif_occ_search &lt;- function(scientificName, limit = 50) {
 }
 
 # ==========================================
-# DEFINICIÓN DE MÓDULOS INTEGRADOS
+# MÓDULO: BIODIVERSIDAD / DISTRIBUCIÓN GEOGRÁFICA
 # ==========================================
 biodiversityUI &lt;- function(id) {
   ns &lt;- NS(id)
@@ -262,6 +323,10 @@ biodiversityUI &lt;- function(id) {
       textAreaInput(ns("especies"), "Especies (una por línea):",
                     value = "Panthera onca\nPuma concolor",
                     rows = 4, resize = "vertical"),
+      uiOutput(ns("aviso_especies")),
+      actionButton(ns("verificar"), "🔎 Verificar nombres antes de sincronizar",
+                   class = "btn-outline-info btn-sm", style = "margin-top: 6px;"),
+      uiOutput(ns("validacion_nombres")),
       fluidRow(
         column(6, numericInput(ns("max_reg"), "Registros máx. por especie:", 50, min = 10, max = 300)),
         column(6, br(), actionButton(ns("run"), "Sincronizar Distribución Geográfica",
@@ -300,16 +365,57 @@ biodiversityServer &lt;- function(id) {
       sp[sp != ""]
     })
 
+    output$aviso_especies &lt;- renderUI({
+      n &lt;- length(especies_lista())
+      if (n == 0) return(NULL)
+      if (n &gt; 8) {
+        div(class = "alert alert-warning", style = "padding: 8px; margin-top: 8px; font-size: 0.85em;",
+            paste0("⚠️ Elegiste ", n, " especies. Con más de 8, los colores del mapa y la consulta a GBIF se vuelven más lentos de leer/esperar. Funciona igual, pero para mejor legibilidad se recomienda 8 o menos."))
+      } else {
+        div(style = "font-size: 0.8em; color: #64748b; margin-top: 4px;",
+            paste0(n, " especie(s) lista(s) para consultar."))
+      }
+    })
+
+    validacion &lt;- eventReactive(input$verificar, {
+      sp_list &lt;- especies_lista()
+      req(length(sp_list) &gt; 0)
+      lapply(sp_list, function(sp) list(consulta = sp, match = gbif_name_match(sp)))
+    })
+
+    output$validacion_nombres &lt;- renderUI({
+      resultados &lt;- validacion()
+      tagList(lapply(resultados, function(r) {
+        m &lt;- r$match
+        if (is.null(m) || is.null(m$matchType) || m$matchType == "NONE") {
+          div(class = "alert alert-danger", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+              paste0("❌ '", r$consulta, "' no se encontró en el backbone de GBIF. Revisá la ortografía o buscalo en los enlaces de arriba."))
+        } else if (m$matchType == "EXACT") {
+          div(class = "alert alert-success", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+              paste0("✅ '", r$consulta, "' reconocido como ", m$scientificName, " (", m$status, ")"))
+        } else {
+          div(class = "alert alert-warning", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+              paste0("⚠️ '", r$consulta, "' es una coincidencia aproximada. GBIF sugiere: ", m$canonicalName, ". Revisalo antes de sincronizar."))
+        }
+      }))
+    })
+
     datos &lt;- eventReactive(input$run, {
       sp_list &lt;- especies_lista()
       req(length(sp_list) &gt; 0)
 
-      resultados &lt;- lapply(sp_list, function(sp) {
-        occ &lt;- gbif_occ_search(sp, limit = input$max_reg)
-        if (is.null(occ) || !"decimalLatitude" %in% colnames(occ)) return(NULL)
-        occ %&gt;%
-          select(decimalLatitude, decimalLongitude, scientificName, datasetKey) %&gt;%
-          mutate(especie_consultada = sp)
+      resultados &lt;- list()
+      withProgress(message = "Sincronizando distribución geográfica...", value = 0, {
+        for (i in seq_along(sp_list)) {
+          sp &lt;- sp_list[i]
+          incProgress(1 / length(sp_list), detail = paste0("Consultando: ", sp))
+          occ &lt;- gbif_occ_search(sp, limit = input$max_reg)
+          if (!is.null(occ) &amp;&amp; "decimalLatitude" %in% colnames(occ)) {
+            resultados[[i]] &lt;- occ %&gt;%
+              select(decimalLatitude, decimalLongitude, scientificName, datasetKey) %&gt;%
+              mutate(especie_consultada = sp)
+          }
+        }
       })
 
       bind_rows(resultados)
@@ -320,7 +426,8 @@ biodiversityServer &lt;- function(id) {
       m &lt;- leaflet() %&gt;% addTiles() %&gt;% addSimpleGraticule(interval = 10)
       if (is.null(df) || nrow(df) == 0) return(m %&gt;% setView(0, 0, 2))
 
-      pal &lt;- colorFactor(palette = "Set1", domain = df$especie_consultada)
+      pal_colors &lt;- grDevices::rainbow(length(unique(df$especie_consultada)))
+      pal &lt;- colorFactor(palette = pal_colors, domain = df$especie_consultada)
 
       m %&gt;%
         addCircleMarkers(data = df, lng = ~decimalLongitude, lat = ~decimalLatitude,
@@ -351,6 +458,9 @@ biodiversityServer &lt;- function(id) {
   })
 }
 
+# ==========================================
+# MÓDULO: META-ANÁLISIS (demostrativo)
+# ==========================================
 metaUI &lt;- function(id) {
   ns &lt;- NS(id)
   tagList(
