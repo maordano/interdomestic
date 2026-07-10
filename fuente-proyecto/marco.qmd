@@ -1,10 +1,13 @@
 ---
 title: "Puntos de Partida"
-format: html
 subtitle: "Bases filosóficas y reflexivas de un  dispositivo interacción mediado por personas humanas"
 date: 2026-07-05
 author: "M.A.Ordano"
 date-modified: 2026-07-10
+
+format: 
+  html:
+    title-block-style: none   # Desactiva el bloque de título automático al inicio
 ---
 
 En esta sección se detallan las bases de componentes metodológicos y éticos, a partir de los cuales decidimos construir este ecosistema de aprendizaje e investigación abierta. 
@@ -25,3 +28,10 @@ Reconocemos y documentamos explícitamente tres rutas de interacción para la co
 La infraestructura que sostiene este sitio web forma parte de procesos de ideación interactiva, usamos dispositivos de interacción que median nuestras relaciones y la interacción con el entorno y otras formas de vida. 
 
 La construcción de una meta-investigación es abierta a colaboraciones transdisciplinares orientadas a herramientas de libre desarrollo, con aplicaciones educativas, de aprendizaje y para construcción de base de conocimiento; buscando que el dispositivo interactivo evolucione hacia un dispositivo lo más ambientalmente amigable posible, abarcando el espacio de posibilidades que nos da el conocimiento disponible sobre el desarrollo y uso de dispositivos; y nuestra relación como personas humanas, con el entorno, y la vida silvestre u otras formas no humanas de vida.
+
+ ---  
+
+### Metadatos del Documento
+**Autor:** {{< meta author >}}  
+**Fecha de publicación:** {{< meta date >}}  
+**Última modificación:** {{< meta date-modified >}}
