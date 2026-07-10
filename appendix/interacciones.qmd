@@ -4,6 +4,8 @@ format:
   html:
     resources: 
       - shinylive-sw.js
+    embed-resources: false
+
 filters:
   - shinylive
 ---
