@@ -222,10 +222,10 @@ library(dplyr)
 referencias_locales &lt;- data.frame(
   tipo_interaccion = c("Depredación/Parasitismo", "Competencia", "Mutualismo", "Comensalismo/Amensalismo"),
   cita_bibliografica = c(
-    "Thompson, J. N. (2005). *The Geographic Mosaic of Coevolution*.",
-    "Keddy, P. A. (2001). *Competition*.",
-    "Bronstein, J. L. (2015). *Mutualism*.",
-    "Descola, P. (2012). *Más allá de naturaleza y cultura*."
+    "Thompson, J. N. (2005). The Geographic Mosaic of Coevolution.",
+    "Keddy, P. A. (2001). Competition.",
+    "Bronstein, J. L. (2015). Mutualism.",
+    "Descola, P. (2012). Más allá de naturaleza y cultura."
   ),
   stringsAsFactors = FALSE
 )
@@ -234,13 +234,13 @@ referencias_locales &lt;- data.frame(
 ui &lt;- fluidPage(
   fluidRow(
     column(6, wellPanel(
-        tags\$h4("Especie A"),
+        tags$h4("Especie A"),
         textInput("especie_a", "Nombre:", "Panthera onca"),
         selectInput("rasgo_a", "Rol:", c("Predador" = "predador", "Recurso" = "recurso", "Antrópica" = "antropica")),
         selectInput("actividad_a", "Ritmo:", c("Nocturno" = "nocturno", "Diurno" = "diurno"))
     )),
     column(6, wellPanel(
-        tags\$h4("Especie B"),
+        tags$h4("Especie B"),
         textInput("especie_b", "Nombre:", "Puma concolor"),
         selectInput("rasgo_b", "Rol:", c("Predador" = "predador", "Recurso" = "recurso", "Antrópica" = "antropica")),
         selectInput("actividad_b", "Ritmo:", c("Nocturno" = "nocturno", "Diurno" = "diurno"))
@@ -252,31 +252,34 @@ ui &lt;- fluidPage(
 
 # 3. SERVIDOR
 server &lt;- function(input, output, session) {
-  resultado_Mapeo &lt;- eventReactive(input\$procesar, {
-    req(input\(especie_a, input\)especie_b)
-    
+  resultado_mapeo &lt;- eventReactive(input$procesar, {
+    req(input$especie_a, input$especie_b)
+
     # Lógica de cruce dinámico
-    if (input\$rasgo_a == "predador" &amp;&amp; input\(rasgo_b == "recurso") {       tipo &lt;- "Depredación/Parasitismo"       desc &lt;- "A consume a B."     } else if (input\)rasgo_a == input\(rasgo_b &amp;&amp; input\)rasgo_a == "predador") {
+    if (input$rasgo_a == "predador" &amp;&amp; input$rasgo_b == "recurso") {
+      tipo &lt;- "Depredación/Parasitismo"
+      desc &lt;- "A consume a B."
+    } else if (input$rasgo_a == input$rasgo_b &amp;&amp; input$rasgo_a == "predador") {
       tipo &lt;- "Competencia"
       desc &lt;- "Alta superposición de nicho."
     } else {
       tipo &lt;- "Mutualismo"
       desc &lt;- "Relación de facilitación."
     }
-    
+
     ref &lt;- referencias_locales %&gt;% filter(tipo_interaccion == tipo) %&gt;% pull(cita_bibliografica)
-    
+
     list(tipo = tipo, desc = desc, ref = ref)
   })
-  
-  output\$resultado_panel &lt;- renderUI({
-    res &lt;- resultado_Mapeo()
+
+  output$resultado_panel &lt;- renderUI({
+    res &lt;- resultado_mapeo()
     req(res)
     wellPanel(
-      tags\$h4("Ficha de Interacción"),
-      tags\$p(tags\(strong("Tipo: "), res\)tipo),
-      tags\$p(tags\(strong("Diagnóstico: "), res\)desc),
-      tags\(small(res\)ref)
+      tags$h4("Ficha de Interacción"),
+      tags$p(tags$strong("Tipo: "), res$tipo),
+      tags$p(tags$strong("Diagnóstico: "), res$desc),
+      tags$small(res$ref)
     )
   })
 }
