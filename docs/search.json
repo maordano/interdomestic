@@ -4,7 +4,7 @@
     "href": "manual/identidad.html",
     "title": "Manual de Operaciones",
     "section": "",
-    "text": "TipGuía de la Plantilla\n\n\n\nEsta sección del dispositivo opera como nuestra fuente de toma de decisiones (o “Wiki de Gobernanza”). Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación."
+    "text": "TipGuía de la Plantilla\n\n\n\nEsta sección del dispositivo opera como nuestra fuente de toma de decisiones (o “Wiki de Gobernanza”). Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación.\nDiagrama del ecosistema de aprendizaje, investigación y síntesis\nEn construcción."
   },
   {
     "objectID": "manual/identidad.html#nuestra-mediación-humana",
@@ -77,11 +77,18 @@
     "text": "⏳ Primera carga: el entorno estadístico (R) se descarga y arranca dentro de su navegador — puede tardar un minuto la primera vez.\n\n\n\n\n\n\n\n\n\nTipSobre esta demo\n\n\n\n\n\nEsta es una demostración funcional de meta-análisis de efectos aleatorios/fijos con datos simulados, para probar el mecanismo de forest plot dentro de shinylive. Está pendiente escalarla a un flujo de búsqueda por palabras clave con proceso tipo PRISMA, aplicado al proyecto de variación fenotípica (en desarrollo).\n\n\n\nA continuación, un ejemplo interactivo de forest plot con metafor, ejecutado vía WebAssembly directamente en su navegador:\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 450\n\nlibrary(shiny)\nlibrary(metafor)\n\nui &lt;- fluidPage(\n  sliderInput(\"hetero\", \"Heterogeneidad:\", min = 0, max = 1, value = 0.3, step = 0.1),\n  plotOutput(\"forest\"),\n  verbatimTextOutput(\"results\"),\n  hr(),\n  div(\n    style = \"font-size: 0.85em; color: #64748b;\",\n    strong(\"Fuentes y créditos: \"),\n    \"esta demo usa el paquete \",\n    tags$a(href = \"https://www.metafor-project.org\", target = \"_blank\", \"metafor\"),\n    \" y corre vía Shiny/shinylive-webR, embebida con Quarto.\"\n  )\n)\n\nserver &lt;- function(input, output, session) {\n  res_react &lt;- reactive({\n    set.seed(123); k &lt;- 8\n    rma(yi = rnorm(k, 0.5, 0.1 + input$hetero), vi = runif(k, 0.02, 0.05), method = \"FE\")\n  })\n  output$forest &lt;- renderPlot({ forest(res_react(), xlab = \"Effect Size\", theme = \"light\") })\n  output$results &lt;- renderText({ paste(\"Efecto Global:\", round(res_react()$b, 3)) })\n}\n\nshinyApp(ui, server)"
   },
   {
+    "objectID": "appendix/bio-info.html",
+    "href": "appendix/bio-info.html",
+    "title": "bio-info",
+    "section": "",
+    "text": "Apps y dispositivos de mediación con la vida silvestre\nEn construcción."
+  },
+  {
     "objectID": "fuente-proyecto/pgd.html",
     "href": "fuente-proyecto/pgd.html",
     "title": "Plan de Gestión de Datos",
     "section": "",
-    "text": "Ecosistema de interacción de personas humanas, dispositivos y aplicaciones de aprendizaje, investigación y síntesis\nGestión interna del proyecto https://app.staplescience.com/\nSTAPLE articula con OSF y el resto de los componentes del ecosistema de investigación, https://staplescience.com/documentation/\n\nProyecto Variación Fenotípica de la Vida Silvestre en el Ámbito Doméstico e Infraestructura Digital Abierta\nDescripción Ecosistema transdisciplinar y dispositivo interactivo enfocado en las rutas y facetas de la variación fenotípica en el ámbito doméstico, la gestión de datos bajo principios FAIR/CARE, y la automatización de la difusión del conocimiento.\n\nGestión abierta del proyecto\nPre-registro y registro de componentes de proyecto, metadatos y plataforma de gestión del proyecto vía Open Science Framework, https://osf.io\n\nProyecto Phenotypic variation of wildlife in the domestic environment: a systematic review\n\nDiagrama del ecosistema de aprendizaje, investigación y síntesis\nEn construcción."
+    "text": "Ecosistema de interacción de personas humanas, dispositivos y aplicaciones de aprendizaje, investigación y síntesis\nGestión operativa del proyecto https://app.staplescience.com/\nAplicaciones y sistemas que combinan la estandarización FAIR/CARE con estándares de investigación académica. STAPLE articula con OSF y el resto de los componentes del ecosistema de investigación, https://staplescience.com/documentation/\n\nProyecto\n\nVariación Fenotípica de la Vida Silvestre en el Ámbito Doméstico e Infraestructura Digital Abierta\n\nDescripción\n\nEcosistema transdisciplinar y dispositivo interactivo enfocado en las rutas y facetas de la variación fenotípica en el ámbito doméstico, la gestión de datos bajo principios FAIR/CARE, y la automatización de la difusión del conocimiento.\nGestión abierta del proyecto\nPre-registro y registro de componentes de proyecto, metadatos y plataforma de gestión del proyecto vía Open Science Framework, https://osf.io\n\nProyecto\n\nPhenotypic variation of wildlife in the domestic environment: a systematic review"
   },
   {
     "objectID": "fuente-proyecto/sistema-estudio.html",

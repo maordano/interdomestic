@@ -1,22 +1,25 @@
 ---
 title: "Plan de Gestión de Datos"
-subtitle: "Diagrama relacional interactivo para la gestión del proceso de aprendizaje, investigación y síntesis"
+subtitle: "Componentes del ecosistema de gestión del proceso de aprendizaje, investigación y síntesis"
 format: html
 ---
 
 ::: {.callout-note appearance="minimal" icon=true}
 **Ecosistema de interacción de personas humanas, dispositivos y aplicaciones de aprendizaje, investigación y síntesis** 
 
-**Gestión interna del proyecto**
+**Gestión operativa del proyecto**
 https://app.staplescience.com/
 
+Aplicaciones y sistemas que combinan la estandarización FAIR/CARE con estándares de investigación académica. 
 STAPLE articula con OSF y el resto de los componentes del ecosistema de investigación,
 https://staplescience.com/documentation/
 
 - Proyecto
+
 Variación Fenotípica de la Vida Silvestre en el Ámbito Doméstico e Infraestructura Digital Abierta
 
 - Descripción
+
 Ecosistema transdisciplinar y dispositivo interactivo enfocado en las rutas y facetas de la variación fenotípica en el ámbito doméstico, la gestión de datos bajo principios FAIR/CARE, y la automatización de la difusión del conocimiento.
 
 **Gestión abierta del proyecto**
@@ -25,11 +28,8 @@ Pre-registro y registro de componentes de proyecto, metadatos y plataforma de ge
 https://osf.io
 
 - Proyecto
+
 Phenotypic variation of wildlife in the domestic environment: a systematic review
-
-**Diagrama del ecosistema de aprendizaje, investigación y síntesis**
-
-En construcción.
 
 :::
 

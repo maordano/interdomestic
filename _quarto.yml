@@ -32,7 +32,7 @@ website:
             href: fuente-proyecto/variables.qmd
           - text: "Métodos"
             href: fuente-proyecto/metodos.qmd
-          - text: "Resultados"
+          - text: "Plan de Gestión de Datos"
             href: fuente-proyecto/pgd.qmd
       - text: "Appendix"
         menu:

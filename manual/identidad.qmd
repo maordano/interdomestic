@@ -13,6 +13,10 @@ Esta sección del dispositivo opera como nuestra fuente de toma de decisiones (o
 
 :::
 
+**Diagrama del ecosistema de aprendizaje, investigación y síntesis**
+
+En construcción.
+
 ---
 
 <!-- ==========================================================================
