@@ -1,0 +1,79 @@
+---
+title: "Ecología Evolutiva de Interacciones Bióticas"
+format:
+  html:
+    resources: 
+      - shinylive-sw.js
+filters:
+  - shinylive
+---
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 650
+library(shiny)
+library(dplyr)
+
+# 1. BASE DE DATOS LOCAL
+referencias_locales <- data.frame(
+  tipo_interaccion = c("Depredación/Parasitismo", "Competencia", "Mutualismo", "Comensalismo/Amensalismo"),
+  cita_bibliografica = c(
+    "Thompson, J. N. (2005). *The Geographic Mosaic of Coevolution*.",
+    "Keddy, P. A. (2001). *Competition*.",
+    "Bronstein, J. L. (2015). *Mutualism*.",
+    "Descola, P. (2012). *Más allá de naturaleza y cultura*."
+  ),
+  stringsAsFactors = FALSE
+)
+
+# 2. UI
+ui <- fluidPage(
+  fluidRow(
+    column(6, wellPanel(
+        tags\$h4("Especie A"),
+        textInput("especie_a", "Nombre:", "Panthera onca"),
+        selectInput("rasgo_a", "Rol:", c("Predador" = "predador", "Recurso" = "recurso", "Antrópica" = "antropica")),
+        selectInput("actividad_a", "Ritmo:", c("Nocturno" = "nocturno", "Diurno" = "diurno"))
+    )),
+    column(6, wellPanel(
+        tags\$h4("Especie B"),
+        textInput("especie_b", "Nombre:", "Puma concolor"),
+        selectInput("rasgo_b", "Rol:", c("Predador" = "predador", "Recurso" = "recurso", "Antrópica" = "antropica")),
+        selectInput("actividad_b", "Ritmo:", c("Nocturno" = "nocturno", "Diurno" = "diurno"))
+    ))
+  ),
+  actionButton("procesar", "Mapear Interacción", class = "btn-primary"),
+  uiOutput("resultado_panel")
+)
+
+# 3. SERVIDOR
+server <- function(input, output, session) {
+  resultado_Mapeo <- eventReactive(input\$procesar, {
+    req(input\(especie_a, input\)especie_b)
+    
+    # Lógica de cruce dinámico
+    if (input\$rasgo_a == "predador" && input\(rasgo_b == "recurso") {       tipo <- "Depredación/Parasitismo"; desc <- "A consume a B."     } else if (input\)rasgo_a == input\(rasgo_b && input\)rasgo_a == "predador") {
+      tipo <- "Competencia"; desc <- "Alta superposición de nicho."
+    } else {
+      tipo <- "Mutualismo"; desc <- "Relación de facilitación."
+    }
+    
+    ref <- referencias_locales %>% filter(tipo_interaccion == tipo) %>% pull(cita_bibliografica)
+    
+    list(tipo = tipo, desc = desc, ref = ref)
+  })
+  
+  output\$resultado_panel <- renderUI({
+    res <- resultado_Mapeo(); req(res)
+    wellPanel(
+      tags\$h4("Ficha de Interacción"),
+      tags\$p(tags\(strong("Tipo: "), res\)tipo),
+      tags\$p(tags\(strong("Diagnóstico: "), res\)desc),
+      tags\(small(res\)ref)
+    )
+  })
+}
+
+shinyApp(ui, server)
+```
+
