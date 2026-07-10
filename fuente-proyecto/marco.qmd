@@ -1,7 +1,7 @@
 ---
 title: "Puntos de Partida"
 format: html
-subtitle: "Bases filosóficas y reflexivas de un  dispositivo de ideación interactiva mediada por humanos"
+subtitle: "Bases filosóficas y reflexivas de un  dispositivo interacción mediado por personas humanas"
 date: 2026-07-05
 author: "M.A.Ordano"
 ---
@@ -11,7 +11,7 @@ En esta sección se detallan las bases de componentes metodológicos y éticos, 
 Definimos nuestra labor buscando claridad identitaria, entendiendo el conocimiento como un **collage** vivo y situado.
 
 ## 1. Conocimiento Situado y Redes
-Nuestras observaciones (biológicas o no) operan bajo un marco de **Conocimiento Situado**, entendiendo que la investigación -que genera sistemas de aprendizaje, experiencias y dispositivos para productos publicados que representan base de conocimiento- está siendo  apropiada en multiplicidad y diversidad por la población humana de manera libre y abierta, como una propiedad emergente colectiva; la cual se genera desde cuerpos y entornos concretos. Por ejemplo, una oficina, un laboratorio, un área natural, un campo agrícola, un entorno productivo, un aula, un parque, un patio de escuela, una casa, un hogar, espacios y tiempos de  cotidianidad humana, centros de investigación, instituciones de desarrollo educativo, tantas esferas humanas! Y herramientas típicamente inorgánicas: dispositivos de interacción.
+Nuestras observaciones (biológicas o no) operan bajo un marco de **Conocimiento Situado**, entendiendo que la investigación -que genera sistemas de aprendizaje, experiencias y dispositivos para productos publicados que representan base de conocimiento- está siendo  apropiada en multiplicidad y diversidad por la población humana de manera libre y abierta, como una propiedad emergente colectiva; la cual se genera desde personas humanas y entornos concretos. Por ejemplo, una oficina, un laboratorio, un área natural, un campo agrícola, un entorno productivo, un aula, un parque, un patio de escuela, una casa, un hogar, centros de investigación, instituciones de desarrollo educativo, espacios y tiempos de cotidianidad humana -tantas esferas humanas! Y herramientas típicamente inorgánicas: dispositivos de interacción.
 
 ## 2. Agencialidad Simétrica
 Reconocemos y documentamos explícitamente tres rutas de interacción para la construcción de nuestras bases de "saberes":
@@ -20,7 +20,7 @@ Reconocemos y documentamos explícitamente tres rutas de interacción para la co
 *   **Sintética:** Procesamiento analítico automatizado de datos mediante código de R interoperable a otras codificaciones, agentes de IA, dispositivos no humanos.
 
 ## 3. Bucles de Segundo Orden y Escalamiento Multidimensional
-La infraestructura que sostiene este sitio web forma parte del proceso de ideación interactiva, usamos dispositivos de interacción que median nuestras relaciones y la interacción con el entorno y otras formas de vida. 
 
-La construcción de una meta-investigación es abierta a colaboraciones transdisciplinares orientadas a herramientas de libre desarrollo, con aplicaciones educativas, de aprendizaje y para construcción de base de conocimiento; buscando que el dispositivo interactivo evolucione hacia un dispositivo lo más ambientalmente amigable posible, abarcando el espacio de posibilidades que nos da el conocimiento disponible sobre el desarrollo y uso de dispositivos, y nuestra relación como personas humanas, con el entorno, y la vida silvestre o formas no humanas de vida.
+La infraestructura que sostiene este sitio web forma parte de procesos de ideación interactiva, usamos dispositivos de interacción que median nuestras relaciones y la interacción con el entorno y otras formas de vida. 
 
+La construcción de una meta-investigación es abierta a colaboraciones transdisciplinares orientadas a herramientas de libre desarrollo, con aplicaciones educativas, de aprendizaje y para construcción de base de conocimiento; buscando que el dispositivo interactivo evolucione hacia un dispositivo lo más ambientalmente amigable posible, abarcando el espacio de posibilidades que nos da el conocimiento disponible sobre el desarrollo y uso de dispositivos; y nuestra relación como personas humanas, con el entorno, y la vida silvestre u otras formas no humanas de vida.
