@@ -4,17 +4,12 @@ title: "interdomestic"
 
 ::: {.lead .text-center}
 
-_en breve_: 
-un dispositivo de interacción mediado por personas humanas diseñado para el aprendizaje y la investigación de la vida silvestre en el ámbito doméstico
-
-_en extenso_: 
-un dispositivo de ideación interactiva, con infraestructura de artefacto, co-creado y mediado por personas humanas, diseñado para el aprendizaje, la investigación y la síntesis de conocimiento sobre la vida silvestre en el ámbito doméstico
+Un dispositivo de interacción con infraestructura de artefacto, co-creado y mediado por personas humanas, diseñado para el aprendizaje, la investigación y la síntesis de conocimiento sobre la vida silvestre en el ámbito doméstico.
 
 :::
 
 ::: {.callout-note appearance="minimal" icon=true}
 
-- _i_: ideación interactiva
 - _inter_: interacciones bióticas
 - _domestic_: ámbito doméstico
 - _tic_: tecnologías de la información y comunicación
