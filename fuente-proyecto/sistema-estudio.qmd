@@ -1,5 +1,17 @@
 ---
-title: "sistema-estudio"
+title: "Variación fenotípica de la vida silvestre en el ámbito doméstico"
+subtitle: "Descripción de variables del sistema de interacciones"
 format: html
 ---
 
+::: {.callout-note appearance="minimal" icon=true}
+**Ecosistema de estudio** 
+Caracterización de los elementos, componentes, seres vivos, definiciones del conjunto de investigación.
+
+  1. **Variación fenotípica**. El fenotipo como nuestro interlocutor en la relación humano-naturaleza.
+  
+  2. **Vida silvestre**. Expresión general para las formas de vida no humanas, típicamente fauna y flora.
+  
+  3. **Ámbito doméstico**. Entorno de la vivienda, área de vida, ámbito hogareño, "home range" de al menos una persona humana. 
+
+:::
