@@ -8,11 +8,10 @@ format: html
 **Ecosistema de interacción de personas humanas, dispositivos y aplicaciones de aprendizaje, investigación y síntesis** 
 
 **Gestión operativa del proyecto**
-https://app.staplescience.com/
 
-Aplicaciones y sistemas que combinan la estandarización FAIR/CARE con estándares de investigación académica. 
-STAPLE articula con OSF y el resto de los componentes del ecosistema de investigación,
-https://staplescience.com/documentation/
+Aplicaciones y sistemas como [STAPLE](https://app.staplescience.com/), que combinan la estandarización FAIR/CARE con estándares de investigación académica. 
+
+STAPLE articula con OSF y el resto de los componentes del ecosistema de investigación, [ver documentación STAPLE](https://staplescience.com/documentation/)
 
 - Proyecto
 
@@ -22,10 +21,9 @@ Variación Fenotípica de la Vida Silvestre en el Ámbito Doméstico e Infraestr
 
 Ecosistema transdisciplinar y dispositivo interactivo enfocado en las rutas y facetas de la variación fenotípica en el ámbito doméstico, la gestión de datos bajo principios FAIR/CARE, y la automatización de la difusión del conocimiento.
 
-**Gestión abierta del proyecto**
+**Gestión académica del proyecto**
 
-Pre-registro y registro de componentes de proyecto, metadatos y plataforma de gestión del proyecto vía Open Science Framework,
-https://osf.io
+Pre-registro y registro de componentes de proyecto, metadatos y plataforma de gestión del proyecto vía [Open Science Framework](https://osf.io)
 
 - Proyecto
 
