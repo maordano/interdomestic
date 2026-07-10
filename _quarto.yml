@@ -38,6 +38,8 @@ website:
         menu:
           - text: "Bio-distribución"
             href: appendix/bio-distribution.qmd
+          - text: "Interacciones Bióticas"
+            href: appendix/interacciones.qmd
           - text: "Meta-análisis"
             href: appendix/bio-meta.qmd
           - text: "Apps"
