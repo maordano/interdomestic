@@ -7,7 +7,23 @@ date-modified: 2026-07-10
 
 format: 
   html:
-    title-block-style: none   # Desactiva el bloque de título automático al inicio
+    include-in-header:
+      - text: |
+          <style>
+          /* Oculta el bloque de autor y fecha en el encabezado superior */
+          .quarto-title-meta {
+            display: none !important;
+          }
+          /* Estilo personalizado y discreto para los metadatos del final */
+          .metadatos-final {
+            font-size: 0.55em;      /* Poco más de la mitad del tamaño de fuente */
+            color: #777777;         /* Gris claro para segundo plano */
+            line-height: 1.4;
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee; /* Línea sutil de separación */
+            padding-top: 15px;
+          }
+          </style>
 ---
 
 En esta sección se detallan las bases de componentes metodológicos y éticos, a partir de los cuales decidimos construir este ecosistema de aprendizaje e investigación abierta. 
@@ -31,7 +47,8 @@ La construcción de una meta-investigación es abierta a colaboraciones transdis
 
  ---  
 
-### Metadatos del Documento
+::: {.metadatos-final}
 **Autor:** {{< meta author >}}  
 **Fecha de publicación:** {{< meta date >}}  
 **Última modificación:** {{< meta date-modified >}}
+:::
