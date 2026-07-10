@@ -256,10 +256,12 @@ server &lt;- function(input, output, session) {
     req(input\(especie_a, input\)especie_b)
     
     # Lógica de cruce dinámico
-    if (input\$rasgo_a == "predador" &amp;&amp; input\(rasgo_b == "recurso") {       tipo &lt;- "Depredación/Parasitismo"; desc &lt;- "A consume a B."     } else if (input\)rasgo_a == input\(rasgo_b &amp;&amp; input\)rasgo_a == "predador") {
-      tipo &lt;- "Competencia"; desc &lt;- "Alta superposición de nicho."
+    if (input\$rasgo_a == "predador" &amp;&amp; input\(rasgo_b == "recurso") {       tipo &lt;- "Depredación/Parasitismo"       desc &lt;- "A consume a B."     } else if (input\)rasgo_a == input\(rasgo_b &amp;&amp; input\)rasgo_a == "predador") {
+      tipo &lt;- "Competencia"
+      desc &lt;- "Alta superposición de nicho."
     } else {
-      tipo &lt;- "Mutualismo"; desc &lt;- "Relación de facilitación."
+      tipo &lt;- "Mutualismo"
+      desc &lt;- "Relación de facilitación."
     }
     
     ref &lt;- referencias_locales %&gt;% filter(tipo_interaccion == tipo) %&gt;% pull(cita_bibliografica)
@@ -268,7 +270,8 @@ server &lt;- function(input, output, session) {
   })
   
   output\$resultado_panel &lt;- renderUI({
-    res &lt;- resultado_Mapeo(); req(res)
+    res &lt;- resultado_Mapeo()
+    req(res)
     wellPanel(
       tags\$h4("Ficha de Interacción"),
       tags\$p(tags\(strong("Tipo: "), res\)tipo),

@@ -52,10 +52,12 @@ server <- function(input, output, session) {
     req(input\(especie_a, input\)especie_b)
     
     # Lógica de cruce dinámico
-    if (input\$rasgo_a == "predador" && input\(rasgo_b == "recurso") {       tipo <- "Depredación/Parasitismo"; desc <- "A consume a B."     } else if (input\)rasgo_a == input\(rasgo_b && input\)rasgo_a == "predador") {
-      tipo <- "Competencia"; desc <- "Alta superposición de nicho."
+    if (input\$rasgo_a == "predador" && input\(rasgo_b == "recurso") {       tipo <- "Depredación/Parasitismo"       desc <- "A consume a B."     } else if (input\)rasgo_a == input\(rasgo_b && input\)rasgo_a == "predador") {
+      tipo <- "Competencia"
+      desc <- "Alta superposición de nicho."
     } else {
-      tipo <- "Mutualismo"; desc <- "Relación de facilitación."
+      tipo <- "Mutualismo"
+      desc <- "Relación de facilitación."
     }
     
     ref <- referencias_locales %>% filter(tipo_interaccion == tipo) %>% pull(cita_bibliografica)
@@ -64,7 +66,8 @@ server <- function(input, output, session) {
   })
   
   output\$resultado_panel <- renderUI({
-    res <- resultado_Mapeo(); req(res)
+    res <- resultado_Mapeo()
+    req(res)
     wellPanel(
       tags\$h4("Ficha de Interacción"),
       tags\$p(tags\(strong("Tipo: "), res\)tipo),
@@ -76,4 +79,3 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
-
