@@ -6,6 +6,7 @@ format: html
 
 ::: {.callout-note appearance="minimal" icon=true}
 **Ecosistema de estudio** 
+
 Caracterización de los elementos, componentes, seres vivos, definiciones del conjunto de investigación.
 
   1. **Variación fenotípica**. El fenotipo como nuestro interlocutor en la relación humano-naturaleza.

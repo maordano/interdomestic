@@ -5,7 +5,7 @@ format: html
 ---
 
 ::: {.callout-note appearance="minimal" icon=true}
-**Tipos de variables en la interacción con el registro de datos:** 
+**Tipos de variables en la interacción con el registro de datos** 
 
 Se establecen 3 tipos de variables básicas, para  distinguir el rol de los dispositivos de interacción en el proceso de toma y registro de datos.
 

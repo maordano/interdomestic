@@ -5,7 +5,7 @@ format: html
 ---
 
 ::: {.callout-note appearance="minimal" icon=true}
-**Métodos de construcción del conocimiento:** 
+**Métodos de construcción del conocimiento** 
 
 Se establecen 3 rutas básicas o modelos de construcción del conocimiento, de manera de distinguir el rol de los dispositivos de interacción en el proceso de aprendizaje, investigación y síntesis.
 

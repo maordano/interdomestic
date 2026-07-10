@@ -33,9 +33,7 @@ website:
           - text: "Métodos"
             href: fuente-proyecto/metodos.qmd
           - text: "Resultados"
-            href: fuente-proyecto/resultados.qmd
-          - text: "Síntesis"
-            href: fuente-proyecto/sintesis.qmd
+            href: fuente-proyecto/pgd.qmd
       - text: "Appendix"
         menu:
           - text: "Bio-distribución"
