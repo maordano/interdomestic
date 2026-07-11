@@ -194,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Interacciones Bióticas</h1>
-<p class="subtitle lead">Ficha FAIR/CARE de interacción entre especies (WebAssembly)</p>
+<p class="subtitle lead">Ficha FAIR/CARE de base de conocimiento sobre interacción entre especies (WebAssembly)</p>
 </div>
 
 
@@ -219,7 +219,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>⏳ <strong>Primera carga:</strong> el entorno estadístico (R) se descarga y arranca completo dentro de tu navegador — puede tardar entre 10 y 30 segundos la primera vez.</p>
+<p>⏳ <strong>Primera carga:</strong> el entorno estadístico (R) se descarga y arranca dentro de tu navegador — puede tardar dos minutos la primera vez.</p>
 </div>
 </div>
 </div>
@@ -236,31 +236,32 @@ ul.task-list li input[type="checkbox"] {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong>Escribí el nombre científico</strong> de la Especie A y la Especie B, y verificalos con el botón de chequeo.</li>
-<li><strong>Elegí los rasgos disponibles</strong> para cada especie (⚠️ esta sección está pendiente de rediseño como matriz cruzada de conocimiento documentado — por ahora quedan como referencia descriptiva, no determinan ningún resultado).</li>
-<li><strong>Apretá “Mapear Interacción”</strong>: la app busca primero en <strong>GloBI</strong> (Global Biotic Interactions) registros de interacción documentada entre ambas especies, con su cita de origen. Si GloBI no tiene nada para ese par, amplía la búsqueda a <strong>Crossref</strong> (literatura general), priorizando trabajos sobre interacciones bióticas.</li>
-<li><strong>Descargá las citas en <code>.csv</code></strong> si las necesitás para tu propio gestor bibliográfico.</li>
+<li><strong>Escribe el nombre científico</strong> de la Especie A y la Especie B, y verifica con el botón de chequeo.</li>
+<li><strong>(Opcional) Marca uno o más rasgos de historia de vida</strong> — funcionan como palabras clave que enfocan una búsqueda adicional en un aspecto específico de la interacción (por ejemplo, si te interesa el rol del tamaño corporal en esa interacción puntual).</li>
+<li><strong>Oprime el botón “Mapear Interacción”</strong>: la app busca primero evidencia general (GloBI, y si no hay, Crossref) y, si marcaste rasgos, agrega una segunda búsqueda enfocada en esos aspectos.</li>
+<li><strong>Descarga las citas en <code>.csv</code></strong> si las necesitas para tu gestión bibliográfica o como semilla de un proyecto o dataset.</li>
 </ol>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-important callout-titled" title="🔎 ¿No estás seguro del nombre científico exacto?">
+<div class="callout callout-style-default callout-important callout-titled" title="🔎 ¿Tienes dudas sobre el nombre científico?">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Importante</span>🔎 ¿No estás seguro del nombre científico exacto?
+<span class="screen-reader-only">Importante</span>🔎 ¿Tienes dudas sobre el nombre científico?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>Puedes revisar los nombres de las especies en las siguientes aplicaciones y sistemas interactivos.</p>
 <ul>
-<li><a href="https://www.gbif.org/species/search"><strong>GBIF Species Search</strong></a></li>
-<li><a href="https://www.inaturalist.org"><strong>iNaturalist</strong></a></li>
-<li><a href="https://www.tropicos.org"><strong>Tropicos.org</strong></a> (plantas)</li>
-<li><a href="https://www.catalogueoflife.org"><strong>Catalogue of Life</strong></a></li>
+<li><p><a href="https://www.inaturalist.org"><strong>iNaturalist</strong></a> - entrada sugerida si no conoces el nombre científico</p></li>
+<li><p><a href="https://www.gbif.org/species/search"><strong>GBIF Species Search</strong></a></p></li>
+<li><p><a href="https://www.tropicos.org"><strong>Tropicos.org</strong></a> (plantas)</p></li>
+<li><p><a href="https://www.catalogueoflife.org"><strong>Catalogue of Life</strong></a></p></li>
 </ul>
 </div>
 </div>
@@ -284,27 +285,24 @@ downloadButton &lt;- function(...) {
 }
 
 # ==========================================
-# DEFINICIÓN DE RASGOS (placeholder — pendiente de rediseño a matriz cruzada)
+# RASGOS DE HISTORIA DE VIDA: ahora son PALABRAS CLAVE COMPARTIDAS
+# para enfocar una búsqueda adicional, no atributos por especie.
+# (Stearns 1992 + Arnold 1983 como marco conceptual de origen)
 # ==========================================
 traits_def &lt;- list(
-  tamano = list(label = "Tamaño corporal", choices = c("Pequeño", "Mediano", "Grande")),
-  edad_madurez = list(label = "Edad a la madurez", choices = c("Temprana (&lt;1 año)", "Intermedia (1-5 años)", "Tardía (&gt;5 años)")),
-  longevidad = list(label = "Longevidad estimada", choices = c("Corta (&lt;5 años)", "Media (5-20 años)", "Larga (&gt;20 años)")),
-  crecimiento = list(label = "Tasa de crecimiento", choices = c("Lenta", "Moderada", "Rápida")),
-  fecundidad = list(label = "Fecundidad por evento reproductivo", choices = c("Baja (1-2)", "Media (3-10)", "Alta (&gt;10)")),
-  frecuencia_repro = list(label = "Frecuencia reproductiva", choices = c("Semélpara (una vez)", "Iterópara (varias veces)")),
-  inversion_parental = list(label = "Inversión parental", choices = c("Baja", "Media", "Alta")),
-  nutricion = list(label = "Modo nutricional", choices = c("Autótrofo", "Herbívoro", "Carnívoro", "Omnívoro", "Detritívoro")),
-  rendimiento_locomotor = list(label = "Rendimiento locomotor", choices = c("Bajo", "Medio", "Alto")),
-  tolerancia_termica = list(label = "Tolerancia térmica", choices = c("Estenoterma (rango estrecho)", "Euriterma (rango amplio)"))
+  tamano = list(label = "Tamaño corporal", keyword = "body size"),
+  edad_madurez = list(label = "Edad a la madurez", keyword = "age at maturity"),
+  longevidad = list(label = "Longevidad", keyword = "longevity OR lifespan"),
+  crecimiento = list(label = "Tasa de crecimiento", keyword = "growth rate"),
+  fecundidad = list(label = "Fecundidad", keyword = "fecundity"),
+  frecuencia_repro = list(label = "Frecuencia reproductiva", keyword = "semelparity OR iteroparity"),
+  inversion_parental = list(label = "Inversión parental", keyword = "parental investment"),
+  nutricion = list(label = "Modo nutricional", keyword = "diet OR trophic"),
+  rendimiento_locomotor = list(label = "Rendimiento locomotor", keyword = "locomotor performance"),
+  tolerancia_termica = list(label = "Tolerancia térmica", keyword = "thermal tolerance")
 )
 
-generar_traits_ui &lt;- function(sufijo) {
-  lapply(names(traits_def), function(id) {
-    def &lt;- traits_def[[id]]
-    selectInput(paste0(id, "_", sufijo), def$label, choices = def$choices)
-  })
-}
+traits_choices &lt;- setNames(names(traits_def), sapply(traits_def, function(x) x$label))
 
 # ==========================================
 # HELPERS: VALIDACIÓN DE NOMBRES (GBIF)
@@ -332,7 +330,6 @@ globi_parse &lt;- function(res) {
   tryCatch({
     if (is.null(res)) return(NULL)
     df &lt;- res
-    # Salvaguarda por si el formato viene como columnas+datos en vez de objetos planos
     if (is.list(df) &amp;&amp; !is.data.frame(df) &amp;&amp; !is.null(df$data) &amp;&amp; !is.null(df$columns)) {
       mat &lt;- df$data
       df &lt;- as.data.frame(mat, stringsAsFactors = FALSE)
@@ -348,13 +345,22 @@ globi_buscar &lt;- function(especie_a, especie_b) {
   r2 &lt;- tryCatch(fromJSON(globi_url(especie_b, especie_a)), error = function(e) NULL)
   d1 &lt;- globi_parse(r1)
   d2 &lt;- globi_parse(r2)
-  combinado &lt;- tryCatch({
+  tryCatch({
     if (is.null(d1) &amp;&amp; is.null(d2)) return(NULL)
     if (is.null(d1)) return(distinct(d2))
     if (is.null(d2)) return(distinct(d1))
     distinct(bind_rows(d1, d2))
   }, error = function(e) NULL)
-  combinado
+}
+
+# Convierte study_external_id en un link usable (DOI o URL directa)
+formatear_enlace_externo &lt;- function(id) {
+  if (is.null(id) || is.na(id) || !nzchar(id)) return(NA)
+  id &lt;- trimws(id)
+  if (grepl("^https?://", id, ignore.case = TRUE)) return(id)
+  if (grepl("^doi:", id, ignore.case = TRUE)) return(paste0("https://doi.org/", sub("^doi:", "", id, ignore.case = TRUE)))
+  if (grepl("^10\\.", id)) return(paste0("https://doi.org/", id))
+  id  # devolvemos el identificador tal cual si no reconocemos el formato
 }
 
 formatear_globi &lt;- function(df) {
@@ -366,6 +372,8 @@ formatear_globi &lt;- function(df) {
       tipo &lt;- df$interaction_type[i]
       cita &lt;- df$study_citation[i]
       fuente_alt &lt;- df$study_source_citation[i]
+      enlace &lt;- tryCatch(formatear_enlace_externo(df$study_external_id[i]), error = function(e) NA)
+
       cita_final &lt;- if (!is.null(cita) &amp;&amp; !is.na(cita) &amp;&amp; nzchar(cita)) {
         cita
       } else if (!is.null(fuente_alt) &amp;&amp; !is.na(fuente_alt) &amp;&amp; nzchar(fuente_alt)) {
@@ -373,14 +381,17 @@ formatear_globi &lt;- function(df) {
       } else {
         "(cita no disponible en este registro)"
       }
-      paste0(src, " — ", tipo, " — ", tgt, ". Fuente: ", cita_final)
+
+      enlace_txt &lt;- if (!is.null(enlace) &amp;&amp; !is.na(enlace)) paste0(" — &lt;a href='", enlace, "' target='_blank'&gt;", enlace, "&lt;/a&gt;") else ""
+
+      paste0(src, " — ", tipo, " — ", tgt, ". Fuente: ", cita_final, enlace_txt)
     }, error = function(e) "(No se pudo formatear este registro de GloBI.)")
   }, character(1))
 }
 
 # ==========================================
-# HELPERS: Crossref — red de seguridad de literatura general
-# mailto: identidad de contacto del proyecto (no personal), reutilizable en OSF/STAPLE
+# HELPERS: Crossref — red de seguridad y búsqueda enfocada por rasgos
+# mailto: identidad de contacto del proyecto (no personal)
 # ==========================================
 crossref_url &lt;- function(query, rows = 15) {
   paste0("https://api.crossref.org/works?query=", URLencode(query),
@@ -404,35 +415,6 @@ especies_en_texto &lt;- function(items, especie_a, especie_b) {
   menciona_a &lt;- grepl(tolower(especie_a), texto, fixed = TRUE)
   menciona_b &lt;- grepl(tolower(especie_b), texto, fixed = TRUE)
   list(ambas = menciona_a &amp; menciona_b, alguna = menciona_a | menciona_b)
-}
-
-crossref_buscar_citas &lt;- function(especie_a, especie_b, rows = 15) {
-  q_interaccion &lt;- paste(especie_a, especie_b,
-                          "interaction OR predation OR competition OR mutualism OR parasitism OR facilitation")
-  q_simple &lt;- paste(especie_a, especie_b)
-
-  items1 &lt;- crossref_buscar(q_interaccion, rows)
-  f1 &lt;- especies_en_texto(items1, especie_a, especie_b)
-  if (!is.null(items1) &amp;&amp; sum(f1$ambas) &gt;= 3) {
-    return(list(items = items1[f1$ambas, , drop = FALSE],
-                nivel = "interacciones bióticas, ambas especies mencionadas", consulta = q_interaccion))
-  }
-
-  items2 &lt;- crossref_buscar(q_simple, rows)
-  f2 &lt;- especies_en_texto(items2, especie_a, especie_b)
-  if (!is.null(items2) &amp;&amp; sum(f2$ambas) &gt;= 1) {
-    return(list(items = items2[f2$ambas, , drop = FALSE],
-                nivel = "general, ambas especies mencionadas juntas", consulta = q_simple))
-  }
-
-  base_items &lt;- if (!is.null(items1) &amp;&amp; sum(f1$alguna) &gt; 0) items1 else items2
-  base_f &lt;- if (!is.null(items1) &amp;&amp; sum(f1$alguna) &gt; 0) f1 else f2
-  if (!is.null(base_items) &amp;&amp; sum(base_f$alguna) &gt;= 1) {
-    return(list(items = base_items[base_f$alguna, , drop = FALSE],
-                nivel = "baja confianza: mención de al menos una especie", consulta = q_simple))
-  }
-
-  list(items = NULL, nivel = "sin resultados que mencionen a ninguna de las dos especies", consulta = q_simple)
 }
 
 formatear_citas_crossref &lt;- function(items) {
@@ -462,10 +444,8 @@ formatear_citas_crossref &lt;- function(items) {
   }, character(1))
 }
 
-# ==========================================
-# MOTOR UNIFICADO: GloBI primero, Crossref como red de seguridad
-# ==========================================
-buscar_evidencia_interaccion &lt;- function(especie_a, especie_b) {
+# Búsqueda general: GloBI primero, Crossref (3 niveles) como red de seguridad
+buscar_evidencia_general &lt;- function(especie_a, especie_b) {
   globi_df &lt;- globi_buscar(especie_a, especie_b)
   if (!is.null(globi_df) &amp;&amp; nrow(globi_df) &gt; 0) {
     return(list(
@@ -475,12 +455,52 @@ buscar_evidencia_interaccion &lt;- function(especie_a, especie_b) {
       consulta = paste0("GloBI: ", especie_a, " &lt;-&gt; ", especie_b)
     ))
   }
-  res_cr &lt;- crossref_buscar_citas(especie_a, especie_b)
+
+  q_interaccion &lt;- paste(especie_a, especie_b,
+                          "interaction OR predation OR competition OR mutualism OR parasitism OR facilitation")
+  q_simple &lt;- paste(especie_a, especie_b)
+
+  items1 &lt;- crossref_buscar(q_interaccion)
+  f1 &lt;- especies_en_texto(items1, especie_a, especie_b)
+  if (!is.null(items1) &amp;&amp; sum(f1$ambas) &gt;= 3) {
+    return(list(fuente = "Crossref", nivel = "interacciones bióticas, ambas especies mencionadas",
+                citas = formatear_citas_crossref(items1[f1$ambas, , drop = FALSE]), consulta = q_interaccion))
+  }
+
+  items2 &lt;- crossref_buscar(q_simple)
+  f2 &lt;- especies_en_texto(items2, especie_a, especie_b)
+  if (!is.null(items2) &amp;&amp; sum(f2$ambas) &gt;= 1) {
+    return(list(fuente = "Crossref", nivel = "general, ambas especies mencionadas juntas",
+                citas = formatear_citas_crossref(items2[f2$ambas, , drop = FALSE]), consulta = q_simple))
+  }
+
+  base_items &lt;- if (!is.null(items1) &amp;&amp; sum(f1$alguna) &gt; 0) items1 else items2
+  base_f &lt;- if (!is.null(items1) &amp;&amp; sum(f1$alguna) &gt; 0) f1 else f2
+  if (!is.null(base_items) &amp;&amp; sum(base_f$alguna) &gt;= 1) {
+    return(list(fuente = "Crossref", nivel = "baja confianza: mención de al menos una especie",
+                citas = formatear_citas_crossref(base_items[base_f$alguna, , drop = FALSE]), consulta = q_simple))
+  }
+
+  list(fuente = "Crossref", nivel = "sin resultados que mencionen a ninguna de las dos especies",
+       citas = character(0), consulta = q_simple)
+}
+
+# Búsqueda enfocada: especies + palabras clave de los rasgos elegidos, en Crossref
+buscar_evidencia_enfocada &lt;- function(especie_a, especie_b, rasgos_ids) {
+  if (length(rasgos_ids) == 0) return(NULL)
+  keywords &lt;- sapply(traits_def[rasgos_ids], function(x) x$keyword)
+  q &lt;- paste(especie_a, especie_b, paste(keywords, collapse = " OR "))
+  items &lt;- crossref_buscar(q)
+  f &lt;- especies_en_texto(items, especie_a, especie_b)
+  citas &lt;- if (!is.null(items) &amp;&amp; sum(f$alguna) &gt; 0) {
+    formatear_citas_crossref(items[f$alguna, , drop = FALSE])
+  } else {
+    character(0)
+  }
   list(
-    fuente = "Crossref (búsqueda bibliográfica general — GloBI no tenía registros para este par)",
-    nivel = res_cr$nivel,
-    citas = formatear_citas_crossref(res_cr$items),
-    consulta = res_cr$consulta
+    rasgos = sapply(traits_def[rasgos_ids], function(x) x$label),
+    consulta = q,
+    citas = citas
   )
 }
 
@@ -493,14 +513,12 @@ ui &lt;- fluidPage(
     column(6, wellPanel(
       style = "background: #f8fafc; border: 1px solid #e2e8f0;",
       tags$h4("Especie A"),
-      textInput("especie_a", "Nombre científico:", "Panthera onca"),
-      generar_traits_ui("a")
+      textInput("especie_a", "Nombre científico:", "Panthera onca")
     )),
     column(6, wellPanel(
       style = "background: #f8fafc; border: 1px solid #e2e8f0;",
       tags$h4("Especie B"),
-      textInput("especie_b", "Nombre científico:", "Puma concolor"),
-      generar_traits_ui("b")
+      textInput("especie_b", "Nombre científico:", "Puma concolor")
     ))
   ),
 
@@ -509,6 +527,14 @@ ui &lt;- fluidPage(
   uiOutput("validacion_nombres"),
 
   br(),
+  wellPanel(
+    style = "background: #fdfaf5; border: 1px solid #eee0c8;",
+    tags$strong("Enfocar la búsqueda (opcional):"),
+    tags$p(style = "font-size: 0.8em; color: #64748b; margin-top: 4px;",
+           "Marcá rasgos de historia de vida para sumar una búsqueda adicional centrada en ese aspecto de la interacción."),
+    checkboxGroupInput("rasgos_foco", NULL, choices = traits_choices, inline = TRUE)
+  ),
+
   actionButton("procesar", "Mapear Interacción", class = "btn-primary", style = "width: 100%;"),
 
   br(), br(),
@@ -518,7 +544,7 @@ ui &lt;- fluidPage(
   wellPanel(
     style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
     tags$strong("Fuentes y créditos:"),
-    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Los registros de interacción documentada provienen de GloBI (Global Biotic Interactions; Poelen, Simons &amp; Mungall 2014, CC BY 4.0). Cuando GloBI no tiene registros, se recurre a metadatos de Crossref (CC BY 4.0 sobre metadatos). La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
+    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Los registros de interacción documentada provienen de GloBI (Poelen, Simons &amp; Mungall 2014, CC BY 4.0). Cuando GloBI no tiene registros, o para la búsqueda enfocada por rasgos, se recurre a metadatos de Crossref. El marco de rasgos combina Stearns (1992) y Arnold (1983). La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
     tags$div(
       style = "display: flex; gap: 8px; flex-wrap: wrap;",
       tags$a(href = "https://www.gbif.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GBIF.org"),
@@ -560,51 +586,57 @@ server &lt;- function(input, output, session) {
     }))
   })
 
-  resumen_rasgos &lt;- function(sufijo) {
-    paste(sapply(names(traits_def), function(id) {
-      paste0(traits_def[[id]]$label, ": ", input[[paste0(id, "_", sufijo)]])
-    }), collapse = " · ")
-  }
-
   resultado &lt;- eventReactive(input$procesar, {
     req(input$especie_a, input$especie_b)
-    withProgress(message = "Buscando en GloBI...", value = 0.2, {
-      res &lt;- buscar_evidencia_interaccion(input$especie_a, input$especie_b)
-      incProgress(0.8)
-      res
+    withProgress(message = "Buscando evidencia de interacción...", value = 0.15, {
+      general &lt;- buscar_evidencia_general(input$especie_a, input$especie_b)
+      incProgress(0.5)
+      enfocada &lt;- buscar_evidencia_enfocada(input$especie_a, input$especie_b, input$rasgos_foco)
+      incProgress(0.35)
+      list(general = general, enfocada = enfocada)
     })
   })
 
   output$ficha_resultado &lt;- renderUI({
     res &lt;- resultado()
     req(res)
+    g &lt;- res$general
+    e &lt;- res$enfocada
 
     wellPanel(
       style = "background: #ffffff; border: 1px solid #d1d5db;",
       tags$h4("Ficha de Interacción"),
-      tags$p(tags$strong("Especie A: "), input$especie_a),
-      tags$p(style = "font-size: 0.85em; color: #64748b;", resumen_rasgos("a")),
-      tags$p(tags$strong("Especie B: "), input$especie_b),
-      tags$p(style = "font-size: 0.85em; color: #64748b;", resumen_rasgos("b")),
+      tags$p(tags$strong("Especie A: "), input$especie_a, tags$br(),
+             tags$strong("Especie B: "), input$especie_b),
       tags$hr(),
+      tags$h5("Evidencia general"),
       tags$pre(
         paste0(
           "--- METADATA PROFILE (FAIR/CARE) ---\n",
-          "Fuente de evidencia: ", res$fuente, "\n",
-          "Consulta ejecutada: ", res$consulta, "\n",
-          "Nivel de resultados: ", res$nivel, "\n",
-          "Citas encontradas: ", length(res$citas), "\n",
+          "Fuente: ", g$fuente, "\n",
+          "Consulta: ", g$consulta, "\n",
+          "Nivel: ", g$nivel, "\n",
+          "Citas encontradas: ", length(g$citas), "\n",
           "Fecha de consulta: ", format(Sys.time(), "%Y-%m-%d %H:%M %Z")
         )
       ),
-      tags$hr(),
-      if (length(res$citas) == 0) {
-        tags$p("No se encontraron citas que mencionen a ninguna de las dos especies, ni en GloBI ni en Crossref.")
+      if (length(g$citas) == 0) {
+        tags$p("No se encontraron citas que mencionen a ninguna de las dos especies.")
       } else {
-        tags$ol(lapply(res$citas, function(c) tags$li(HTML(c))))
+        tags$ol(lapply(g$citas, function(c) tags$li(HTML(c))))
       },
+      if (!is.null(e)) tagList(
+        tags$hr(),
+        tags$h5(paste0("Evidencia enfocada en: ", paste(e$rasgos, collapse = ", "))),
+        tags$p(style = "font-size: 0.8em; color: #64748b;", paste0("Consulta: ", e$consulta)),
+        if (length(e$citas) == 0) {
+          tags$p("No se encontraron citas enfocadas en estos rasgos para este par de especies.")
+        } else {
+          tags$ol(lapply(e$citas, function(c) tags$li(HTML(c))))
+        }
+      ),
       br(),
-      downloadButton("descargar_citas", "Descargar citas (.csv)", class = "btn-outline-secondary")
+      downloadButton("descargar_citas", "Descargar todas las citas (.csv)", class = "btn-outline-secondary")
     )
   })
 
@@ -613,14 +645,23 @@ server &lt;- function(input, output, session) {
     content = function(file) {
       res &lt;- resultado()
       req(res)
-      df &lt;- data.frame(
-        especie_a = input$especie_a,
-        especie_b = input$especie_b,
-        fuente = res$fuente,
-        nivel_busqueda = res$nivel,
-        cita = res$citas,
-        stringsAsFactors = FALSE
-      )
+      g &lt;- res$general
+      e &lt;- res$enfocada
+
+      filas_generales &lt;- if (length(g$citas) &gt; 0) {
+        data.frame(especie_a = input$especie_a, especie_b = input$especie_b,
+                   bloque = "general", fuente = g$fuente, detalle = g$nivel, cita = g$citas,
+                   stringsAsFactors = FALSE)
+      } else NULL
+
+      filas_enfocadas &lt;- if (!is.null(e) &amp;&amp; length(e$citas) &gt; 0) {
+        data.frame(especie_a = input$especie_a, especie_b = input$especie_b,
+                   bloque = "enfocada", fuente = "Crossref",
+                   detalle = paste(e$rasgos, collapse = ", "), cita = e$citas,
+                   stringsAsFactors = FALSE)
+      } else NULL
+
+      df &lt;- bind_rows(filas_generales, filas_enfocadas)
       write.csv(df, file, row.names = FALSE)
     }
   )
