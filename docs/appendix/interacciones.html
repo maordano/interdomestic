@@ -194,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Interacciones Bióticas</h1>
-<p class="subtitle lead">Ficha FAIR/CARE de referencias sobre interacción entre especies (WebAssembly)</p>
+<p class="subtitle lead">Ficha FAIR/CARE de interacción entre especies (WebAssembly)</p>
 </div>
 
 
@@ -219,19 +219,7 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>Interacción entre especies:</strong> la co-existencia de especies en un espacio y tiempo brinda un marco regional para la ocurrencia de interacciones entre especies, incluyéndonos.</p>
-<p>La co-existencia regional de especies forma un marco de co-evolución entre especies, o mosaico geográfico de co-evolución, en donde las especies evolucionan en función de las características de la interacción en el paisaje. La búsqueda de información dirigida a una interacción específica entre especies puede ser sistematizada. Aquí realizamos un ejercicio disparador para empezar a investigar sobre lo conocido de una interacción, con base en las referencias disponibles.</p>
-<p><em>Nota de desarrollo</em>: el resultado que esperamos, como una “micro-síntesis de referencias sobre una interacción entre dos especies”, necesita refinamiento para el filtrado y mejorar la capacidad de búsqueda para enfocarse en la interacción entre las especies seleccionadas.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>⏳ <strong>Primera carga:</strong> el entorno estadístico (R) se descarga y arranca en el navegador — puede tardar un par de minutos la primera vez.</p>
+<p>⏳ <strong>Primera carga:</strong> el entorno estadístico (R) se descarga y arranca completo dentro de tu navegador — puede tardar entre 10 y 30 segundos la primera vez.</p>
 </div>
 </div>
 </div>
@@ -248,10 +236,10 @@ ul.task-list li input[type="checkbox"] {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong>Escribe el nombre científico</strong> de la Especie A y la Especie B, y verifica con el botón de chequeo.</li>
-<li><strong>Elige 10 rasgos de historia de vida</strong> disponibles para cada especie — son metadatos descriptivos (marco: Stearns 1992, Arnold 1983), no determinan un resultado automático.</li>
-<li><strong>Aprieta “Mapear Interacción”</strong>: la app busca en Crossref citas que mencionen a ambas especies, priorizando trabajos sobre interacciones bióticas. Si no hay suficientes con ese criterio estricto, amplía gradualmente — pero nunca por debajo de “al menos una de las dos especies mencionada”.</li>
-<li><strong>Descarga las citas en <code>.csv</code></strong> para el manejo bibliográfico sobre la interacción entre especies seleccionada.</li>
+<li><strong>Escribí el nombre científico</strong> de la Especie A y la Especie B, y verificalos con el botón de chequeo.</li>
+<li><strong>Elegí los rasgos disponibles</strong> para cada especie (⚠️ esta sección está pendiente de rediseño como matriz cruzada de conocimiento documentado — por ahora quedan como referencia descriptiva, no determinan ningún resultado).</li>
+<li><strong>Apretá “Mapear Interacción”</strong>: la app busca primero en <strong>GloBI</strong> (Global Biotic Interactions) registros de interacción documentada entre ambas especies, con su cita de origen. Si GloBI no tiene nada para ese par, amplía la búsqueda a <strong>Crossref</strong> (literatura general), priorizando trabajos sobre interacciones bióticas.</li>
+<li><strong>Descargá las citas en <code>.csv</code></strong> si las necesitás para tu propio gestor bibliográfico.</li>
 </ol>
 </div>
 </div>
@@ -296,8 +284,7 @@ downloadButton &lt;- function(...) {
 }
 
 # ==========================================
-# DEFINICIÓN DE RASGOS (Stearns 1992 + Arnold 1983)
-# Fuente única: se usa tanto para construir la UI como para leer los inputs
+# DEFINICIÓN DE RASGOS (placeholder — pendiente de rediseño a matriz cruzada)
 # ==========================================
 traits_def &lt;- list(
   tamano = list(label = "Tamaño corporal", choices = c("Pequeño", "Mediano", "Grande")),
@@ -320,22 +307,90 @@ generar_traits_ui &lt;- function(sufijo) {
 }
 
 # ==========================================
-# HELPERS
+# HELPERS: VALIDACIÓN DE NOMBRES (GBIF)
 # ==========================================
-
-# Reutilizado de bio-distribution.qmd: valida nombres contra el backbone de GBIF
 gbif_name_match &lt;- function(name) {
   url &lt;- paste0("https://api.gbif.org/v1/species/match?name=", URLencode(name))
   tryCatch(fromJSON(url), error = function(e) NULL)
 }
 
+# ==========================================
+# HELPERS: GloBI — evidencia directa de interacción documentada
+# ==========================================
+globi_fields &lt;- c("source_taxon_name", "target_taxon_name", "interaction_type",
+                   "study_citation", "study_source_citation", "study_external_id")
+
+globi_url &lt;- function(source_taxon, target_taxon) {
+  base &lt;- "https://api.globalbioticinteractions.org/interaction"
+  field_params &lt;- paste0("field=", sapply(globi_fields, URLencode), collapse = "&amp;")
+  paste0(base, "?sourceTaxon=", URLencode(source_taxon),
+         "&amp;targetTaxon=", URLencode(target_taxon),
+         "&amp;", field_params, "&amp;includeObservations=true&amp;type=json.v2&amp;limit=25")
+}
+
+globi_parse &lt;- function(res) {
+  tryCatch({
+    if (is.null(res)) return(NULL)
+    df &lt;- res
+    # Salvaguarda por si el formato viene como columnas+datos en vez de objetos planos
+    if (is.list(df) &amp;&amp; !is.data.frame(df) &amp;&amp; !is.null(df$data) &amp;&amp; !is.null(df$columns)) {
+      mat &lt;- df$data
+      df &lt;- as.data.frame(mat, stringsAsFactors = FALSE)
+      names(df) &lt;- df$columns
+    }
+    if (!is.data.frame(df) || nrow(df) == 0) return(NULL)
+    df
+  }, error = function(e) NULL)
+}
+
+globi_buscar &lt;- function(especie_a, especie_b) {
+  r1 &lt;- tryCatch(fromJSON(globi_url(especie_a, especie_b)), error = function(e) NULL)
+  r2 &lt;- tryCatch(fromJSON(globi_url(especie_b, especie_a)), error = function(e) NULL)
+  d1 &lt;- globi_parse(r1)
+  d2 &lt;- globi_parse(r2)
+  combinado &lt;- tryCatch({
+    if (is.null(d1) &amp;&amp; is.null(d2)) return(NULL)
+    if (is.null(d1)) return(distinct(d2))
+    if (is.null(d2)) return(distinct(d1))
+    distinct(bind_rows(d1, d2))
+  }, error = function(e) NULL)
+  combinado
+}
+
+formatear_globi &lt;- function(df) {
+  if (is.null(df) || nrow(df) == 0) return(character(0))
+  vapply(seq_len(nrow(df)), function(i) {
+    tryCatch({
+      src &lt;- df$source_taxon_name[i]
+      tgt &lt;- df$target_taxon_name[i]
+      tipo &lt;- df$interaction_type[i]
+      cita &lt;- df$study_citation[i]
+      fuente_alt &lt;- df$study_source_citation[i]
+      cita_final &lt;- if (!is.null(cita) &amp;&amp; !is.na(cita) &amp;&amp; nzchar(cita)) {
+        cita
+      } else if (!is.null(fuente_alt) &amp;&amp; !is.na(fuente_alt) &amp;&amp; nzchar(fuente_alt)) {
+        fuente_alt
+      } else {
+        "(cita no disponible en este registro)"
+      }
+      paste0(src, " — ", tipo, " — ", tgt, ". Fuente: ", cita_final)
+    }, error = function(e) "(No se pudo formatear este registro de GloBI.)")
+  }, character(1))
+}
+
+# ==========================================
+# HELPERS: Crossref — red de seguridad de literatura general
 # mailto: identidad de contacto del proyecto (no personal), reutilizable en OSF/STAPLE
+# ==========================================
 crossref_url &lt;- function(query, rows = 15) {
   paste0("https://api.crossref.org/works?query=", URLencode(query),
          "&amp;rows=", rows, "&amp;mailto=interdomestic@proton.me")
 }
 
-# Motor de unión: ¿el título/abstract de cada item menciona a las especies?
+crossref_buscar &lt;- function(query, rows = 15) {
+  tryCatch(fromJSON(crossref_url(query, rows))$message$items, error = function(e) NULL)
+}
+
 especies_en_texto &lt;- function(items, especie_a, especie_b) {
   if (is.null(items) || nrow(items) == 0) {
     return(list(ambas = logical(0), alguna = logical(0)))
@@ -351,17 +406,11 @@ especies_en_texto &lt;- function(items, especie_a, especie_b) {
   list(ambas = menciona_a &amp; menciona_b, alguna = menciona_a | menciona_b)
 }
 
-crossref_buscar &lt;- function(query, rows = 15) {
-  tryCatch(fromJSON(crossref_url(query, rows))$message$items, error = function(e) NULL)
-}
-
-# Motor de unión de 3 niveles: nunca devuelve citas que no mencionen a ninguna especie
 crossref_buscar_citas &lt;- function(especie_a, especie_b, rows = 15) {
   q_interaccion &lt;- paste(especie_a, especie_b,
                           "interaction OR predation OR competition OR mutualism OR parasitism OR facilitation")
   q_simple &lt;- paste(especie_a, especie_b)
 
-  # Nivel 1: interacción + ambas especies mencionadas
   items1 &lt;- crossref_buscar(q_interaccion, rows)
   f1 &lt;- especies_en_texto(items1, especie_a, especie_b)
   if (!is.null(items1) &amp;&amp; sum(f1$ambas) &gt;= 3) {
@@ -369,7 +418,6 @@ crossref_buscar_citas &lt;- function(especie_a, especie_b, rows = 15) {
                 nivel = "interacciones bióticas, ambas especies mencionadas", consulta = q_interaccion))
   }
 
-  # Nivel 2: sin palabras de interacción, ambas especies mencionadas
   items2 &lt;- crossref_buscar(q_simple, rows)
   f2 &lt;- especies_en_texto(items2, especie_a, especie_b)
   if (!is.null(items2) &amp;&amp; sum(f2$ambas) &gt;= 1) {
@@ -377,7 +425,6 @@ crossref_buscar_citas &lt;- function(especie_a, especie_b, rows = 15) {
                 nivel = "general, ambas especies mencionadas juntas", consulta = q_simple))
   }
 
-  # Nivel 3: última red — al menos una especie mencionada, nunca ruido total
   base_items &lt;- if (!is.null(items1) &amp;&amp; sum(f1$alguna) &gt; 0) items1 else items2
   base_f &lt;- if (!is.null(items1) &amp;&amp; sum(f1$alguna) &gt; 0) f1 else f2
   if (!is.null(base_items) &amp;&amp; sum(base_f$alguna) &gt;= 1) {
@@ -388,14 +435,12 @@ crossref_buscar_citas &lt;- function(especie_a, especie_b, rows = 15) {
   list(items = NULL, nivel = "sin resultados que mencionen a ninguna de las dos especies", consulta = q_simple)
 }
 
-# Formatea cada item de Crossref como una cita legible
-formatear_citas &lt;- function(items) {
+formatear_citas_crossref &lt;- function(items) {
   if (is.null(items) || nrow(items) == 0) return(character(0))
   vapply(seq_len(nrow(items)), function(i) {
     tryCatch({
       titulo &lt;- items$title[[i]]
       titulo &lt;- if (length(titulo) &gt; 0) titulo[1] else "Sin título"
-
       au &lt;- items$author[[i]]
       autores &lt;- if (is.null(au) || nrow(au) == 0) {
         "Autor/es no disponible/s"
@@ -404,12 +449,10 @@ formatear_citas &lt;- function(items) {
         if (length(nombres) &gt; 3) paste0(paste(nombres[1:3], collapse = "; "), " et al.")
         else paste(nombres, collapse = "; ")
       }
-
       anio &lt;- tryCatch(items$published[[i]]$`date-parts`[[1]][1], error = function(e) NA)
       revista &lt;- tryCatch(items$`container-title`[[i]][1], error = function(e) NA)
       doi &lt;- items$DOI[i]
       doi_url &lt;- if (!is.null(doi) &amp;&amp; !is.na(doi)) paste0("https://doi.org/", doi) else NA
-
       paste0(
         autores, " (", ifelse(is.na(anio), "s.f.", anio), "). ", titulo,
         ifelse(!is.na(revista), paste0(". ", revista, "."), "."),
@@ -417,6 +460,28 @@ formatear_citas &lt;- function(items) {
       )
     }, error = function(e) "(No se pudo formatear esta cita.)")
   }, character(1))
+}
+
+# ==========================================
+# MOTOR UNIFICADO: GloBI primero, Crossref como red de seguridad
+# ==========================================
+buscar_evidencia_interaccion &lt;- function(especie_a, especie_b) {
+  globi_df &lt;- globi_buscar(especie_a, especie_b)
+  if (!is.null(globi_df) &amp;&amp; nrow(globi_df) &gt; 0) {
+    return(list(
+      fuente = "GloBI (Global Biotic Interactions)",
+      nivel = "registro directo de interacción documentada",
+      citas = formatear_globi(globi_df),
+      consulta = paste0("GloBI: ", especie_a, " &lt;-&gt; ", especie_b)
+    ))
+  }
+  res_cr &lt;- crossref_buscar_citas(especie_a, especie_b)
+  list(
+    fuente = "Crossref (búsqueda bibliográfica general — GloBI no tenía registros para este par)",
+    nivel = res_cr$nivel,
+    citas = formatear_citas_crossref(res_cr$items),
+    consulta = res_cr$consulta
+  )
 }
 
 # ==========================================
@@ -453,10 +518,11 @@ ui &lt;- fluidPage(
   wellPanel(
     style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
     tags$strong("Fuentes y créditos:"),
-    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Las citas bibliográficas provienen de metadatos de Crossref (licencia CC BY 4.0 sobre los metadatos; los abstracts pueden estar sujetos a copyright de editoriales/autores). El marco de rasgos combina Stearns (1992) y Arnold (1983). La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
+    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Los registros de interacción documentada provienen de GloBI (Global Biotic Interactions; Poelen, Simons &amp; Mungall 2014, CC BY 4.0). Cuando GloBI no tiene registros, se recurre a metadatos de Crossref (CC BY 4.0 sobre metadatos). La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
     tags$div(
       style = "display: flex; gap: 8px; flex-wrap: wrap;",
       tags$a(href = "https://www.gbif.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GBIF.org"),
+      tags$a(href = "https://www.globalbioticinteractions.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GloBI"),
       tags$a(href = "https://www.crossref.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Crossref"),
       tags$a(href = "https://shiny.posit.co", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Shiny"),
       tags$a(href = "https://posit-dev.github.io/r-shinylive/", target = "_blank", class = "btn btn-sm btn-outline-secondary", "shinylive / webR"),
@@ -502,9 +568,9 @@ server &lt;- function(input, output, session) {
 
   resultado &lt;- eventReactive(input$procesar, {
     req(input$especie_a, input$especie_b)
-    withProgress(message = "Buscando citas en Crossref (motor de unión de 3 niveles)...", value = 0.3, {
-      res &lt;- crossref_buscar_citas(input$especie_a, input$especie_b)
-      incProgress(0.7)
+    withProgress(message = "Buscando en GloBI...", value = 0.2, {
+      res &lt;- buscar_evidencia_interaccion(input$especie_a, input$especie_b)
+      incProgress(0.8)
       res
     })
   })
@@ -512,7 +578,6 @@ server &lt;- function(input, output, session) {
   output$ficha_resultado &lt;- renderUI({
     res &lt;- resultado()
     req(res)
-    citas &lt;- formatear_citas(res$items)
 
     wellPanel(
       style = "background: #ffffff; border: 1px solid #d1d5db;",
@@ -525,18 +590,18 @@ server &lt;- function(input, output, session) {
       tags$pre(
         paste0(
           "--- METADATA PROFILE (FAIR/CARE) ---\n",
-          "Fuente de citas: Crossref REST API\n",
+          "Fuente de evidencia: ", res$fuente, "\n",
           "Consulta ejecutada: ", res$consulta, "\n",
-          "Nivel de resultados (motor de unión): ", res$nivel, "\n",
-          "Citas encontradas: ", length(citas), "\n",
+          "Nivel de resultados: ", res$nivel, "\n",
+          "Citas encontradas: ", length(res$citas), "\n",
           "Fecha de consulta: ", format(Sys.time(), "%Y-%m-%d %H:%M %Z")
         )
       ),
       tags$hr(),
-      if (length(citas) == 0) {
-        tags$p("No se encontraron citas que mencionen a ninguna de las dos especies.")
+      if (length(res$citas) == 0) {
+        tags$p("No se encontraron citas que mencionen a ninguna de las dos especies, ni en GloBI ni en Crossref.")
       } else {
-        tags$ol(lapply(citas, function(c) tags$li(HTML(c))))
+        tags$ol(lapply(res$citas, function(c) tags$li(HTML(c))))
       },
       br(),
       downloadButton("descargar_citas", "Descargar citas (.csv)", class = "btn-outline-secondary")
@@ -548,12 +613,12 @@ server &lt;- function(input, output, session) {
     content = function(file) {
       res &lt;- resultado()
       req(res)
-      citas &lt;- formatear_citas(res$items)
       df &lt;- data.frame(
         especie_a = input$especie_a,
         especie_b = input$especie_b,
+        fuente = res$fuente,
         nivel_busqueda = res$nivel,
-        cita = citas,
+        cita = res$citas,
         stringsAsFactors = FALSE
       )
       write.csv(df, file, row.names = FALSE)
