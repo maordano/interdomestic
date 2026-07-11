@@ -15,9 +15,9 @@ format:
 :::
 
 ::: {.callout-tip collapse="true" title="💡 Cómo usar esta ficha"}
-1. **Escribí el nombre científico** de la Especie A y la Especie B, y verificalos con el botón de chequeo (usa el mismo backbone taxonómico de GBIF que bio-distribution).
-2. **Elegí los rasgos de historia de vida** disponibles para cada especie — son metadatos descriptivos, no determinan un resultado automático.
-3. **Apretá "Mapear Interacción"**: la app busca en Crossref citas bibliográficas sobre ambas especies, priorizando trabajos sobre interacciones bióticas (depredación, competencia, mutualismo, parasitismo, facilitación). Si no encuentra nada específico, amplía la búsqueda a cualquier trabajo que mencione a las dos especies juntas.
+1. **Escribí el nombre científico** de la Especie A y la Especie B, y verificalos con el botón de chequeo.
+2. **Elegí los 10 rasgos de historia de vida/desempeño** disponibles para cada especie — son metadatos descriptivos (marco: Stearns 1992, Arnold 1983), no determinan un resultado automático.
+3. **Apretá "Mapear Interacción"**: la app busca en Crossref citas que mencionen a ambas especies, priorizando trabajos sobre interacciones bióticas. Si no hay suficientes con ese criterio estricto, amplía gradualmente — pero nunca por debajo de "al menos una de las dos especies mencionada".
 4. **Descargá las citas en `.csv`** si las necesitás para tu propio gestor bibliográfico.
 :::
 
@@ -32,7 +32,7 @@ A continuación, la herramienta interactiva de mapeo de interacciones, ejecutada
 
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 650
+#| viewerHeight: 750
 
 library(shiny)
 library(dplyr)
@@ -46,6 +46,30 @@ downloadButton <- function(...) {
 }
 
 # ==========================================
+# DEFINICIÓN DE RASGOS (Stearns 1992 + Arnold 1983)
+# Fuente única: se usa tanto para construir la UI como para leer los inputs
+# ==========================================
+traits_def <- list(
+  tamano = list(label = "Tamaño corporal", choices = c("Pequeño", "Mediano", "Grande")),
+  edad_madurez = list(label = "Edad a la madurez", choices = c("Temprana (<1 año)", "Intermedia (1-5 años)", "Tardía (>5 años)")),
+  longevidad = list(label = "Longevidad estimada", choices = c("Corta (<5 años)", "Media (5-20 años)", "Larga (>20 años)")),
+  crecimiento = list(label = "Tasa de crecimiento", choices = c("Lenta", "Moderada", "Rápida")),
+  fecundidad = list(label = "Fecundidad por evento reproductivo", choices = c("Baja (1-2)", "Media (3-10)", "Alta (>10)")),
+  frecuencia_repro = list(label = "Frecuencia reproductiva", choices = c("Semélpara (una vez)", "Iterópara (varias veces)")),
+  inversion_parental = list(label = "Inversión parental", choices = c("Baja", "Media", "Alta")),
+  nutricion = list(label = "Modo nutricional", choices = c("Autótrofo", "Herbívoro", "Carnívoro", "Omnívoro", "Detritívoro")),
+  rendimiento_locomotor = list(label = "Rendimiento locomotor", choices = c("Bajo", "Medio", "Alto")),
+  tolerancia_termica = list(label = "Tolerancia térmica", choices = c("Estenoterma (rango estrecho)", "Euriterma (rango amplio)"))
+)
+
+generar_traits_ui <- function(sufijo) {
+  lapply(names(traits_def), function(id) {
+    def <- traits_def[[id]]
+    selectInput(paste0(id, "_", sufijo), def$label, choices = def$choices)
+  })
+}
+
+# ==========================================
 # HELPERS
 # ==========================================
 
@@ -55,33 +79,66 @@ gbif_name_match <- function(name) {
   tryCatch(fromJSON(url), error = function(e) NULL)
 }
 
-# Búsqueda bibliográfica en Crossref (sin API key)
 # mailto: identidad de contacto del proyecto (no personal), reutilizable en OSF/STAPLE
-crossref_url <- function(query, rows = 8) {
+crossref_url <- function(query, rows = 15) {
   paste0("https://api.crossref.org/works?query=", URLencode(query),
          "&rows=", rows, "&mailto=interdomestic@proton.me")
 }
 
-crossref_buscar_citas <- function(especie_a, especie_b, rows = 8) {
-  # Tier 1: especies + palabras clave de interacción biótica
-  q1 <- paste(especie_a, especie_b,
-              "interaction OR predation OR competition OR mutualism OR parasitism OR facilitation")
-  res1 <- tryCatch(fromJSON(crossref_url(q1, rows)), error = function(e) NULL)
-  items <- tryCatch(res1$message$items, error = function(e) NULL)
-  nivel <- "interacciones bióticas (búsqueda específica)"
-
+# Motor de unión: ¿el título/abstract de cada item menciona a las especies?
+especies_en_texto <- function(items, especie_a, especie_b) {
   if (is.null(items) || nrow(items) == 0) {
-    # Tier 2: fallback, solo especies
-    q2 <- paste(especie_a, especie_b)
-    res2 <- tryCatch(fromJSON(crossref_url(q2, rows)), error = function(e) NULL)
-    items <- tryCatch(res2$message$items, error = function(e) NULL)
-    nivel <- "general (sin resultados específicos de interacción)"
+    return(list(ambas = logical(0), alguna = logical(0)))
   }
-
-  list(items = items, nivel = nivel, consulta = if (nivel == "general (sin resultados específicos de interacción)") q2 else q1)
+  texto <- vapply(seq_len(nrow(items)), function(i) {
+    titulo <- tryCatch(paste(items$title[[i]], collapse = " "), error = function(e) "")
+    abst <- tryCatch(items$abstract[i], error = function(e) NA)
+    abst <- if (is.null(abst) || is.na(abst)) "" else abst
+    tolower(paste(titulo, abst))
+  }, character(1))
+  menciona_a <- grepl(tolower(especie_a), texto, fixed = TRUE)
+  menciona_b <- grepl(tolower(especie_b), texto, fixed = TRUE)
+  list(ambas = menciona_a & menciona_b, alguna = menciona_a | menciona_b)
 }
 
-# Formatea cada item de Crossref como una cita legible (estilo simple, no normativo)
+crossref_buscar <- function(query, rows = 15) {
+  tryCatch(fromJSON(crossref_url(query, rows))$message$items, error = function(e) NULL)
+}
+
+# Motor de unión de 3 niveles: nunca devuelve citas que no mencionen a ninguna especie
+crossref_buscar_citas <- function(especie_a, especie_b, rows = 15) {
+  q_interaccion <- paste(especie_a, especie_b,
+                          "interaction OR predation OR competition OR mutualism OR parasitism OR facilitation")
+  q_simple <- paste(especie_a, especie_b)
+
+  # Nivel 1: interacción + ambas especies mencionadas
+  items1 <- crossref_buscar(q_interaccion, rows)
+  f1 <- especies_en_texto(items1, especie_a, especie_b)
+  if (!is.null(items1) && sum(f1$ambas) >= 3) {
+    return(list(items = items1[f1$ambas, , drop = FALSE],
+                nivel = "interacciones bióticas, ambas especies mencionadas", consulta = q_interaccion))
+  }
+
+  # Nivel 2: sin palabras de interacción, ambas especies mencionadas
+  items2 <- crossref_buscar(q_simple, rows)
+  f2 <- especies_en_texto(items2, especie_a, especie_b)
+  if (!is.null(items2) && sum(f2$ambas) >= 1) {
+    return(list(items = items2[f2$ambas, , drop = FALSE],
+                nivel = "general, ambas especies mencionadas juntas", consulta = q_simple))
+  }
+
+  # Nivel 3: última red — al menos una especie mencionada, nunca ruido total
+  base_items <- if (!is.null(items1) && sum(f1$alguna) > 0) items1 else items2
+  base_f <- if (!is.null(items1) && sum(f1$alguna) > 0) f1 else f2
+  if (!is.null(base_items) && sum(base_f$alguna) >= 1) {
+    return(list(items = base_items[base_f$alguna, , drop = FALSE],
+                nivel = "baja confianza: mención de al menos una especie", consulta = q_simple))
+  }
+
+  list(items = NULL, nivel = "sin resultados que mencionen a ninguna de las dos especies", consulta = q_simple)
+}
+
+# Formatea cada item de Crossref como una cita legible
 formatear_citas <- function(items) {
   if (is.null(items) || nrow(items) == 0) return(character(0))
   vapply(seq_len(nrow(items)), function(i) {
@@ -122,19 +179,13 @@ ui <- fluidPage(
       style = "background: #f8fafc; border: 1px solid #e2e8f0;",
       tags$h4("Especie A"),
       textInput("especie_a", "Nombre científico:", "Panthera onca"),
-      selectInput("tamano_a", "Tamaño corporal:", c("Pequeño", "Mediano", "Grande")),
-      selectInput("gen_a", "Tiempo generacional:", c("Corto (<1 año)", "Medio (1-5 años)", "Largo (>5 años)")),
-      selectInput("habito_a", "Hábito de vida:", c("Terrestre", "Acuático", "Aéreo", "Arbóreo")),
-      selectInput("nutricion_a", "Modo nutricional:", c("Autótrofo", "Herbívoro", "Carnívoro", "Omnívoro", "Detritívoro"))
+      generar_traits_ui("a")
     )),
     column(6, wellPanel(
       style = "background: #f8fafc; border: 1px solid #e2e8f0;",
       tags$h4("Especie B"),
       textInput("especie_b", "Nombre científico:", "Puma concolor"),
-      selectInput("tamano_b", "Tamaño corporal:", c("Pequeño", "Mediano", "Grande")),
-      selectInput("gen_b", "Tiempo generacional:", c("Corto (<1 año)", "Medio (1-5 años)", "Largo (>5 años)")),
-      selectInput("habito_b", "Hábito de vida:", c("Terrestre", "Acuático", "Aéreo", "Arbóreo")),
-      selectInput("nutricion_b", "Modo nutricional:", c("Autótrofo", "Herbívoro", "Carnívoro", "Omnívoro", "Detritívoro"))
+      generar_traits_ui("b")
     ))
   ),
 
@@ -152,7 +203,7 @@ ui <- fluidPage(
   wellPanel(
     style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
     tags$strong("Fuentes y créditos:"),
-    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Las citas bibliográficas provienen de metadatos de Crossref (licencia CC BY 4.0 sobre los metadatos). La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
+    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Las citas bibliográficas provienen de metadatos de Crossref (licencia CC BY 4.0 sobre los metadatos; los abstracts pueden estar sujetos a copyright de editoriales/autores). El marco de rasgos combina Stearns (1992) y Arnold (1983). La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
     tags$div(
       style = "display: flex; gap: 8px; flex-wrap: wrap;",
       tags$a(href = "https://www.gbif.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GBIF.org"),
@@ -193,10 +244,16 @@ server <- function(input, output, session) {
     }))
   })
 
+  resumen_rasgos <- function(sufijo) {
+    paste(sapply(names(traits_def), function(id) {
+      paste0(traits_def[[id]]$label, ": ", input[[paste0(id, "_", sufijo)]])
+    }), collapse = " · ")
+  }
+
   resultado <- eventReactive(input$procesar, {
     req(input$especie_a, input$especie_b)
-    withProgress(message = "Buscando citas en Crossref...", value = 0.3, {
-      res <- crossref_buscar_citas(input$especie_a, input$especie_b, rows = 8)
+    withProgress(message = "Buscando citas en Crossref (motor de unión de 3 niveles)...", value = 0.3, {
+      res <- crossref_buscar_citas(input$especie_a, input$especie_b)
       incProgress(0.7)
       res
     })
@@ -210,24 +267,24 @@ server <- function(input, output, session) {
     wellPanel(
       style = "background: #ffffff; border: 1px solid #d1d5db;",
       tags$h4("Ficha de Interacción"),
-      tags$p(tags$strong("Especie A: "), input$especie_a,
-             " — ", input$tamano_a, ", ", input$gen_a, ", ", input$habito_a, ", ", input$nutricion_a),
-      tags$p(tags$strong("Especie B: "), input$especie_b,
-             " — ", input$tamano_b, ", ", input$gen_b, ", ", input$habito_b, ", ", input$nutricion_b),
+      tags$p(tags$strong("Especie A: "), input$especie_a),
+      tags$p(style = "font-size: 0.85em; color: #64748b;", resumen_rasgos("a")),
+      tags$p(tags$strong("Especie B: "), input$especie_b),
+      tags$p(style = "font-size: 0.85em; color: #64748b;", resumen_rasgos("b")),
       tags$hr(),
       tags$pre(
         paste0(
           "--- METADATA PROFILE (FAIR/CARE) ---\n",
           "Fuente de citas: Crossref REST API\n",
           "Consulta ejecutada: ", res$consulta, "\n",
-          "Nivel de resultados: ", res$nivel, "\n",
+          "Nivel de resultados (motor de unión): ", res$nivel, "\n",
           "Citas encontradas: ", length(citas), "\n",
           "Fecha de consulta: ", format(Sys.time(), "%Y-%m-%d %H:%M %Z")
         )
       ),
       tags$hr(),
       if (length(citas) == 0) {
-        tags$p("No se encontraron citas para esta combinación de especies.")
+        tags$p("No se encontraron citas que mencionen a ninguna de las dos especies.")
       } else {
         tags$ol(lapply(citas, function(c) tags$li(HTML(c))))
       },
