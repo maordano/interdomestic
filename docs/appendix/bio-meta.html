@@ -249,6 +249,14 @@ ul.task-list li input[type="checkbox"] {
 
 library(shiny)
 
+# Workaround para Chromium Issue 468227
+# Necesario para que la descarga de archivos funcione en shinylive
+downloadButton &lt;- function(...) {
+  tag &lt;- shiny::downloadButton(...)
+  tag$attribs$download &lt;- NULL
+  tag
+}
+
 # ==========================================
 # LOS 12 ÍTEMS DE "SEARCH STRATEGY" (GSRRF-21 a GSRRF-32)
 # fuente: van den Akker &amp; Peters et al. 2023, Systematic Reviews 12:170
