@@ -237,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><strong>Escribí el nombre científico</strong> de la Especie A y la Especie B, y verificalos con el botón de chequeo.</li>
-<li><strong>(Opcional) Marcá uno o más rasgos de historia de vida</strong> — funcionan como palabras clave que enfocan una búsqueda adicional en un aspecto específico de la interacción (por ejemplo, si te interesa el rol del tamaño corporal en esa interacción puntual).</li>
+<li><strong>(Opcional) Marcá conceptos de los 4 ejes disponibles</strong> (sector e interacción ecosistémica, ecología evolutiva, historia de vida/desempeño, aplicaciones) — funcionan como palabras clave que enfocan una búsqueda adicional en un aspecto específico de la interacción.</li>
 <li><strong>Apretá “Mapear Interacción”</strong>: la app busca primero evidencia general (GloBI, y si no hay, Crossref) y, si marcaste rasgos, agrega una segunda búsqueda enfocada en esos aspectos.</li>
 <li><strong>Descargá las citas en <code>.csv</code></strong> si las necesitás para tu propio gestor bibliográfico o como semilla de un proyecto/dataset.</li>
 </ol>
@@ -284,24 +284,76 @@ downloadButton &lt;- function(...) {
 }
 
 # ==========================================
-# RASGOS DE HISTORIA DE VIDA: ahora son PALABRAS CLAVE COMPARTIDAS
-# para enfocar una búsqueda adicional, no atributos por especie.
-# (Stearns 1992 + Arnold 1983 como marco conceptual de origen)
+# RASGOS Y CONCEPTOS: palabras clave compartidas, organizadas en 4 ejes,
+# para enfocar una búsqueda adicional (no son atributos por especie).
+# Eje 1: Stearns 1992 + Arnold 1983 (historia de vida / desempeño)
+# Eje 2: Ecología evolutiva
+# Eje 3: Sector de interacción
+# Eje 4: Interés aplicado del proyecto
 # ==========================================
-traits_def &lt;- list(
-  tamano = list(label = "Tamaño corporal", keyword = "body size"),
-  edad_madurez = list(label = "Edad a la madurez", keyword = "age at maturity"),
-  longevidad = list(label = "Longevidad", keyword = "longevity OR lifespan"),
-  crecimiento = list(label = "Tasa de crecimiento", keyword = "growth rate"),
-  fecundidad = list(label = "Fecundidad", keyword = "fecundity"),
-  frecuencia_repro = list(label = "Frecuencia reproductiva", keyword = "semelparity OR iteroparity"),
-  inversion_parental = list(label = "Inversión parental", keyword = "parental investment"),
-  nutricion = list(label = "Modo nutricional", keyword = "diet OR trophic"),
-  rendimiento_locomotor = list(label = "Rendimiento locomotor", keyword = "locomotor performance"),
-  tolerancia_termica = list(label = "Tolerancia térmica", keyword = "thermal tolerance")
+grupos_keywords &lt;- list(
+  sector = list(
+    titulo = "Sector e interacción ecosistémica",
+    descripcion = "A qué tipo de vínculo o función ecológica pertenece esta consulta.",
+    color_fondo = "#f0fdf4", color_borde = "#bbf7d0",
+    items = list(
+      interacciones_bioticas = list(label = "Interacciones bióticas", keyword = "biotic interactions"),
+      planta_animal = list(label = "Interacción planta-animal", keyword = "plant-animal interaction"),
+      redes_troficas = list(label = "Redes tróficas", keyword = "trophic network OR food web"),
+      servicios_ecosistemicos = list(label = "Servicios ecosistémicos", keyword = "ecosystem services OR ecosystem disservices")
+    )
+  ),
+  eco_evolutiva = list(
+    titulo = "Ecología evolutiva",
+    descripcion = "Qué fuerza o proceso evolutivo podría estar operando en esta interacción.",
+    color_fondo = "#fdf4ff", color_borde = "#e9d5ff",
+    items = list(
+      eco_evolutiva_gral = list(label = "Ecología evolutiva", keyword = "evolutionary ecology"),
+      seleccion_natural = list(label = "Selección natural", keyword = "natural selection"),
+      coevolucion = list(label = "Co-evolución", keyword = "coevolution")
+    )
+  ),
+  historia_vida = list(
+    titulo = "Rasgos de historia de vida / desempeño",
+    descripcion = "Cómo vive y se reproduce cada especie — el marco clásico de la ecología de historias de vida.",
+    color_fondo = "#f0f9ff", color_borde = "#bae6fd",
+    items = list(
+      tamano = list(label = "Tamaño corporal", keyword = "body size"),
+      edad_madurez = list(label = "Edad a la madurez", keyword = "age at maturity"),
+      longevidad = list(label = "Longevidad", keyword = "longevity OR lifespan"),
+      crecimiento = list(label = "Tasa de crecimiento", keyword = "growth rate"),
+      fecundidad = list(label = "Fecundidad", keyword = "fecundity"),
+      frecuencia_repro = list(label = "Frecuencia reproductiva", keyword = "semelparity OR iteroparity"),
+      inversion_parental = list(label = "Inversión parental", keyword = "parental investment"),
+      nutricion = list(label = "Modo nutricional", keyword = "diet OR trophic"),
+      rendimiento_locomotor = list(label = "Rendimiento locomotor", keyword = "locomotor performance"),
+      tolerancia_termica = list(label = "Tolerancia térmica", keyword = "thermal tolerance")
+    )
+  ),
+  aplicado = list(
+    titulo = "Aplicaciones",
+    descripcion = "Para qué podría servir este conocimiento más allá de la ecología básica.",
+    color_fondo = "#fffbeb", color_borde = "#fde68a",
+    items = list(
+      agroecologia = list(label = "Agroecología", keyword = "agroecology"),
+      manejo_ambiental = list(label = "Manejo ambiental", keyword = "environmental management"),
+      eco_epidemiologia = list(label = "Eco-epidemiología", keyword = "disease ecology OR eco-epidemiology")
+    )
+  )
 )
 
-traits_choices &lt;- setNames(names(traits_def), sapply(traits_def, function(x) x$label))
+# Índice plano de todos los items (id único a través de los 4 grupos) para lookup por keyword
+items_planos &lt;- do.call(c, lapply(grupos_keywords, function(g) g$items))
+
+generar_checkboxes_grupo &lt;- function(grupo_id, grupo) {
+  choices &lt;- setNames(names(grupo$items), sapply(grupo$items, function(x) x$label))
+  wellPanel(
+    style = paste0("background: ", grupo$color_fondo, "; border: 1px solid ", grupo$color_borde, "; margin-bottom: 8px;"),
+    tags$strong(style = "font-size: 0.85em;", grupo$titulo),
+    tags$p(style = "font-size: 0.78em; color: #64748b; margin: 2px 0 6px 0; font-style: italic;", grupo$descripcion),
+    checkboxGroupInput(paste0("cb_", grupo_id), NULL, choices = choices, inline = TRUE)
+  )
+}
 
 # ==========================================
 # HELPERS: VALIDACIÓN DE NOMBRES (GBIF)
@@ -502,10 +554,10 @@ buscar_evidencia_general &lt;- function(especie_a, especie_b) {
        citas = character(0), consulta = q_simple)
 }
 
-# Búsqueda enfocada: especies + palabras clave de los rasgos elegidos, en Crossref
+# Búsqueda enfocada: especies + palabras clave de los rasgos/conceptos elegidos, en Crossref
 buscar_evidencia_enfocada &lt;- function(especie_a, especie_b, rasgos_ids) {
   if (length(rasgos_ids) == 0) return(NULL)
-  keywords &lt;- sapply(traits_def[rasgos_ids], function(x) x$keyword)
+  keywords &lt;- sapply(items_planos[rasgos_ids], function(x) x$keyword)
   q &lt;- paste(especie_a, especie_b, paste(keywords, collapse = " OR "))
   items &lt;- crossref_buscar(q)
   f &lt;- especies_en_texto(items, especie_a, especie_b)
@@ -515,7 +567,7 @@ buscar_evidencia_enfocada &lt;- function(especie_a, especie_b, rasgos_ids) {
     character(0)
   }
   list(
-    rasgos = sapply(traits_def[rasgos_ids], function(x) x$label),
+    rasgos = sapply(items_planos[rasgos_ids], function(x) x$label),
     consulta = q,
     citas = citas
   )
@@ -548,8 +600,11 @@ ui &lt;- fluidPage(
     style = "background: #fdfaf5; border: 1px solid #eee0c8;",
     tags$strong("Enfocar la búsqueda (opcional):"),
     tags$p(style = "font-size: 0.8em; color: #64748b; margin-top: 4px;",
-           "Marcá rasgos de historia de vida para sumar una búsqueda adicional centrada en ese aspecto de la interacción."),
-    checkboxGroupInput("rasgos_foco", NULL, choices = traits_choices, inline = TRUE)
+           "Esto no clasifica a las especies — te ayuda a mirar la interacción desde distintos ángulos de la ecología. Marcá conceptos de uno o varios grupos para sumar una búsqueda adicional centrada en esos aspectos."),
+    generar_checkboxes_grupo("sector", grupos_keywords$sector),
+    generar_checkboxes_grupo("eco_evolutiva", grupos_keywords$eco_evolutiva),
+    generar_checkboxes_grupo("historia_vida", grupos_keywords$historia_vida),
+    generar_checkboxes_grupo("aplicado", grupos_keywords$aplicado)
   ),
 
   actionButton("procesar", "Mapear Interacción", class = "btn-primary", style = "width: 100%;"),
@@ -561,7 +616,7 @@ ui &lt;- fluidPage(
   wellPanel(
     style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
     tags$strong("Fuentes y créditos:"),
-    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Los registros de interacción documentada provienen de GloBI (Poelen, Simons &amp; Mungall 2014, CC BY 4.0). Cuando GloBI no tiene registros, o para la búsqueda enfocada por rasgos, se recurre a metadatos de Crossref. El marco de rasgos combina Stearns (1992) y Arnold (1983). La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
+    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Los registros de interacción documentada provienen de GloBI (Poelen, Simons &amp; Mungall 2014, CC BY 4.0). Cuando GloBI no tiene registros, o para la búsqueda enfocada, se recurre a metadatos de Crossref. Los conceptos de enfoque combinan sector e interacción ecosistémica, ecología evolutiva, historia de vida/desempeño (Stearns 1992, Arnold 1983), y aplicaciones (agroecología, manejo ambiental, eco-epidemiología). La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
     tags$div(
       style = "display: flex; gap: 8px; flex-wrap: wrap;",
       tags$a(href = "https://www.gbif.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GBIF.org"),
@@ -613,7 +668,8 @@ server &lt;- function(input, output, session) {
       incProgress(0.5, detail = "Evidencia general lista")
 
       t_enfocada &lt;- Sys.time()
-      enfocada &lt;- buscar_evidencia_enfocada(input$especie_a, input$especie_b, input$rasgos_foco)
+      rasgos_elegidos &lt;- c(input$cb_sector, input$cb_eco_evolutiva, input$cb_historia_vida, input$cb_aplicado)
+      enfocada &lt;- buscar_evidencia_enfocada(input$especie_a, input$especie_b, rasgos_elegidos)
       message(paste0("[timing] Búsqueda enfocada: ",
                       round(as.numeric(Sys.time() - t_enfocada, units = "secs"), 1), "s"))
       incProgress(0.3, detail = "Listo")
