@@ -265,6 +265,22 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-warning callout-titled" title="⚠️ Sobre los límites de esta búsqueda">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>⚠️ Sobre los límites de esta búsqueda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>GloBI solo contiene interacciones que alguien formalizó como dataset estructurado — un trabajo clásico o de referencia sobre un sistema puede no estar ahí simplemente porque nadie hizo esa extracción. Crossref busca por coincidencia de texto, no por importancia del trabajo; ordena por citas recibidas cuando puede, pero eso no reemplaza el conocimiento de quien ya conoce la literatura del sistema. Si trabajás con un par de especies en particular, tu propio conocimiento sigue siendo la fuente primaria — esta ficha es un punto de partida y una forma de documentar la búsqueda, no un reemplazo de la revisión experta.</p>
+</div>
+</div>
+</div>
 <p>A continuación, la herramienta interactiva de mapeo de interacciones, ejecutada mediante WebAssembly directamente en su navegador:</p>
 <pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
 #|   shinylive does not work in self-contained HTML documents.
@@ -471,6 +487,17 @@ crossref_buscar &lt;- function(query, rows = 15) {
   tryCatch(fromJSON(crossref_url(query, rows))$message$items, error = function(e) NULL)
 }
 
+# Ordena los resultados por cantidad de citas recibidas (según el propio Crossref),
+# como aproximación imperfecta pero real a "qué tan importante" es un trabajo dentro
+# de lo que el motor efectivamente encontró — no soluciona lo que no está indexado.
+ordenar_por_citas &lt;- function(items) {
+  if (is.null(items) || nrow(items) == 0) return(items)
+  citas &lt;- tryCatch(items$`is-referenced-by-count`, error = function(e) NULL)
+  if (is.null(citas)) return(items)
+  citas[is.na(citas)] &lt;- 0
+  items[order(-citas), , drop = FALSE]
+}
+
 especies_en_texto &lt;- function(items, especie_a, especie_b) {
   if (is.null(items) || nrow(items) == 0) {
     return(list(ambas = logical(0), alguna = logical(0)))
@@ -529,14 +556,14 @@ buscar_evidencia_general &lt;- function(especie_a, especie_b) {
                           "interaction OR predation OR competition OR mutualism OR parasitism OR facilitation")
   q_simple &lt;- paste(especie_a, especie_b)
 
-  items1 &lt;- crossref_buscar(q_interaccion)
+  items1 &lt;- ordenar_por_citas(crossref_buscar(q_interaccion))
   f1 &lt;- especies_en_texto(items1, especie_a, especie_b)
   if (!is.null(items1) &amp;&amp; sum(f1$ambas) &gt;= 3) {
     return(list(fuente = "Crossref", nivel = "interacciones bióticas, ambas especies mencionadas",
                 citas = formatear_citas_crossref(items1[f1$ambas, , drop = FALSE]), consulta = q_interaccion))
   }
 
-  items2 &lt;- crossref_buscar(q_simple)
+  items2 &lt;- ordenar_por_citas(crossref_buscar(q_simple))
   f2 &lt;- especies_en_texto(items2, especie_a, especie_b)
   if (!is.null(items2) &amp;&amp; sum(f2$ambas) &gt;= 1) {
     return(list(fuente = "Crossref", nivel = "general, ambas especies mencionadas juntas",
@@ -559,7 +586,7 @@ buscar_evidencia_enfocada &lt;- function(especie_a, especie_b, rasgos_ids) {
   if (length(rasgos_ids) == 0) return(NULL)
   keywords &lt;- sapply(items_planos[rasgos_ids], function(x) x$keyword)
   q &lt;- paste(especie_a, especie_b, paste(keywords, collapse = " OR "))
-  items &lt;- crossref_buscar(q)
+  items &lt;- ordenar_por_citas(crossref_buscar(q))
   f &lt;- especies_en_texto(items, especie_a, especie_b)
   citas &lt;- if (!is.null(items) &amp;&amp; sum(f$alguna) &gt; 0) {
     formatear_citas_crossref(items[f$alguna, , drop = FALSE])
