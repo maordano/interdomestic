@@ -1,85 +1,257 @@
 ---
-title: "Ecología Evolutiva de Interacciones Bióticas"
+title: "Interacciones Bióticas"
+subtitle: "Ficha FAIR/CARE de interacción entre especies (WebAssembly)"
 format:
   html:
-    resources: 
-      -  "*-shinylive-app/*"
-    embed-resources: false
-
-filters:
-  - shinylive
+    resources:
+      - "*-shinylive-app/*"
 ---
+
+<!-- Script de aislamiento cross-origin: habilita SharedArrayBuffer/webR en GitHub Pages -->
+<script src="../coi-serviceworker.js"></script>
+
+::: {.callout-note appearance="simple" icon=false}
+⏳ **Primera carga:** el entorno estadístico (R) se descarga y arranca completo dentro de tu navegador — puede tardar entre 10 y 30 segundos la primera vez.
+:::
+
+::: {.callout-tip collapse="true" title="💡 Cómo usar esta ficha"}
+1. **Escribí el nombre científico** de la Especie A y la Especie B, y verificalos con el botón de chequeo (usa el mismo backbone taxonómico de GBIF que bio-distribution).
+2. **Elegí los rasgos de historia de vida** disponibles para cada especie — son metadatos descriptivos, no determinan un resultado automático.
+3. **Apretá "Mapear Interacción"**: la app busca en Crossref citas bibliográficas sobre ambas especies, priorizando trabajos sobre interacciones bióticas (depredación, competencia, mutualismo, parasitismo, facilitación). Si no encuentra nada específico, amplía la búsqueda a cualquier trabajo que mencione a las dos especies juntas.
+4. **Descargá las citas en `.csv`** si las necesitás para tu propio gestor bibliográfico.
+:::
+
+::: {.callout-important collapse="true" title="🔎 ¿No estás seguro del nombre científico exacto?"}
+- [**GBIF Species Search**](https://www.gbif.org/species/search)
+- [**iNaturalist**](https://www.inaturalist.org)
+- [**Tropicos.org**](https://www.tropicos.org) (plantas)
+- [**Catalogue of Life**](https://www.catalogueoflife.org)
+:::
+
+A continuación, la herramienta interactiva de mapeo de interacciones, ejecutada mediante WebAssembly directamente en su navegador:
 
 ```{shinylive-r}
 #| standalone: true
 #| viewerHeight: 650
+
 library(shiny)
 library(dplyr)
+library(jsonlite)
 
-# 1. BASE DE DATOS LOCAL
-referencias_locales <- data.frame(
-  tipo_interaccion = c("Depredación/Parasitismo", "Competencia", "Mutualismo", "Comensalismo/Amensalismo"),
-  cita_bibliografica = c(
-    "Thompson, J. N. (2005). The Geographic Mosaic of Coevolution.",
-    "Keddy, P. A. (2001). Competition.",
-    "Bronstein, J. L. (2015). Mutualism.",
-    "Descola, P. (2012). Más allá de naturaleza y cultura."
-  ),
-  stringsAsFactors = FALSE
-)
+# Workaround para Chromium Issue 468227 (descarga de CSV en shinylive)
+downloadButton <- function(...) {
+  tag <- shiny::downloadButton(...)
+  tag$attribs$download <- NULL
+  tag
+}
 
-# 2. UI
+# ==========================================
+# HELPERS
+# ==========================================
+
+# Reutilizado de bio-distribution.qmd: valida nombres contra el backbone de GBIF
+gbif_name_match <- function(name) {
+  url <- paste0("https://api.gbif.org/v1/species/match?name=", URLencode(name))
+  tryCatch(fromJSON(url), error = function(e) NULL)
+}
+
+# Búsqueda bibliográfica en Crossref (sin API key)
+# mailto: identidad de contacto del proyecto (no personal), reutilizable en OSF/STAPLE
+crossref_url <- function(query, rows = 8) {
+  paste0("https://api.crossref.org/works?query=", URLencode(query),
+         "&rows=", rows, "&mailto=interdomestic@proton.me")
+}
+
+crossref_buscar_citas <- function(especie_a, especie_b, rows = 8) {
+  # Tier 1: especies + palabras clave de interacción biótica
+  q1 <- paste(especie_a, especie_b,
+              "interaction OR predation OR competition OR mutualism OR parasitism OR facilitation")
+  res1 <- tryCatch(fromJSON(crossref_url(q1, rows)), error = function(e) NULL)
+  items <- tryCatch(res1$message$items, error = function(e) NULL)
+  nivel <- "interacciones bióticas (búsqueda específica)"
+
+  if (is.null(items) || nrow(items) == 0) {
+    # Tier 2: fallback, solo especies
+    q2 <- paste(especie_a, especie_b)
+    res2 <- tryCatch(fromJSON(crossref_url(q2, rows)), error = function(e) NULL)
+    items <- tryCatch(res2$message$items, error = function(e) NULL)
+    nivel <- "general (sin resultados específicos de interacción)"
+  }
+
+  list(items = items, nivel = nivel, consulta = if (nivel == "general (sin resultados específicos de interacción)") q2 else q1)
+}
+
+# Formatea cada item de Crossref como una cita legible (estilo simple, no normativo)
+formatear_citas <- function(items) {
+  if (is.null(items) || nrow(items) == 0) return(character(0))
+  vapply(seq_len(nrow(items)), function(i) {
+    tryCatch({
+      titulo <- items$title[[i]]
+      titulo <- if (length(titulo) > 0) titulo[1] else "Sin título"
+
+      au <- items$author[[i]]
+      autores <- if (is.null(au) || nrow(au) == 0) {
+        "Autor/es no disponible/s"
+      } else {
+        nombres <- paste(au$family, au$given, sep = ", ")
+        if (length(nombres) > 3) paste0(paste(nombres[1:3], collapse = "; "), " et al.")
+        else paste(nombres, collapse = "; ")
+      }
+
+      anio <- tryCatch(items$published[[i]]$`date-parts`[[1]][1], error = function(e) NA)
+      revista <- tryCatch(items$`container-title`[[i]][1], error = function(e) NA)
+      doi <- items$DOI[i]
+      doi_url <- if (!is.null(doi) && !is.na(doi)) paste0("https://doi.org/", doi) else NA
+
+      paste0(
+        autores, " (", ifelse(is.na(anio), "s.f.", anio), "). ", titulo,
+        ifelse(!is.na(revista), paste0(". ", revista, "."), "."),
+        ifelse(!is.na(doi_url), paste0(" ", doi_url), "")
+      )
+    }, error = function(e) "(No se pudo formatear esta cita.)")
+  }, character(1))
+}
+
+# ==========================================
+# UI
+# ==========================================
 ui <- fluidPage(
+
   fluidRow(
     column(6, wellPanel(
-        tags$h4("Especie A"),
-        textInput("especie_a", "Nombre:", "Panthera onca"),
-        selectInput("rasgo_a", "Rol:", c("Predador" = "predador", "Recurso" = "recurso", "Antrópica" = "antropica")),
-        selectInput("actividad_a", "Ritmo:", c("Nocturno" = "nocturno", "Diurno" = "diurno"))
+      style = "background: #f8fafc; border: 1px solid #e2e8f0;",
+      tags$h4("Especie A"),
+      textInput("especie_a", "Nombre científico:", "Panthera onca"),
+      selectInput("tamano_a", "Tamaño corporal:", c("Pequeño", "Mediano", "Grande")),
+      selectInput("gen_a", "Tiempo generacional:", c("Corto (<1 año)", "Medio (1-5 años)", "Largo (>5 años)")),
+      selectInput("habito_a", "Hábito de vida:", c("Terrestre", "Acuático", "Aéreo", "Arbóreo")),
+      selectInput("nutricion_a", "Modo nutricional:", c("Autótrofo", "Herbívoro", "Carnívoro", "Omnívoro", "Detritívoro"))
     )),
     column(6, wellPanel(
-        tags$h4("Especie B"),
-        textInput("especie_b", "Nombre:", "Puma concolor"),
-        selectInput("rasgo_b", "Rol:", c("Predador" = "predador", "Recurso" = "recurso", "Antrópica" = "antropica")),
-        selectInput("actividad_b", "Ritmo:", c("Nocturno" = "nocturno", "Diurno" = "diurno"))
+      style = "background: #f8fafc; border: 1px solid #e2e8f0;",
+      tags$h4("Especie B"),
+      textInput("especie_b", "Nombre científico:", "Puma concolor"),
+      selectInput("tamano_b", "Tamaño corporal:", c("Pequeño", "Mediano", "Grande")),
+      selectInput("gen_b", "Tiempo generacional:", c("Corto (<1 año)", "Medio (1-5 años)", "Largo (>5 años)")),
+      selectInput("habito_b", "Hábito de vida:", c("Terrestre", "Acuático", "Aéreo", "Arbóreo")),
+      selectInput("nutricion_b", "Modo nutricional:", c("Autótrofo", "Herbívoro", "Carnívoro", "Omnívoro", "Detritívoro"))
     ))
   ),
-  actionButton("procesar", "Mapear Interacción", class = "btn-primary"),
-  uiOutput("resultado_panel")
+
+  actionButton("verificar", "🔎 Verificar nombres antes de mapear",
+               class = "btn-outline-info btn-sm"),
+  uiOutput("validacion_nombres"),
+
+  br(),
+  actionButton("procesar", "Mapear Interacción", class = "btn-primary", style = "width: 100%;"),
+
+  br(), br(),
+  uiOutput("ficha_resultado"),
+
+  br(),
+  wellPanel(
+    style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
+    tags$strong("Fuentes y créditos:"),
+    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Las citas bibliográficas provienen de metadatos de Crossref (licencia CC BY 4.0 sobre los metadatos). La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
+    tags$div(
+      style = "display: flex; gap: 8px; flex-wrap: wrap;",
+      tags$a(href = "https://www.gbif.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GBIF.org"),
+      tags$a(href = "https://www.crossref.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Crossref"),
+      tags$a(href = "https://shiny.posit.co", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Shiny"),
+      tags$a(href = "https://posit-dev.github.io/r-shinylive/", target = "_blank", class = "btn btn-sm btn-outline-secondary", "shinylive / webR"),
+      tags$a(href = "https://quarto.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Quarto")
+    )
+  )
 )
 
-# 3. SERVIDOR
+# ==========================================
+# SERVIDOR
+# ==========================================
 server <- function(input, output, session) {
-  resultado_mapeo <- eventReactive(input$procesar, {
-    req(input$especie_a, input$especie_b)
 
-    # Lógica de cruce dinámico
-    if (input$rasgo_a == "predador" && input$rasgo_b == "recurso") {
-      tipo <- "Depredación/Parasitismo"
-      desc <- "A consume a B."
-    } else if (input$rasgo_a == input$rasgo_b && input$rasgo_a == "predador") {
-      tipo <- "Competencia"
-      desc <- "Alta superposición de nicho."
-    } else {
-      tipo <- "Mutualismo"
-      desc <- "Relación de facilitación."
-    }
-
-    ref <- referencias_locales %>% filter(tipo_interaccion == tipo) %>% pull(cita_bibliografica)
-
-    list(tipo = tipo, desc = desc, ref = ref)
-  })
-
-  output$resultado_panel <- renderUI({
-    res <- resultado_mapeo()
-    req(res)
-    wellPanel(
-      tags$h4("Ficha de Interacción"),
-      tags$p(tags$strong("Tipo: "), res$tipo),
-      tags$p(tags$strong("Diagnóstico: "), res$desc),
-      tags$small(res$ref)
+  validacion <- eventReactive(input$verificar, {
+    list(
+      a = list(consulta = input$especie_a, match = gbif_name_match(input$especie_a)),
+      b = list(consulta = input$especie_b, match = gbif_name_match(input$especie_b))
     )
   })
+
+  output$validacion_nombres <- renderUI({
+    v <- validacion()
+    tagList(lapply(list(v$a, v$b), function(r) {
+      m <- r$match
+      if (is.null(m) || is.null(m$matchType) || m$matchType == "NONE") {
+        div(class = "alert alert-danger", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+            paste0("❌ '", r$consulta, "' no se encontró en el backbone de GBIF."))
+      } else if (m$matchType == "EXACT") {
+        div(class = "alert alert-success", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+            paste0("✅ '", r$consulta, "' reconocido como ", m$scientificName, " (", m$status, ")"))
+      } else {
+        div(class = "alert alert-warning", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+            paste0("⚠️ '", r$consulta, "' es una coincidencia aproximada. GBIF sugiere: ", m$canonicalName, "."))
+      }
+    }))
+  })
+
+  resultado <- eventReactive(input$procesar, {
+    req(input$especie_a, input$especie_b)
+    withProgress(message = "Buscando citas en Crossref...", value = 0.3, {
+      res <- crossref_buscar_citas(input$especie_a, input$especie_b, rows = 8)
+      incProgress(0.7)
+      res
+    })
+  })
+
+  output$ficha_resultado <- renderUI({
+    res <- resultado()
+    req(res)
+    citas <- formatear_citas(res$items)
+
+    wellPanel(
+      style = "background: #ffffff; border: 1px solid #d1d5db;",
+      tags$h4("Ficha de Interacción"),
+      tags$p(tags$strong("Especie A: "), input$especie_a,
+             " — ", input$tamano_a, ", ", input$gen_a, ", ", input$habito_a, ", ", input$nutricion_a),
+      tags$p(tags$strong("Especie B: "), input$especie_b,
+             " — ", input$tamano_b, ", ", input$gen_b, ", ", input$habito_b, ", ", input$nutricion_b),
+      tags$hr(),
+      tags$pre(
+        paste0(
+          "--- METADATA PROFILE (FAIR/CARE) ---\n",
+          "Fuente de citas: Crossref REST API\n",
+          "Consulta ejecutada: ", res$consulta, "\n",
+          "Nivel de resultados: ", res$nivel, "\n",
+          "Citas encontradas: ", length(citas), "\n",
+          "Fecha de consulta: ", format(Sys.time(), "%Y-%m-%d %H:%M %Z")
+        )
+      ),
+      tags$hr(),
+      if (length(citas) == 0) {
+        tags$p("No se encontraron citas para esta combinación de especies.")
+      } else {
+        tags$ol(lapply(citas, function(c) tags$li(HTML(c))))
+      },
+      br(),
+      downloadButton("descargar_citas", "Descargar citas (.csv)", class = "btn-outline-secondary")
+    )
+  })
+
+  output$descargar_citas <- downloadHandler(
+    filename = function() paste0("interdomestic_citas_", Sys.Date(), ".csv"),
+    content = function(file) {
+      res <- resultado()
+      req(res)
+      citas <- formatear_citas(res$items)
+      df <- data.frame(
+        especie_a = input$especie_a,
+        especie_b = input$especie_b,
+        nivel_busqueda = res$nivel,
+        cita = citas,
+        stringsAsFactors = FALSE
+      )
+      write.csv(df, file, row.names = FALSE)
+    }
+  )
 }
 
 shinyApp(ui, server)
