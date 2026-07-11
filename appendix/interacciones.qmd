@@ -1,6 +1,6 @@
 ---
 title: "Interacciones Bióticas"
-subtitle: "Ficha FAIR/CARE de interacción entre especies (WebAssembly)"
+subtitle: "Ficha FAIR/CARE de referencias sobre  interacción entre especies (WebAssembly)"
 format:
   html:
     resources:
@@ -10,15 +10,26 @@ format:
 <!-- Script de aislamiento cross-origin: habilita SharedArrayBuffer/webR en GitHub Pages -->
 <script src="../coi-serviceworker.js"></script>
 
+**Interacción entre especies:** la co-existencia de especies en un espacio y tiempo brinda un marco regional para la ocurrencia de interacciones entre especies, incluyéndonos. 
+
+::: {.callout-note appearance="minimal" icon=true}
+**Distribución geográfica de especies:** la co-existencia de especies en un espacio y tiempo brinda un marco regional para la ocurrencia de interacciones entre especies, incluyéndonos. La co-existencia regional de especies forma un marco de co-evolución entre especies, o mosaico geográfico de co-evolución, en donde las especies evolucionan en función de las características de la interacción en el paisaje. 
+La búsqueda de información dirigida a una interacción específica entre especies puede ser sistematizada. Aquí realizamos un ejercicio disparador para empezar a investigar sobre lo conocido de una interacción, con base en las referencias disponibles.
+
+Nota de desarrollo: el resultado que esperamos, como una "micro-síntesis de referencias sobre una interacción entre dos especies", necesita refinamiento para el filtrado y mejorar la capacidad de búsqueda para enfocarse en la interacción entre las especies seleccionadas.
+
+:::
+
 ::: {.callout-note appearance="simple" icon=false}
-⏳ **Primera carga:** el entorno estadístico (R) se descarga y arranca completo dentro de tu navegador — puede tardar entre 10 y 30 segundos la primera vez.
+⏳ **Primera carga:** el entorno estadístico (R) se descarga y arranca en el navegador — puede tardar un par de minutos la primera vez.
 :::
 
 ::: {.callout-tip collapse="true" title="💡 Cómo usar esta ficha"}
-1. **Escribí el nombre científico** de la Especie A y la Especie B, y verificalos con el botón de chequeo.
-2. **Elegí los 10 rasgos de historia de vida/desempeño** disponibles para cada especie — son metadatos descriptivos (marco: Stearns 1992, Arnold 1983), no determinan un resultado automático.
-3. **Apretá "Mapear Interacción"**: la app busca en Crossref citas que mencionen a ambas especies, priorizando trabajos sobre interacciones bióticas. Si no hay suficientes con ese criterio estricto, amplía gradualmente — pero nunca por debajo de "al menos una de las dos especies mencionada".
-4. **Descargá las citas en `.csv`** si las necesitás para tu propio gestor bibliográfico.
+1. **Escribe el nombre científico** de la Especie A y la Especie B, y verifica con el botón de chequeo.
+2. **Elige 10 rasgos de historia de vida** disponibles para cada especie — son metadatos descriptivos (marco: Stearns 1992, Arnold 1983), no determinan un resultado automático.
+3. **Aprieta "Mapear Interacción"**: la app busca en Crossref citas que mencionen a ambas especies, priorizando trabajos sobre interacciones bióticas. Si no hay suficientes con ese criterio estricto, amplía gradualmente — pero nunca por debajo de "al menos una de las dos especies mencionada".
+4. **Descarga las citas en `.csv`** para el manejo bibliográfico sobre la interacción entre especies seleccionada.
+
 :::
 
 ::: {.callout-important collapse="true" title="🔎 ¿No estás seguro del nombre científico exacto?"}

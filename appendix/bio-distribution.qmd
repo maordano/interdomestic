@@ -17,6 +17,7 @@ format:
 ::: {.callout-note appearance="minimal" icon=true}
 **Distribución geográfica de especies:** la co-existencia de especies en un espacio y tiempo brinda un marco regional para la ocurrencia de interacciones entre especies, incluyéndonos. 
 
+La co-existencia regional de especies forma un marco de co-evolución entre especies, o mosaico geográfico de co-evolución, en donde las especies evolucionan en función de las características de la interacción en el paisaje. 
 La visualización de la distribución de especies de la vida silvestre, mediante mapas, ayuda en la interpretación multidisciplinar de la consulta.
 
 :::
