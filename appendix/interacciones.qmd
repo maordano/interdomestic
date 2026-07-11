@@ -1,6 +1,6 @@
 ---
 title: "Interacciones Bióticas"
-subtitle: "Ficha FAIR/CARE de base de conocimiento sobre interacción entre especies (WebAssembly)"
+subtitle: "Ficha FAIR/CARE de interacción entre especies (WebAssembly)"
 format:
   html:
     resources:
@@ -11,26 +11,20 @@ format:
 <script src="../coi-serviceworker.js"></script>
 
 ::: {.callout-note appearance="simple" icon=false}
-⏳ **Primera carga:** el entorno estadístico (R) se descarga y arranca dentro de tu navegador — puede tardar dos minutos la primera vez.
+⏳ **Primera carga:** el entorno estadístico (R) se descarga y arranca completo dentro de tu navegador — puede tardar entre 10 y 30 segundos la primera vez.
 :::
 
 ::: {.callout-tip collapse="true" title="💡 Cómo usar esta ficha"}
-1. **Escribe el nombre científico** de la Especie A y la Especie B, y verifica con el botón de chequeo.
-2. **(Opcional) Marca uno o más rasgos de historia de vida** — funcionan como palabras clave que enfocan una búsqueda adicional en un aspecto específico de la interacción (por ejemplo, si te interesa el rol del tamaño corporal en esa interacción puntual).
-3. **Oprime el botón "Mapear Interacción"**: la app busca primero evidencia general (GloBI, y si no hay, Crossref) y, si marcaste rasgos, agrega una segunda búsqueda enfocada en esos aspectos.
-4. **Descarga las citas en `.csv`** si las necesitas para tu gestión bibliográfica o como semilla de un proyecto o dataset.
+1. **Escribí el nombre científico** de la Especie A y la Especie B, y verificalos con el botón de chequeo.
+2. **(Opcional) Marcá uno o más rasgos de historia de vida** — funcionan como palabras clave que enfocan una búsqueda adicional en un aspecto específico de la interacción (por ejemplo, si te interesa el rol del tamaño corporal en esa interacción puntual).
+3. **Apretá "Mapear Interacción"**: la app busca primero evidencia general (GloBI, y si no hay, Crossref) y, si marcaste rasgos, agrega una segunda búsqueda enfocada en esos aspectos.
+4. **Descargá las citas en `.csv`** si las necesitás para tu propio gestor bibliográfico o como semilla de un proyecto/dataset.
 :::
 
-::: {.callout-important collapse="true" title="🔎 ¿Tienes dudas sobre el nombre científico?"}
-
-Puedes revisar los nombres de las especies en las siguientes aplicaciones y sistemas interactivos.
-
-- [**iNaturalist**](https://www.inaturalist.org)  - entrada sugerida si no conoces el nombre científico
-
+::: {.callout-important collapse="true" title="🔎 ¿No estás seguro del nombre científico exacto?"}
 - [**GBIF Species Search**](https://www.gbif.org/species/search)
-
+- [**iNaturalist**](https://www.inaturalist.org)
 - [**Tropicos.org**](https://www.tropicos.org) (plantas)
-
 - [**Catalogue of Life**](https://www.catalogueoflife.org)
 :::
 
@@ -108,16 +102,25 @@ globi_parse <- function(res) {
 }
 
 globi_buscar <- function(especie_a, especie_b) {
+  t0 <- Sys.time()
   r1 <- tryCatch(fromJSON(globi_url(especie_a, especie_b)), error = function(e) NULL)
-  r2 <- tryCatch(fromJSON(globi_url(especie_b, especie_a)), error = function(e) NULL)
   d1 <- globi_parse(r1)
+  message(paste0("[timing] GloBI dirección 1: ", round(as.numeric(Sys.time() - t0, units = "secs"), 1), "s, ",
+                  ifelse(is.null(d1), 0, nrow(d1)), " registros"))
+
+  # Optimización: si la dirección 1 ya trajo evidencia, no gastamos la segunda llamada de red.
+  # Trade-off consciente: puede perderse algún registro adicional en la dirección inversa,
+  # pero evita duplicar el costo de red cuando ya hay evidencia suficiente.
+  if (!is.null(d1) && nrow(d1) > 0) return(distinct(d1))
+
+  t1 <- Sys.time()
+  r2 <- tryCatch(fromJSON(globi_url(especie_b, especie_a)), error = function(e) NULL)
   d2 <- globi_parse(r2)
-  tryCatch({
-    if (is.null(d1) && is.null(d2)) return(NULL)
-    if (is.null(d1)) return(distinct(d2))
-    if (is.null(d2)) return(distinct(d1))
-    distinct(bind_rows(d1, d2))
-  }, error = function(e) NULL)
+  message(paste0("[timing] GloBI dirección 2: ", round(as.numeric(Sys.time() - t1, units = "secs"), 1), "s, ",
+                  ifelse(is.null(d2), 0, nrow(d2)), " registros"))
+
+  if (is.null(d2)) return(NULL)
+  distinct(d2)
 }
 
 # Convierte study_external_id en un link usable (DOI o URL directa)
@@ -149,7 +152,16 @@ formatear_globi <- function(df) {
         "(cita no disponible en este registro)"
       }
 
-      enlace_txt <- if (!is.null(enlace) && !is.na(enlace)) paste0(" — <a href='", enlace, "' target='_blank'>", enlace, "</a>") else ""
+      # Si GloBI no trae un enlace directo (study_external_id), el dataset de origen
+      # simplemente no lo incluyó. Como red de contención, ofrecemos una búsqueda en
+      # Google Scholar armada con el texto de la cita — no es un enlace directo garantizado,
+      # por eso queda etiquetado explícitamente como "buscar", no como "fuente".
+      enlace_txt <- if (!is.null(enlace) && !is.na(enlace)) {
+        paste0(" — <a href='", enlace, "' target='_blank'>🔗 fuente</a>")
+      } else {
+        scholar_url <- paste0("https://scholar.google.com/scholar?q=", URLencode(cita_final))
+        paste0(" — <a href='", scholar_url, "' target='_blank'>🔍 buscar cita</a>")
+      }
 
       paste0(src, " — ", tipo, " — ", tgt, ". Fuente: ", cita_final, enlace_txt)
     }, error = function(e) "(No se pudo formatear este registro de GloBI.)")
@@ -355,11 +367,20 @@ server <- function(input, output, session) {
 
   resultado <- eventReactive(input$procesar, {
     req(input$especie_a, input$especie_b)
-    withProgress(message = "Buscando evidencia de interacción...", value = 0.15, {
+    t_inicio <- Sys.time()
+    withProgress(message = "Consultando GloBI...", value = 0.1, {
       general <- buscar_evidencia_general(input$especie_a, input$especie_b)
-      incProgress(0.5)
+      message(paste0("[timing] Evidencia general completa: ",
+                      round(as.numeric(Sys.time() - t_inicio, units = "secs"), 1), "s (fuente: ", general$fuente, ")"))
+      incProgress(0.5, detail = "Evidencia general lista")
+
+      t_enfocada <- Sys.time()
       enfocada <- buscar_evidencia_enfocada(input$especie_a, input$especie_b, input$rasgos_foco)
-      incProgress(0.35)
+      message(paste0("[timing] Búsqueda enfocada: ",
+                      round(as.numeric(Sys.time() - t_enfocada, units = "secs"), 1), "s"))
+      incProgress(0.3, detail = "Listo")
+
+      message(paste0("[timing] TOTAL: ", round(as.numeric(Sys.time() - t_inicio, units = "secs"), 1), "s"))
       list(general = general, enfocada = enfocada)
     })
   })
