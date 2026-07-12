@@ -28,6 +28,8 @@ format:
       - "*-shinylive-app/*"
 ---
 
+::: {.callout-note appearance="minimal" icon=true}
+
 ## ¿Qué son las interacciones bióticas?
 
 Una interacción biótica es cualquier tipo de interacción entre formas de vida orgánicas a cualquier nivel de organización biológica.
@@ -70,9 +72,17 @@ Como un ejemplo tipológico, en este diagrama se representan las principales cla
 
 Por figurar un ejemplo de búsqueda de conocimiento aplicado a partir de múltiples interacciones bióticas; en la agricultura, en el manejo ambiental, y en la eco-epidemiología; las interacciones también se clasifican con criterio funcional y aplicable a la relación humana-naturaleza: los **servicios ecosistémicos**, o servicios de la naturaleza a la vida humana; y sus contrapartes, los _dis-servicios ecosistémicos_, con procesos también derivados de interacciones bióticas que perjudican la vida humana.
 
-En este contexto, en esta aplicación, hacemos el ejercicio de elegir 2 especies sobre las cuales interesa buscar información para una revisión sistematizada. 
+:::
+
+::: {.callout-note appearance="simple" icon=false}
+
+En esta aplicación hacemos el ejercicio de elegir 2 especies sobre las cuales interesa buscar información para una revisión sistematizada. 
 
 El armado de búsqueda se puede filtrar por palabras clave en torno a las interacciones bióticas en el ámbito doméstico, y generar un documento de consulta para usar como prompt en buscadores de literatura de primera fuente, o en su asistente de IA de preferencia (modelo híbrido de construcción del conocimiento).
+
+:::
+
+::: {.callout-note appearance="minimal" icon=true}
 
 ## Protocolo de búsqueda — PRISMA aplicado
 
@@ -92,6 +102,10 @@ Los pasos 2 a 4 son trabajo profundo de lectura, estudio y criterio; procesos cu
 
 Esta herramienta ayuda con el paso 1: armar una consulta o prompt estructurada y documentada, lista para llevar al buscador (o al asistente de IA) de su preferencia.
 
+:::
+
+::: {.callout-note appearance="minimal" icon=true}
+
 ## Generador de consulta
 
 Elige un par de especies y, opcionalmente, los conceptos que te interesa enfocar. 
@@ -99,6 +113,8 @@ Elige un par de especies y, opcionalmente, los conceptos que te interesa enfocar
 La app arma una consulta de búsqueda prolija y un prompt listo para pegar en un asistente de IA, sin ejecutar ninguna búsqueda por sí misma. Es liviana (esperar un minuto en la primera carga): solo valida los nombres científicos con GBIF y el resto es texto.
 
 Puede descargar la ficha de consulta generada como archivo .md, legible en dispositivos mediados por humanos y legible por máquinas; así como directamente derivar a plataformas de búsqueda de fuente primaria de conocimiento.
+
+:::
 
 ```{shinylive-r}
 #| standalone: true
