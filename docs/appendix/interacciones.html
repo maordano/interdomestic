@@ -337,14 +337,14 @@ gbif_name_match &lt;- function(name) {
 # ==========================================
 grupos_keywords &lt;- list(
   sector = list(
-    titulo = "Interacciones",
+    titulo = "Interacciones bióticas",
     descripcion = "A qué tipo de vínculo o función ecológica pertenece esta consulta.",
     color_fondo = "#f0fdf4", color_borde = "#bbf7d0",
     items = list(
       interacciones_bioticas = list(label = "Interacciones bióticas", keyword = "biotic interactions"),
       planta_animal = list(label = "Interacción planta-animal", keyword = "plant-animal interaction"),
       redes_troficas = list(label = "Redes tróficas", keyword = "trophic network OR food web"),
-      servicios_ecosistemicos = list(label = "Servicios o dis-servicios ecosistémicos", keyword = "ecosystem services OR ecosystem disservices")
+      servicios_ecosistemicos = list(label = "Servicios ecosistémicos", keyword = "ecosystem services OR ecosystem disservices")
     )
   ),
   eco_evolutiva = list(
@@ -356,7 +356,7 @@ grupos_keywords &lt;- list(
       seleccion_natural = list(label = "Selección natural", keyword = "natural selection"),
       coevolucion = list(label = "Co-evolución", keyword = "coevolution"),
       fenotipo_extendido = list(label = "Fenotipo extendido", keyword = "extended phenotype"),
-      percepcion_interactuante = list(label = "Percepción en interacciones bióticas", keyword = "signal perception OR sensory ecology")
+      percepcion_interactuante = list(label = "Percepción", keyword = "signal perception OR sensory ecology")
     )
   ),
   historia_vida = list(
@@ -388,7 +388,7 @@ grupos_keywords &lt;- list(
   )
 )
 
-items_planos &lt;- do.call(c, lapply(grupos_keywords, function(g) g$items))
+items_planos &lt;- do.call(c, unname(lapply(grupos_keywords, function(g) g$items)))
 
 generar_checkboxes_grupo &lt;- function(grupo_id, grupo) {
   choices &lt;- setNames(names(grupo$items), sapply(grupo$items, function(x) x$label))
@@ -404,7 +404,7 @@ generar_checkboxes_grupo &lt;- function(grupo_id, grupo) {
 # GENERADORES: arman texto, no ejecutan ninguna búsqueda
 # ==========================================
 generar_consulta &lt;- function(especie_a, especie_b, rasgos_ids) {
-  base &lt;- paste(especie_a, especie_b)
+  base &lt;- paste0('"', especie_a, '" "', especie_b, '"')
   if (length(rasgos_ids) == 0) return(base)
   keywords &lt;- sapply(items_planos[rasgos_ids], function(x) x$keyword)
   paste(base, paste(keywords, collapse = " OR "))
@@ -414,10 +414,10 @@ generar_prompt_llm &lt;- function(especie_a, especie_b, rasgos_labels) {
   foco &lt;- if (length(rasgos_labels) &gt; 0) paste0(", con foco en: ", paste(rasgos_labels, collapse = ", ")) else ""
   paste0(
     "Necesito referencias bibliográficas sobre la interacción biótica entre ", especie_a, " y ", especie_b, foco, ". ",
-    "Prioriza fuentes primarias que documenten evidencia directa de interacción entre estas dos especies puntuales, ",
-    "además de menciones sueltas de cada una por separado. Para cada referencia indica: autor(es), año, título, ",
-    "y provee el DOI o enlace correspondiente si está disponible. Si no encuentras evidencia directa de la interacción entre estas dos especies",
-    "escríbalo explícitamente en vez de aproximar o inventar una referencia."
+    "Prioriza fuentes que documenten evidencia directa, fuentes primarias de base de conocimiento y publicaciones sobre esta interacción entre estas dos especies puntuales, ",
+    "además de fuentes de la historia natural y ecología de cada especie a partir de búsquedas separadas para cada especie. Para cada referencia indica: autor(es), año, título, ",
+    "y DOI o enlace si está disponible. Si no encuentras evidencia directa de la interacción entre estas dos ",
+    "especies, explicita en vez de aproximar o inventar una referencia."
   )
 }
 
@@ -429,12 +429,12 @@ ui &lt;- fluidPage(
     column(6, wellPanel(
       style = "background: #f8fafc; border: 1px solid #e2e8f0;",
       tags$h4("Especie A"),
-      textInput("especie_a", "Nombre científico:", "Psychotria carthagenensis")
+      textInput("especie_a", "Nombre científico:", "Vassobia breviflora")
     )),
     column(6, wellPanel(
       style = "background: #f8fafc; border: 1px solid #e2e8f0;",
       tags$h4("Especie B"),
-      textInput("especie_b", "Nombre científico:", "Turdus rufiventris")
+      textInput("especie_b", "Nombre científico:", "Thraupis sayaca")
     ))
   ),
 
@@ -446,7 +446,7 @@ ui &lt;- fluidPage(
     style = "background: #fdfaf5; border: 1px solid #eee0c8;",
     tags$strong("Enfocar la consulta (opcional):"),
     tags$p(style = "font-size: 0.8em; color: #64748b; margin-top: 4px;",
-           "Filtro para armar una consulta más específica."),
+           "Esto ayuda a armar una consulta más específica."),
     generar_checkboxes_grupo("sector", grupos_keywords$sector),
     generar_checkboxes_grupo("eco_evolutiva", grupos_keywords$eco_evolutiva),
     generar_checkboxes_grupo("historia_vida", grupos_keywords$historia_vida),
@@ -462,7 +462,7 @@ ui &lt;- fluidPage(
   wellPanel(
     style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
     tags$strong("Fuentes y créditos:"),
-    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Esta ficha arma consultas y prompts para usar en Google Scholar, Crossref, GloBI, o asistente de IA de preferencia. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
+    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Esta ficha no ejecuta búsquedas por sí misma — arma consultas y prompts para usar en Google Scholar, Crossref, GloBI, o un asistente de IA de preferencia. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
     tags$div(
       style = "display: flex; gap: 8px; flex-wrap: wrap;",
       tags$a(href = "https://www.gbif.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GBIF.org"),
@@ -509,7 +509,12 @@ server &lt;- function(input, output, session) {
   resultado &lt;- eventReactive(input$generar, {
     req(input$especie_a, input$especie_b)
     ids &lt;- rasgos_elegidos_r()
-    labels &lt;- if (length(ids) &gt; 0) sapply(items_planos[ids], function(x) x$label) else character(0)
+    labels &lt;- if (length(ids) &gt; 0) {
+      etiquetas &lt;- sapply(items_planos[ids], function(x) if (is.null(x)) NA_character_ else x$label)
+      etiquetas[!is.na(etiquetas)]
+    } else {
+      character(0)
+    }
     list(
       consulta = generar_consulta(input$especie_a, input$especie_b, ids),
       prompt = generar_prompt_llm(input$especie_a, input$especie_b, labels),
@@ -528,6 +533,8 @@ server &lt;- function(input, output, session) {
       tags$h4("Consulta generada"),
       tags$p(style = "font-size: 0.8em; color: #64748b;",
              if (length(res$rasgos) &gt; 0) paste0("Enfocada en: ", paste(res$rasgos, collapse = ", ")) else "Sin enfoque adicional (solo las dos especies)."),
+      if (length(res$rasgos) &gt; 1) div(class = "alert alert-warning", style = "padding:6px; font-size:0.78em;",
+          "⚠️ Marcar varios conceptos los combina con OR, lo cual ensancha la búsqueda en vez de precisarla — por eso a veces aparecen resultados de muchas disciplinas y fuentes primarias o secundarias. Para mayor precisión, prueba con un solo concepto por búsqueda."),
       verbatimTextOutput("consulta_texto"),
       tags$div(
         style = "display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0;",
@@ -536,7 +543,7 @@ server &lt;- function(input, output, session) {
         tags$a(href = "https://www.globalbioticinteractions.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Buscar en GloBI")
       ),
       tags$hr(),
-      tags$h5("Prompt sugerido para asistente de IA"),
+      tags$h5("Prompt sugerido para un asistente de IA"),
       verbatimTextOutput("prompt_texto"),
       br(),
       downloadButton("descargar_registro", "Descargar registro (.md)", class = "btn-outline-secondary")
@@ -551,16 +558,23 @@ server &lt;- function(input, output, session) {
     content = function(file) {
       res &lt;- resultado()
       req(res)
+
+      especie_a &lt;- if (is.null(input$especie_a) || !nzchar(input$especie_a)) "(sin especificar)" else input$especie_a
+      especie_b &lt;- if (is.null(input$especie_b) || !nzchar(input$especie_b)) "(sin especificar)" else input$especie_b
+      rasgos_txt &lt;- if (length(res$rasgos) &gt; 0) paste0("- ", res$rasgos, collapse = "\n") else "Ninguno"
+      consulta_txt &lt;- if (is.null(res$consulta) || !nzchar(res$consulta)) "(no disponible)" else res$consulta
+      prompt_txt &lt;- if (is.null(res$prompt) || !nzchar(res$prompt)) "(no disponible)" else res$prompt
+      fecha_txt &lt;- tryCatch(format(Sys.time(), "%Y-%m-%d %H:%M"), error = function(e) as.character(Sys.time()))
+
       texto &lt;- paste0(
         "# Registro de consulta — interdomestic\n\n",
-        "Generado: ", format(Sys.time(), "%Y-%m-%d %H:%M %Z"), "\n\n",
-        "## Especies\n\n- Especie A: ", input$especie_a, "\n- Especie B: ", input$especie_b, "\n\n",
-        "## Conceptos de enfoque\n\n",
-        if (length(res$rasgos) &gt; 0) paste0("- ", res$rasgos, collapse = "\n") else "Ninguno",
-        "\n\n## Consulta para buscador\n\n", res$consulta, "\n\n",
-        "## Prompt sugerido para asistente de IA\n\n", res$prompt, "\n"
+        "Generado: ", fecha_txt, "\n\n",
+        "## Especies\n\n- Especie A: ", especie_a, "\n- Especie B: ", especie_b, "\n\n",
+        "## Conceptos de enfoque\n\n", rasgos_txt, "\n\n",
+        "## Consulta para buscador\n\n", consulta_txt, "\n\n",
+        "## Prompt sugerido para asistente de IA\n\n", prompt_txt, "\n"
       )
-      writeLines(texto, file)
+      cat(texto, file = file)
     }
   )
 }
