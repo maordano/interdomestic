@@ -1,58 +1,94 @@
 ---
 title: "Interacciones Bióticas"
 subtitle: "Guía conceptual, protocolo de búsqueda, y generador de consulta"
-format:
+date: 2026-07-11
+author: "M.A.Ordano"
+date-modified: 2026-07-11
+
+format: 
   html:
+    include-in-header:
+      - text: |
+          <style>
+          /* Oculta el bloque de autor y fecha en el encabezado superior */
+          .quarto-title-meta {
+            display: none !important;
+          }
+          /* Estilo personalizado y discreto para los metadatos del final */
+          .metadatos-final {
+            font-size: 0.55em;      /* Poco más de la mitad del tamaño de fuente */
+            color: #777777;         /* Gris claro para segundo plano */
+            line-height: 1.4;
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee; /* Línea sutil de separación */
+            padding-top: 15px;
+          }
+          </style>
     resources:
       - "*-shinylive-app/*"
 ---
 
 ## ¿Qué son las interacciones bióticas?
 
-Una interacción biótica es cualquier efecto que el organismo de una especie tiene sobre el de otra. Es el objeto de estudio central de la ecología de comunidades, y la pieza conceptual sobre la que se construye interdomestic: entender cómo se relacionan las especies en el ámbito doméstico requiere primero poder nombrar y clasificar esas relaciones.
+Una interacción biótica es cualquier tipo de interacción entre seres vivos, sean personas humanas o no, sean macro o microbiológicos. 
+
+Hay muchos tipos de interacciones - < en construcción > -
+
+Las interacciones bióticas son abordadas típicamente desde la ecología y la evolución, sin embargo, está siendo abordada por muchas ramas disciplinares de la construcción del conocimiento, de manera determinada o indirectamente. Sumado a ello, desde los sistemas de clasificación de la vida, las interacciones bióticas nos incluyen.
+
+Las interacciones bióticas son la pieza conceptual sobre la que se construye interdomestic: caracterizar cómo se relacionan las especies en el ámbito doméstico requiere primero poder nombrar y clasificar las diversas especies y formas de la vida silvestre con las que nos relacionamos.
 
 ```{=html}
 <svg width="100%" viewBox="0 0 680 220" role="img" style="margin: 1.5rem 0;">
-<title>Tipos de interacciones bióticas</title>
-<desc>Cinco categorías de interacciones bióticas: depredación, competencia, mutualismo, parasitismo y facilitación.</desc>
+<title>Tipos _tipológicos_ de interacciones bióticas</title>
+<desc>Cinco categorías tipológicas de interacciones bióticas: depredación, parasitismo, competencia, facilitación, mutualismo.</desc>
 <g fill="none">
 <rect x="50" y="40" width="180" height="56" rx="8" stroke-width="0.5" fill="#E1F5EE" stroke="#0F6E56"/>
 <text x="140" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">Depredación</text>
-<text x="140" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">Uno consume al otro</text>
+<text x="140" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">{(+)[-]}</text>
 <rect x="250" y="40" width="180" height="56" rx="8" stroke-width="0.5" fill="#E1F5EE" stroke="#0F6E56"/>
 <text x="340" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">Competencia</text>
-<text x="340" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">Disputan un recurso</text>
+<text x="340" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">{(-)[-],(+0-)[-]}</text>
 <rect x="450" y="40" width="180" height="56" rx="8" stroke-width="0.5" fill="#E1F5EE" stroke="#0F6E56"/>
 <text x="540" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">Mutualismo</text>
-<text x="540" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">Ambas se benefician</text>
+<text x="540" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">{(+)[+],(+)[-0+]}</text>
 <rect x="130" y="140" width="200" height="56" rx="8" stroke-width="0.5" fill="#E1F5EE" stroke="#0F6E56"/>
 <text x="230" y="158" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">Parasitismo</text>
-<text x="230" y="178" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">Una se beneficia, otra se perjudica</text>
+<text x="230" y="178" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">{(+)[-],(+)[-0+]}</text>
 <rect x="350" y="140" width="200" height="56" rx="8" stroke-width="0.5" fill="#E1F5EE" stroke="#0F6E56"/>
 <text x="450" y="158" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">Facilitación</text>
-<text x="450" y="178" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">Una favorece a la otra</text>
+<text x="450" y="178" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">{(0)[+],(0+)[0+]}</text>
 </g>
 </svg>
 ```
 
-A esto se suma un sexto concepto que no es una interacción en sí, sino una consecuencia agregada: los **servicios ecosistémicos** (y sus contrapartes, los dis-servicios) — el efecto neto que estas interacciones tienen para quienes las estudian o dependen de ellas, más allá del par de especies puntual.
+Por figurar un ejemplo de conocimiento aplicado a partir de múltiples interacciones bióticas; en la agricultura, en el manejo ambiental, y en la eco-epidemiología, las in
+Las interacciones también se clasifican con criterio funcional y aplicable a la relación humana-naturaleza: los servicios ecosistémicos, o servicios de la naturaleza a la vida humana; y sus contrapartes, los dis-servicios, o "conflictos" con procesos también derivados de interacciones bióticas que perjudican la vida humana.
+
+En este contexto, en esta aplicación hacemos el ejercicio de elegir 2 especies sobre las cuales interesa buscar información para una revisión sistematizada. El armado de búsqueda se puede filtrar por palabras clave en torno a las interacciones bióticas en el ámbito doméstico, y generar un documento de consulta para usar como prompt en tu asistente de IA de preferencia (modelo híbrido de construcción del conocimiento).
 
 ## Protocolo de búsqueda — PRISMA aplicado
 
-Cuando se busca literatura sobre una interacción específica, conviene documentar el proceso, no solo el resultado — es lo que exige un protocolo tipo PRISMA, y lo que ya armamos en detalle en la ficha de **[Meta-análisis](bio-meta.html)** de este mismo apéndice (los 12 campos de "Search strategy" de la GSRRF de OSF).
+Cuando se busca literatura sobre una interacción específica, conviene documentar el proceso, además del resultado — es lo que exige un protocolo tipo PRISMA, y lo que ya armamos en detalle en la ficha de **[Meta-análisis](bio-meta.html)** de este mismo apéndice (los 12 campos de "Search strategy" de la GSRRF de OSF).
 
 Los cuatro pasos clásicos de PRISMA, aplicados a un ejemplo de interacción:
 
 1. **Identificación** — se define el par de especies y los conceptos de interés (por ejemplo, *Psychotria carthagenensis* y *Turdus rufiventris*, con foco en dispersión de semillas), y se arma la consulta de búsqueda.
 2. **Cribado** — se revisan los títulos/resúmenes de lo que la búsqueda trae, descartando lo que no menciona a ninguna de las dos especies o al fenómeno de interés.
-3. **Elegibilidad** — de lo que queda, se lee el texto completo de cada candidato para confirmar que documenta evidencia real de la interacción (no solo una mención de paso).
+3. **Elegibilidad** — de lo que queda, se lee el texto completo de cada documento candidato para confirmar que documenta evidencia "real" -de fuente primaria en la base de conocimiento- de la interacción (por ejemplo, que descarte una mención al paso sobre una de las especies o procesos de interacción).
 4. **Inclusión** — las referencias que pasan los tres filtros anteriores forman el conjunto final, documentado con su cita completa y — cuando la interacción esté formalmente registrada — su ficha en [GloBI](https://www.globalbioticinteractions.org), la base de datos de interacciones bióticas documentadas (ver también **Apps** en este apéndice).
 
-Los pasos 2 a 4 son trabajo experto — de lectura y criterio — que esta herramienta no reemplaza. Lo que sí puede hacer es ayudar con el paso 1: armar una consulta bien estructurada y documentada, lista para llevar al buscador (o al asistente de IA) de tu preferencia.
+Los pasos 2 a 4 son trabajo profundo (de lectura, estudio y criterio, un proceso cuyos contenidos van más allá de los alcances de esta herramienta). 
+
+Esta herramienta ayuda con el paso 1: armar una consulta o prompt estructurada y documentada, lista para llevar al buscador (o al asistente de IA) de su preferencia.
 
 ## Generador de consulta
 
-Elegí un par de especies y, opcionalmente, los conceptos que te interesa enfocar — la app arma una consulta de búsqueda prolija y un prompt listo para pegar en un asistente de IA, sin ejecutar ninguna búsqueda por sí misma. Es liviana: solo valida los nombres científicos contra GBIF, el resto es texto.
+Elige un par de especies y, opcionalmente, los conceptos que te interesa enfocar. 
+
+La app arma una consulta de búsqueda prolija y un prompt listo para pegar en un asistente de IA, sin ejecutar ninguna búsqueda por sí misma. Es liviana (esperar un minuto en la primera carga): solo valida los nombres científicos con GBIF, el resto es texto.
+
+Puede descargar la ficha de consulta generada como archivo .md, legible en dispositivos mediados por humanos y legible por máquinas.
 
 ```{shinylive-r}
 #| standalone: true
@@ -79,14 +115,14 @@ gbif_name_match <- function(name) {
 # ==========================================
 grupos_keywords <- list(
   sector = list(
-    titulo = "Sector e interacción ecosistémica",
+    titulo = "Interacciones",
     descripcion = "A qué tipo de vínculo o función ecológica pertenece esta consulta.",
     color_fondo = "#f0fdf4", color_borde = "#bbf7d0",
     items = list(
       interacciones_bioticas = list(label = "Interacciones bióticas", keyword = "biotic interactions"),
       planta_animal = list(label = "Interacción planta-animal", keyword = "plant-animal interaction"),
       redes_troficas = list(label = "Redes tróficas", keyword = "trophic network OR food web"),
-      servicios_ecosistemicos = list(label = "Servicios ecosistémicos", keyword = "ecosystem services OR ecosystem disservices")
+      servicios_ecosistemicos = list(label = "Servicios o dis-servicios ecosistémicos", keyword = "ecosystem services OR ecosystem disservices")
     )
   ),
   eco_evolutiva = list(
@@ -98,7 +134,7 @@ grupos_keywords <- list(
       seleccion_natural = list(label = "Selección natural", keyword = "natural selection"),
       coevolucion = list(label = "Co-evolución", keyword = "coevolution"),
       fenotipo_extendido = list(label = "Fenotipo extendido", keyword = "extended phenotype"),
-      percepcion_interactuante = list(label = "Percepción de interactuante", keyword = "signal perception OR sensory ecology")
+      percepcion_interactuante = list(label = "Percepción en interacciones bióticas", keyword = "signal perception OR sensory ecology")
     )
   ),
   historia_vida = list(
@@ -156,10 +192,10 @@ generar_prompt_llm <- function(especie_a, especie_b, rasgos_labels) {
   foco <- if (length(rasgos_labels) > 0) paste0(", con foco en: ", paste(rasgos_labels, collapse = ", ")) else ""
   paste0(
     "Necesito referencias bibliográficas sobre la interacción biótica entre ", especie_a, " y ", especie_b, foco, ". ",
-    "Priorizá fuentes que documenten evidencia directa de esta interacción entre estas dos especies puntuales, ",
-    "no solo menciones sueltas de cada una por separado. Para cada referencia indicá: autor(es), año, título, ",
-    "y DOI o enlace si está disponible. Si no encontrás evidencia directa de la interacción entre estas dos ",
-    "especies, decilo explícitamente en vez de aproximar o inventar una referencia."
+    "Prioriza fuentes primarias que documenten evidencia directa de interacción entre estas dos especies puntuales, ",
+    "además de menciones sueltas de cada una por separado. Para cada referencia indica: autor(es), año, título, ",
+    "y provee el DOI o enlace correspondiente si está disponible. Si no encuentras evidencia directa de la interacción entre estas dos especies",
+    "escríbalo explícitamente en vez de aproximar o inventar una referencia."
   )
 }
 
@@ -171,12 +207,12 @@ ui <- fluidPage(
     column(6, wellPanel(
       style = "background: #f8fafc; border: 1px solid #e2e8f0;",
       tags$h4("Especie A"),
-      textInput("especie_a", "Nombre científico:", "Panthera onca")
+      textInput("especie_a", "Nombre científico:", "Psychotria carthagenensis")
     )),
     column(6, wellPanel(
       style = "background: #f8fafc; border: 1px solid #e2e8f0;",
       tags$h4("Especie B"),
-      textInput("especie_b", "Nombre científico:", "Puma concolor")
+      textInput("especie_b", "Nombre científico:", "Turdus rufiventris")
     ))
   ),
 
@@ -188,7 +224,7 @@ ui <- fluidPage(
     style = "background: #fdfaf5; border: 1px solid #eee0c8;",
     tags$strong("Enfocar la consulta (opcional):"),
     tags$p(style = "font-size: 0.8em; color: #64748b; margin-top: 4px;",
-           "Esto no clasifica a las especies — ayuda a armar una consulta más específica."),
+           "Filtro para armar una consulta más específica."),
     generar_checkboxes_grupo("sector", grupos_keywords$sector),
     generar_checkboxes_grupo("eco_evolutiva", grupos_keywords$eco_evolutiva),
     generar_checkboxes_grupo("historia_vida", grupos_keywords$historia_vida),
@@ -204,7 +240,7 @@ ui <- fluidPage(
   wellPanel(
     style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
     tags$strong("Fuentes y créditos:"),
-    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Esta ficha no ejecuta búsquedas por sí misma — arma consultas y prompts para usar en Google Scholar, Crossref, GloBI, o un asistente de IA de preferencia. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
+    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Esta ficha arma consultas y prompts para usar en Google Scholar, Crossref, GloBI, o asistente de IA de preferencia. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
     tags$div(
       style = "display: flex; gap: 8px; flex-wrap: wrap;",
       tags$a(href = "https://www.gbif.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GBIF.org"),
@@ -278,7 +314,7 @@ server <- function(input, output, session) {
         tags$a(href = "https://www.globalbioticinteractions.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Buscar en GloBI")
       ),
       tags$hr(),
-      tags$h5("Prompt sugerido para un asistente de IA"),
+      tags$h5("Prompt sugerido para asistente de IA"),
       verbatimTextOutput("prompt_texto"),
       br(),
       downloadButton("descargar_registro", "Descargar registro (.md)", class = "btn-outline-secondary")
@@ -309,3 +345,9 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
+
+::: {.metadatos-final}
+**Autor:** {{< meta author >}}  
+**Fecha de publicación:** {{< meta date >}}  
+**Última modificación:** {{< meta date-modified >}}
+:::
