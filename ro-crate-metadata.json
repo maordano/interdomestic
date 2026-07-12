@@ -1,0 +1,39 @@
+{
+  "@context": [
+    "https://w3id.org",
+    {"@vocab": "https://schema.org"}
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "conformsTo": {"@id": "https://w3id.org"},
+      "about": {"@id": "./"}
+    },
+    {
+      "@id": "./",
+      "@type": "SoftwareApplication",
+      "name": "Interdomestic",
+      "url": "https://github.io",
+      "description": "Dispositivo de interacción polifuncional de modelo híbrido.",
+      "applicationCategory": "Interactive resource",
+      "author": {
+        "@id": "https://orcid.org"
+      },
+      "funder": [
+        { "@id": "#ecosistema-institucional" }
+      ]
+    },
+    {
+      "@id": "https://orcid.org",
+      "@type": "Person",
+      "name": "Tu Nombre Completo"
+    },
+    {
+      "@id": "#ecosistema-institucional",
+      "@type": "Organization",
+      "name": "Ecosistema de Investigación Institucional",
+      "description": "Espacio de filiación y proyectos previos del autor que actuaron como catalizadores conceptuales y motivaron la búsqueda de estas nuevas fronteras de interacción."
+    }
+  ]
+}
