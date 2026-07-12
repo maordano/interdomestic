@@ -76,7 +76,9 @@ grupos_keywords <- list(
     items = list(
       eco_evolutiva_gral = list(label = "Ecología evolutiva", keyword = "evolutionary ecology"),
       seleccion_natural = list(label = "Selección natural", keyword = "natural selection"),
-      coevolucion = list(label = "Co-evolución", keyword = "coevolution")
+      coevolucion = list(label = "Co-evolución", keyword = "coevolution"),
+      fenotipo_extendido = list(label = "Fenotipo extendido", keyword = "extended phenotype"),
+      percepcion_interactuante = list(label = "Percepción de interactuante", keyword = "signal perception OR sensory ecology")
     )
   ),
   historia_vida = list(
@@ -256,7 +258,8 @@ especies_en_texto <- function(items, especie_a, especie_b) {
     titulo <- tryCatch(paste(items$title[[i]], collapse = " "), error = function(e) "")
     abst <- tryCatch(items$abstract[i], error = function(e) NA)
     abst <- if (is.null(abst) || is.na(abst)) "" else abst
-    tolower(paste(titulo, abst))
+    subj <- tryCatch(paste(items$subject[[i]], collapse = " "), error = function(e) "")
+    tolower(paste(titulo, abst, subj))
   }, character(1))
   menciona_a <- grepl(tolower(especie_a), texto, fixed = TRUE)
   menciona_b <- grepl(tolower(especie_b), texto, fixed = TRUE)
@@ -290,63 +293,105 @@ formatear_citas_crossref <- function(items) {
   }, character(1))
 }
 
-# Búsqueda general: GloBI primero, Crossref (3 niveles) como red de seguridad
+# Búsqueda general: GloBI y Crossref se combinan siempre, cada cita marcada con su origen.
 buscar_evidencia_general <- function(especie_a, especie_b) {
   globi_df <- globi_buscar(especie_a, especie_b)
-  if (!is.null(globi_df) && nrow(globi_df) > 0) {
-    return(list(
-      fuente = "GloBI (Global Biotic Interactions)",
-      nivel = "registro directo de interacción documentada",
-      citas = formatear_globi(globi_df),
-      consulta = paste0("GloBI: ", especie_a, " <-> ", especie_b)
-    ))
-  }
+  citas_globi <- if (!is.null(globi_df) && nrow(globi_df) > 0) {
+    paste0("<strong>[GloBI]</strong> ", formatear_globi(globi_df))
+  } else character(0)
 
   q_interaccion <- paste(especie_a, especie_b,
                           "interaction OR predation OR competition OR mutualism OR parasitism OR facilitation")
-  q_simple <- paste(especie_a, especie_b)
+  items <- ordenar_por_citas(crossref_buscar(q_interaccion, rows = 20))
+  f <- especies_en_texto(items, especie_a, especie_b)
 
-  items1 <- ordenar_por_citas(crossref_buscar(q_interaccion))
-  f1 <- especies_en_texto(items1, especie_a, especie_b)
-  if (!is.null(items1) && sum(f1$ambas) >= 3) {
-    return(list(fuente = "Crossref", nivel = "interacciones bióticas, ambas especies mencionadas",
-                citas = formatear_citas_crossref(items1[f1$ambas, , drop = FALSE]), consulta = q_interaccion))
+  citas_crossref <- character(0)
+  nivel_cr <- NA
+  consulta_cr <- q_interaccion
+  if (!is.null(items) && sum(f$ambas) > 0) {
+    citas_crossref <- paste0("<strong>[Crossref]</strong> ", formatear_citas_crossref(items[f$ambas, , drop = FALSE]))
+    nivel_cr <- "ambas especies mencionadas"
+  } else if (!is.null(items) && sum(f$alguna) > 0) {
+    citas_crossref <- paste0("<strong>[Crossref]</strong> ", formatear_citas_crossref(items[f$alguna, , drop = FALSE]))
+    nivel_cr <- "al menos una especie mencionada"
   }
 
-  items2 <- ordenar_por_citas(crossref_buscar(q_simple))
-  f2 <- especies_en_texto(items2, especie_a, especie_b)
-  if (!is.null(items2) && sum(f2$ambas) >= 1) {
-    return(list(fuente = "Crossref", nivel = "general, ambas especies mencionadas juntas",
-                citas = formatear_citas_crossref(items2[f2$ambas, , drop = FALSE]), consulta = q_simple))
+  # Si no apareció nada por ninguna vía, una última red: consulta amplia sin palabras de interacción.
+  if (length(citas_globi) == 0 && length(citas_crossref) == 0) {
+    q_simple <- paste(especie_a, especie_b)
+    items2 <- ordenar_por_citas(crossref_buscar(q_simple, rows = 20))
+    f2 <- especies_en_texto(items2, especie_a, especie_b)
+    if (!is.null(items2) && sum(f2$alguna) > 0) {
+      citas_crossref <- paste0("<strong>[Crossref]</strong> ", formatear_citas_crossref(items2[f2$alguna, , drop = FALSE]))
+      nivel_cr <- "baja confianza: mención de al menos una especie (consulta amplia)"
+      consulta_cr <- q_simple
+    }
   }
 
-  base_items <- if (!is.null(items1) && sum(f1$alguna) > 0) items1 else items2
-  base_f <- if (!is.null(items1) && sum(f1$alguna) > 0) f1 else f2
-  if (!is.null(base_items) && sum(base_f$alguna) >= 1) {
-    return(list(fuente = "Crossref", nivel = "baja confianza: mención de al menos una especie",
-                citas = formatear_citas_crossref(base_items[base_f$alguna, , drop = FALSE]), consulta = q_simple))
+  citas <- c(citas_globi, citas_crossref)
+  query_origen <- c(
+    rep("general (GloBI)", length(citas_globi)),
+    rep(paste0("general (Crossref: ", ifelse(is.na(nivel_cr), "sin resultados", nivel_cr), ")"), length(citas_crossref))
+  )
+
+  fuente <- if (length(citas_globi) > 0 && length(citas_crossref) > 0) {
+    "GloBI + Crossref (combinado)"
+  } else if (length(citas_globi) > 0) {
+    "GloBI"
+  } else if (length(citas_crossref) > 0) {
+    "Crossref"
+  } else {
+    "GloBI + Crossref"
   }
 
-  list(fuente = "Crossref", nivel = "sin resultados que mencionen a ninguna de las dos especies",
-       citas = character(0), consulta = q_simple)
+  nivel <- if (length(citas_globi) > 0 && !is.na(nivel_cr)) {
+    paste0("GloBI: registro directo · Crossref: ", nivel_cr)
+  } else if (length(citas_globi) > 0) {
+    "registro directo de interacción documentada (GloBI); Crossref no sumó resultados adicionales"
+  } else if (!is.na(nivel_cr)) {
+    nivel_cr
+  } else {
+    "sin resultados que mencionen a ninguna de las dos especies, ni en GloBI ni en Crossref"
+  }
+
+  list(
+    fuente = fuente, nivel = nivel, citas = citas, query_origen = query_origen,
+    consulta = paste0("GloBI: ", especie_a, " <-> ", especie_b, " | Crossref: ", consulta_cr)
+  )
 }
 
-# Búsqueda enfocada: especies + palabras clave de los rasgos/conceptos elegidos, en Crossref
+# Búsqueda enfocada: una consulta INDEPENDIENTE por cada concepto marcado,
+# etiquetando cada cita con su query_origen (convención "q + concepto", alineada al codebook).
+# Nota de rendimiento: cada concepto marcado suma una llamada de red completa —
+# con muchos conceptos marcados a la vez, la búsqueda tarda proporcionalmente más.
 buscar_evidencia_enfocada <- function(especie_a, especie_b, rasgos_ids) {
   if (length(rasgos_ids) == 0) return(NULL)
-  keywords <- sapply(items_planos[rasgos_ids], function(x) x$keyword)
-  q <- paste(especie_a, especie_b, paste(keywords, collapse = " OR "))
-  items <- ordenar_por_citas(crossref_buscar(q))
-  f <- especies_en_texto(items, especie_a, especie_b)
-  citas <- if (!is.null(items) && sum(f$alguna) > 0) {
-    formatear_citas_crossref(items[f$alguna, , drop = FALSE])
-  } else {
-    character(0)
-  }
+
+  resultados_por_concepto <- lapply(rasgos_ids, function(id) {
+    concepto <- items_planos[[id]]
+    q <- paste(especie_a, especie_b, concepto$keyword)
+    items <- ordenar_por_citas(crossref_buscar(q))
+    f <- especies_en_texto(items, especie_a, especie_b)
+    if (!is.null(items) && sum(f$alguna) > 0) {
+      texto_citas <- formatear_citas_crossref(items[f$alguna, , drop = FALSE])
+      data.frame(
+        query_origen = paste0("q + ", concepto$label),
+        cita = paste0("<em>[q + ", concepto$label, "]</em> ", texto_citas),
+        stringsAsFactors = FALSE
+      )
+    } else {
+      NULL
+    }
+  })
+
+  tabla <- bind_rows(resultados_por_concepto)
+
   list(
     rasgos = sapply(items_planos[rasgos_ids], function(x) x$label),
-    consulta = q,
-    citas = citas
+    consulta = paste0("Consultas independientes: ",
+                       paste(paste0("q + ", sapply(items_planos[rasgos_ids], function(x) x$label)), collapse = ", ")),
+    citas = if (is.null(tabla)) character(0) else tabla$cita,
+    query_origen = if (is.null(tabla)) character(0) else tabla$query_origen
   )
 }
 
@@ -381,7 +426,8 @@ ui <- fluidPage(
     generar_checkboxes_grupo("sector", grupos_keywords$sector),
     generar_checkboxes_grupo("eco_evolutiva", grupos_keywords$eco_evolutiva),
     generar_checkboxes_grupo("historia_vida", grupos_keywords$historia_vida),
-    generar_checkboxes_grupo("aplicado", grupos_keywords$aplicado)
+    generar_checkboxes_grupo("aplicado", grupos_keywords$aplicado),
+    uiOutput("aviso_conceptos")
   ),
 
   actionButton("procesar", "Mapear Interacción", class = "btn-primary", style = "width: 100%;"),
@@ -435,6 +481,22 @@ server <- function(input, output, session) {
     }))
   })
 
+  rasgos_elegidos_r <- reactive({
+    c(input$cb_sector, input$cb_eco_evolutiva, input$cb_historia_vida, input$cb_aplicado)
+  })
+
+  output$aviso_conceptos <- renderUI({
+    n <- length(rasgos_elegidos_r())
+    if (n == 0) return(NULL)
+    if (n > 5) {
+      div(class = "alert alert-warning", style = "padding: 6px; font-size: 0.8em; margin-top: 6px;",
+          paste0("⚠️ Marcaste ", n, " conceptos. Cada uno dispara su propia consulta a Crossref (para poder identificar qué palabra clave trajo cada cita) — con muchos marcados a la vez, la búsqueda enfocada va a tardar bastante más."))
+    } else {
+      div(style = "font-size: 0.78em; color: #64748b; margin-top: 4px;",
+          paste0(n, " concepto(s) marcado(s)."))
+    }
+  })
+
   resultado <- eventReactive(input$procesar, {
     req(input$especie_a, input$especie_b)
     t_inicio <- Sys.time()
@@ -445,8 +507,7 @@ server <- function(input, output, session) {
       incProgress(0.5, detail = "Evidencia general lista")
 
       t_enfocada <- Sys.time()
-      rasgos_elegidos <- c(input$cb_sector, input$cb_eco_evolutiva, input$cb_historia_vida, input$cb_aplicado)
-      enfocada <- buscar_evidencia_enfocada(input$especie_a, input$especie_b, rasgos_elegidos)
+      enfocada <- buscar_evidencia_enfocada(input$especie_a, input$especie_b, rasgos_elegidos_r())
       message(paste0("[timing] Búsqueda enfocada: ",
                       round(as.numeric(Sys.time() - t_enfocada, units = "secs"), 1), "s"))
       incProgress(0.3, detail = "Listo")
@@ -509,15 +570,14 @@ server <- function(input, output, session) {
 
       filas_generales <- if (length(g$citas) > 0) {
         data.frame(especie_a = input$especie_a, especie_b = input$especie_b,
-                   bloque = "general", fuente = g$fuente, detalle = g$nivel, cita = g$citas,
-                   stringsAsFactors = FALSE)
+                   bloque = "general", fuente = g$fuente, query_origen = g$query_origen,
+                   cita = g$citas, stringsAsFactors = FALSE)
       } else NULL
 
       filas_enfocadas <- if (!is.null(e) && length(e$citas) > 0) {
         data.frame(especie_a = input$especie_a, especie_b = input$especie_b,
-                   bloque = "enfocada", fuente = "Crossref",
-                   detalle = paste(e$rasgos, collapse = ", "), cita = e$citas,
-                   stringsAsFactors = FALSE)
+                   bloque = "enfocada", fuente = "Crossref", query_origen = e$query_origen,
+                   cita = e$citas, stringsAsFactors = FALSE)
       } else NULL
 
       df <- bind_rows(filas_generales, filas_enfocadas)
