@@ -1,7 +1,59 @@
 ---
-title: "Manual de Operaciones"
+title: "Manual de Operaciones: Identidad, Ética y Gobernanza"
+lang: es
 subtitle: "Reglas y toma de decisiones en la construcción, mantenimiento y uso del dispositivo"
 ---
+
+Este documento constituye el marco institucional, ético y normativo de **Interdomestic**. 
+
+Aquí se detallan los principios que guían nuestra investigación sobre la variación fenotípica de la vida silvestre en el ámbito doméstico (entornos de vida de personas humanas), el tratamiento de la información y nuestro compromiso con la apertura del conocimiento.
+---
+
+## 1. Declaración de Identidad ("About")
+
+**Interdomestic** es una plataforma híbrida (modelo híbrido de construcción del conocimiento) concebida como una herramienta de aprendizaje, investigación y síntesis de conocimiento; con apertura ciudadana. Nuestro objetivo es mapear, analizar y comprender cómo el Antropoceno y los entornos domésticos, rurales, peri-urbanos o urbanos, moldean la variación fenotípica (por ejemplo, el tamaño corporal, *size*) en diversas especies. 
+
+Mediante la integración de un meta-análisis ("análisis de análisis"), estadístico cuantitativo, y una revisión hermenéutica-conceptual cualitativa, buscamos descentralizar el conocimiento científico y construir un espacio de transparencia activa para nuestra relación humana-naturaleza.
+
+---
+
+## 2. Compromiso con la Ciencia Abierta: Principios FAIR y CARE
+
+Para garantizar que esta investigación beneficie a cualquier "categorización" de la comunidad académica, sea una comunidad local, una comunidad de la jurisdicción, una comunidad regional, una comunidad internacional, -una comunidad académica global-, operamos bajo un doble marco de principios éticos para datos:
+
+### Principios FAIR (Para los Datos Científicos)
+Guiados por el objetivo de maximizar el impacto de la investigación académica en plataformas como **OSF** y **STAPLE**:
+* **_F_indable (Encontrable):** Cada variable y documento analizado contiene identificadores claros (DOI, ID único), integrados de forma nativa en nuestro [Libro de Códigos (Codebook)](codebook.qmd).
+* **_A_ccessible (Accesible):** Los datos brutos y los scripts de R son públicos, descargables y se encuentran alojados en repositorios abiertos a largo plazo.
+* **_I_nteroperable (Interoperable):** Utilizamos metadatos estandarizados compatibles con el esquema internacional **DataCite**, permitiendo el intercambio automático de datos entre GitHub y OSF.
+* **_R_eusable (Reutilizable):** Toda nuestra matriz metodológica y de extracción de datos está licenciada de manera abierta para que otras personas investigadoras, o máquinas (modelo de automatización), puedan replicar o expandir la síntesis.
+
+### Principios CARE (Para la Gobernanza Indígena y Local)
+Entendiendo que los entornos domésticos y urbanos involucran ecosistemas compartidos con comunidades humanas:
+* **_C_ollective Benefit (Beneficio Colectivo):** Diseñamos la plataforma para que los hallazgos científicos se traduzcan a un lenguaje claro, devolviendo el conocimiento a la ciudadanía que cohabita estos entornos.
+* **_A_uthority to Control (Autoridad para Controlar):** Respetamos los derechos de las comunidades sobre los datos contextuales y territoriales, rastreando de manera transparente la procedencia de la información.
+* **_R_esponsibility (Responsibilidad):** Nos hacemos responsables del impacto sociológico de las etiquetas académicas o científicas (análisis de jerga y sesgos teóricos), visibilizando cómo el lenguaje puede estigmatizar o valorar ciertas especies.
+* **_E_thics (Ética):** Evaluamos las declaraciones éticas de los estudios primarios, priorizando la integridad de los ecosistemas y la justicia ambiental.
+
+---
+
+## 3. Política de Protección de Datos Personales
+
+En concordancia con las legislaciones internacionales de privacidad y protección de datos, **Interdomestic** adopta una política de minimización de datos:
+
+* **Naturaleza de los Datos:** Esta plataforma no almacena, solicita ni procesa datos personales sensibles de las personas ciudadanas visitantes. 
+* **Investigación Científica:** Los datos de "Autores", "Creadores", "Comentaristas", "Revisores", "Colaboradores", y otras etiquetas de roles de aprendizaje e investigación, extraídos en el marco de la revisión sistemática, corresponden a información bibliográfica pública e indexada, utilizada estrictamente con fines de atribución académica, reconocimiento de autoría y transparencia científica, y traza para la verificación libre de bases del conocimiento ("el conocimiento está vivo").
+* **Derechos ARCO:** Cualquier persona en cualquier rol en Interdomestic puede solicitar la rectificación o actualización de la información bibliográfica visible en la plataforma contactando al administrador del repositorio.
+
+---
+
+## 4. Gobernanza de la Infraestructura (El Collage Tecnológico)
+
+Para garantizar la reproducibilidad y evitar la duplicación de esfuerzos, la arquitectura técnica de este proyecto se divide en tres niveles interconectados:
+
+1. **Gestión Operativa (STAPLE):** El control diario de los flujos de trabajo y organización de la comunicación entre personas para la co-participación, protocolos de cribado y criterios de extracción metodológica, se gestionan de forma interna bajo el estándar STAPLE.
+2. **Archivo Científico (OSF):** El proyecto académico, su prerregistro, las matrices de datos consolidadas y los análisis estadísticos avanzados residen de forma permanente en el *Open Science Framework*.
+3. **Interfaz Ciudadana (Interdomestic):** Este sitio web (alojado en GitHub Pages) actúa como la bitácora pública de aprendizaje y el visualizador dinámico de los metadatos de OSF, asegurando una **"Fuente Única de Verdad" - etiqueta aplicada a una forma estandarizada de "datos de base de conocimiento"** mediante automatizaciones en formato abierto (`codebook.csv`).
 
 <!-- ==========================================================================
      BLOQUE 1: PLANTILLA DE INFRAESTRUCTURA (Metodología Abierta)

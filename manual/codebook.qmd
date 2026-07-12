@@ -1,0 +1,28 @@
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(readr)
+library(reactable)
+
+# Carga el archivo subiendo un nivel desde la carpeta manual hacia _data
+codebook <- read_csv("../_data/codebook.csv")
+
+# Genera la tabla interactiva con la sintaxis de estilos corregida
+reactable(
+  codebook[, c("variable_id", "label_es", "definition", "fair_care_principle")],
+  columns = list(
+    variable_id = colDef(
+      name = "Código (ID)", 
+      style = list(fontWeight = "bold") # <- Solución: Una lista estándar de R
+    ),
+    label_es = colDef(name = "Nombre"),
+    definition = colDef(name = "Descripción"),
+    fair_care_principle = colDef(name = "Principio Ético/FAIR")
+  ),
+  searchable = TRUE,
+  striped = TRUE,
+  bordered = TRUE
+)
+```

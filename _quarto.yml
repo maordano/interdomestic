@@ -46,12 +46,15 @@ website:
             href: appendix/bio-info.qmd
       - text: "Manual"
         menu:
+          - icon: gear-wide-connected
+            text: "Manual de Identidad"
+            href: manual/identidad.qmd
+          - icon: shield-check
+            text: "Libro de Códigos (CodeBook)"
+            href: manual/codebook.qmd
           - icon: heart-pulse
             text: "Bitácora"
             href: manual/bitacora.qmd
-          - icon: gear-wide-connected
-            text: "Manual"
-            href: manual/identidad.qmd
       - text: "🌐 seleccione idioma"
         href: "https://translate.google.com/translate?sl=es&tl=en&u=https%3A%2F%2Fmaordano.github.io/interdomestic/"
         target: "_blank"
