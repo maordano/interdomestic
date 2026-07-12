@@ -1,9 +1,9 @@
 ---
 title: "Interacciones Bióticas"
-subtitle: "Guía conceptual, protocolo de búsqueda, y generador de consulta"
+subtitle: "Guía conceptual, protocolo de búsqueda, y generador de consulta - v1.0"
 date: 2026-07-11
 author: "M.A.Ordano"
-date-modified: 2026-07-11
+date-modified: 2026-07-12
 
 format: 
   html:
