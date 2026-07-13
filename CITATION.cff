@@ -3,12 +3,12 @@ message: "If you use this software, please cite it as below. El desarrollo de es
 title: "Interdomestic"
 abstract: "Dispositivo de interacción polifuncional y modelo híbrido desarrollado para la investigación académica co-participada."
 authors:
-  - family-names: "TuApellido"
-    given-names: "TuNombre"
-    orcid: "https://orcid.org"
+  - family-names: "Ordano"
+    given-names: "Mariano"
+    orcid: "https://orcid.org/0000-0003-0962-973X"
 version: "1.0.0"
 date-released: "2026-07-12"
-url: "https://github.io"
+url: "https://github.com/maordano/interdomestic"
 keywords:
   - "hybrid models"
   - "interactive resource"
