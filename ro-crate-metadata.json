@@ -27,13 +27,13 @@
     {
       "@id": "https://orcid.org",
       "@type": "Person",
-      "name": "Tu Nombre Completo"
+      "name": "Mariano Ordano (M.A.Ordano)"
     },
     {
       "@id": "#ecosistema-institucional",
       "@type": "Organization",
-      "name": "Ecosistema de Investigación Institucional",
-      "description": "Espacio de filiación y proyectos previos del autor que actuaron como catalizadores conceptuales y motivaron la búsqueda de estas nuevas fronteras de interacción."
+      "name": "Ecosistema de Investigación Institucional: (1) Fundación Miguel Lillo, (2) Instituto de Ecología Regional (IER-UNT-CONICET), (3) Instituto de Ecología, Universidad Nacional Autónoma de México, (4) Instituto de Ecología, A.C., México, (5) Instituto Nacional de Limnología (INALI-UNL-CONICET), (6) Universidad Nacional de Córdoba, Argentina, ",
+      "description": "Espacio de filiación y base de proyectos con participación del autor que actuaron como catalizadores conceptuales y motivaron la búsqueda de estas nuevas fronteras de interacción."
     }
   ]
 }
