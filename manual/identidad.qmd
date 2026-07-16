@@ -5,9 +5,33 @@ subtitle: "Reglas y toma de decisiones en la construcción, mantenimiento y uso 
 editor: 
   markdown: 
     wrap: sentence
+date: 2026-07-08
+author: "M.A.Ordano"
+date-modified: 2026-07-16
+
+format: 
+  html:
+    include-in-header:
+      - text: |
+          <style>
+          /* Oculta el bloque de autor y fecha en el encabezado superior */
+          .quarto-title-meta {
+            display: none !important;
+          }
+          /* Estilo personalizado y discreto para los metadatos del final */
+          .metadatos-final {
+            font-size: 0.55em;      /* Poco más de la mitad del tamaño de fuente */
+            color: #777777;         /* Gris claro para segundo plano */
+            line-height: 1.4;
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee; /* Línea sutil de separación */
+            padding-top: 15px;
+          }
+          </style>
+
 ---
 
-Este documento constituye el marco institucional, ético y normativo de **Interdomestic**.  
+Este documento constituye el marco de interacciones que conformarán propiedades emergentes generadoras de base de conocimiento ("marco institucional"), ético y normativo de **Interdomestic**.  
 
 Aquí se detallan los principios que guían nuestra investigación sobre la variación fenotípica de la vida silvestre en el ámbito doméstico (entornos de vida de personas humanas), nuestro compromiso con el tratamiento de la información y con la apertura del conocimiento.
 
@@ -46,7 +70,7 @@ En concordancia con las legislaciones internacionales de privacidad y protecció
 
 -   **Naturaleza de los Datos:** Esta plataforma no almacena, solicita ni procesa datos personales sensibles de las personas ciudadanas visitantes.
 -   **Investigación Científica:** Los datos de "Autores", "Creadores", "Comentaristas", "Revisores", "Colaboradores", y otras etiquetas de roles de aprendizaje e investigación, extraídos en el marco de la revisión sistemática, corresponden a información bibliográfica pública e indexada, utilizada estrictamente con fines de atribución académica, reconocimiento de autoría y transparencia científica, y traza para la verificación libre de bases del conocimiento ("el conocimiento está vivo").
--   **Derechos ARCO:** Cualquier persona en cualquier rol en Interdomestic puede solicitar la rectificación o actualización de la información bibliográfica visible en la plataforma contactando al administrador del repositorio (interdomestic@proton.me (M.A.Ordano).
+-   **Derechos ARCO:** Cualquier persona en cualquier rol en Interdomestic puede solicitar la rectificación o actualización de la información bibliográfica visible en la plataforma contactando a la administración del repositorio: interdomestic@proton.me (M.A.Ordano).
 
  ---  
 
@@ -89,3 +113,8 @@ En construcción.
 
 A medida que el proyecto *cuore* madure, aquí se detallarán nuestras reglas de interacción, co-participación y convivencia.
 
+::: {.metadatos-final}
+**Autor:** {{< meta author >}}  
+**Fecha de publicación:** {{< meta date >}}  
+**Última modificación:** {{< meta date-modified >}}
+:::
