@@ -7,7 +7,7 @@ format: html
 
 En construcción.
 
-::: {.callout-important collapse="true" title="🔎 Aplicaciones y sistemas"}
+::: {.callout-note appearance="simple" title="🔎 Aplicaciones y sistemas"}
 
 Aplicaciones y sistemas para el aprendizaje, la investigación y síntesis sobre el conocimiento de las interacciones bióticas en el ámbito doméstico
 
