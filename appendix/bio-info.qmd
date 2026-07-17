@@ -17,6 +17,8 @@ Aplicaciones y sistemas para el aprendizaje, la investigación y síntesis sobre
 
  - [**Ecological Metadata Language**](https://eml.ecoinformatics.org/) - sistema de "clase herméutica", donde se define el lenguaje de metadatos sobre conceptos y variables usados en ecología.
 
+- [**Encyclopedia of Life**](https://eol.org/) — acceso global al conocimiento sobre la vida en la Tierra.
+
 - [**Global Biodiversity Information Facility**](https://www.gbif.org) — fuente básica global de información sobre biodiversidad.
 
 - [**iNaturalist**](https://www.inaturalist.org/) - app para la búsqueda de información, identificación y generación de registros sobre la distribución geográfica, características fenotípicas y de historia de vida, de especies de la vida silvestre o domesticadas.
@@ -26,6 +28,8 @@ Aplicaciones y sistemas para el aprendizaje, la investigación y síntesis sobre
 - [**OCCUR**](https://ecoinformatic.shinyapps.io/OCCUR/) - herramienta que facilita el proceso de filtrado, limpieza y validación de los registros de ocurrencia de especies en repositorios de datos.
 
 - [**Ocean Biodiversity Information System**](https://obis.org/) - sistema de información sobre biodiversidad marina.
+
+- [**re3data**](https://www.re3data.org/) - registro de repositorios de datos de investigación; el buscador está al ingresar; usa palabras clave para encontrar portales, por ejemplo: "biodiversidad".
 
 - [**SDMtoolbox**](http://www.sdmtoolbox.org/) - caja de herramientas donde se desarrollan y despliegan aplicaciones para la modelación de la distribución de especies y la estimación de variables de análisis.
 
