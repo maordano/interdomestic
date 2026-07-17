@@ -1,8 +1,8 @@
 project:
   type: website
   output-dir: docs
-  
-  resources: 
+
+  resources:
     - "*-shinylive-app/*"
     - "coi-serviceworker.js"
     - "google78e3f1e62d7e147c.html"
@@ -12,9 +12,13 @@ lang: es # Idioma de base
 website:
   title: "<i class='bi-house-door'></i> interdomestic"
   site-url: "https://maordano.github.io/interdomestic/"
-  description: "un dispositivo de interacción mediado por personas humanas diseñado para el aprendizaje y la investigación de la vida silvestre en el ámbito doméstico"
+  description: "un dispositivo de interacción mediado por personas humanas diseñado para el aprendizaje, investigación y síntesis de conocimiento sobre la vida silvestre en el ámbito doméstico"
   search: true
 
+  # ---------------------------------------------------------------
+  # NAVBAR: se reduce a Inicio + idioma. Los 3 menu: que tenías acá
+  # (Fuente de proyecto / Appendix / Manual) se mudan al sidebar.
+  # ---------------------------------------------------------------
   navbar:
     background: dark
     foreground: light
@@ -22,8 +26,45 @@ website:
       - href: index.qmd
         text: "Inicio"
     right:
-      - text: "Fuente de proyecto"
-        menu:
+      - text: "🌐 seleccione idioma"
+        href: "https://translate.google.com/translate?sl=es&tl=en&u=https%3A%2F%2Fmaordano.github.io/interdomestic/"
+        target: "_blank"
+
+  # ---------------------------------------------------------------
+  # SIDEBAR: árbol de contenido organizado por las 3 facetas
+  # funcionales + los dos bloques metodológicos del proyecto.
+  # ---------------------------------------------------------------
+  sidebar:
+    style: "docked"
+    background: light
+    search: true
+    collapse-level: 1
+    contents:
+      - text: "Inicio"
+        icon: house-door
+        href: index.qmd
+
+      - section: "Aprendizaje"
+        icon: mortarboard
+        contents:
+          - text: "Puerta de entrada"
+            href: facetas/aprendizaje.qmd
+
+      - section: "Investigación"
+        icon: binoculars
+        contents:
+          - text: "Puerta de entrada"
+            href: facetas/investigacion.qmd
+
+      - section: "Síntesis"
+        icon: diagram-3
+        contents:
+          - text: "Puerta de entrada"
+            href: facetas/sintesis.qmd
+
+      - section: "Fuente de proyecto"
+        icon: file-earmark-text
+        contents:
           - text: "Marco"
             href: fuente-proyecto/marco.qmd
           - text: "Sistema de estudio"
@@ -34,8 +75,10 @@ website:
             href: fuente-proyecto/metodos.qmd
           - text: "Plan de Gestión de Datos"
             href: fuente-proyecto/pgd.qmd
-      - text: "Appendix"
-        menu:
+
+      - section: "Appendix"
+        icon: grid-3x3-gap
+        contents:
           - text: "Bio-distribución"
             href: appendix/bio-distribution.qmd
           - text: "Interacciones Bióticas"
@@ -44,8 +87,10 @@ website:
             href: appendix/bio-meta.qmd
           - text: "Apps"
             href: appendix/bio-info.qmd
-      - text: "Manual"
-        menu:
+
+      - section: "Manual"
+        icon: journal-bookmark
+        contents:
           - icon: gear-wide-connected
             text: "Manual de Identidad"
             href: manual/identidad.qmd
@@ -55,20 +100,20 @@ website:
           - icon: heart-pulse
             text: "Bitácora"
             href: manual/bitacora.qmd
-      - text: "🌐 seleccione idioma"
-        href: "https://translate.google.com/translate?sl=es&tl=en&u=https%3A%2F%2Fmaordano.github.io/interdomestic/"
-        target: "_blank"
 
+  # ---------------------------------------------------------------
+  # PAGE-FOOTER: sin cambios respecto de tu archivo actual.
+  # ---------------------------------------------------------------
   page-footer:
     left: |
-      [CC BY 4.0](https://creativecommons.org) 2026 ~ hecho con [Quarto](https://quarto.org) 
+      [CC BY 4.0](https://creativecommons.org) 2026 ~ hecho con [Quarto](https://quarto.org)
     center: |
        <select id="modo-vision" onchange="cambiarPercepcion(this.value)" class="sel-acc">
         <option value="normal">👁️ Percepción Estándar</option>
         <option value="alto-contraste">🌓 Alto Contraste (Achromatopsia)</option>
         <option value="filtro-suave">🌅 Filtro Suave (Bajo Brillo / Fatiga)</option>
-        <option value="daltonismo">🎨 Modo Protanopia/Deuteranopia</option>  
-       </select>  
+        <option value="daltonismo">🎨 Modo Protanopia/Deuteranopia</option>
+       </select>
        <button onclick="toggleTextoAVoz()" id="btn-voz" class="btn-acc">🔊 Escuchar Página</button>
     right:
       - icon: github
@@ -76,10 +121,10 @@ website:
         aria-label: "Repositorio Informático"
       - icon: share
         text: "OSF"
-        href: https://osf.io 
+        href: https://osf.io
       - icon: kanban
         text: "STAPLE"
-        href: https://staple.science 
+        href: https://staple.science
 
 format:
   html:
@@ -107,7 +152,7 @@ format:
                 let texto = document.querySelector('main')?.innerText || document.body.innerText;
                 lector = new SpeechSynthesisUtterance(texto);
                 lector.lang = 'es-AR';
-                
+
                 lector.onend = function() {
                   boton.innerText = "🔊 Escuchar Página";
                   boton.classList.remove('activo-voz');
@@ -122,10 +167,13 @@ format:
             }
           }
          </script>
-  
-    toc: true 
+
+    toc: true
     toc-title: "Estructura del Dispositivo"
-    code-fold: true 
+    code-fold: true
+
+    mermaid:
+      theme: neutral
 
 execute:
   freeze: true

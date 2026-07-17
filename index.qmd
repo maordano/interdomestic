@@ -2,17 +2,79 @@
 title: "interdomestic"
 ---
 
-::: {.lead .text-center}
+::: {.definicion}
+Un dispositivo de interacción con infraestructura de artefacto, co-creado y mediado por personas humanas, diseñado para el **aprendizaje**, **investigación** y **síntesis** de conocimiento sobre la vida silvestre en el ámbito doméstico.
 
-Un dispositivo de interacción con infraestructura de artefacto, co-creado y mediado por personas humanas, diseñado para el aprendizaje, la investigación y la síntesis de conocimiento sobre la vida silvestre en el ámbito doméstico.
-
+- *inter*: interacciones bióticas
+- *domestic*: ámbito doméstico
+- *tic*: tecnologías de la información y comunicación
 :::
 
-::: {.callout-note appearance="minimal" icon=true}
+## Cómo se organiza
 
-- _inter_: interacciones bióticas
-- _domestic_: ámbito doméstico
-- _tic_: tecnologías de la información y comunicación
+```{mermaid}
+flowchart TD
+    ID["interdomestic"]
+    ID --> A["🎓 Aprendizaje"]
+    ID --> I["🔬 Investigación"]
+    ID --> S["🧬 Síntesis"]
 
+    ID -. ecosistema abierto .-> GH["GitHub · repositorio de código"]
+    GH --> Z["Zenodo · registro DOI"]
+    ID -.-> OSF["OSF · macro proyecto - registros de proyectos componentes, metadatos"]
+    ID -.-> ST["STAPLE · gestión de trazabilidad, ciclo de vida del proyecto, comunicación, roles [CRediT](https://credit.niso.org), equipo de  cocina interior"]
+
+    style ID fill:#2c3e50,color:#ffffff,stroke:#2c3e50
+    style A fill:#27ae60,color:#ffffff,stroke:#27ae60
+    style I fill:#2980b9,color:#ffffff,stroke:#2980b9
+    style S fill:#8e44ad,color:#ffffff,stroke:#8e44ad
+    style GH fill:#ecf0f1,stroke:#7f8c8d
+    style Z fill:#ecf0f1,stroke:#7f8c8d
+    style OSF fill:#ecf0f1,stroke:#7f8c8d
+    style ST fill:#ecf0f1,stroke:#7f8c8d
+```
+
+<!--
+Nota técnica: el diagrama queda como mapa visual, NO clicable.
+Los nodos "click" de Mermaid dependen del securityLevel del renderer
+y no son consistentes con lectores de pantalla ni con los modos de
+alto contraste/daltonismo que ya tiene el sitio (ver cambiarPercepcion()
+en _quarto.yml). La navegación real ocurre por las tarjetas de abajo,
+que sí son accesibles y quedan cubiertas por el botón "Escuchar Página".
+-->
+
+## Tres facetas, tres puertas de entrada
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-4}
+### 🎓 Aprendizaje
+
+Conexión con herramientas de aprendizaje sobre ecología evolutiva de interacciones bióticas y relaciones humano-naturaleza, desde múltiples perspectivas disciplinares.
+
+*(módulo en desarrollo)*
+
+[Entrar por Aprendizaje →](facetas/aprendizaje.qmd)
 :::
 
+::: {.g-col-12 .g-col-md-4}
+### 🔬 Investigación
+
+Sistemas de participación y consulta de interacciones bióticas para construir conocimiento de forma abierta, con vallas amigables ante 'usos maliciosos', o prácticas que no corresponden con el marco FAIR/CARE y construcción abierta del aprendizaje, investigación, síntesis de información, y bases de conocimiento (propiedad emergente mediada por personas humanas).
+
+*(módulo en desarrollo)*
+
+[Entrar por Investigación →](facetas/investigacion.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-4}
+### 🧬 Síntesis
+
+Meta-análisis sobre variación fenotípica de la vida silvestre en el ámbito doméstico, organizado en agricultura/agroecología, manejo ambiental y eco-epidemiología.
+
+*(módulo en desarrollo)*
+
+[Entrar por Síntesis →](facetas/sintesis.qmd)
+:::
+
+:::

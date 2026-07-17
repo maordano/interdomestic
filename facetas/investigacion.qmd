@@ -1,0 +1,30 @@
+---
+title: "🔬 Investigación"
+---
+
+Puerta de entrada a interdomestic desde la investigación: sistemas de participación y conexión a herramientas de participación en investigaciones, con vallas amigables ante usos maliciosos.
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-4}
+### Cómo participar
+Herramientas técnicas y recetas paso a paso para participar en alguno de los modelos de construcción de conocimiento: humano, híbrido o autómata.
+
+*(pendiente de desarrollo)*
+:::
+
+::: {.g-col-12 .g-col-md-4}
+### Interacciones Bióticas
+Generador de consultas sobre interacciones bióticas, con una breve introducción conceptual.
+
+[Ir a Interacciones →](../appendix/interacciones.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-4}
+### Otras plataformas de participación
+Referencia a apps externas de investigación participativa sobre vida silvestre (iNaturalist, e-bird, Merlin, entre otras) y relaciones con principios FAIR/CARE.
+
+*(pendiente de desarrollo — criterio de identidad)*
+:::
+
+:::

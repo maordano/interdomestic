@@ -1,0 +1,47 @@
+---
+title: "🎓 Aprendizaje"
+---
+
+Puerta de entrada a interdomestic desde el aprendizaje: conexión a herramientas didácticas y guías sobre ecología evolutiva de interacciones bióticas y relaciones humano-naturaleza, desde todas las perspectivas disciplinares.
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-4}
+### Objetivo de aprendizaje
+Herramientas para definir un marco y objetivo de aprendizaje y corresponderlo con los métodos de aplicación disponibles.
+
+*(pendiente de desarrollo)*
+:::
+
+::: {.g-col-12 .g-col-md-4}
+### Pregunta de investigación
+Herramientas para dimensionar un marco de investigación, formular una pregunta, buscar información, y esbozar un plan de estudio y gestión de datos.
+
+*(módulo en desarrollo)*
+
+[Ver Sistema de estudio →](../fuente-proyecto/sistema-estudio.qmd) · [Ver Variables →](../fuente-proyecto/variables.qmd) · [Ver Métodos →](../fuente-proyecto/metodos.qmd) · [Ver Plan de Gestión de Datos →](../fuente-proyecto/pgd.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-4}
+### ¿Por qué sintetizar?
+Herramienta para definir cuándo y por qué abordar una síntesis, con enlace a los sistemas disponibles.
+
+*(módulo en desarrollo)*
+
+[Ir a la puerta de Síntesis →](sintesis.qmd)
+:::
+
+:::
+
+## Explorar con datos
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+### Bio-distribución
+Mapeador de ocurrencias GBIF: una forma concreta de aprender explorando distribución de especies.
+
+[Ir a Bio-distribución →](../appendix/bio-distribution.qmd)
+:::
+
+:::
