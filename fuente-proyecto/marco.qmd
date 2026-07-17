@@ -3,7 +3,7 @@ title: "Puntos de Partida"
 subtitle: "Bases filosóficas y reflexivas de un  dispositivo interacción mediado por personas humanas"
 date: 2026-07-05
 author: "M.A.Ordano"
-date-modified: 2026-07-10
+date-modified: 2026-07-17
 format: 
   html:
     include-in-header:
@@ -30,7 +30,7 @@ En esta sección se detallan las bases de componentes metodológicos y éticos, 
 Definimos nuestra labor buscando claridad identitaria, entendiendo el conocimiento como un **collage** vivo y situado.
 
 ## 1. Conocimiento Situado y Redes
-Nuestras observaciones (biológicas o no) operan bajo un marco de **Conocimiento Situado**, entendiendo que la investigación -que genera sistemas de aprendizaje, experiencias y dispositivos para productos publicados que representan base de conocimiento- está siendo  apropiada en multiplicidad y diversidad por la población humana de manera libre y abierta, como una propiedad emergente colectiva; la cual se genera desde personas humanas y entornos concretos. Por ejemplo, una oficina, un laboratorio, un área natural, un campo agrícola, un entorno productivo, un aula, un parque, un patio de escuela, una casa, un hogar, centros de investigación, instituciones de desarrollo educativo, espacios y tiempos de cotidianidad humana -tantas esferas humanas! Y herramientas típicamente inorgánicas: dispositivos de interacción.
+Nuestras observaciones (biológicas o no) operan bajo un marco de **Conocimiento Situado**, entendiendo que la investigación -que genera sistemas de aprendizaje, experiencias y dispositivos para productos publicados que representan base de conocimiento- está siendo  apropiada en multiplicidad y diversidad por la población humana de manera libre y abierta, como una propiedad emergente colectiva; la cual se genera desde personas humanas y entornos concretos. Por ejemplo, una oficina, un laboratorio, un área natural, un campo agrícola, un entorno productivo, un aula, un parque, un patio de escuela, una casa, un hogar, centros de investigación, instituciones de desarrollo educativo, espacios y tiempos de cotidianidad humana. ¡Tantas esferas humanas! Y herramientas típicamente inorgánicas: dispositivos de interacción.
 
 ## 2. Agencialidad Simétrica
 Reconocemos y documentamos explícitamente tres rutas de interacción para la construcción de nuestras bases de "saberes":
