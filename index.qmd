@@ -22,7 +22,7 @@ flowchart TD
     ID -. ecosistema abierto .-> GH["GitHub · repositorio de código"]
     GH --> Z["Zenodo · registro DOI"]
     ID -.-> OSF["OSF · macro proyecto - registros de proyectos componentes, metadatos"]
-    ID -.-> ST["STAPLE · gestión de trazabilidad, ciclo de vida del proyecto, comunicación, roles [CRediT](https://credit.niso.org), equipo de  cocina interior"]
+    ID -.-> ST["STAPLE · gestión de trazabilidad, ciclo de vida del proyecto, comunicación, roles, equipo de cocina interior"]
 
     style ID fill:#2c3e50,color:#ffffff,stroke:#2c3e50
     style A fill:#27ae60,color:#ffffff,stroke:#27ae60
