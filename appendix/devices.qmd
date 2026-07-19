@@ -6,7 +6,7 @@ author:
     corresponding: true
 ---
 
-## Definición
+## Definición (en desarrollo)
 
 Un *dispositivo* o *device* es un articulador inorgánico que opera en la interfaz de una interacción humano–vida silvestre, ampliando, permitiendo o mediando la percepción o la acción de alguna de los dos organismos de esa interacción. No es un organismo, no es una persona: es lo que hace posible, o hace perceptible, o hace diferente, el encuentro entre ambas especies, la persona humana y esa entidad viva real no-humana; lo que se define como una interacción biótica.
 

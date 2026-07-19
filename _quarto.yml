@@ -3,6 +3,7 @@ project:
   output-dir: docs
 
   resources:
+    - "robots.txt"
     - "*-shinylive-app/*"
     - "coi-serviceworker.js"
     - "google78e3f1e62d7e147c.html"
@@ -83,6 +84,8 @@ website:
             href: appendix/bio-distribution.qmd
           - text: "Interacciones Bióticas"
             href: appendix/interacciones.qmd
+          - text: "Dispositivos de Interacción"
+            href: appendix/devices.qmd  
           - text: "Meta-análisis"
             href: appendix/bio-meta.qmd
           - text: "Apps"
@@ -94,6 +97,9 @@ website:
           - icon: gear-wide-connected
             text: "Manual de Identidad"
             href: manual/identidad.qmd
+          - icon: gear-wide-connected
+            text: "Criterios sobre IA"
+            href: manual/info-ia.qmd  
           - icon: shield-check
             text: "Libro de Códigos (CodeBook)"
             href: manual/codebook.qmd
