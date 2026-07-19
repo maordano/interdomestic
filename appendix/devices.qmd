@@ -1,0 +1,186 @@
+---
+title: "Dispositivos o Devices"
+author:
+  - name: "M. A. Ordano"
+    roles: [conceptualization, "writing - original draft", "writing - review & editing", validation]
+    corresponding: true
+---
+
+## Definición
+
+Un *dispositivo* o *device* es un articulador inorgánico que opera en la interfaz de una interacción humano–vida silvestre, ampliando, permitiendo o mediando la percepción o la acción de alguna de los dos organismos de esa interacción. No es un organismo, no es una persona: es lo que hace posible, o hace perceptible, o hace diferente, el encuentro entre ambas especies, la persona humana y esa entidad viva real no-humana; lo que se define como una interacción biótica.
+
+**Alcance taxonómico, explícito:** "vida silvestre" aquí se usa en el más amplio sentido de "biota" o "componente biótico" de un ecosistema natural. Incluye fauna (en su más amplio sentido, el mundo animal), flora (en su más amplio sentido, el mundo vegetal), hongos y microbiota — cualquier organismo o comunidad no-humana de organismos (sea etiquetado como "ensemble", "assemblage", "community", "inter-specific group"), con la que una persona humana interactúa en el ámbito doméstico. Una plaga de cultivo, un enemigo natural que la controla, o la comunidad de descomponedores de una compostera son, en este marco, tan "vida silvestre" como una bandadita mixta de aves en un comedero del balcón o del patio. La definición también admite que el término no-humano de la interacción sea una **comunidad** y no un organismo individual. Las personas humanas, consideradas individuales, con ID, huella digital y traza genética casi única a nivel global, también somos "holobiontes" (un conjunto de organismos funcionando como ensamble o comunidad en el organismo de la persona humana). Y nosotros, holobiontes, podemos interactuar con un sistema vivo, como el suelo; tal el caso de la microbiota de una compostera ("ejemplo paradigmático"): no hay "un" organismo con el que la persona interactúa, sino un ensamble de especies, una comunidad heterogénea de descomponedores; y el dispositivo (la compostera, o el tambor rotativo, la pila estructurada) es lo que articula esa interacción de la holobionte humana con la comunidad no-humana en su conjunto. Ahí, cuando se hace interacción articulada, ahí tenemos un dispositivo de interacción.
+
+La analogía es deliberada: así como un complejo CRISPR no es ni la guía de ARN ni la secuencia de ADN, sino el articulador que hace operativo su encuentro en un sitio específico, un dispositivo o _device_ es el artefacto que articula —y por lo tanto habilita, transforma o filtra— una interacción entre una persona humana y un organismo (o comunidad de organismos) silvestre en un punto específico (espacial y temporal) de esa interfaz.
+
+Criterio de inclusión de un dispositivo como parte de una interacción humano-naturaleza: si un artefacto media la interfaz de la interacción, aquí es considerado dispositivo o _device_. Si es contexto de esa interacción pero no media la interfaz directamente (una libreta de notas, la computadora donde se escribe un informe), no es considerado un dispositivo de interacción. La excepción es que se defina como articula respecto de la acción de las dos partes de la interacción humano-naturaleza.
+
+**Por qué los ejemplos tienden a fauna, y por qué eso no debería fijar una categorización:** los ejemplos con vertebrados (audífonos, cámaras trampa, comederos) dominan el catálogo por una razón práctica, no conceptual — son los casos donde el dato empírico es más accesible y donde "la gente lo puede ver" directamente (las personas humanas tenemos _percepción sesgada a la visión_, "evolutivamente hablando"), lo cual vuelve más tangible el arranque de proyectos de aprendizaje o investigación. 
+La definición y el árbol de decisión de más abajo no distinguen reino taxonómico: se aplican igual a un insecto plaga, a un hongo fitopatógeno o a una comunidad microbiana. Es decir, toma una "aproximación funcional" para facetar el sistema de estudio. Mantener ejemplos de flora, plagas, enemigos naturales y microbiota junto a los de fauna, desde el principio, es lo que evita que el catálogo derive de facto hacia un sesgo zoocéntrico no declarado.
+
+## Pregunta disparadora
+
+¿Qué parte de tu interacción cotidiana con la vida silvestre doméstica depende hoy de un artefacto?
+
+Antes de recorrer el catálogo, se sugiere una reflexión: un audífono, una cámara, una app de identificación de cantos, un comedero de vida silvestre — pero también una lupa para revisar el envés de una hoja, una trampa de feromona colgada entre plantas de cultivo, o una compostera donde una comunidad de microorganismos transforma materia orgánica — todos parecen "herramientas" en el sentido trivial. Cada una de estas "herramientas" o "dispositivos" o _devices_, articula —y por lo tanto filtra, selecciona, transforma— qué parte de la vida silvestre (animal, vegetal, fúngica o microbiana) se vuelve perceptible o accionable, y cuál permanece invisible (o imperceptible). Identificar tu propio dispositivo o device cotidiano —no necesariamente vinculado a un animal— es un primer ejercicio de esta faceta.
+
+## Genealogías: biología evolutiva y filosofía de la tecnología como marcos complementarios
+
+_interdomestic_ parte de una premisa de base biológica: las personas humanas estamos siendo  organismos —una forma de vida entre otras—. El ámbito doméstico, al ser una unidad relativamente estable en la historia de vida de las poblaciones humanas, funcionaría como una "unidad de motor microevolutivo": un punto de observación para "ver evolución en acción" y para preguntarse hacia dónde se está desplazando el fenotipo de la vida silvestre que comparte ese ámbito con nosotros, - y las consecuencias, o no, de esos cambios-. 
+Las cinco lentes de filosofía de la tecnología que siguen conviven con esta premisa biológica. Cada una describe desde un ángulo distinto, *cómo* un dispositivo o _device_ articula una interacción puntual. La lente evolutiva busca explicar *por qué* esa articulación importa a escala poblacional y de largo plazo. 
+Se presentan varias aproximaciones, deliberadamente, para que una construcción colectiva de _interdomestic_ elija, combine o discuta cuál (o cuáles) adoptar.
+
+### 1. Construcción de nicho y cambio evolutivo inducido por humanos
+
+Esta es una lente constitutiva de _interdomestic_, converge con literatura evolutiva clasificada en dos cuerpos:
+
+- La **teoría de la construcción de nicho** (Odling-Smee, Laland y Feldman, 2003) sostiene que los organismos, además de "responder a la selección natural", modifican activamente sus entornos, y que los artefactos son uno de los tres componentes ambientales (junto con "elementos" abióticos y bióticos) que un organismo puede construir o modificar, generando un proceso causal recíproco que realimenta el proceso selectivo y co-evolutivo. El marco se extiende explícitamente hacia la construcción cultural de nicho en humanos (Laland, Odling-Smee y Feldman, 2001), que facilita concebir a los dispositivos o devices como parte de ese proceso constructor de nicho, en diálogo (y en tensión productiva) con el *fenotipo extendido* de Dawkins.
+- El programa de **cambio evolutivo inducido por humanos** (*human-induced rapid evolutionary change*, HIREC) documenta empíricamente esa intuición a escala planetaria: Hendry, Gotanda y Svensson (2017) revisan cómo la influencia humana está generando cambios evolutivos medibles y a un ritmo acelerado respecto de procesos evolutivos "naturales", con consecuencias ecológicas y sociales. Alberti (2015) caracteriza este proceso de cambio evolutivo mediado por humanos, y la dinámica eco-evolutiva en ambientes urbanizados. Alberti _et al_. (2017) encuentran "firmas de cambio fenotípico" asociadas a la urbanización en poblaciones animales y vegetales de todo el planeta — evidencia directa y ya publicada de que "ver la evolución en acción" en el ámbito doméstico es una corriente de investigación activo.
+
+Bajo esta lente de soporte en biología evolutiva, un dispositivo o _device_, además de ser un artefacto que media una interacción puntual, es, potencialmente, un componente de la presión selectiva que una población humana ejerce, mediante sus artefactos y comportamientos, sobre la trayectoria evolutiva de las poblaciones silvestres con las que convive en el ámbito doméstico. 
+
+Hay una simetría para hacer explícita, en diálogo con el caso de la compostera ya descripto en la Definición: así como el término no-humano de una interacción puede ser una comunidad (la microbiota de una pila de compost) y no un organismo individual, **el término humano tampoco es un individuo limpio en sentido estricto**. El concepto de **holobionte** (Margulis; formalizado por Bordenstein y Theis, 2015) sostiene que un organismo eucariota y su microbiota asociada —incluyendo protistas, arqueas, bacterias, hongos y virus— constituyen, en conjunto, la unidad biológica relevante para muchos procesos de desarrollo, función y reproducción humana, o sea, toda la vida. Bajo esta mirada, cada vez que una persona interactúa con la vida silvestre mediante un dispositivo, no es "un" humano en sentido estrictamente individual el que interactúa, sino un ensamble humano-microbiano — un *holobionte* interactuando, mediante un articulador inorgánico, con otro organismo o comunidad no-humana (que puede ser, a su vez, otro holobionte). Esta doble disolución de la individualidad —comunidad del lado silvestre, holobionte del lado humano— se considera coherente con la clasificación de niveles de organización biológica, por los cuales nos hemos movido al definir y ejemplificar un dispositivo de interacción. 
+
+Las cinco lentes siguientes aportan vocabulario para describir *cómo* opera esa mediación en el momento puntual de la interacción.
+
+### 2. Postfenomenología — topología de relaciones humano-tecnología-mundo (Ihde)
+
+Don Ihde propone cuatro relaciones posibles entre una persona, una tecnología y el mundo, que funcionan a la vez como topología (un mapa de configuraciones posibles) y como hermenéutica (una forma de leer qué hace cada configuración posible):
+
+- **Encarnación (embodiment):** el dispositivo o device "se funde" con la persona humana y ambos "se dirigen al mundo exterior" — un audífono, unos binoculares. La tecnología se vuelve "transparente" en el uso. 
+- **Hermenéutica:** el dispositivo o _device_ "forma unidad con el mundo", y la persona humana lee o interpreta esa representación — el sonograma de una app de identificación de cantos o gritos, la lectura de un sensor acústico.
+- **Alteridad:** la persona humana interactúa con el dispositivo o _device_ "como un cuasi-otro", con "el mundo en segundo plano"; podría ser una cámara-trampa con asistencia de IA que "decide" qué especie fotografiar. 
+- **Trasfondo (background):** el dispositivo o _device_ estructura el entorno sin ser notado — un cerco disuasivo, la iluminación que aleja cierta fauna.
+
+Cada dispositivo o device del catálogo podría, eventualmente, etiquetarse también según cuál de estas cuatro relaciones predomina — es una segunda dimensión de clasificación posible, cruzable con el árbol de decisión de más abajo.
+
+### 3. Teoría de la mediación técnica (Verbeek) — y su extensión a relaciones humano-animal
+
+Peter-Paul Verbeek amplió el marco de Ihde; sostiene que los artefactos no son neutros: "co-dan forma" a la acción humana, incluso  decisiones éticas. Kramer y Meijboom (2022) extendieron la teoría de la mediación técnica para postular cómo la tecnología afecta el modo en que las personas ven y tratan a los animales. 
+### 4. Teoría del compromiso material / arqueología cognitiva (Malafouris)
+
+Lambros Malafouris propone que los objetos materiales no son externos a la cognición sino constitutivos de ella; la mente se despliega, en parte, en la manipulación de artefactos. Este marco es el que sostiene casos límites de definición: una secuencia de comportamiento humano que cumple función equivalente a un artefacto (sin objeto inorgánico mediando) puede pensarse desde acá, en diálogo con la mente extendida de Clark y Chalmers. Esta concepción podría vincularse y a la vez distinguirse, de la noción de *fenotipo extendido* de Dawkins, que requiere anclaje genético; y la relación al comportamiento cultural aprendido es un conjunto de complejidades más por escarbar.
+
+### 5. Redes de actantes (Latour) — topología relacional alternativa
+
+La Teoría del Actor-Red trata a los objetos no-humanos como _actantes_ con capacidad de acción dentro de una red heterogénea de humanos y no-humanos. Es una topología alternativa a la de Ihde: en vez de relaciones fijas persona-tecnología-mundo, propone una red sin jerarquía previa entre nodos humanos y no-humanos. 
+
+### 6. Naturocultura y especies compañeras (Haraway) — marco de fondo
+
+Otro trasfondo conceptual, más amplio, involucra el concepto de naturocultura (Haraway); la idea de que "naturaleza" y "cultura" nunca estuvieron realmente separadas, y que las especies coexisten en relaciones de mutua constitución ("especies compañeras").
+
+## Frontera abierta: niveles de organización biológica y redes de interacción
+
+El árbol de decisión de arriba asume, para simplificar, una interacción **diádica**: una persona humana (y/o su dispositivo o _device_) y un organismo o comunidad silvestre. Esa simplificación es necesaria para que _interdomestic_ tenga un punto de partida operativo, aunque no captura la complejidad real de cómo un dispositivo o _device_ "se inserta" en un sistema vivo. Un comedero interactúa con la especie que lo visita, y esa especie tiene depredadores, competidores, presas propias, patógenos; y el "dispositivo comedero" podría formatear la presión selectiva mediada por personas humanas sobre la vida silvestre, en cualquiera de esos niveles de relaciones biológicas.
+
+Esto conecta con cuerpos de teoría ecológica bien establecidos que interdomestic todavía no incorpora, y que quedan señalados acá como el guante a tomar en una futura iteración:
+
+- **Ecología de poblaciones, de comunidades, de ecosistemas y del paisaje** — niveles de organización crecientemente inclusivos, cada uno con sus propios procesos (dinámica poblacional; competencia e interacciones interespecíficas; flujo de energía y ciclado de nutrientes; heterogeneidad espacial y conectividad entre parches) que un device puede afectar simultáneamente en más de un nivel a la vez.
+- **Cascadas tróficas y teoría de redes tróficas (food webs)** —la remoción o adición de un actor en una red de interacciones puede propagar efectos indirectos a varios niveles tróficos (el caso paradigmático: la remoción de un depredador tope altera, en cascada, a los niveles inferiores de la red). Un "dispositivo de mitigación", que reduce una población de una especie de insecto considerada plaga, por ejemplo, afecta a esa plaga, a sus enemigos naturales, y a los procesos en que esos enemigos naturales están involucrados.
+
+Incorporar la multiplicidad de posibilidades significaría que el árbol de decisión deje de ser un árbol binario y pase a admitir que un dispositivo de interacción puede tener nodos de efecto en más de un nivel trófico u nivel biológico organizacional, constituyendo una estructura de grafo. Esta reflexión queda para una siguiente etapa del proyecto macro de síntesis (la faceta de Síntesis). 
+
+## Árbol de decisión para la primera dimensión de clasificación
+
+```
+¿El artefacto o comportamiento media una interfaz humano–vida silvestre?
+├─ No: media fisiología humana, sin fauna silvestre de por medio (excepto enfermedades mediadas por patógenos)
+│   → fuera de conjunto definitorio de interacción. Ej.: marcapasos.
+│
+└─ Sí
+    ├─ ¿Es un objeto inorgánico en uso directo al momento de la interacción?
+    │   → Dispositivo o material directo. Ej.: audífono, cámara-trampa, comedero, aspersor de veneno.
+    │     garrote (en tiempo profundo hominoideo).
+    │
+    ├─ ¿Es un objeto inorgánico cuyo efecto es diferido (circula, cambia
+    │   la cognición/percepción sobre el organismo después del hecho)?
+    │   → Dispositivo o material diferido. Ej.: la infografía sobre vida silvestre que circula y
+    │     cambia cómo esa u otras personas perciben al organismo.
+    │
+    └─ ¿Es una secuencia de comportamiento humano que cumple función
+        equivalente a un artefacto, sin objeto inorgánico mediando?
+        → Conjunto difuso — en desarrollo. Marco a explorar.
+```
+
+## Catálogo: aplicaciones y sistemas de referencia
+
+Organizado por tipo de articulación. Cuando ya existe un catálogo curado externo para una categoría o tema aquí tratado, se referencia en vez de duplicarlo (la idea es no repetir esfuerzos colectivos). Se buscó deliberadamente incluir al menos un ejemplo no-faunístico, siguiendo el alcance taxonómico declarado en la Definición.
+
+### Extensión sensorial / accesibilidad perceptiva
+
+- **[Hear Birds Again](https://hearbirdsagain.org/)** — app iOS de código abierto que desplaza en tiempo real el tono de los cantos de aves de frecuencia aguda hacia frecuencias audibles para personas con pérdida auditiva de alta frecuencia (presbicusia).
+- **SoundWatch** (Jain et al., proyecto de la Universidad de Washington) — app de smartwatch que identifica sonidos de interés para personas sordas o hipoacúsicas, incluido el canto de aves, y avisa mediante vibración.
+- **[Birdability](https://www.birdability.org/)** — organización que mantiene un mapa colaborativo de sitios de observación de aves accesibles y un directorio de dispositivos adaptativos. 
+- **Merlin / e-Bird / iNaturalist / otras** — dentro de esta sección funcionan como device de extensión sensorial/perceptiva. Ver ficha cruzada en `bio-info.qmd`.
+- **Lupa de campo / microscopio portátil** — extensión sensorial: hace perceptible una plaga incipiente, una roya, o la estructura de un liquen, del mismo modo que un audífono hace perceptible un canto agudo.
+- **Apps de diagnóstico fitosanitario por foto** (p. ej. PlantNet para identificación de flora, o apps de diagnóstico de plagas/enfermedades de cultivo) — device hermenéutico: la persona lee, a través de la app, un estado de la planta que no podría interpretar a simple vista.
+
+### Detección / monitoreo
+
+- Cámaras trampa, sensores acústicos tipo AudioMoth, collares GPS/biologging.
+- **[WILDLABS — The Inventory](https://www.wildlabs.net/inventory)** — directorio vivo y curado de tecnología de conservación (hardware, organizaciones, proyectos de I+D). Punto de entrada recomendado.
+- **Trampas de feromona y trampas cromáticas (cebos pegajosos)** — monitoreo de insectos plaga en cultivos; device de detección análogo a una cámara-trampa para sistemas agrícolas.
+- **Placa de Petri / cultivo microbiológico** — hace visible, mediante crecimiento controlado, una comunidad microbiana que de otro modo sería imperceptible; un análogo, para microbiota, de una cámara-trampa para fauna silvestre.
+- **Sensores de humedad/temperatura de suelo** — detección de condiciones que afectan a la microbiota edáfica y a la fisiología vegetal, relevante para agroecología y manejo ambiental.
+
+### Provisión o suplementación / atracción
+
+Esta faceta incluiría una presión selectiva directa ejercida por un dispositivo o device: un comedero, un bebedero o una caja nido además de "atraer"; alterarían localmente la disponibilidad de recursos, lo cual es un tipo de modificación ambiental que la construcción de nicho identificaría como generadora de una "nueva presión de selección".
+
+- **Comederos y bebederos de fauna silvestre**  un comedero instalado con fin de observación (faceta Aprendizaje/Investigación) podría generar, a la vez, una presión selectiva sobre la población que lo usa (favoreciendo por ejemplo mayor tolerancia a la presencia humana (menor "latencia" en sentido de distancia a la detección o a la persona humana; y "fidelidad de sitio" o site-fidelity). El mismo comedero, en un contexto de huerta o cultivo, puede generar un tipo de respuesta particular si la especie atraída es también consumidora del cultivo, caso en el que el dispositivo de provisión de alimentos simultáneamente puede generar riesgo para el manejo de plagas. Las categorías documentan ambos tags. Se podría construir de manera similar para servicios y dis-servicios ecosistémicos.
+- **Cajas nido** — provisión de sitios de nidificación; relevante tanto para manejo ambiental (especies de interés de conservación) como, indirectamente, para eco-epidemiología si la especie favorecida es reservorio o vector.
+- **Compostera / pila de compost** — el caso paradigmático de un dispositivo que articula interacción con un *ensamble de especies* y no con un organismo individual: el contenedor u estructura (tambor rotativo, pila en capas o secuencial) provee sustrato y condiciones a una comunidad heterogénea de descomponedores (bacterias, hongos, invertebrados del suelo), sin que la persona interactúe con "un" organismo puntual. Relevante para agroecología (retorno de nutrientes) y, en sentido amplio, para la misma lógica de construcción de nicho: la persona modifica activamente el ambiente disponible para esa comunidad.
+- **"Plantas reservorio" o *banker plants*** — plantas sembradas deliberadamente no por su cultivo en sí, sino para atraer y sostener poblaciones de enemigos naturales de una plaga (p. ej. flores que alimentan avispas parasitoides), o porque son polinizadores. El _device_ se constituye como un "arreglo" ( _array_) de plantación con función de provisión hacia un tercer organismo (el enemigo natural o el polinizador), en beneficio indirecto del cultivo.
+- **Inoculantes microbianos / biofertilizantes** — dispositivo o _device_ de provisión para microbiota edáfica, análogo funcional del comedero pero para comunidades del suelo.
+- *(pendiente: sumar ejemplos regionales y literatura de respaldo)*
+
+### Mitigación / manejo de conflicto
+
+Esta faceta es un inverso simétrico del anterior: en vez de aumentar disponibilidad de recurso, el dispositivo o device reduce el contacto o "impone un costo" a la presencia de la especie, por lo tanto también está siendo un "componente de presión selectiva", en sentido opuesto, selecciona sobre un proceso de evitación, no sobre un proceso de atracción (~ "encuentración" en oposición a evitación).
+
+- **Cercos y disuasivos** (luz, sonido) — reducen contacto humano-fauna en contextos de manejo ambiental; documentados en la literatura de HIREC como generadores de selección por comportamientos de evitación.
+- **Dispositivos de reducción de contacto vector-humano** (eco-epidemiología) — mosquiteros, trampas de vectores, repelentes de dispersión, residuos facilitadores de lugares de cría ("cacharros"). El _device_ media la interfaz reduciendo, deliberadamente, la interacción en vez de habilitarla.
+- **Aspersores/dispositivos de manejo de plagas** (agricultura, post-cosecha,  almacenamiento) — previamente mencionados en el árbol de decisión como _device_-material directo; acá se incluye por su función de mitigación.
+- **Mallas antiinsectos / barreras físicas de cultivo / "manejo cultural"** — mitigación sin sustancia activa, análoga al cerco disuasivo para el caso de insectos plaga o patógenos transportados por vectores.
+- **Liberación controlada de enemigos naturales (control biológico)** — el dispositivo o _device_ es el sistema de liberación (frascos, bolsas de liberación gradual), que articula una interacción deliberada entre la plaga y su enemigo natural, con la persona humana como agente que decide cuándo y dónde introducirlo — un caso donde el _device_ media una interacción biótica entre dos no-humanos, con la persona como tercer término activador.
+- *(pendiente: sumar ejemplos y referencias — relación con el proyecto macro de síntesis)*
+
+## Esquemas de interacción humano-naturaleza
+
+*(sección a completar — un punto de partida son los cuatro esquemas de Ihde arriba descriptos, podría ser mediante una configuración con vida silvestre doméstica como término del mundo; o un grafo tipo actor-red si se opta por ese marco en su lugar; o un esquema de construcción de nicho con dispositivos como componente artefactual, siguiendo una aproximación eco-evolutiva)*
+
+## Cruce con bio-info.qmd
+
+Los dispositivos o _devices_, o portales o sistemas, que también aparecen como herramienta de participación en la faceta de Investigación (Ej.: Merlin) deberían llevar tags compartidos con bio-info.qmd y un enlace de ida y vuelta entre ambas fichas. Así un mismo objeto cumpliría roles funcionales distintos según la faceta de aproximación, y eso debería quedar explícito, abriendo a más categorías.
+
+## Declaración de asistencia de IA
+
+Para desarrollar este dispositivo se usó un modelo de construcción híbrida: la conceptualización, el criterio de inclusión de casos, y la validación final del contenido corresponden a M.A.Ordano. Se contó con asistencia abierta de un modelo **Claude Sonnet 5** (Anthropic, 2026), ejecutado bajo la interfaz de conversación web/aplicación Claude.ai, y de Gemini (Google, 2026), para realizar consultas sobre literatura académica pertinente (búsqueda, verificación y síntesis de las referencias citadas en este documento), redacción de borradores de prosa a partir de las ideas y estructuras discutidas explícitamente con el autor, y sugerencias de organización terminológica y consistencia interna del documento. Ninguna referencia bibliográfica fue incorporada sin verificación directa de su existencia y contenido.
+
+Esta declaración sigue las recomendaciones de ICMJE, COPE y el Council of Science Editors sobre divulgación transparente de asistencia de IA: las herramientas de IA no figuran como autoras porque no pueden asumir responsabilidad por la exactitud, integridad u originalidad del contenido, que es responsabilidad del autor.
+
+## Referencias
+
+- Alberti, M. (2015). Eco-evolutionary dynamics in an urbanizing planet. *Trends in Ecology & Evolution*, 30(2), 114–126.
+- Alberti, M., Correa, C., Marzluff, J. M., Hendry, A. P., Palkovacs, E. P., Gotanda, K. M., Hunt, V. M., Apgar, T. M., & Zhou, Y. (2017). Global urban signatures of phenotypic change in animal and plant populations. *PNAS*, 114(34), 8951–8956.
+- Anthropic. (2026). *Claude Sonnet 5* [Large language model]. https://claude.ai/new
+- Bordenstein, S. R., & Theis, K. R. (2015). Host biology in light of the microbiome: Ten principles of holobionts and hologenomes. *PLoS Biology*, 13(8), e1002226.
+- Clark, A., & Chalmers, D. (1998). The extended mind. *Analysis*, 58(1), 7–19.
+- Dawkins, R. (1982). *The Extended Phenotype*. Oxford University Press.
+- Estes, J. A., Terborgh, J., Brashares, J. S., et al. (2011). Trophic downgrading of planet Earth. *Science*, 333(6040), 301–306.
+- Google. (2026). Gemini 2.5 Flash [Modelo de lenguaje masivo ejecutado mediante la interfaz de compatibilidad OpenAI API v1]. https://ai.google.dev/gemini-api
+- Haraway, D. (2003). *The Companion Species Manifesto*. Prickly Paradigm Press.
+- Hendry, A. P., Gotanda, K. M., & Svensson, E. I. (2017). Human influences on evolution, and the ecological and societal consequences. *Philosophical Transactions of the Royal Society B*, 372(1712), 20160028.
+- Hendry, A. P., & Kinnison, M. T. (1999). Perspective: The pace of modern life: Measuring rates of contemporary microevolution. *Evolution*, 53(6), 1637–1653.
+- Ihde, D. (1990). *Technology and the Lifeworld: From Garden to Earth*. Indiana University Press.
+- Kramer, K., & Meijboom, F. L. B. (2022). How do technologies affect how we see and treat animals? Extending technological mediation theory to human-animal relations. *Ethical Theory and Moral Practice*, 25(4), 595–611.
+- Laland, K. N., Odling-Smee, J., & Feldman, M. W. (2001). Cultural niche construction and human evolution. *Journal of Evolutionary Biology*, 14(1), 22–33.
+- Latour, B. (2005). *Reassembling the Social: An Introduction to Actor-Network-Theory*. Oxford University Press.
+- Malafouris, L. (2013). *How Things Shape the Mind: A Theory of Material Engagement*. MIT Press.
+- Odling-Smee, F. J., Laland, K. N., & Feldman, M. W. (2003). *Niche Construction: The Neglected Process in Evolution*. Princeton University Press.
+- Paine, R. T. (1966). Food web complexity and species diversity. *The American Naturalist*, 100(910), 65–75.
+- Verbeek, P.-P. (2005). *What Things Do: Philosophical Reflections on Technology, Agency, and Design*. Pennsylvania State University Press.
+- Verbeek, P.-P. (2011). *Moralizing Technology: Understanding and Designing the Morality of Things*. University of Chicago Press.
+
+
