@@ -7,7 +7,7 @@ editor:
     wrap: sentence
 date: 2026-07-08
 author: "M.A.Ordano"
-date-modified: 2026-07-16
+date-modified: 2026-07-18
 
 format: 
   html:
