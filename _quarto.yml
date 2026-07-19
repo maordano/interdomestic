@@ -97,8 +97,8 @@ website:
           - icon: gear-wide-connected
             text: "Manual de Identidad"
             href: manual/identidad.qmd
-          - icon: gear-wide-connected
-            text: "Criterios sobre IA"
+          - icon: robot
+            text: "Criterios de Uso de IA"
             href: manual/info-ia.qmd  
           - icon: shield-check
             text: "Libro de Códigos (CodeBook)"
