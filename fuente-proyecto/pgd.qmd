@@ -29,6 +29,10 @@ Pre-registro y registro de componentes de proyecto, metadatos y plataforma de ge
 
 Phenotypic variation of wildlife in the domestic environment: a systematic review
 
+- Licencia "CC-BY-4.0"
+
+- Cómo usar principios FAIR y CARE en este proyecto.
+
 :::
 
 

@@ -40,15 +40,15 @@ Aquí se detallan los principios que guían nuestra investigación sobre la vari
 **Interdomestic** es una plataforma híbrida (modelo híbrido de construcción del conocimiento) concebida como una herramienta de aprendizaje, investigación y síntesis de conocimiento; con apertura ciudadana.
 Nuestro objetivo es mapear, analizar y comprender cómo el Antropoceno y los entornos domésticos, rurales, peri-urbanos o urbanos, moldean la variación fenotípica (por ejemplo, el tamaño corporal, *size*) en especies de la vida silvestre con las que interactuamos.
 
-Mediante la integración de un meta-análisis ("análisis de análisis"), estadístico cuantitativo, y una revisión hermenéutica-conceptual cualitativa, buscamos descentralizar el conocimiento científico y construir un espacio de transparencia activa para nuestra relación humana-naturaleza.
+Mediante la integración de un meta-análisis ("análisis de análisis"), estadístico cuantitativo, y una revisión hermenéutica-conceptual cualitativa, buscamos abrir la construcción del conocimiento "científico" y construir un espacio de transparencia activa para aportar a la base de conocimiento de nuestra relación humana-naturaleza.
 
  ---  
 
 ## 2. Compromiso con la Ciencia Abierta: Principios FAIR y CARE
 
-Para garantizar que esta investigación beneficie a cualquier "categorización" de la "comunidad de investigación", sea una comunidad local, una comunidad de la jurisdicción, una comunidad regional, una comunidad internacional, -una comunidad académica global-, operamos bajo un doble marco de principios éticos para datos:
+Para garantizar que esta investigación beneficie a cualquier "categorización" de la "comunidad de investigación", sea una comunidad local, una comunidad de la jurisdicción, una comunidad regional, una comunidad internacional, -una comunidad académica global-, comunidades de personas humanas "en un ámbito doméstico", operamos bajo un doble marco de principios éticos para datos:
 
-### Principios FAIR (Para los Datos Científicos)
+### Principios FAIR (Para Datos Científicos)
 
 Guiados por el objetivo de maximizar el impacto de la investigación académica en plataformas como **OSF** y **STAPLE**: \* \*\*\_F_indable (Encontrable):\*\* Cada variable y documento analizado contiene identificadores claros (DOI, ID único), integrados de forma nativa en nuestro [Libro de Códigos (Codebook)](codebook.qmd).
 \* \*\*\_A_ccessible (Accesible):\*\* Los datos brutos y los scripts de R son públicos, descargables y se encuentran alojados en repositorios abiertos a largo plazo.
@@ -57,9 +57,9 @@ Guiados por el objetivo de maximizar el impacto de la investigación académica 
 
 ### Principios CARE (Para la Gobernanza Indígena y Local)
 
-Entendiendo que los entornos domésticos y urbanos involucran ecosistemas compartidos con comunidades humanas: \* \*\*\_C_ollective Benefit (Beneficio Colectivo):\*\* Diseñamos la plataforma para que los hallazgos de la investigación sean posibles de ser leídos, entendidos, adoptados o apropiados por la ciudadanía que cohabita estos entornos.
-\* \*\*\_A_uthority to Control (Autoridad para Controlar):\*\* Respetamos los derechos de las comunidades sobre los datos contextuales y territoriales, rastreando de manera transparente la procedencia de la información, con cuidado para la protección de datos personales.
-\* \*\*\_R_esponsibility (Responsibilidad):\*\* Nos hacemos responsables del impacto sociológico de las etiquetas académicas o científicas (análisis de jerga y sesgos teóricos), visibilizando cómo el lenguaje puede estigmatizar o valorar ciertas especies o procesos naturales.
+Entendiendo que los entornos domésticos y urbanos involucran ecosistemas compartidos con comunidades humanas: \* \*\*\_C_ollective Benefit (Beneficio Colectivo):\*\* Diseñamos la plataforma para que hallazgos de la investigación sean posibles de ser leídos, entendidos, adoptados o apropiados por personas humanas que cohabitan estos entornos.
+\* \*\*\_A_uthority to Control (Autoridad para Controlar):\*\* Respetamos los derechos de las comunidades sobre los datos contextuales y territoriales, rastreando de manera transparente la procedencia de la información, con cuidado para la protección de datos personales y políticas internacionales de privacidad, tanto para datos de personas humanas, como de especies no-humanas (vulnerabilidad) (siguiente punto).
+\* \*\*\_R_esponsibility (Responsibilidad):\*\* Nos hacemos responsables del impacto sociológico de las etiquetas académicas o científicas (análisis de jerga y sesgos teóricos), visibilizando cómo el lenguaje puede sesgar la valoración de ciertas especies o procesos naturales.
 \* \*\*\_E_thics (Ética):\*\* Evaluamos las declaraciones éticas de los estudios primarios, priorizando la integridad de los ecosistemas y la justicia ambiental.
 
  ---  
@@ -69,18 +69,18 @@ Entendiendo que los entornos domésticos y urbanos involucran ecosistemas compar
 En concordancia con las legislaciones internacionales de privacidad y protección de datos, **Interdomestic** adopta una política de minimización de datos:
 
 -   **Naturaleza de los Datos:** Esta plataforma no almacena, solicita ni procesa datos personales sensibles de las personas ciudadanas visitantes.
--   **Investigación Científica:** Los datos de "Autores", "Creadores", "Comentaristas", "Revisores", "Colaboradores", y otras etiquetas de roles de aprendizaje e investigación, extraídos en el marco de la revisión sistemática, corresponden a información bibliográfica pública e indexada, utilizada estrictamente con fines de atribución académica, reconocimiento de autoría y transparencia científica, y traza para la verificación libre de bases del conocimiento ("el conocimiento está vivo").
+-   **Investigación:** Los datos de "Contribuyentes", "Autores", "Creadores", "Comentaristas", "Revisores", "Colaboradores", y otras etiquetas de roles de aprendizaje e investigación, extraídos en el marco de la revisión sistemática, corresponden a información bibliográfica pública e indexada, utilizada estrictamente con fines de atribución académica, reconocimiento de autoría y transparencia científica, y traza para la verificación libre de bases del conocimiento ("el conocimiento está vivo").
 -   **Derechos ARCO:** Cualquier persona en cualquier rol en Interdomestic puede solicitar la rectificación o actualización de la información bibliográfica visible en la plataforma contactando a la administración del repositorio: interdomestic@proton.me (M.A.Ordano).
 
  ---  
 
-## 4. Gobernanza de la Infraestructura (Collage Tecnológico)
+## 4. Licencia y Gobernanza de la Infraestructura (Collage Tecnológico)
 
 Para garantizar la reproducibilidad y evitar la duplicación de esfuerzos, la arquitectura técnica de este proyecto se divide en tres niveles interconectados:
 
-1.  **Gestión Operativa (STAPLE):** El control diario de los flujos de trabajo y organización de la comunicación entre personas para la co-participación, protocolos de cribado,  criterios de extracción metodológica, y criterios de toma de decisiones del grupo gestor, se gestionan de forma interna bajo el estándar STAPLE.
-2.  **Archivo Científico (OSF):** El proyecto académico, su prerregistro, las matrices de datos consolidadas y los análisis estadísticos avanzados residen de forma permanente en el *Open Science Framework*.
-3.  **Interfaz Ciudadana (Interdomestic):** Este sitio web (alojado en GitHub Pages) actúa como la bitácora pública de aprendizaje y el visualizador dinámico de los metadatos de OSF, asegurando una **"Fuente Única de Verdad" (_sic_) - etiqueta aplicada a una forma estandarizada de "datos de base de conocimiento"** mediante automatizaciones en formato abierto (`codebook.csv`).
+1.  **Gestión Operativa (STAPLE):** El control de flujos de trabajo y organización de la comunicación entre personas para la co-participación, protocolos de cribado,  criterios de extracción metodológica, y criterios de toma de decisiones del grupo gestor, se gestionan de forma interna bajo el estándar STAPLE. Esto incluye adoptar conceptos de _"contributorship"_ además del concepto de _"authorship"_.
+2.  **Archivo Científico (OSF):** El proyecto macro, académico, su prerregistro, las matrices de datos consolidadas y los análisis estadísticos avanzados residen de forma permanente en el *Open Science Framework* (en construcción).
+3.  **Interfaz participativa (Interdomestic):** Este sitio web (alojado en GitHub Pages) actúa como la bitácora pública de aprendizaje y el visualizador dinámico de actividades del proyecto macro y metadatos de OSF, asegurando una **"Fuente Única de Verdad" (_sic_) - etiqueta aplicada a una forma estandarizada de "datos de base de conocimiento"** mediante automatizaciones en formato abierto (`codebook.csv`).
 
 ```{=html}
 <!-- ==========================================================================
@@ -93,7 +93,7 @@ Para garantizar la reproducibilidad y evitar la duplicación de esfuerzos, la ar
 ### Guía de la Plantilla
 
 Esta sección del dispositivo opera como nuestra fuente de toma de decisiones (o "Wiki de Gobernanza").
-Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación.
+Si estás replicando este template, utiliza este espacio para declarar las políticas de tus datos, el manejo de versiones y el flujo de comunicación con STAPLE, RStudio, GitHub, OSF, u otros sistemas del ecosistema de aprendizaje e investigación (ordenadores, móviles, espacios de trabajo, clouds, drives).
 :::
 
 **Diagrama del ecosistema de aprendizaje, investigación y síntesis**
@@ -118,3 +118,5 @@ A medida que el proyecto *cuore* madure, aquí se detallarán nuestras reglas de
 **Fecha de publicación:** {{< meta date >}}  
 **Última modificación:** {{< meta date-modified >}}
 :::
+
+- Desarrollo pendiente: Vinculación

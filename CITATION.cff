@@ -1,7 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below. El desarrollo de este dispositivo interactivo fue motivado por la experiencia del autor en sus marcos institucionales previos, actuando como catalizador conceptual para la búsqueda de nuevas fronteras metodológicas."
 title: "Interdomestic"
-abstract: "Dispositivo de interacción polifuncional y modelo híbrido desarrollado para la investigación académica co-participada."
+abstract: "Dispositivo de interacción polifuncional creado y mediado por personas humanas, y modelo híbrido desarrollado para la investigación académica co-participada."
+license: "CC-BY-4.0"
 authors:
   - family-names: "Ordano"
     given-names: "Mariano"
