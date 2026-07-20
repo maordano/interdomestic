@@ -17,6 +17,7 @@
       "url": "https://github.io",
       "description": "Dispositivo de interacción polifuncional de modelo híbrido.",
       "applicationCategory": "Interactive resource",
+      "license": "https://creativecommons.org/licenses/by/4.0/"
       "author": {
         "@id": "https://orcid.org"
       },
@@ -32,8 +33,8 @@
     {
       "@id": "#ecosistema-institucional",
       "@type": "Organization",
-      "name": "Ecosistema de Investigación Institucional: (1) Fundación Miguel Lillo, (2) Instituto de Ecología Regional (IER-UNT-CONICET), (3) Instituto de Ecología, Universidad Nacional Autónoma de México, (4) Instituto de Ecología, A.C., México, (5) Instituto Nacional de Limnología (INALI-UNL-CONICET), (6) Universidad Nacional de Córdoba, Argentina, ",
-      "description": "Espacio de filiación y base de proyectos con participación del autor que actuaron como catalizadores conceptuales y motivaron la búsqueda de estas nuevas fronteras de interacción."
+      "name": "Ecosistemas de Investigación Institucional: (1) Fundación Miguel Lillo, AR, (2) Instituto de Ecología Regional (IER-UNT-CONICET), AR, (3) Fundación Nodo Ambiental, AR, (4) Unidad Ejecutora Lillo (UEL-FML-CONICET), AR, (5) Instituto de Ecología, Universidad Nacional Autónoma de México, MX, (6) Instituto de Ecología, A.C., INECOL, MX (7) Instituto Nacional de Limnología (INALI-UNL-CONICET), AR, (8) Universidad Nacional de Córdoba, AR.",
+      "description": "Espacio de filiación y base de proyectos con participación del autor que actuaron como formadores académicos y motivaron la búsqueda de estas nuevas fronteras de interacción."
     }
   ]
 }
