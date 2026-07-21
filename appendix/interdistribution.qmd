@@ -116,6 +116,26 @@ format:
           .bio-button-primary:hover {
             background: #2563eb;
           }
+          .bio-button-verify {
+            background: #4f46e5;
+            color: #ffffff;
+            border-color: #4f46e5;
+          }
+          .bio-button-verify:hover {
+            background: #4338ca;
+          }
+          .bio-button-sync {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+          }
+          .bio-button-sync:hover {
+            background: #047857;
+          }
+          .bio-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
           .bio-map-legend {
             background: rgba(255, 255, 255, 0.92);
             padding: 8px 10px;
@@ -197,13 +217,25 @@ viewof max_registros = Inputs.range([10, 500], {
   value: 50
 })
 
-viewof verificar_nombres_trigger = Inputs.button("🔎 Verificar nombres contra GBIF", {
-  reduce: () => ({timestamp: Date.now()})
-})
+viewof verificar_nombres_trigger = {
+  const btn = html`<button class="bio-button bio-button-verify">🔎 Verificar nombres contra GBIF</button>`
+  btn.value = undefined
+  btn.onclick = () => {
+    btn.value = {timestamp: Date.now()}
+    btn.dispatchEvent(new CustomEvent("input"))
+  }
+  return btn
+}
 
-viewof sincronizar_trigger = Inputs.button("🗺️ Sincronizar Distribución Geográfica", {
-  reduce: () => ({timestamp: Date.now()})
-})
+viewof sincronizar_trigger = {
+  const btn = html`<button class="bio-button bio-button-sync">🗺️ Sincronizar Distribución Geográfica</button>`
+  btn.value = undefined
+  btn.onclick = () => {
+    btn.value = {timestamp: Date.now()}
+    btn.dispatchEvent(new CustomEvent("input"))
+  }
+  return btn
+}
 
 //| echo: false
 
@@ -275,7 +307,7 @@ html_validacion_nombres = html`
           ❌ "${v.consulta}" no se encontró en GBIF. Revisá la ortografía.
         </div>`
       }
-    }).join("") : html`<div class="bio-alert bio-alert-info">Haz clic en "Verificar nombres" para validar.</div>`}
+    }) : html`<div class="bio-alert bio-alert-info">Haz clic en "Verificar nombres" para validar.</div>`}
   </div>
 `
 
@@ -482,7 +514,10 @@ function descargarCSV() {
   const link = document.createElement("a")
   link.href = URL.createObjectURL(blob)
   link.download = `interdomestic_gbif_${new Date().toISOString().split('T')[0]}.csv`
+  link.style.display = "none"
+  document.body.appendChild(link)
   link.click()
+  document.body.removeChild(link)
   URL.revokeObjectURL(link.href)
 }
 
