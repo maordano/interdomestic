@@ -1,0 +1,173 @@
+---
+title: "Ecología Geográfica e Interacciones"
+subtitle: "Infraestructura analítica ultraligera bajo principios FAIR/CARE"
+format: 
+  html:
+    page-layout: full
+---
+
+Este dispositivo unificado permite mapear la coexistencia regional de especies , descubrir redes de interacción biótica y descargar marcos legales o de gobernanza y saberes locales.
+
+::: {.panel-tabset}
+
+## 🗺️ 1. Bio-distribución (basado en GBIF)
+
+Busca coordenadas de ocurrencia directamente desde los servidores globales.
+
+```{ojs}
+//| echo: false
+// 1. Inputs Compartidos del Ecosistema
+viewof especies_input = Inputs.textarea({
+  label: "Especies bajo análisis (una por línea):",
+  value: "Panthera onca\nPuma concolor",
+  rows: 3
+})
+
+viewof max_registros = Inputs.range([10, 200], {
+  label: "Registros máximos por especie:", 
+  step: 10, 
+  value: 50
+})
+
+lista_especies = especies_input.split("\n").map(d => d.trim()).filter(d => d !== "")
+```
+
+```{ojs}
+//| echo: false
+// Consulta asíncrona a la API de GBIF
+async function buscarGBIF(especie, limite) {
+  const url = `https://gbif.org{encodeURIComponent(especie)}&hasCoordinate=true&limit=${limite}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return (data.results || []).map(d => ({
+    lat: d.decimalLatitude,
+    lng: d.decimalLongitude,
+    name: d.scientificName,
+    especie: especie
+  }));
+}
+
+datos_gbif = Promise.all(lista_especies.map(sp => buscarGBIF(sp, max_registros))).then(r => r.flat())
+```
+
+```{ojs}
+//| echo: false
+// Renderizado del Mapa Base con Leaflet nativo
+mapa_contenedor = html`<div style="height:380px; border: 1px solid #e2e8f0; border-radius:6px;"></div>`
+
+{
+  const map = L.map(mapa_contenedor).setView([-25, -65], 4);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  const colores = ["#3b82f6", "#ef4444", "#10b981", "#f59e0b"];
+  const unicas = [...new Set(datos_gbif.map(d => d.especie))];
+
+  datos_gbif.forEach(pt => {
+    if(pt.lat && pt.lng) {
+      const colIdx = unicas.indexOf(pt.especie) % colores.length;
+      L.circleMarker([pt.lat, pt.lng], {
+        color: colores[colIdx],
+        radius: 5,
+        fillOpacity: 0.6
+      }).addTo(map).bindPopup(`<b>${pt.name}</b><br>Buscado como: ${pt.especie}`);
+    }
+  });
+}
+
+mapa_contenedor
+```
+
+---
+
+## 🕸️ 2. Interacciones Bióticas (GloBI)
+
+Descubre qué roles ecológicos cumplen las especies seleccionadas en la base de datos mundial de interacciones de GloBI (depredación, polinización, herbivoría, etc.).
+
+```{ojs}
+//| echo: false
+// Consulta directa a la API de Global Biotic Interactions (GloBI)
+async function buscarInteracciones(especie) {
+  const url = `https://globalbioticinteractions.org{encodeURIComponent(especie)}&type=interactsWith&limit=30`;
+  const res = await fetch(url);
+  const data = await res.json();
+  
+  // Mapeo de la matriz JSON que devuelve GloBI
+  return (data.data || []).map(row => ({
+    Especie_Origen: row[0],
+    Tipo_Interaccion: row[1],
+    Especie_Destino: row[2]
+  }));
+}
+
+datos_interacciones = Promise.all(lista_especies.map(sp => buscarInteracciones(sp))).then(r => r.flat())
+```
+
+### Matriz de Conectividad Ecológica Detectada
+
+```{ojs}
+//| echo: false
+// Despliegue de la tabla interactiva de interacciones
+Inputs.table(datos_interacciones, {
+  columns: ["Especie_Origen", "Tipo_Interaccion", "Especie_Destino"],
+  header: {
+    Especie_Origen: "Taxón Evaluado",
+    Tipo_Interaccion: "Vínculo Ecológico",
+    Especie_Destino: "Taxón Relacionado"
+  },
+  layout: "fixed"
+})
+```
+
+---
+
+## 🏛️ 3. Gobernanza y Descarga
+
+Cruza los hallazgos bióticos y geográficos con la infraestructura de conservación y leyes del país bajo análisis.
+
+```{ojs}
+//| echo: false
+// Carga optimizada del archivo JSON externo común
+db_gobierno = FileAttachment("../data/governance_db.json").json()
+
+viewof pais_seleccionado = Inputs.select(
+  d3.groups(db_gobierno, d => d.pais).map(g => g[0]), 
+  {label: "Selecciona el país para verificar marcos regulatorios:"}
+)
+
+filtro_gobierno = db_gobierno.filter(d => d.pais === pais_seleccionado)
+
+Inputs.table(filtro_gobierno, {
+  columns: ["tipo", "recurso", "url"],
+  header: { tipo: "Dimensión", recurso: "Organización o Documento", url: "Enlace Oficial" }
+})
+```
+
+### Exportación del Reporte Unificado
+
+Genera una síntesis en formato CSV portátil que incluye los metadatos de autoría del proyecto para su posterior importación académica o doméstica.
+
+```{ojs}
+//| echo: false
+function exportarTodo(geo, inter, gov) {
+  const meta = `# PROYECTO: interdomestic | REPORTE SINTETIZADO ECO-LEGAL\n# Fecha: ${new Date().toISOString()}\n\n`;
+  
+  const seccionGeo = "--- REGISTROS GEOGRAFICOS (GBIF) ---\nEspecie,Latitud,Longitud\n" + 
+    geo.map(d => `"${d.especie}",${d.lat},${d.lng}`).join("\n") + "\n\n";
+    
+  const seccionInter = "--- MATRIZ DE INTERACCIONES (GloBI) ---\nOrigen,Interaccion,Destino\n" + 
+    inter.map(d => `"${d.Especie_Origen}","${d.Tipo_Interaccion}","${d.Especie_Destino}"`).join("\n") + "\n\n";
+    
+  return meta + seccionGeo + seccionInter;
+}
+
+DOM.download(
+  new Blob([exportarTodo(datos_gbif, datos_interacciones, filtro_gobierno)], {type: "text/plain;charset=utf-8;"}), 
+  `interdomestic_reporte_sintesis.csv`, 
+  `📥 Descargar Reporte de Síntesis Completado`
+)
+```
+
+:::
+

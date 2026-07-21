@@ -90,7 +90,8 @@ website:
             href: appendix/bio-meta.qmd
           - text: "Apps"
             href: appendix/bio-info.qmd
-
+          - text: "inter-distribución"
+            href: appendix/interdistribution.qmd
       - section: "Manual"
         icon: journal-bookmark
         contents:
