@@ -39,7 +39,7 @@ Sistema de meta-análisis asociado al proyecto de síntesis.
 
 *(pendiente de desarrollo)*
 
-[Ir a Meta-análisis →](../appendix/bio-meta.qmd)
+[Ir a Meta-análisis →](../fuente-proyecto/meta-search-OSF.qmd)
 :::
 
 :::

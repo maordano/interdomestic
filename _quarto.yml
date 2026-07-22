@@ -76,20 +76,20 @@ website:
             href: fuente-proyecto/devices.qmd
           - text: "Métodos"
             href: fuente-proyecto/metodos.qmd
+          - text: "Meta-análisis"
+            href: fuente-proyecto/meta-search-OSF.qmd
           - text: "Plan de Gestión de Datos"
             href: fuente-proyecto/pgd.qmd
 
       - section: "Appendix"
         icon: grid-3x3-gap
         contents:
-          - text: "Información Extra"
-            href: appendix/bio-info.qmd
           - text: "Interacciones Bióticas"
             href: appendix/interacciones.qmd
           - text: "Distribución Geográfica"
             href: appendix/geodistribution.qmd
-          - text: "Meta-análisis"
-            href: appendix/bio-meta.qmd
+          - text: "Enlaces Extra"
+            href: appendix/enlaces-extra.qmd
       - section: "Manual"
         icon: journal-bookmark
         contents:
