@@ -37,7 +37,7 @@ Meta-análisis de interacciones bióticas con relevancia eco-epidemiológica.
 ### Meta-análisis (Bio-meta)
 Sistema de meta-análisis asociado al proyecto de síntesis.
 
-*(pendiente de desarrollo)*
+*(en desarrollo)*
 
 [Ir a Meta-análisis →](../fuente-proyecto/meta-search-OSF.qmd)
 :::
