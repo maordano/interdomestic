@@ -72,6 +72,8 @@ website:
             href: fuente-proyecto/sistema-estudio.qmd
           - text: "Variables"
             href: fuente-proyecto/variables.qmd
+          - text: "Dispositivos de Interacción"
+            href: fuente-proyecto/devices.qmd
           - text: "Métodos"
             href: fuente-proyecto/metodos.qmd
           - text: "Plan de Gestión de Datos"
@@ -82,8 +84,6 @@ website:
         contents:
           - text: "Interacciones Bióticas"
             href: appendix/interacciones.qmd
-          - text: "Dispositivos de Interacción"
-            href: appendix/devices.qmd  
           - text: "Meta-análisis"
             href: appendix/bio-meta.qmd
           - text: "Apps"
