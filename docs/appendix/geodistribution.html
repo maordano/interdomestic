@@ -575,7 +575,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container">
 <p><strong>Distribución geográfica de especies:</strong> la co-existencia de especies en un espacio y tiempo brinda un marco regional para la ocurrencia de interacciones entre especies, incluyéndonos.</p>
 <p>La co-existencia regional de especies forma un marco de co-evolución entre especies, o mosaico geográfico de co-evolución. Las especies evolucionan en un ecosistema que reúne características biológicas de las otras especies con las que interactúan regularmente (además de los “factores abióticos”).</p>
-<p>La visualización de la distribución de especies de la vida silvestre, mediante mapas, ayuda en la interpretación multidisciplinar de la consulta.</p>
+<p>La visualización de la distribución de especies de la vida silvestre, mediante mapas, ayuda en la interpretación multidisciplinar de una consulta.</p>
+<p>En esta interfase puedes escribir el nombre taxonómico/sistemático (“nombre científico”) de al menos un par de especies sobre las cuales buscar tener información sobre la distribución geográfica en conjunto, y una visualización en un mapa activo en línea.</p>
+<p>También puedes descargar los datos de ubicación geográfica correspondiente a la ficha de metadatos que puedes ver instantáneamente en la búsqueda.</p>
 </div>
 </div>
 </div>
@@ -638,280 +640,280 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold hidden">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="207" data-source-offset="-173"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 206;"><span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>viewof especies_input <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">textarea</span>({</span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Especies (una por línea):"</span><span class="op">,</span></span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="st">"Panthera onca</span><span class="sc">\n</span><span class="st">Puma concolor"</span><span class="op">,</span></span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>  <span class="dt">rows</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>  <span class="dt">resize</span><span class="op">:</span> <span class="st">"vertical"</span></span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>viewof max_registros <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">10</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span> {</span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Registros máx. por especie:"</span><span class="op">,</span> </span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> </span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">50</span></span>
-<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>viewof verificar_nombres_trigger <span class="op">=</span> {</span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"🔎 Verificar nombres contra GBIF"</span><span class="op">,</span> {</span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({<span class="dt">timestamp</span><span class="op">:</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()})</span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"button"</span>)<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-button"</span><span class="op">,</span> <span class="st">"bio-button-verify"</span>)</span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>viewof sincronizar_trigger <span class="op">=</span> {</span>
-<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"🗺️ Sincronizar Distribución Geográfica"</span><span class="op">,</span> {</span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({<span class="dt">timestamp</span><span class="op">:</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()})</span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"button"</span>)<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-button"</span><span class="op">,</span> <span class="st">"bio-button-sync"</span>)</span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="co">// SECCIÓN 2: PROCESAMIENTO DE ESPECIES Y VALIDACIÓN</span></span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="211" data-source-offset="-173"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 210;"><span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>viewof especies_input <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">textarea</span>({</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Especies (una por línea):"</span><span class="op">,</span></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="st">"Panthera onca</span><span class="sc">\n</span><span class="st">Puma concolor"</span><span class="op">,</span></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>  <span class="dt">rows</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>  <span class="dt">resize</span><span class="op">:</span> <span class="st">"vertical"</span></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>viewof max_registros <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">10</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span> {</span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Registros máx. por especie:"</span><span class="op">,</span> </span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> </span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">50</span></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>viewof verificar_nombres_trigger <span class="op">=</span> {</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"🔎 Verificar nombres contra GBIF"</span><span class="op">,</span> {</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({<span class="dt">timestamp</span><span class="op">:</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()})</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"button"</span>)<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-button"</span><span class="op">,</span> <span class="st">"bio-button-verify"</span>)</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>viewof sincronizar_trigger <span class="op">=</span> {</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"🗺️ Sincronizar Distribución Geográfica"</span><span class="op">,</span> {</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({<span class="dt">timestamp</span><span class="op">:</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()})</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"button"</span>)<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-button"</span><span class="op">,</span> <span class="st">"bio-button-sync"</span>)</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
 <span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="co">// Parseo de lista de especies desde el textarea</span></span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>lista_especies <span class="op">=</span> especies_input</span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">split</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="fu">trim</span>())</span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">!==</span> <span class="st">""</span>)</span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="co">// Función para validar nombre contra GBIF</span></span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">validarNombreGBIF</span>(nombreEspecie) {</span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> url <span class="op">=</span> <span class="vs">`https://api.gbif.org/v1/species/match?name=</span><span class="sc">${</span><span class="pp">encodeURIComponent</span>(nombreEspecie)<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> respuesta <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(url)</span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> datos <span class="op">=</span> <span class="cf">await</span> respuesta<span class="op">.</span><span class="fu">json</span>()</span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>      <span class="dt">consulta</span><span class="op">:</span> nombreEspecie<span class="op">,</span></span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>      <span class="dt">encontrado</span><span class="op">:</span> datos<span class="op">.</span><span class="at">matchType</span> <span class="op">&amp;&amp;</span> datos<span class="op">.</span><span class="at">matchType</span> <span class="op">!==</span> <span class="st">"NONE"</span><span class="op">,</span></span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>      <span class="dt">matchType</span><span class="op">:</span> datos<span class="op">.</span><span class="at">matchType</span> <span class="op">||</span> <span class="st">"NONE"</span><span class="op">,</span></span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>      <span class="dt">scientificName</span><span class="op">:</span> datos<span class="op">.</span><span class="at">scientificName</span> <span class="op">||</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>      <span class="dt">canonicalName</span><span class="op">:</span> datos<span class="op">.</span><span class="at">canonicalName</span> <span class="op">||</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>      <span class="dt">status</span><span class="op">:</span> datos<span class="op">.</span><span class="at">status</span> <span class="op">||</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>      <span class="dt">error</span><span class="op">:</span> <span class="kw">null</span></span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>      <span class="dt">consulta</span><span class="op">:</span> nombreEspecie<span class="op">,</span></span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>      <span class="dt">encontrado</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>      <span class="dt">matchType</span><span class="op">:</span> <span class="st">"ERROR"</span><span class="op">,</span></span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>      <span class="dt">error</span><span class="op">:</span> error<span class="op">.</span><span class="at">message</span></span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a><span class="co">// Disparador de validación reactivo</span></span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>validaciones_nombres <span class="op">=</span> {</span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verificar_nombres_trigger<span class="op">?.</span><span class="at">timestamp</span>) {</span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cf">await</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">all</span>(</span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>      lista_especies<span class="op">.</span><span class="fu">map</span>(sp <span class="kw">=&gt;</span> <span class="fu">validarNombreGBIF</span>(sp))</span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> []</span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="co">// Render de alertas de validación</span></span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>html_validacion_nombres <span class="op">=</span> <span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div&gt;</span></span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>validaciones_nombres<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> validaciones_nombres<span class="op">.</span><span class="fu">map</span>(v <span class="kw">=&gt;</span> {</span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (v<span class="op">.</span><span class="at">matchType</span> <span class="op">===</span> <span class="st">"EXACT"</span>) {</span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-success"&gt;</span></span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="vs">          ✅ "</span><span class="sc">${</span>v<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span><span class="vs">" → reconocido como &lt;b&gt;</span><span class="sc">${</span>v<span class="op">.</span><span class="at">scientificName</span><span class="sc">}</span><span class="vs">&lt;/b&gt;</span></span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;`</span></span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (v<span class="op">.</span><span class="at">matchType</span> <span class="op">===</span> <span class="st">"FUZZY"</span> <span class="op">||</span> v<span class="op">.</span><span class="at">matchType</span> <span class="op">===</span> <span class="st">"PARTIAL"</span>) {</span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-warning"&gt;</span></span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a><span class="vs">          ⚠️ "</span><span class="sc">${</span>v<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span><span class="vs">" es aproximado. GBIF sugiere: &lt;b&gt;</span><span class="sc">${</span>v<span class="op">.</span><span class="at">canonicalName</span><span class="sc">}</span><span class="vs">&lt;/b&gt;. Revisá antes de sincronizar.</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="co">// SECCIÓN 2: PROCESAMIENTO DE ESPECIES Y VALIDACIÓN</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="co">// Parseo de lista de especies desde el textarea</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>lista_especies <span class="op">=</span> especies_input</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">split</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="fu">trim</span>())</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">!==</span> <span class="st">""</span>)</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="co">// Función para validar nombre contra GBIF</span></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">validarNombreGBIF</span>(nombreEspecie) {</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> url <span class="op">=</span> <span class="vs">`https://api.gbif.org/v1/species/match?name=</span><span class="sc">${</span><span class="pp">encodeURIComponent</span>(nombreEspecie)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> respuesta <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(url)</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> datos <span class="op">=</span> <span class="cf">await</span> respuesta<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>      <span class="dt">consulta</span><span class="op">:</span> nombreEspecie<span class="op">,</span></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>      <span class="dt">encontrado</span><span class="op">:</span> datos<span class="op">.</span><span class="at">matchType</span> <span class="op">&amp;&amp;</span> datos<span class="op">.</span><span class="at">matchType</span> <span class="op">!==</span> <span class="st">"NONE"</span><span class="op">,</span></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>      <span class="dt">matchType</span><span class="op">:</span> datos<span class="op">.</span><span class="at">matchType</span> <span class="op">||</span> <span class="st">"NONE"</span><span class="op">,</span></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>      <span class="dt">scientificName</span><span class="op">:</span> datos<span class="op">.</span><span class="at">scientificName</span> <span class="op">||</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>      <span class="dt">canonicalName</span><span class="op">:</span> datos<span class="op">.</span><span class="at">canonicalName</span> <span class="op">||</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>      <span class="dt">status</span><span class="op">:</span> datos<span class="op">.</span><span class="at">status</span> <span class="op">||</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>      <span class="dt">error</span><span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>      <span class="dt">consulta</span><span class="op">:</span> nombreEspecie<span class="op">,</span></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>      <span class="dt">encontrado</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>      <span class="dt">matchType</span><span class="op">:</span> <span class="st">"ERROR"</span><span class="op">,</span></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>      <span class="dt">error</span><span class="op">:</span> error<span class="op">.</span><span class="at">message</span></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a><span class="co">// Disparador de validación reactivo</span></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>validaciones_nombres <span class="op">=</span> {</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verificar_nombres_trigger<span class="op">?.</span><span class="at">timestamp</span>) {</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cf">await</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">all</span>(</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>      lista_especies<span class="op">.</span><span class="fu">map</span>(sp <span class="kw">=&gt;</span> <span class="fu">validarNombreGBIF</span>(sp))</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> []</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a><span class="co">// Render de alertas de validación</span></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>html_validacion_nombres <span class="op">=</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div&gt;</span></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>validaciones_nombres<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> validaciones_nombres<span class="op">.</span><span class="fu">map</span>(v <span class="kw">=&gt;</span> {</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (v<span class="op">.</span><span class="at">matchType</span> <span class="op">===</span> <span class="st">"EXACT"</span>) {</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-success"&gt;</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a><span class="vs">          ✅ "</span><span class="sc">${</span>v<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span><span class="vs">" → reconocido como &lt;b&gt;</span><span class="sc">${</span>v<span class="op">.</span><span class="at">scientificName</span><span class="sc">}</span><span class="vs">&lt;/b&gt;</span></span>
 <span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;`</span></span>
-<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-danger"&gt;</span></span>
-<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="vs">          ❌ "</span><span class="sc">${</span>v<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span><span class="vs">" no se encontró en GBIF. Revisá la ortografía.</span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (v<span class="op">.</span><span class="at">matchType</span> <span class="op">===</span> <span class="st">"FUZZY"</span> <span class="op">||</span> v<span class="op">.</span><span class="at">matchType</span> <span class="op">===</span> <span class="st">"PARTIAL"</span>) {</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-warning"&gt;</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="vs">          ⚠️ "</span><span class="sc">${</span>v<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span><span class="vs">" es aproximado. GBIF sugiere: &lt;b&gt;</span><span class="sc">${</span>v<span class="op">.</span><span class="at">canonicalName</span><span class="sc">}</span><span class="vs">&lt;/b&gt;. Revisá antes de sincronizar.</span></span>
 <span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;`</span></span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>    }) <span class="op">:</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-info"&gt;Haz clic en "Verificar nombres" para validar.&lt;/div&gt;`</span><span class="sc">}</span></span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="co">// SECCIÓN 3: CONSULTA DE OCURRENCIAS A GBIF</span></span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-danger"&gt;</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a><span class="vs">          ❌ "</span><span class="sc">${</span>v<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span><span class="vs">" no se encontró en GBIF. Revisá la ortografía.</span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;`</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>    }) <span class="op">:</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-info"&gt;Haz clic en "Verificar nombres" para validar.&lt;/div&gt;`</span><span class="sc">}</span></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
 <span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="co">// Función para obtener puntos de ocurrencia de una especie</span></span>
-<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">obtenerOcurrenciasGBIF</span>(nombreEspecie<span class="op">,</span> limite) {</span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>nombreEspecie <span class="op">||</span> nombreEspecie<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) <span class="cf">return</span> []</span>
-<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> url <span class="op">=</span> <span class="vs">`https://api.gbif.org/v1/occurrence/search?scientificName=</span><span class="sc">${</span><span class="pp">encodeURIComponent</span>(nombreEspecie)<span class="sc">}</span><span class="vs">&amp;hasCoordinate=true&amp;limit=</span><span class="sc">${</span>limite<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> respuesta <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(url)</span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> datos <span class="op">=</span> <span class="cf">await</span> respuesta<span class="op">.</span><span class="fu">json</span>()</span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>datos<span class="op">.</span><span class="at">results</span> <span class="op">||</span> datos<span class="op">.</span><span class="at">results</span><span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) <span class="cf">return</span> []</span>
-<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> datos<span class="op">.</span><span class="at">results</span></span>
-<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">decimalLatitude</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">decimalLongitude</span>)</span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
-<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>        <span class="dt">lat</span><span class="op">:</span> d<span class="op">.</span><span class="at">decimalLatitude</span><span class="op">,</span></span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>        <span class="dt">lng</span><span class="op">:</span> d<span class="op">.</span><span class="at">decimalLongitude</span><span class="op">,</span></span>
-<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>        <span class="dt">scientificName</span><span class="op">:</span> d<span class="op">.</span><span class="at">scientificName</span> <span class="op">||</span> nombreEspecie<span class="op">,</span></span>
-<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>        <span class="dt">datasetKey</span><span class="op">:</span> d<span class="op">.</span><span class="at">datasetKey</span> <span class="op">||</span> <span class="st">"unknown"</span><span class="op">,</span></span>
-<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>        <span class="dt">especie_consultada</span><span class="op">:</span> nombreEspecie</span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>      }))</span>
-<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="vs">`Error consultando GBIF para </span><span class="sc">${</span>nombreEspecie<span class="sc">}</span><span class="vs">:`</span><span class="op">,</span> error)</span>
-<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> []</span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
-<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a><span class="co">// Disparador de sincronización reactivo</span></span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>todos_los_datos <span class="op">=</span> {</span>
-<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (sincronizar_trigger<span class="op">?.</span><span class="at">timestamp</span>) {</span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cf">await</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">all</span>(</span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>      lista_especies<span class="op">.</span><span class="fu">map</span>(sp <span class="kw">=&gt;</span> <span class="fu">obtenerOcurrenciasGBIF</span>(sp<span class="op">,</span> max_registros))</span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>    )<span class="op">.</span><span class="fu">then</span>(resultados <span class="kw">=&gt;</span> resultados<span class="op">.</span><span class="fu">flat</span>())</span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> []</span>
-<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a><span class="co">// Estadísticas agregadas</span></span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>estadisticas <span class="op">=</span> {</span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> especiesUnicas <span class="op">=</span> [<span class="op">...</span><span class="kw">new</span> <span class="bu">Set</span>(todos_los_datos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">especie_consultada</span>))]</span>
-<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>    <span class="dt">especies_consultadas</span><span class="op">:</span> especiesUnicas<span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
-<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>    <span class="dt">registros_totales</span><span class="op">:</span> todos_los_datos<span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>    <span class="dt">datasets_origen</span><span class="op">:</span> [<span class="op">...</span><span class="kw">new</span> <span class="bu">Set</span>(todos_los_datos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">datasetKey</span>))]<span class="op">.</span><span class="at">length</span></span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a><span class="co">// Datos para descarga</span></span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>datos_csv_export <span class="op">=</span> todos_los_datos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
-<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>  <span class="dt">decimalLatitude</span><span class="op">:</span> d<span class="op">.</span><span class="at">lat</span><span class="op">,</span></span>
-<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>  <span class="dt">decimalLongitude</span><span class="op">:</span> d<span class="op">.</span><span class="at">lng</span><span class="op">,</span></span>
-<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scientificName</span><span class="op">:</span> d<span class="op">.</span><span class="at">scientificName</span><span class="op">,</span></span>
-<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>  <span class="dt">datasetKey</span><span class="op">:</span> d<span class="op">.</span><span class="at">datasetKey</span><span class="op">,</span></span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>  <span class="dt">especie_consultada</span><span class="op">:</span> d<span class="op">.</span><span class="at">especie_consultada</span></span>
-<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
-<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
-<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="co">// SECCIÓN 4: RENDERIZADO DEL MAPA INTERACTIVO</span></span>
-<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="co">// SECCIÓN 3: CONSULTA DE OCURRENCIAS A GBIF</span></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="co">// Función para obtener puntos de ocurrencia de una especie</span></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">obtenerOcurrenciasGBIF</span>(nombreEspecie<span class="op">,</span> limite) {</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>nombreEspecie <span class="op">||</span> nombreEspecie<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) <span class="cf">return</span> []</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> url <span class="op">=</span> <span class="vs">`https://api.gbif.org/v1/occurrence/search?scientificName=</span><span class="sc">${</span><span class="pp">encodeURIComponent</span>(nombreEspecie)<span class="sc">}</span><span class="vs">&amp;hasCoordinate=true&amp;limit=</span><span class="sc">${</span>limite<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> respuesta <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(url)</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> datos <span class="op">=</span> <span class="cf">await</span> respuesta<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="op">!</span>datos<span class="op">.</span><span class="at">results</span> <span class="op">||</span> datos<span class="op">.</span><span class="at">results</span><span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) <span class="cf">return</span> []</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> datos<span class="op">.</span><span class="at">results</span></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">decimalLatitude</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">decimalLongitude</span>)</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>        <span class="dt">lat</span><span class="op">:</span> d<span class="op">.</span><span class="at">decimalLatitude</span><span class="op">,</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>        <span class="dt">lng</span><span class="op">:</span> d<span class="op">.</span><span class="at">decimalLongitude</span><span class="op">,</span></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>        <span class="dt">scientificName</span><span class="op">:</span> d<span class="op">.</span><span class="at">scientificName</span> <span class="op">||</span> nombreEspecie<span class="op">,</span></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>        <span class="dt">datasetKey</span><span class="op">:</span> d<span class="op">.</span><span class="at">datasetKey</span> <span class="op">||</span> <span class="st">"unknown"</span><span class="op">,</span></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>        <span class="dt">especie_consultada</span><span class="op">:</span> nombreEspecie</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>      }))</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="vs">`Error consultando GBIF para </span><span class="sc">${</span>nombreEspecie<span class="sc">}</span><span class="vs">:`</span><span class="op">,</span> error)</span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> []</span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a><span class="co">// Disparador de sincronización reactivo</span></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>todos_los_datos <span class="op">=</span> {</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (sincronizar_trigger<span class="op">?.</span><span class="at">timestamp</span>) {</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cf">await</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">all</span>(</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>      lista_especies<span class="op">.</span><span class="fu">map</span>(sp <span class="kw">=&gt;</span> <span class="fu">obtenerOcurrenciasGBIF</span>(sp<span class="op">,</span> max_registros))</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>    )<span class="op">.</span><span class="fu">then</span>(resultados <span class="kw">=&gt;</span> resultados<span class="op">.</span><span class="fu">flat</span>())</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> []</span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a><span class="co">// Estadísticas agregadas</span></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>estadisticas <span class="op">=</span> {</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> especiesUnicas <span class="op">=</span> [<span class="op">...</span><span class="kw">new</span> <span class="bu">Set</span>(todos_los_datos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">especie_consultada</span>))]</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>    <span class="dt">especies_consultadas</span><span class="op">:</span> especiesUnicas<span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>    <span class="dt">registros_totales</span><span class="op">:</span> todos_los_datos<span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>    <span class="dt">datasets_origen</span><span class="op">:</span> [<span class="op">...</span><span class="kw">new</span> <span class="bu">Set</span>(todos_los_datos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">datasetKey</span>))]<span class="op">.</span><span class="at">length</span></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a><span class="co">// Datos para descarga</span></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>datos_csv_export <span class="op">=</span> todos_los_datos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({</span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>  <span class="dt">decimalLatitude</span><span class="op">:</span> d<span class="op">.</span><span class="at">lat</span><span class="op">,</span></span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>  <span class="dt">decimalLongitude</span><span class="op">:</span> d<span class="op">.</span><span class="at">lng</span><span class="op">,</span></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scientificName</span><span class="op">:</span> d<span class="op">.</span><span class="at">scientificName</span><span class="op">,</span></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>  <span class="dt">datasetKey</span><span class="op">:</span> d<span class="op">.</span><span class="at">datasetKey</span><span class="op">,</span></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>  <span class="dt">especie_consultada</span><span class="op">:</span> d<span class="op">.</span><span class="at">especie_consultada</span></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>}))</span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
 <span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="co">// Contenedor del mapa</span></span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>container_mapa <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div style="height: 450px; width: 100%; border-radius: 8px; border: 1px solid #ddd; margin: 16px 0;"&gt;&lt;/div&gt;`</span></span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a><span class="co">// Lógica de renderizado del mapa (reactivo, se actualiza cuando cambian los datos)</span></span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Evitar renderizar si no hay datos</span></span>
-<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (todos_los_datos<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
-<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mensaje <span class="op">=</span> sincronizar_trigger<span class="op">?.</span><span class="at">timestamp</span></span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="st">"No se encontraron registros con coordenadas para estos nombres. Revisá la ortografía, probá con otro nombre científico, o puede que GBIF no tenga registros geolocalizados para esa especie."</span></span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="st">'Hacé clic en "🗺️ Sincronizar" para cargar datos en el mapa'</span></span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>    container_mapa<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="vs">`</span></span>
-<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style="height: 100%; display: flex; align-items: center; justify-content: center; background: #f3f4f6; color: #6b7280; font-size: 1.1em; text-align: center; padding: 20px;"&gt;</span></span>
-<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>mensaje<span class="sc">}</span></span>
-<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="vs">    `</span></span>
-<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>    invalidation<span class="op">.</span><span class="fu">then</span>(() <span class="kw">=&gt;</span> {})</span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> container_mapa</span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Limpiar el contenedor</span></span>
-<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>  container_mapa<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Inicializar mapa</span></span>
-<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container_mapa)<span class="op">.</span><span class="fu">setView</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>]<span class="op">,</span> <span class="dv">2</span>)</span>
-<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Capa base</span></span>
-<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>  L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'</span><span class="op">,</span> {</span>
-<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'© OpenStreetMap contributors'</span><span class="op">,</span></span>
-<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">19</span></span>
-<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)</span>
-<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Paleta de colores para especies (suficiente para 20+ especies)</span></span>
-<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> colores <span class="op">=</span> [</span>
-<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#3b82f6"</span><span class="op">,</span> <span class="st">"#ef4444"</span><span class="op">,</span> <span class="st">"#10b981"</span><span class="op">,</span> <span class="st">"#f59e0b"</span><span class="op">,</span> <span class="st">"#8b5cf6"</span><span class="op">,</span> </span>
-<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#ec4899"</span><span class="op">,</span> <span class="st">"#06b6d4"</span><span class="op">,</span> <span class="st">"#84cc16"</span><span class="op">,</span> <span class="st">"#f97316"</span><span class="op">,</span> <span class="st">"#6366f1"</span><span class="op">,</span></span>
-<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#14b8a6"</span><span class="op">,</span> <span class="st">"#d946ef"</span><span class="op">,</span> <span class="st">"#0ea5e9"</span><span class="op">,</span> <span class="st">"#eab308"</span><span class="op">,</span> <span class="st">"#64748b"</span><span class="op">,</span></span>
-<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#fb923c"</span><span class="op">,</span> <span class="st">"#4ade80"</span><span class="op">,</span> <span class="st">"#0d9488"</span><span class="op">,</span> <span class="st">"#a855f7"</span><span class="op">,</span> <span class="st">"#e11d48"</span></span>
-<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Mapeo de especies a colores</span></span>
-<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> especiesUnicas <span class="op">=</span> [<span class="op">...</span><span class="kw">new</span> <span class="bu">Set</span>(todos_los_datos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">especie_consultada</span>))]</span>
-<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mapaColores <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">fromEntries</span>(</span>
-<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>    especiesUnicas<span class="op">.</span><span class="fu">map</span>((esp<span class="op">,</span> idx) <span class="kw">=&gt;</span> [esp<span class="op">,</span> colores[idx <span class="op">%</span> colores<span class="op">.</span><span class="at">length</span>]])</span>
-<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Agregar marcadores circulares con popup</span></span>
-<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>  todos_los_datos<span class="op">.</span><span class="fu">forEach</span>(pt <span class="kw">=&gt;</span> {</span>
-<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (pt<span class="op">.</span><span class="at">lat</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lng</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lat</span> <span class="op">!==</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lng</span> <span class="op">!==</span> <span class="dv">0</span>) {</span>
-<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> color <span class="op">=</span> mapaColores[pt<span class="op">.</span><span class="at">especie_consultada</span>]</span>
-<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>      L<span class="op">.</span><span class="fu">circleMarker</span>([pt<span class="op">.</span><span class="at">lat</span><span class="op">,</span> pt<span class="op">.</span><span class="at">lng</span>]<span class="op">,</span> {</span>
-<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>        <span class="dt">color</span><span class="op">:</span> color<span class="op">,</span></span>
-<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fillColor</span><span class="op">:</span> color<span class="op">,</span></span>
-<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>        <span class="dt">radius</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
-<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>        <span class="dt">weight</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span></span>
-<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.7</span></span>
-<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addTo</span>(map)</span>
-<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">bindPopup</span>(<span class="vs">`</span></span>
-<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;b style="font-size: 1.1em;"&gt;</span><span class="sc">${</span>pt<span class="op">.</span><span class="at">scientificName</span><span class="sc">}</span><span class="vs">&lt;/b&gt;&lt;br&gt;</span></span>
-<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;i style="font-size: 0.9em;"&gt;Consultado como: </span><span class="sc">${</span>pt<span class="op">.</span><span class="at">especie_consultada</span><span class="sc">}</span><span class="vs">&lt;/i&gt;&lt;br&gt;</span></span>
-<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;span style="font-size: 0.8em; color: #666;"&gt;Dataset: </span><span class="sc">${</span>pt<span class="op">.</span><span class="at">datasetKey</span><span class="sc">}</span><span class="vs">&lt;/span&gt;</span></span>
-<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a><span class="vs">      `</span>)</span>
-<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Leyenda de colores como control de Leaflet, superpuesta en la esquina</span></span>
-<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>  <span class="co">// superior derecha del mapa: no oculta puntos ni tapa el zoom</span></span>
-<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> legendControl <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">"topright"</span>})</span>
-<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>  legendControl<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span>() {</span>
-<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">"div"</span><span class="op">,</span> <span class="st">"bio-map-legend"</span>)</span>
-<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> especiesUnicas<span class="op">.</span><span class="fu">map</span>(esp <span class="kw">=&gt;</span> <span class="vs">`</span></span>
-<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class="bio-map-legend-item"&gt;</span></span>
-<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;span class="bio-map-legend-dot" style="background:</span><span class="sc">${</span>mapaColores[esp]<span class="sc">}</span><span class="vs">;"&gt;&lt;/span&gt;</span></span>
-<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;i&gt;</span><span class="sc">${</span>esp<span class="sc">}</span><span class="vs">&lt;/i&gt;</span></span>
-<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a><span class="vs">    `</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)</span>
-<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>    L<span class="op">.</span><span class="at">DomEvent</span><span class="op">.</span><span class="fu">disableClickPropagation</span>(div)</span>
-<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div</span>
-<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>  legendControl<span class="op">.</span><span class="fu">addTo</span>(map)</span>
-<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Auto-ajustar vista a los datos</span></span>
-<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> puntosValidos <span class="op">=</span> todos_los_datos<span class="op">.</span><span class="fu">filter</span>(pt <span class="kw">=&gt;</span> pt<span class="op">.</span><span class="at">lat</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lng</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lat</span> <span class="op">!==</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lng</span> <span class="op">!==</span> <span class="dv">0</span>)</span>
-<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (puntosValidos<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> bounds <span class="op">=</span> L<span class="op">.</span><span class="fu">latLngBounds</span>(puntosValidos<span class="op">.</span><span class="fu">map</span>(pt <span class="kw">=&gt;</span> [pt<span class="op">.</span><span class="at">lat</span><span class="op">,</span> pt<span class="op">.</span><span class="at">lng</span>]))</span>
-<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">fitBounds</span>(bounds<span class="op">,</span> { <span class="dt">padding</span><span class="op">:</span> [<span class="dv">50</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">12</span> })</span>
-<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Limpiar mapa al fin del ciclo de renderizado</span></span>
-<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>  invalidation<span class="op">.</span><span class="fu">then</span>(() <span class="kw">=&gt;</span> {</span>
-<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">remove</span>()</span>
-<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> container_mapa</span>
-<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a><span class="co">// SECCIÓN 4: RENDERIZADO DEL MAPA INTERACTIVO</span></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a><span class="co">// Contenedor del mapa</span></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>container_mapa <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div style="height: 450px; width: 100%; border-radius: 8px; border: 1px solid #ddd; margin: 16px 0;"&gt;&lt;/div&gt;`</span></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a><span class="co">// Lógica de renderizado del mapa (reactivo, se actualiza cuando cambian los datos)</span></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Evitar renderizar si no hay datos</span></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (todos_los_datos<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mensaje <span class="op">=</span> sincronizar_trigger<span class="op">?.</span><span class="at">timestamp</span></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> <span class="st">"No se encontraron registros con coordenadas para estos nombres. Revisá la ortografía, probá con otro nombre científico, o puede que GBIF no tenga registros geolocalizados para esa especie."</span></span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> <span class="st">'Hacé clic en "🗺️ Sincronizar" para cargar datos en el mapa'</span></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>    container_mapa<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div style="height: 100%; display: flex; align-items: center; justify-content: center; background: #f3f4f6; color: #6b7280; font-size: 1.1em; text-align: center; padding: 20px;"&gt;</span></span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>mensaje<span class="sc">}</span></span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a><span class="vs">    `</span></span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>    invalidation<span class="op">.</span><span class="fu">then</span>(() <span class="kw">=&gt;</span> {})</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> container_mapa</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Limpiar el contenedor</span></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>  container_mapa<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Inicializar mapa</span></span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container_mapa)<span class="op">.</span><span class="fu">setView</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>]<span class="op">,</span> <span class="dv">2</span>)</span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Capa base</span></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>  L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'</span><span class="op">,</span> {</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'© OpenStreetMap contributors'</span><span class="op">,</span></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">19</span></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Paleta de colores para especies (suficiente para 20+ especies)</span></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> colores <span class="op">=</span> [</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#3b82f6"</span><span class="op">,</span> <span class="st">"#ef4444"</span><span class="op">,</span> <span class="st">"#10b981"</span><span class="op">,</span> <span class="st">"#f59e0b"</span><span class="op">,</span> <span class="st">"#8b5cf6"</span><span class="op">,</span> </span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#ec4899"</span><span class="op">,</span> <span class="st">"#06b6d4"</span><span class="op">,</span> <span class="st">"#84cc16"</span><span class="op">,</span> <span class="st">"#f97316"</span><span class="op">,</span> <span class="st">"#6366f1"</span><span class="op">,</span></span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#14b8a6"</span><span class="op">,</span> <span class="st">"#d946ef"</span><span class="op">,</span> <span class="st">"#0ea5e9"</span><span class="op">,</span> <span class="st">"#eab308"</span><span class="op">,</span> <span class="st">"#64748b"</span><span class="op">,</span></span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#fb923c"</span><span class="op">,</span> <span class="st">"#4ade80"</span><span class="op">,</span> <span class="st">"#0d9488"</span><span class="op">,</span> <span class="st">"#a855f7"</span><span class="op">,</span> <span class="st">"#e11d48"</span></span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Mapeo de especies a colores</span></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> especiesUnicas <span class="op">=</span> [<span class="op">...</span><span class="kw">new</span> <span class="bu">Set</span>(todos_los_datos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">especie_consultada</span>))]</span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mapaColores <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">fromEntries</span>(</span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>    especiesUnicas<span class="op">.</span><span class="fu">map</span>((esp<span class="op">,</span> idx) <span class="kw">=&gt;</span> [esp<span class="op">,</span> colores[idx <span class="op">%</span> colores<span class="op">.</span><span class="at">length</span>]])</span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Agregar marcadores circulares con popup</span></span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>  todos_los_datos<span class="op">.</span><span class="fu">forEach</span>(pt <span class="kw">=&gt;</span> {</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (pt<span class="op">.</span><span class="at">lat</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lng</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lat</span> <span class="op">!==</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lng</span> <span class="op">!==</span> <span class="dv">0</span>) {</span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> color <span class="op">=</span> mapaColores[pt<span class="op">.</span><span class="at">especie_consultada</span>]</span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a>      L<span class="op">.</span><span class="fu">circleMarker</span>([pt<span class="op">.</span><span class="at">lat</span><span class="op">,</span> pt<span class="op">.</span><span class="at">lng</span>]<span class="op">,</span> {</span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>        <span class="dt">color</span><span class="op">:</span> color<span class="op">,</span></span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fillColor</span><span class="op">:</span> color<span class="op">,</span></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>        <span class="dt">radius</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>        <span class="dt">weight</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span></span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.7</span></span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">addTo</span>(map)</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>      <span class="op">.</span><span class="fu">bindPopup</span>(<span class="vs">`</span></span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;b style="font-size: 1.1em;"&gt;</span><span class="sc">${</span>pt<span class="op">.</span><span class="at">scientificName</span><span class="sc">}</span><span class="vs">&lt;/b&gt;&lt;br&gt;</span></span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;i style="font-size: 0.9em;"&gt;Consultado como: </span><span class="sc">${</span>pt<span class="op">.</span><span class="at">especie_consultada</span><span class="sc">}</span><span class="vs">&lt;/i&gt;&lt;br&gt;</span></span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;span style="font-size: 0.8em; color: #666;"&gt;Dataset: </span><span class="sc">${</span>pt<span class="op">.</span><span class="at">datasetKey</span><span class="sc">}</span><span class="vs">&lt;/span&gt;</span></span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a><span class="vs">      `</span>)</span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Leyenda de colores como control de Leaflet, superpuesta en la esquina</span></span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>  <span class="co">// superior derecha del mapa: no oculta puntos ni tapa el zoom</span></span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> legendControl <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">"topright"</span>})</span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>  legendControl<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span>() {</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">"div"</span><span class="op">,</span> <span class="st">"bio-map-legend"</span>)</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> especiesUnicas<span class="op">.</span><span class="fu">map</span>(esp <span class="kw">=&gt;</span> <span class="vs">`</span></span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class="bio-map-legend-item"&gt;</span></span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;span class="bio-map-legend-dot" style="background:</span><span class="sc">${</span>mapaColores[esp]<span class="sc">}</span><span class="vs">;"&gt;&lt;/span&gt;</span></span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;i&gt;</span><span class="sc">${</span>esp<span class="sc">}</span><span class="vs">&lt;/i&gt;</span></span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a><span class="vs">    `</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)</span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>    L<span class="op">.</span><span class="at">DomEvent</span><span class="op">.</span><span class="fu">disableClickPropagation</span>(div)</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>  legendControl<span class="op">.</span><span class="fu">addTo</span>(map)</span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Auto-ajustar vista a los datos</span></span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> puntosValidos <span class="op">=</span> todos_los_datos<span class="op">.</span><span class="fu">filter</span>(pt <span class="kw">=&gt;</span> pt<span class="op">.</span><span class="at">lat</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lng</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lat</span> <span class="op">!==</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> pt<span class="op">.</span><span class="at">lng</span> <span class="op">!==</span> <span class="dv">0</span>)</span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (puntosValidos<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> bounds <span class="op">=</span> L<span class="op">.</span><span class="fu">latLngBounds</span>(puntosValidos<span class="op">.</span><span class="fu">map</span>(pt <span class="kw">=&gt;</span> [pt<span class="op">.</span><span class="at">lat</span><span class="op">,</span> pt<span class="op">.</span><span class="at">lng</span>]))</span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">fitBounds</span>(bounds<span class="op">,</span> { <span class="dt">padding</span><span class="op">:</span> [<span class="dv">50</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">12</span> })</span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Limpiar mapa al fin del ciclo de renderizado</span></span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a>  invalidation<span class="op">.</span><span class="fu">then</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>    map<span class="op">.</span><span class="fu">remove</span>()</span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> container_mapa</span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1013,16 +1015,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold hidden">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="484" data-source-offset="-9009"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 483;"><span id="cb2-484"><a href="#cb2-484" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb2-485"><a href="#cb2-485" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="bio-metadata"&gt;</span></span>
-<span id="cb2-486"><a href="#cb2-486" aria-hidden="true" tabindex="-1"></a><span class="vs">--- METADATA PROFILE (FAIR/CARE) ---</span></span>
-<span id="cb2-487"><a href="#cb2-487" aria-hidden="true" tabindex="-1"></a><span class="vs">Estándar: Darwin Core</span></span>
-<span id="cb2-488"><a href="#cb2-488" aria-hidden="true" tabindex="-1"></a><span class="vs">Especies consultadas: </span><span class="sc">${</span>estadisticas<span class="op">.</span><span class="at">especies_consultadas</span><span class="sc">}</span></span>
-<span id="cb2-489"><a href="#cb2-489" aria-hidden="true" tabindex="-1"></a><span class="vs">Registros totales: </span><span class="sc">${</span>estadisticas<span class="op">.</span><span class="at">registros_totales</span><span class="sc">}</span></span>
-<span id="cb2-490"><a href="#cb2-490" aria-hidden="true" tabindex="-1"></a><span class="vs">Datasets GBIF de origen: </span><span class="sc">${</span>estadisticas<span class="op">.</span><span class="at">datasets_origen</span><span class="sc">}</span></span>
-<span id="cb2-491"><a href="#cb2-491" aria-hidden="true" tabindex="-1"></a><span class="vs">Fecha de consulta: </span><span class="sc">${</span><span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">'es-AR'</span>)<span class="sc">}</span></span>
-<span id="cb2-492"><a href="#cb2-492" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
-<span id="cb2-493"><a href="#cb2-493" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="488" data-source-offset="-9009"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 487;"><span id="cb2-488"><a href="#cb2-488" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb2-489"><a href="#cb2-489" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="bio-metadata"&gt;</span></span>
+<span id="cb2-490"><a href="#cb2-490" aria-hidden="true" tabindex="-1"></a><span class="vs">--- METADATA PROFILE (FAIR/CARE) ---</span></span>
+<span id="cb2-491"><a href="#cb2-491" aria-hidden="true" tabindex="-1"></a><span class="vs">Estándar: Darwin Core</span></span>
+<span id="cb2-492"><a href="#cb2-492" aria-hidden="true" tabindex="-1"></a><span class="vs">Especies consultadas: </span><span class="sc">${</span>estadisticas<span class="op">.</span><span class="at">especies_consultadas</span><span class="sc">}</span></span>
+<span id="cb2-493"><a href="#cb2-493" aria-hidden="true" tabindex="-1"></a><span class="vs">Registros totales: </span><span class="sc">${</span>estadisticas<span class="op">.</span><span class="at">registros_totales</span><span class="sc">}</span></span>
+<span id="cb2-494"><a href="#cb2-494" aria-hidden="true" tabindex="-1"></a><span class="vs">Datasets GBIF de origen: </span><span class="sc">${</span>estadisticas<span class="op">.</span><span class="at">datasets_origen</span><span class="sc">}</span></span>
+<span id="cb2-495"><a href="#cb2-495" aria-hidden="true" tabindex="-1"></a><span class="vs">Fecha de consulta: </span><span class="sc">${</span><span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">'es-AR'</span>)<span class="sc">}</span></span>
+<span id="cb2-496"><a href="#cb2-496" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb2-497"><a href="#cb2-497" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1033,49 +1035,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details class="code-fold hidden">
 <summary>Código</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="497" data-source-offset="-9360"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 496;"><span id="cb3-497"><a href="#cb3-497" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">generarCSV</span>(datos) {</span>
-<span id="cb3-498"><a href="#cb3-498" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> encabezado <span class="op">=</span> [<span class="st">"decimalLatitude"</span><span class="op">,</span> <span class="st">"decimalLongitude"</span><span class="op">,</span> <span class="st">"scientificName"</span><span class="op">,</span> <span class="st">"datasetKey"</span><span class="op">,</span> <span class="st">"especie_consultada"</span>]</span>
-<span id="cb3-499"><a href="#cb3-499" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> filas <span class="op">=</span> datos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> </span>
-<span id="cb3-500"><a href="#cb3-500" aria-hidden="true" tabindex="-1"></a>    encabezado<span class="op">.</span><span class="fu">map</span>(col <span class="kw">=&gt;</span> {</span>
-<span id="cb3-501"><a href="#cb3-501" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> valor <span class="op">=</span> d[col] <span class="op">||</span> <span class="st">""</span></span>
-<span id="cb3-502"><a href="#cb3-502" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="vs">`"</span><span class="sc">${</span><span class="bu">String</span>(valor)<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/"/g</span><span class="op">,</span> <span class="st">'""'</span>)<span class="sc">}</span><span class="vs">"`</span><span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">^</span><span class="ss">"</span><span class="sc">(</span><span class="ss">.</span><span class="sc">*)</span><span class="ss">"</span><span class="sc">$</span><span class="ss">/</span><span class="op">,</span> (_<span class="op">,</span> str) <span class="kw">=&gt;</span> str<span class="op">.</span><span class="fu">includes</span>(<span class="st">","</span>) <span class="op">||</span> str<span class="op">.</span><span class="fu">includes</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>) <span class="op">?</span> <span class="vs">`"</span><span class="sc">${</span>str<span class="sc">}</span><span class="vs">"`</span> <span class="op">:</span> str)</span>
-<span id="cb3-503"><a href="#cb3-503" aria-hidden="true" tabindex="-1"></a>    })<span class="op">.</span><span class="fu">join</span>(<span class="st">","</span>)</span>
-<span id="cb3-504"><a href="#cb3-504" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-505"><a href="#cb3-505" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [encabezado<span class="op">.</span><span class="fu">join</span>(<span class="st">","</span>)<span class="op">,</span> <span class="op">...</span>filas]<span class="op">.</span><span class="fu">join</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb3-506"><a href="#cb3-506" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-507"><a href="#cb3-507" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-508"><a href="#cb3-508" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
-<span id="cb3-509"><a href="#cb3-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-510"><a href="#cb3-510" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">descargarCSV</span>() {</span>
-<span id="cb3-511"><a href="#cb3-511" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"botón descargar: click detectado"</span>)</span>
-<span id="cb3-512"><a href="#cb3-512" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
-<span id="cb3-513"><a href="#cb3-513" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> csv <span class="op">=</span> <span class="fu">generarCSV</span>(datos_csv_export)</span>
-<span id="cb3-514"><a href="#cb3-514" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> blob <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([csv]<span class="op">,</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"text/csv;charset=utf-8;"</span>})</span>
-<span id="cb3-515"><a href="#cb3-515" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> url <span class="op">=</span> URL<span class="op">.</span><span class="fu">createObjectURL</span>(blob)</span>
-<span id="cb3-516"><a href="#cb3-516" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> link <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"a"</span>)</span>
-<span id="cb3-517"><a href="#cb3-517" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">href</span> <span class="op">=</span> url</span>
-<span id="cb3-518"><a href="#cb3-518" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">download</span> <span class="op">=</span> <span class="vs">`interdomestic_gbif_</span><span class="sc">${</span><span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toISOString</span>()<span class="op">.</span><span class="fu">split</span>(<span class="st">'T'</span>)[<span class="dv">0</span>]<span class="sc">}</span><span class="vs">.csv`</span></span>
-<span id="cb3-519"><a href="#cb3-519" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span> <span class="st">"none"</span></span>
-<span id="cb3-520"><a href="#cb3-520" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">appendChild</span>(link)</span>
-<span id="cb3-521"><a href="#cb3-521" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="fu">click</span>()</span>
-<span id="cb3-522"><a href="#cb3-522" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">removeChild</span>(link)</span>
-<span id="cb3-523"><a href="#cb3-523" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Revocar el blob con demora: revocarlo de inmediato es una causa</span></span>
-<span id="cb3-524"><a href="#cb3-524" aria-hidden="true" tabindex="-1"></a>    <span class="co">// conocida de descargas cortadas a mitad de camino en Chromium,</span></span>
-<span id="cb3-525"><a href="#cb3-525" aria-hidden="true" tabindex="-1"></a>    <span class="co">// porque .click() dispara la descarga de forma asíncrona.</span></span>
-<span id="cb3-526"><a href="#cb3-526" aria-hidden="true" tabindex="-1"></a>    <span class="pp">setTimeout</span>(() <span class="kw">=&gt;</span> URL<span class="op">.</span><span class="fu">revokeObjectURL</span>(url)<span class="op">,</span> <span class="dv">1000</span>)</span>
-<span id="cb3-527"><a href="#cb3-527" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"descargarCSV: OK,"</span><span class="op">,</span> datos_csv_export<span class="op">.</span><span class="at">length</span><span class="op">,</span> <span class="st">"filas"</span>)</span>
-<span id="cb3-528"><a href="#cb3-528" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
-<span id="cb3-529"><a href="#cb3-529" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">"descargarCSV: FALLÓ -&gt;"</span><span class="op">,</span> error)</span>
-<span id="cb3-530"><a href="#cb3-530" aria-hidden="true" tabindex="-1"></a>    <span class="fu">alert</span>(<span class="st">"No se pudo generar la descarga: "</span> <span class="op">+</span> error<span class="op">.</span><span class="at">message</span>)</span>
-<span id="cb3-531"><a href="#cb3-531" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-532"><a href="#cb3-532" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-533"><a href="#cb3-533" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-534"><a href="#cb3-534" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
-<span id="cb3-535"><a href="#cb3-535" aria-hidden="true" tabindex="-1"></a>viewof disparador_descarga <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"📥 Descargar datos (.csv)"</span><span class="op">,</span> {</span>
-<span id="cb3-536"><a href="#cb3-536" aria-hidden="true" tabindex="-1"></a>  <span class="dt">disabled</span><span class="op">:</span> todos_los_datos<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb3-537"><a href="#cb3-537" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
-<span id="cb3-538"><a href="#cb3-538" aria-hidden="true" tabindex="-1"></a>  <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="fu">descargarCSV</span>()</span>
-<span id="cb3-539"><a href="#cb3-539" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="501" data-source-offset="-9360"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 500;"><span id="cb3-501"><a href="#cb3-501" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">generarCSV</span>(datos) {</span>
+<span id="cb3-502"><a href="#cb3-502" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> encabezado <span class="op">=</span> [<span class="st">"decimalLatitude"</span><span class="op">,</span> <span class="st">"decimalLongitude"</span><span class="op">,</span> <span class="st">"scientificName"</span><span class="op">,</span> <span class="st">"datasetKey"</span><span class="op">,</span> <span class="st">"especie_consultada"</span>]</span>
+<span id="cb3-503"><a href="#cb3-503" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> filas <span class="op">=</span> datos<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> </span>
+<span id="cb3-504"><a href="#cb3-504" aria-hidden="true" tabindex="-1"></a>    encabezado<span class="op">.</span><span class="fu">map</span>(col <span class="kw">=&gt;</span> {</span>
+<span id="cb3-505"><a href="#cb3-505" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> valor <span class="op">=</span> d[col] <span class="op">||</span> <span class="st">""</span></span>
+<span id="cb3-506"><a href="#cb3-506" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="vs">`"</span><span class="sc">${</span><span class="bu">String</span>(valor)<span class="op">.</span><span class="fu">replace</span>(<span class="ss">/"/g</span><span class="op">,</span> <span class="st">'""'</span>)<span class="sc">}</span><span class="vs">"`</span><span class="op">.</span><span class="fu">replace</span>(<span class="ss">/</span><span class="sc">^</span><span class="ss">"</span><span class="sc">(</span><span class="ss">.</span><span class="sc">*)</span><span class="ss">"</span><span class="sc">$</span><span class="ss">/</span><span class="op">,</span> (_<span class="op">,</span> str) <span class="kw">=&gt;</span> str<span class="op">.</span><span class="fu">includes</span>(<span class="st">","</span>) <span class="op">||</span> str<span class="op">.</span><span class="fu">includes</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>) <span class="op">?</span> <span class="vs">`"</span><span class="sc">${</span>str<span class="sc">}</span><span class="vs">"`</span> <span class="op">:</span> str)</span>
+<span id="cb3-507"><a href="#cb3-507" aria-hidden="true" tabindex="-1"></a>    })<span class="op">.</span><span class="fu">join</span>(<span class="st">","</span>)</span>
+<span id="cb3-508"><a href="#cb3-508" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-509"><a href="#cb3-509" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> [encabezado<span class="op">.</span><span class="fu">join</span>(<span class="st">","</span>)<span class="op">,</span> <span class="op">...</span>filas]<span class="op">.</span><span class="fu">join</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-510"><a href="#cb3-510" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-511"><a href="#cb3-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-512"><a href="#cb3-512" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb3-513"><a href="#cb3-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-514"><a href="#cb3-514" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">descargarCSV</span>() {</span>
+<span id="cb3-515"><a href="#cb3-515" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"botón descargar: click detectado"</span>)</span>
+<span id="cb3-516"><a href="#cb3-516" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb3-517"><a href="#cb3-517" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> csv <span class="op">=</span> <span class="fu">generarCSV</span>(datos_csv_export)</span>
+<span id="cb3-518"><a href="#cb3-518" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> blob <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([csv]<span class="op">,</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"text/csv;charset=utf-8;"</span>})</span>
+<span id="cb3-519"><a href="#cb3-519" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> url <span class="op">=</span> URL<span class="op">.</span><span class="fu">createObjectURL</span>(blob)</span>
+<span id="cb3-520"><a href="#cb3-520" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> link <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"a"</span>)</span>
+<span id="cb3-521"><a href="#cb3-521" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">href</span> <span class="op">=</span> url</span>
+<span id="cb3-522"><a href="#cb3-522" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">download</span> <span class="op">=</span> <span class="vs">`interdomestic_gbif_</span><span class="sc">${</span><span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toISOString</span>()<span class="op">.</span><span class="fu">split</span>(<span class="st">'T'</span>)[<span class="dv">0</span>]<span class="sc">}</span><span class="vs">.csv`</span></span>
+<span id="cb3-523"><a href="#cb3-523" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span> <span class="st">"none"</span></span>
+<span id="cb3-524"><a href="#cb3-524" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">appendChild</span>(link)</span>
+<span id="cb3-525"><a href="#cb3-525" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="fu">click</span>()</span>
+<span id="cb3-526"><a href="#cb3-526" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">removeChild</span>(link)</span>
+<span id="cb3-527"><a href="#cb3-527" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Revocar el blob con demora: revocarlo de inmediato es una causa</span></span>
+<span id="cb3-528"><a href="#cb3-528" aria-hidden="true" tabindex="-1"></a>    <span class="co">// conocida de descargas cortadas a mitad de camino en Chromium,</span></span>
+<span id="cb3-529"><a href="#cb3-529" aria-hidden="true" tabindex="-1"></a>    <span class="co">// porque .click() dispara la descarga de forma asíncrona.</span></span>
+<span id="cb3-530"><a href="#cb3-530" aria-hidden="true" tabindex="-1"></a>    <span class="pp">setTimeout</span>(() <span class="kw">=&gt;</span> URL<span class="op">.</span><span class="fu">revokeObjectURL</span>(url)<span class="op">,</span> <span class="dv">1000</span>)</span>
+<span id="cb3-531"><a href="#cb3-531" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"descargarCSV: OK,"</span><span class="op">,</span> datos_csv_export<span class="op">.</span><span class="at">length</span><span class="op">,</span> <span class="st">"filas"</span>)</span>
+<span id="cb3-532"><a href="#cb3-532" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
+<span id="cb3-533"><a href="#cb3-533" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">"descargarCSV: FALLÓ -&gt;"</span><span class="op">,</span> error)</span>
+<span id="cb3-534"><a href="#cb3-534" aria-hidden="true" tabindex="-1"></a>    <span class="fu">alert</span>(<span class="st">"No se pudo generar la descarga: "</span> <span class="op">+</span> error<span class="op">.</span><span class="at">message</span>)</span>
+<span id="cb3-535"><a href="#cb3-535" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-536"><a href="#cb3-536" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-537"><a href="#cb3-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-538"><a href="#cb3-538" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb3-539"><a href="#cb3-539" aria-hidden="true" tabindex="-1"></a>viewof disparador_descarga <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"📥 Descargar datos (.csv)"</span><span class="op">,</span> {</span>
+<span id="cb3-540"><a href="#cb3-540" aria-hidden="true" tabindex="-1"></a>  <span class="dt">disabled</span><span class="op">:</span> todos_los_datos<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-541"><a href="#cb3-541" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb3-542"><a href="#cb3-542" aria-hidden="true" tabindex="-1"></a>  <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="fu">descargarCSV</span>()</span>
+<span id="cb3-543"><a href="#cb3-543" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1103,7 +1105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="fuentes-y-créditos">Fuentes y créditos</h3>
 <p>Los datos de ocurrencia provienen de GBIF.org bajo estándar Darwin Core. Esta aplicación corre 100% en tu navegador sin servidor backend. Construida con Quarto + OJS + Leaflet.js.</p>
 <div class="metadatos-final">
-<p>Autor: M.A.Ordano Fecha de publicación: 7 de julio de 2026 Última modificación: 22 de julio de 2026 Versión: OJS (v2.0) — Reemplazo optimizado de la versión anterior con shinylive/webR</p>
+<p>Autor: M.A.Ordano Fecha de publicación: 7 de julio de 2026 Última modificación: 22 de julio de 2026 Versión: OJS (v2.0) — Reemplazo optimizado de la versión anterior con shinylive/webR alojada en ../archive/_bio-distribution.qmd</p>
 </div>
 
 

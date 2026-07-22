@@ -169,7 +169,11 @@ format:
 
 La co-existencia regional de especies forma un marco de co-evolución entre especies, o mosaico geográfico de co-evolución. Las especies evolucionan en un ecosistema que reúne características biológicas de las otras especies con las que interactúan regularmente (además de los "factores abióticos").
 
-La visualización de la distribución de especies de la vida silvestre, mediante mapas, ayuda en la interpretación multidisciplinar de la consulta.
+La visualización de la distribución de especies de la vida silvestre, mediante mapas, ayuda en la interpretación multidisciplinar de una consulta.
+
+En esta interfase puedes escribir el nombre taxonómico/sistemático ("nombre científico") de al menos un par de especies sobre las cuales buscar tener información sobre la distribución geográfica en conjunto, y una visualización en un mapa activo en línea. 
+
+También puedes descargar los datos de ubicación geográfica correspondiente a la ficha de metadatos que puedes ver instantáneamente en la búsqueda.  
 
 :::
 
@@ -548,6 +552,6 @@ Los datos de ocurrencia provienen de GBIF.org bajo estándar Darwin Core. Esta a
 Autor: {{< meta author >}}
 Fecha de publicación: {{< meta date >}}
 Última modificación: {{< meta date-modified >}}
-Versión: OJS (v2.0) — Reemplazo optimizado de la versión anterior con shinylive/webR 
+Versión: OJS (v2.0) — Reemplazo optimizado de la versión anterior con shinylive/webR alojada en ../archive/_bio-distribution.qmd
 :::
 
