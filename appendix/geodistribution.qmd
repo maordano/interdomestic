@@ -1,9 +1,9 @@
 ---
-title: "Inter-distribución"
+title: "Distribución Geográfica de Especies"
 subtitle: "Dispositivo dinámico de síntesis de conocimiento (FAIR/CARE / OJS) - v2.0"
 date: 2026-07-07
 author: "M.A.Ordano"
-date-modified: 2026-07-21
+date-modified: 2026-07-22
 format:
   html:
     grid:
@@ -167,27 +167,27 @@ format:
 ::: {.callout-note appearance="minimal" icon=true}
 **Distribución geográfica de especies:** la co-existencia de especies en un espacio y tiempo brinda un marco regional para la ocurrencia de interacciones entre especies, incluyéndonos. 
 
-La co-existencia regional de especies forma un marco de co-evolución entre especies, o mosaico geográfico de co-evolución, en donde las especies evolucionan en función de las características biológicas de las otras especies con las que interactúan regularmente.
+La co-existencia regional de especies forma un marco de co-evolución entre especies, o mosaico geográfico de co-evolución. Las especies evolucionan en un ecosistema que reúne características biológicas de las otras especies con las que interactúan regularmente (además de los "factores abióticos").
 
 La visualización de la distribución de especies de la vida silvestre, mediante mapas, ayuda en la interpretación multidisciplinar de la consulta.
 
 :::
 
 ::: {.callout-note appearance="simple" icon=false}
-⚡ **Carga Ultra-Rápida:** esta versión corre 100% en tu navegador con OJS (JavaScript). Primera carga: varios segundos.
+⚡ **Tiempo de Carga:** esta versión corre 100% en tu navegador con OJS (JavaScript). La primera carga puede tardar unos segundos para un par de especies. Para más especies puede tardar unos segundos más. Si se detiene, prueba recargar la página y repite la operación. Si aparece un cartel de falta de registros, prueba reduciendo el número de datos pedidos.
 :::
 
 ::: {.callout-tip collapse="true" title="💡 Cómo usar este apéndice interactivo"}
 1. **Escribe una o más especies**, un nombre científico por línea (precargado con *Panthera onca* y *Puma concolor* como ejemplo).
-2. **Verifica los nombres** con el botón "🔎 Verificar nombres contra GBIF" — se confirma si GBIF reconoce cada nombre exactamente, si hay una coincidencia aproximada, o si no lo encuentra.
+2. **Verifica los nombres** con el botón "🔎 Verificar nombres contra GBIF" — se confirma si GBIF reconoce cada nombre exactamente, si hay una coincidencia aproximada, o si no lo encuentra (en este caso, re-escribir).
 3. **Define cuántos registros** traer por especie con el campo "Registros máx."
-4. **Aprieta "🗺️ Sincronizar Distribución Geográfica"** para consultar GBIF y ver los puntos de ocurrencia en el mapa — cada especie con su propio color.
-5. **Explorá el mapa** (zoom, desplazamiento, popups con el nombre al hacer clic). 
-6. **Descargá los datos** crudos en un único archivo `.csv`.
+4. **Aprieta "🗺️ Sincronizar Distribución Geográfica"** para consultar GBIF y ver los puntos de ocurrencia en el mapa, cada especie se identifica con un color.
+5. **Explora el mapa** (zoom, desplazamiento, pop-ups con el nombre al hacer clic). 
+6. **Descarga los datos** crudos en un único archivo `.csv`.
 :::
 
 ::: {.callout-important collapse="true" title="🔎 Si dudas del nombre científico"}
-Para que la búsqueda funcione bien, necesitas el nombre tal como lo reconoce el backbone taxonómico de GBIF. Si tienes dudas, verificalo antes en:
+Para que la búsqueda funcione bien, necesitas el nombre tal como lo reconoce el _backbone_ taxonómico de GBIF. Si tienes dudas, verifica  antes en:
 
 - [**GBIF Species Search**](https://www.gbif.org/species/search) — la fuente misma que consulta esta app.
 - [**iNaturalist**](https://www.inaturalist.org) — identificación asistida por comunidad y por IA; puerta de entrada sugerida si solo tienes una foto o un nombre común.

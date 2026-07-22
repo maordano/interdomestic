@@ -80,8 +80,6 @@ website:
       - section: "Appendix"
         icon: grid-3x3-gap
         contents:
-          - text: "Bio-distribución"
-            href: appendix/bio-distribution.qmd
           - text: "Interacciones Bióticas"
             href: appendix/interacciones.qmd
           - text: "Dispositivos de Interacción"
@@ -90,8 +88,8 @@ website:
             href: appendix/bio-meta.qmd
           - text: "Apps"
             href: appendix/bio-info.qmd
-          - text: "inter-distribución"
-            href: appendix/interdistribution.qmd
+          - text: "Distribución Geográfica"
+            href: appendix/geodistribution.qmd
       - section: "Manual"
         icon: journal-bookmark
         contents:
