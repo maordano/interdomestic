@@ -41,7 +41,7 @@ Herramienta para definir cuándo y por qué abordar una síntesis, con enlace a 
 ### Bio-distribución
 Mapeador de ocurrencias GBIF: una forma concreta de aprender explorando distribución de especies.
 
-[Ir a Bio-distribución →](../appendix/bio-distribution.qmd)
+[Ir a Bio-distribución →](../appendix/geodistribution.qmd)
 :::
 
 :::
