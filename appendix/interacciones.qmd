@@ -240,7 +240,7 @@ El armado de búsqueda se puede filtrar por palabras clave en torno a las intera
 
 ## Protocolo de búsqueda — PRISMA aplicado
 
-Para buscar literatura sobre una interacción específica, un paso clave de la construcción del conocimiento -además del resultado-, es conocer cómo fue generado el conocimiento, o sea, **documentar el proceso**, — es lo que exige un protocolo tipo PRISMA, y lo que ya armamos en detalle en la ficha de **[Meta-análisis](bio-meta.html)** de este mismo apéndice (los 12 campos de "Search strategy" de la GSRRF de OSF).
+Para buscar literatura sobre una interacción específica, un paso clave de la construcción del conocimiento -además del resultado-, es conocer cómo fue generado el conocimiento, o sea, **documentar el proceso**, — es lo que exige un protocolo tipo PRISMA, y lo que ya armamos en detalle en la ficha de **[Meta-análisis](../fuente-proyecto/meta-search-OSF.html)** en Fuente de Proyecto (los 12 campos de "Search strategy" de la GSRRF de OSF).
 
 Los cuatro pasos clásicos de PRISMA, aplicados a un ejemplo de interacción:
 

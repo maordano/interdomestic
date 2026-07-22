@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="M.A.Ordano">
 
 <title>Meta-análisis –  interdomestic</title>
 <style>
@@ -19,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -41,11 +77,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-3d72203b4310ab15aa61e5c21b4a12a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,6 +104,102 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Buscar"
   }
 }</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<style>
+/* Oculta el bloque de autor y fecha en el encabezado superior */
+.quarto-title-meta {
+  display: none !important;
+}
+/* Estilo personalizado y discreto para los metadatos del final */
+.metadatos-final {
+  font-size: 0.55em;
+  color: #777777;
+  line-height: 1.4;
+  margin-top: 40px;
+  border-top: 1px solid #eeeeee;
+  padding-top: 15px;
+}
+/* Estilos para la interfaz */
+.bio-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.bio-button {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 4px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s;
+}
+.bio-button:hover {
+  background: #f3f4f6;
+}
+.bio-button-generate {
+  background: #059669;
+  color: #ffffff;
+  border-color: #059669;
+  width: 100%;
+}
+.bio-button-generate:hover {
+  background: #047857;
+}
+.bio-links-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+.bio-link-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  text-decoration: none;
+  border: 1px solid #ccc;
+}
+.bio-link-btn-secondary {
+  background: white;
+  color: #374151 !important;
+  border-color: #ccc;
+}
+/* Panel por campo GSRRF (equivalente al wellPanel de la versión shiny) */
+.bio-field-panel {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.bio-field-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.bio-field-badge {
+  font-size: 0.75em;
+  color: #94a3b8;
+}
+.bio-field-desc {
+  font-size: 0.8em;
+  color: #64748b;
+  margin: 4px 0;
+}
+.bio-field-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 0.9em;
+  padding: 6px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  resize: vertical;
+}
+</style>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -332,8 +459,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Estructura del Dispositivo</h2>
+   
+  <ul>
+  <li><a href="#fuentes-y-créditos" id="toc-fuentes-y-créditos" class="nav-link active" data-scroll-target="#fuentes-y-créditos">Fuentes y créditos</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -341,15 +474,33 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../fuente-proyecto/marco.html">Fuente de proyecto</a></li><li class="breadcrumb-item"><a href="../fuente-proyecto/meta-search-OSF.html">Meta-análisis</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Meta-análisis</h1>
-<p class="subtitle lead">Ficha de protocolo de búsqueda (GSRRF / OSF)</p>
+<p class="subtitle lead">Ficha de protocolo de búsqueda (GSRRF / OSF / OJS) - v2.0</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>M.A.Ordano </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">22 de julio de 2026</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de última modificación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">22 de julio de 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -358,15 +509,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- Script de aislamiento cross-origin: habilita SharedArrayBuffer/webR en GitHub Pages -->
-<script src="../coi-serviceworker.js"></script>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>⏳ <strong>Primera carga:</strong> el entorno estadístico (R) se descarga y arranca completo dentro de tu navegador — esta ficha es liviana (solo <code>shiny</code>), así que debería tardar menos que las otras apps del sitio.</p>
+<p>⚡ <strong>Tiempo de carga:</strong> esta ficha corre 100% en tu navegador con OJS (JavaScript), sin backend de R/Shiny. La carga es prácticamente instantánea.</p>
 </div>
 </div>
 </div>
@@ -382,172 +531,269 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>No es un buscador en vivo (para eso está <strong>interacciones.qmd</strong>) — es un <strong>instrumento de documentación de protocolo</strong>. Cubre los 12 ítems de la sección “Search strategy” de la <a href="https://doi.org/10.1186/s13643-023-02281-7">Generalized Systematic Review Registration Form (GSRRF)</a> de OSF, alineada con PRISMA. Los campos vienen pre-completados con un borrador honesto de cómo funciona hoy el motor de búsqueda del proyecto — editalos, corregilos, o marcá “no aplica” donde corresponda; esa es una respuesta válida según las propias instrucciones del formulario.</p>
+<p>No es un buscador en vivo (para eso está <strong><a href="../appendix/interacciones.html">Interacciones Bióticas</a></strong>) — es un <strong>instrumento de documentación de protocolo</strong>. Cubre los 12 ítems de la sección “Search strategy” de la <a href="https://doi.org/10.1186/s13643-023-02281-7">Generalized Systematic Review Registration Form (GSRRF)</a> de OSF, alineada con PRISMA. Los campos vienen pre-completados con un borrador honesto de cómo funciona hoy el motor de búsqueda del proyecto — editalos, corregilos, o marcá “no aplica” donde corresponda; esa es una respuesta válida según las propias instrucciones del formulario.</p>
 <p>Las secciones de Screening, Extraction, y Synthesis del GSRRF (33 ítems restantes) quedan para una etapa posterior del proyecto, cuando haya una revisión sistemática real en curso — documentar solo lo que existe hoy, sin inventar procedimientos que todavía no aplican.</p>
 </div>
 </div>
 </div>
-<p>A continuación, el formulario de protocolo, ejecutado localmente en su navegador:</p>
-<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
-#|   shinylive does not work in self-contained HTML documents.
-#|   Please set `embed-resources: false` in your metadata.
-#| standalone: true
-#| viewerHeight: 900
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Sobre la ubicación de esta ficha
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esta ficha vive en <strong>Fuente de proyecto</strong> porque, a futuro, reflejará la búsqueda tal como quede definida en el propio registro OSF del proyecto macro — compartiendo desde ya la misma membrana digital que el resto de los dispositivos de interdomestic (ver <strong><a href="devices.html">Dispositivos de Interacción</a></strong>). Todavía falta la conceptualización y la complementación con los otros componentes del proyecto; por ahora, esta es una ficha editable y descargable, no una integración automática con OSF.</p>
+</div>
+</div>
+<p>A continuación, la ficha de protocolo, editable en tu navegador:</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="134" data-source-offset="-261"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 133;"><span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>campos_gsrrf <span class="op">=</span> [</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf21"</span><span class="op">,</span></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-21 · Databases"</span><span class="op">,</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 6"</span><span class="op">,</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Qué bases de datos se consultan."</span><span class="op">,</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"GBIF (backbone taxonómico y validación de nombres científicos); GloBI - Global Biotic Interactions (registros de interacción documentada con cita de origen); Crossref (metadatos bibliográficos generales, usada como red de contención cuando GloBI no tiene registros para el par de especies consultado)."</span></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf22"</span><span class="op">,</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-22 · Interfaces"</span><span class="op">,</span></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 6"</span><span class="op">,</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Qué interfaz se usó para acceder a cada base."</span><span class="op">,</span></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"Acceso directo vía API REST pública de cada base (api.gbif.org, api.globalbioticinteractions.org, api.crossref.org). No se usa una interfaz comercial intermediaria (no Ovid, no EBSCO)."</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf23"</span><span class="op">,</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-23 · Grey literature"</span><span class="op">,</span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 6"</span><span class="op">,</span></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Estrategia para localizar literatura gris (preprints, tesis, informes no indexados)."</span><span class="op">,</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"No se incluye literatura gris de forma sistemática en esta etapa. GloBI agrega datasets comunitarios (p. ej. iNaturalist) que pueden incluir observaciones no publicadas formalmente en revistas indexadas."</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf24"</span><span class="op">,</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-24 · Inclusion and exclusion criteria"</span><span class="op">,</span></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 5, 13a"</span><span class="op">,</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Criterios que informan la búsqueda y el filtrado de resultados."</span><span class="op">,</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"Se prioriza evidencia que documente explícitamente la interacción entre el par de especies consultado (registro directo en GloBI). Si no existe, se amplía a literatura que mencione a ambas especies en título o resumen (Crossref). Como última red, se acepta literatura que mencione al menos una de las dos especies, marcada explícitamente como de baja confianza."</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf25"</span><span class="op">,</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-25 · Query strings"</span><span class="op">,</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 7"</span><span class="op">,</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"La consulta exacta que se ejecuta, por base de datos."</span><span class="op">,</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"GloBI: sourceTaxon={especie A}&amp;targetTaxon={especie B} (y su inversa). Crossref: '{especie A} {especie B} interaction OR predation OR competition OR mutualism OR parasitism OR facilitation', con niveles de respaldo progresivamente menos restrictivos si no hay resultados. Código exacto documentado en interacciones.qmd."</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf26"</span><span class="op">,</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-26 · Search validation procedure"</span><span class="op">,</span></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 7"</span><span class="op">,</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Si se valida la búsqueda, y cómo."</span><span class="op">,</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"No implementado de forma formal todavía. Pendiente: comparar los resultados de la app contra una búsqueda manual de control para un conjunto de pares de especies con interacción conocida."</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf27"</span><span class="op">,</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-27 · Other search strategies"</span><span class="op">,</span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 7"</span><span class="op">,</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Estrategias adicionales (ascendencia/descendencia de citas, otros sistemas)."</span><span class="op">,</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"No implementado todavía. Pendiente evaluar estrategias de ascendencia/descendencia de citas (revisar referencias citadas por, o que citan a, las fuentes ya encontradas)."</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf28"</span><span class="op">,</span></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-28 · Procedures to contact authors"</span><span class="op">,</span></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 7"</span><span class="op">,</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Si se contacta a autores, cuándo y cómo."</span><span class="op">,</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"No aplica en esta etapa: la herramienta no contacta autores directamente."</span></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf29"</span><span class="op">,</span></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-29 · Results of contacting authors"</span><span class="op">,</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 16a"</span><span class="op">,</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Si se reportan los resultados de contactar autores."</span><span class="op">,</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"No aplica (ver GSRRF-28)."</span></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf30"</span><span class="op">,</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-30 · Search expiration and repetition"</span><span class="op">,</span></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 7"</span><span class="op">,</span></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Vigencia de la búsqueda y si se repite."</span><span class="op">,</span></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"Cada consulta se ejecuta en tiempo real al momento de uso, sin caché — está automáticamente actualizada a la fecha de consulta. No hay expiración fija; se recomienda re-ejecutar si pasó mucho tiempo desde el último uso."</span></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf31"</span><span class="op">,</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-31 · Search strategy justification"</span><span class="op">,</span></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 7"</span><span class="op">,</span></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Por qué se eligieron estas bases/interfaces/estrategias."</span><span class="op">,</span></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"Se prioriza GloBI por ser una base construida específicamente para registrar interacciones bióticas documentadas, con cita de origen. Crossref se usa como red de contención por su cobertura amplia y acceso público sin necesidad de clave. Se descartó OpenAlex por exigir autenticación desde 2026, incompatible con una herramienta pública sin backend propio."</span></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>    <span class="dt">id</span><span class="op">:</span> <span class="st">"gsrrf32"</span><span class="op">,</span></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"GSRRF-32 · Miscellaneous search strategy details"</span><span class="op">,</span></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>    <span class="dt">prisma</span><span class="op">:</span> <span class="st">"PRISMA: 7"</span><span class="op">,</span></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ayuda</span><span class="op">:</span> <span class="st">"Cualquier detalle no cubierto arriba."</span><span class="op">,</span></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="st">"La herramienta corre completamente en el navegador de quien la usa (WebAssembly vía shinylive/webR en versiones previas; JavaScript puro en la versión actual), sin servidor propio ni almacenamiento de las consultas realizadas."</span></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="co">// Estado editable de los 12 campos. Se actualiza directamente desde los</span></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="co">// textarea (oninput), sin pasar por un viewof — así el panel se dibuja</span></span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="co">// una sola vez y escribir no le hace perder el foco al campo.</span></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>mutable valores_gsrrf <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">fromEntries</span>(campos_gsrrf<span class="op">.</span><span class="fu">map</span>(c <span class="kw">=&gt;</span> [c<span class="op">.</span><span class="at">id</span><span class="op">,</span> c<span class="op">.</span><span class="at">default</span>]))</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;p style="font-size: 0.85em; color: #64748b;"&gt;</span></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a><span class="vs">Editá cualquier campo antes de descargar. El texto pre-cargado es un punto de partida, no una respuesta final.</span></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;`</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
 
-library(shiny)
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
 
-# Workaround para Chromium Issue 468227
-# Necesario para que la descarga de archivos funcione en shinylive
-downloadButton &lt;- function(...) {
-  tag &lt;- shiny::downloadButton(...)
-  tag$attribs$download &lt;- NULL
-  tag
-}
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="expression">
 
-# ==========================================
-# LOS 12 ÍTEMS DE "SEARCH STRATEGY" (GSRRF-21 a GSRRF-32)
-# fuente: van den Akker &amp; Peters et al. 2023, Systematic Reviews 12:170
-# ==========================================
-campos_gsrrf &lt;- list(
-  gsrrf21 = list(
-    titulo = "GSRRF-21 · Databases",
-    prisma = "PRISMA: 6",
-    ayuda = "Qué bases de datos se consultan.",
-    default = "GBIF (backbone taxonómico y validación de nombres científicos); GloBI - Global Biotic Interactions (registros de interacción documentada con cita de origen); Crossref (metadatos bibliográficos generales, usada como red de contención cuando GloBI no tiene registros para el par de especies consultado)."
-  ),
-  gsrrf22 = list(
-    titulo = "GSRRF-22 · Interfaces",
-    prisma = "PRISMA: 6",
-    ayuda = "Qué interfaz se usó para acceder a cada base.",
-    default = "Acceso directo vía API REST pública de cada base (api.gbif.org, api.globalbioticinteractions.org, api.crossref.org). No se usa una interfaz comercial intermediaria (no Ovid, no EBSCO)."
-  ),
-  gsrrf23 = list(
-    titulo = "GSRRF-23 · Grey literature",
-    prisma = "PRISMA: 6",
-    ayuda = "Estrategia para localizar literatura gris (preprints, tesis, informes no indexados).",
-    default = "No se incluye literatura gris de forma sistemática en esta etapa. GloBI agrega datasets comunitarios (p. ej. iNaturalist) que pueden incluir observaciones no publicadas formalmente en revistas indexadas."
-  ),
-  gsrrf24 = list(
-    titulo = "GSRRF-24 · Inclusion and exclusion criteria",
-    prisma = "PRISMA: 5, 13a",
-    ayuda = "Criterios que informan la búsqueda y el filtrado de resultados.",
-    default = "Se prioriza evidencia que documente explícitamente la interacción entre el par de especies consultado (registro directo en GloBI). Si no existe, se amplía a literatura que mencione a ambas especies en título o resumen (Crossref). Como última red, se acepta literatura que mencione al menos una de las dos especies, marcada explícitamente como de baja confianza."
-  ),
-  gsrrf25 = list(
-    titulo = "GSRRF-25 · Query strings",
-    prisma = "PRISMA: 7",
-    ayuda = "La consulta exacta que se ejecuta, por base de datos.",
-    default = "GloBI: sourceTaxon={especie A}&amp;targetTaxon={especie B} (y su inversa). Crossref: '{especie A} {especie B} interaction OR predation OR competition OR mutualism OR parasitism OR facilitation', con niveles de respaldo progresivamente menos restrictivos si no hay resultados. Código exacto documentado en interacciones.qmd."
-  ),
-  gsrrf26 = list(
-    titulo = "GSRRF-26 · Search validation procedure",
-    prisma = "PRISMA: 7",
-    ayuda = "Si se valida la búsqueda, y cómo.",
-    default = "No implementado de forma formal todavía. Pendiente: comparar los resultados de la app contra una búsqueda manual de control para un conjunto de pares de especies con interacción conocida."
-  ),
-  gsrrf27 = list(
-    titulo = "GSRRF-27 · Other search strategies",
-    prisma = "PRISMA: 7",
-    ayuda = "Estrategias adicionales (ascendencia/descendencia de citas, otros sistemas).",
-    default = "No implementado todavía. Pendiente evaluar estrategias de ascendencia/descendencia de citas (revisar referencias citadas por, o que citan a, las fuentes ya encontradas)."
-  ),
-  gsrrf28 = list(
-    titulo = "GSRRF-28 · Procedures to contact authors",
-    prisma = "PRISMA: 7",
-    ayuda = "Si se contacta a autores, cuándo y cómo.",
-    default = "No aplica en esta etapa: la herramienta no contacta autores directamente."
-  ),
-  gsrrf29 = list(
-    titulo = "GSRRF-29 · Results of contacting authors",
-    prisma = "PRISMA: 16a",
-    ayuda = "Si se reportan los resultados de contactar autores.",
-    default = "No aplica (ver GSRRF-28)."
-  ),
-  gsrrf30 = list(
-    titulo = "GSRRF-30 · Search expiration and repetition",
-    prisma = "PRISMA: 7",
-    ayuda = "Vigencia de la búsqueda y si se repite.",
-    default = "Cada consulta se ejecuta en tiempo real al momento de uso, sin caché — está automáticamente actualizada a la fecha de consulta. No hay expiración fija; se recomienda re-ejecutar si pasó mucho tiempo desde el último uso."
-  ),
-  gsrrf31 = list(
-    titulo = "GSRRF-31 · Search strategy justification",
-    prisma = "PRISMA: 7",
-    ayuda = "Por qué se eligieron estas bases/interfaces/estrategias.",
-    default = "Se prioriza GloBI por ser una base construida específicamente para registrar interacciones bióticas documentadas, con cita de origen. Crossref se usa como red de contención por su cobertura amplia y acceso público sin necesidad de clave. Se descartó OpenAlex por exigir autenticación desde 2026, incompatible con una herramienta pública sin backend propio."
-  ),
-  gsrrf32 = list(
-    titulo = "GSRRF-32 · Miscellaneous search strategy details",
-    prisma = "PRISMA: 7",
-    ayuda = "Cualquier detalle no cubierto arriba.",
-    default = "La herramienta corre completamente en el navegador de quien la usa (WebAssembly vía shinylive/webR), sin servidor propio ni almacenamiento de las consultas realizadas."
-  )
-)
+</div>
+</div>
+</div>
+<details class="code-fold hidden">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="236" data-source-offset="-5653"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 235;"><span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="bio-container"&gt;</span></span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>campos_gsrrf<span class="op">.</span><span class="fu">map</span>(c <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="bio-field-panel"&gt;</span></span>
+<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class="bio-field-header"&gt;</span></span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;strong&gt;</span><span class="sc">${</span>c<span class="op">.</span><span class="at">titulo</span><span class="sc">}</span><span class="vs">&lt;/strong&gt;</span></span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;span class="bio-field-badge"&gt;</span><span class="sc">${</span>c<span class="op">.</span><span class="at">prisma</span><span class="sc">}</span><span class="vs">&lt;/span&gt;</span></span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;p class="bio-field-desc"&gt;</span><span class="sc">${</span>c<span class="op">.</span><span class="at">ayuda</span><span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;textarea class="bio-field-textarea" rows="3" oninput=</span><span class="sc">${</span>e <span class="kw">=&gt;</span> { mutable valores_gsrrf <span class="op">=</span> {<span class="op">...</span>valores_gsrrf<span class="op">,</span> [c<span class="op">.</span><span class="at">id</span>]<span class="op">:</span> e<span class="op">.</span><span class="at">target</span><span class="op">.</span><span class="at">value</span>} }<span class="sc">}</span><span class="vs">&gt;</span><span class="sc">${</span>c<span class="op">.</span><span class="at">default</span><span class="sc">}</span><span class="vs">&lt;/textarea&gt;</span></span>
+<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span>)<span class="sc">}</span></span>
+<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="expression">
 
-# ==========================================
-# UI
-# ==========================================
-ui &lt;- fluidPage(
-  tags$p(style = "font-size: 0.85em; color: #64748b;",
-         "Editá cualquier campo antes de descargar. El texto pre-cargado es un punto de partida, no una respuesta final."),
+</div>
+</div>
+</div>
+<details class="code-fold hidden">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="251" data-source-offset="-6131"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 250;"><span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">generarProtocoloMD</span>(valores) {</span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fecha <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">'es-AR'</span>)</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bloques <span class="op">=</span> campos_gsrrf<span class="op">.</span><span class="fu">map</span>(c <span class="kw">=&gt;</span></span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`## </span><span class="sc">${</span>c<span class="op">.</span><span class="at">titulo</span><span class="sc">}\n\n</span><span class="vs">*</span><span class="sc">${</span>c<span class="op">.</span><span class="at">prisma</span><span class="sc">}</span><span class="vs">*</span><span class="sc">\n\n${</span>valores[c<span class="op">.</span><span class="at">id</span>]<span class="sc">}\n</span><span class="vs">`</span></span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>  )<span class="op">.</span><span class="fu">join</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`# Protocolo de búsqueda — interdomestic</span></span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a><span class="vs">Ficha generada: </span><span class="sc">${</span>fecha<span class="sc">}</span></span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a><span class="vs">Alineada con la sección "Search strategy" de la Generalized Systematic Review Registration Form (OSF/PRISMA).</span></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>bloques<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">descargarProtocolo</span>() {</span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> md <span class="op">=</span> <span class="fu">generarProtocoloMD</span>(valores_gsrrf)</span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> blob <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([md]<span class="op">,</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"text/markdown;charset=utf-8;"</span>})</span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> url <span class="op">=</span> URL<span class="op">.</span><span class="fu">createObjectURL</span>(blob)</span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> link <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"a"</span>)</span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">href</span> <span class="op">=</span> url</span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">download</span> <span class="op">=</span> <span class="vs">`interdomestic_protocolo_busqueda_</span><span class="sc">${</span><span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toISOString</span>()<span class="op">.</span><span class="fu">split</span>(<span class="st">'T'</span>)[<span class="dv">0</span>]<span class="sc">}</span><span class="vs">.md`</span></span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span> <span class="st">"none"</span></span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">appendChild</span>(link)</span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="fu">click</span>()</span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">removeChild</span>(link)</span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Revocar el blob con demora: revocarlo de inmediato es una causa</span></span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a>    <span class="co">// conocida de descargas cortadas a mitad de camino en Chromium,</span></span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a>    <span class="co">// porque .click() dispara la descarga de forma asíncrona.</span></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>    <span class="pp">setTimeout</span>(() <span class="kw">=&gt;</span> URL<span class="op">.</span><span class="fu">revokeObjectURL</span>(url)<span class="op">,</span> <span class="dv">1000</span>)</span>
+<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"descargarProtocolo: OK"</span>)</span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
+<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">"descargarProtocolo: FALLÓ -&gt;"</span><span class="op">,</span> error)</span>
+<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a>    <span class="fu">alert</span>(<span class="st">"No se pudo generar la descarga: "</span> <span class="op">+</span> error<span class="op">.</span><span class="at">message</span>)</span>
+<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb3-291"><a href="#cb3-291" aria-hidden="true" tabindex="-1"></a>viewof disparador_descarga <span class="op">=</span> {</span>
+<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"📥 Descargar protocolo (.md)"</span><span class="op">,</span> {</span>
+<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="fu">descargarProtocolo</span>()</span>
+<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"button"</span>)<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-button"</span><span class="op">,</span> <span class="st">"bio-button-generate"</span>)</span>
+<span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
+<span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
 
-  lapply(names(campos_gsrrf), function(id) {
-    campo &lt;- campos_gsrrf[[id]]
-    wellPanel(
-      style = "background: #f8fafc; border: 1px solid #e2e8f0; margin-bottom: 10px;",
-      tags$strong(campo$titulo),
-      tags$span(style = "font-size: 0.75em; color: #94a3b8; margin-left: 8px;", campo$prisma),
-      tags$p(style = "font-size: 0.8em; color: #64748b; margin: 4px 0;", campo$ayuda),
-      textAreaInput(id, NULL, value = campo$default, rows = 3, width = "100%")
-    )
-  }),
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="declaration">
 
-  downloadButton("descargar_protocolo", "Descargar protocolo (.md)", class = "btn-primary", style = "width: 100%;"),
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-7" data-nodetype="declaration">
 
-  br(), br(),
-  wellPanel(
-    style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
-    tags$strong("Fuentes y créditos:"),
-    tags$p("Estructura de campos basada en la Generalized Systematic Review Registration Form (van den Akker, Peters et al. 2023, CC BY 4.0), alineada con PRISMA 2020 y adoptada por OSF Registries. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
-    tags$div(
-      style = "display: flex; gap: 8px; flex-wrap: wrap;",
-      tags$a(href = "https://doi.org/10.1186/s13643-023-02281-7", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GSRRF (paper)"),
-      tags$a(href = "https://osf.io", target = "_blank", class = "btn btn-sm btn-outline-secondary", "OSF"),
-      tags$a(href = "https://shiny.posit.co", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Shiny"),
-      tags$a(href = "https://posit-dev.github.io/r-shinylive/", target = "_blank", class = "btn btn-sm btn-outline-secondary", "shinylive / webR"),
-      tags$a(href = "https://quarto.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Quarto")
-    )
-  )
-)
-
-# ==========================================
-# SERVIDOR
-# ==========================================
-server &lt;- function(input, output, session) {
-
-  output$descargar_protocolo &lt;- downloadHandler(
-    filename = function() paste0("interdomestic_protocolo_busqueda_", Sys.Date(), ".md"),
-    content = function(file) {
-      bloques &lt;- lapply(names(campos_gsrrf), function(id) {
-        campo &lt;- campos_gsrrf[[id]]
-        valor &lt;- input[[id]]
-        paste0("## ", campo$titulo, "\n\n*", campo$prisma, "*\n\n", valor, "\n")
-      })
-      texto &lt;- paste0(
-        "# Protocolo de búsqueda — interdomestic\n\n",
-        "Ficha generada: ", format(Sys.time(), "%Y-%m-%d %H:%M %Z"), "\n\n",
-        "Alineada con la sección \"Search strategy\" de la Generalized Systematic Review Registration Form (OSF/PRISMA).\n\n",
-        paste(bloques, collapse = "\n")
-      )
-      writeLines(texto, file)
-    }
-  )
-}
-
-shinyApp(ui, server)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<section id="fuentes-y-créditos" class="level3">
+<h3 class="anchored" data-anchor-id="fuentes-y-créditos">Fuentes y créditos</h3>
+<p>Estructura de campos basada en la Generalized Systematic Review Registration Form (van den Akker, Peters et al.&nbsp;2023, CC BY 4.0), alineada con PRISMA 2020 y adoptada por OSF Registries. Esta aplicación corre 100% en tu navegador sin servidor backend. Construida con Quarto + OJS.</p>
+<div class="bio-links-row">
+<p><a class="bio-link-btn bio-link-btn-secondary" href="https://doi.org/10.1186/s13643-023-02281-7" target="_blank">GSRRF (paper)</a> <a class="bio-link-btn bio-link-btn-secondary" href="https://osf.io" target="_blank">OSF</a> <a class="bio-link-btn bio-link-btn-secondary" href="https://quarto.org" target="_blank">Quarto</a></p>
+</div>
+<div class="metadatos-final">
+<p>Autor: M.A.Ordano Fecha de publicación: 22 de julio de 2026 Última modificación: 22 de julio de 2026 Versión: OJS (v2.0) — Reemplazo optimizado de la versión anterior con shinylive/webR alojada en ../archive/_meta-search-OSF.qmd</p>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG4vLyBMT1MgMTIgw41URU1TIERFIFwiU0VBUkNIIFNUUkFURUdZXCIgKEdTUlJGLTIxIGEgR1NSUkYtMzIpXG4vLyBmdWVudGU6IHZhbiBkZW4gQWtrZXIgJiBQZXRlcnMgZXQgYWwuIDIwMjMsIFN5c3RlbWF0aWMgUmV2aWV3cyAxMjoxNzBcbi8vID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuY2FtcG9zX2dzcnJmID0gW1xuICB7XG4gICAgaWQ6IFwiZ3NycmYyMVwiLFxuICAgIHRpdHVsbzogXCJHU1JSRi0yMSDCtyBEYXRhYmFzZXNcIixcbiAgICBwcmlzbWE6IFwiUFJJU01BOiA2XCIsXG4gICAgYXl1ZGE6IFwiUXXDqSBiYXNlcyBkZSBkYXRvcyBzZSBjb25zdWx0YW4uXCIsXG4gICAgZGVmYXVsdDogXCJHQklGIChiYWNrYm9uZSB0YXhvbsOzbWljbyB5IHZhbGlkYWNpw7NuIGRlIG5vbWJyZXMgY2llbnTDrWZpY29zKTsgR2xvQkkgLSBHbG9iYWwgQmlvdGljIEludGVyYWN0aW9ucyAocmVnaXN0cm9zIGRlIGludGVyYWNjacOzbiBkb2N1bWVudGFkYSBjb24gY2l0YSBkZSBvcmlnZW4pOyBDcm9zc3JlZiAobWV0YWRhdG9zIGJpYmxpb2dyw6FmaWNvcyBnZW5lcmFsZXMsIHVzYWRhIGNvbW8gcmVkIGRlIGNvbnRlbmNpw7NuIGN1YW5kbyBHbG9CSSBubyB0aWVuZSByZWdpc3Ryb3MgcGFyYSBlbCBwYXIgZGUgZXNwZWNpZXMgY29uc3VsdGFkbykuXCJcbiAgfSxcbiAge1xuICAgIGlkOiBcImdzcnJmMjJcIixcbiAgICB0aXR1bG86IFwiR1NSUkYtMjIgwrcgSW50ZXJmYWNlc1wiLFxuICAgIHByaXNtYTogXCJQUklTTUE6IDZcIixcbiAgICBheXVkYTogXCJRdcOpIGludGVyZmF6IHNlIHVzw7MgcGFyYSBhY2NlZGVyIGEgY2FkYSBiYXNlLlwiLFxuICAgIGRlZmF1bHQ6IFwiQWNjZXNvIGRpcmVjdG8gdsOtYSBBUEkgUkVTVCBww7pibGljYSBkZSBjYWRhIGJhc2UgKGFwaS5nYmlmLm9yZywgYXBpLmdsb2JhbGJpb3RpY2ludGVyYWN0aW9ucy5vcmcsIGFwaS5jcm9zc3JlZi5vcmcpLiBObyBzZSB1c2EgdW5hIGludGVyZmF6IGNvbWVyY2lhbCBpbnRlcm1lZGlhcmlhIChubyBPdmlkLCBubyBFQlNDTykuXCJcbiAgfSxcbiAge1xuICAgIGlkOiBcImdzcnJmMjNcIixcbiAgICB0aXR1bG86IFwiR1NSUkYtMjMgwrcgR3JleSBsaXRlcmF0dXJlXCIsXG4gICAgcHJpc21hOiBcIlBSSVNNQTogNlwiLFxuICAgIGF5dWRhOiBcIkVzdHJhdGVnaWEgcGFyYSBsb2NhbGl6YXIgbGl0ZXJhdHVyYSBncmlzIChwcmVwcmludHMsIHRlc2lzLCBpbmZvcm1lcyBubyBpbmRleGFkb3MpLlwiLFxuICAgIGRlZmF1bHQ6IFwiTm8gc2UgaW5jbHV5ZSBsaXRlcmF0dXJhIGdyaXMgZGUgZm9ybWEgc2lzdGVtw6F0aWNhIGVuIGVzdGEgZXRhcGEuIEdsb0JJIGFncmVnYSBkYXRhc2V0cyBjb211bml0YXJpb3MgKHAuIGVqLiBpTmF0dXJhbGlzdCkgcXVlIHB1ZWRlbiBpbmNsdWlyIG9ic2VydmFjaW9uZXMgbm8gcHVibGljYWRhcyBmb3JtYWxtZW50ZSBlbiByZXZpc3RhcyBpbmRleGFkYXMuXCJcbiAgfSxcbiAge1xuICAgIGlkOiBcImdzcnJmMjRcIixcbiAgICB0aXR1bG86IFwiR1NSUkYtMjQgwrcgSW5jbHVzaW9uIGFuZCBleGNsdXNpb24gY3JpdGVyaWFcIixcbiAgICBwcmlzbWE6IFwiUFJJU01BOiA1LCAxM2FcIixcbiAgICBheXVkYTogXCJDcml0ZXJpb3MgcXVlIGluZm9ybWFuIGxhIGLDunNxdWVkYSB5IGVsIGZpbHRyYWRvIGRlIHJlc3VsdGFkb3MuXCIsXG4gICAgZGVmYXVsdDogXCJTZSBwcmlvcml6YSBldmlkZW5jaWEgcXVlIGRvY3VtZW50ZSBleHBsw61jaXRhbWVudGUgbGEgaW50ZXJhY2Npw7NuIGVudHJlIGVsIHBhciBkZSBlc3BlY2llcyBjb25zdWx0YWRvIChyZWdpc3RybyBkaXJlY3RvIGVuIEdsb0JJKS4gU2kgbm8gZXhpc3RlLCBzZSBhbXBsw61hIGEgbGl0ZXJhdHVyYSBxdWUgbWVuY2lvbmUgYSBhbWJhcyBlc3BlY2llcyBlbiB0w610dWxvIG8gcmVzdW1lbiAoQ3Jvc3NyZWYpLiBDb21vIMO6bHRpbWEgcmVkLCBzZSBhY2VwdGEgbGl0ZXJhdHVyYSBxdWUgbWVuY2lvbmUgYWwgbWVub3MgdW5hIGRlIGxhcyBkb3MgZXNwZWNpZXMsIG1hcmNhZGEgZXhwbMOtY2l0YW1lbnRlIGNvbW8gZGUgYmFqYSBjb25maWFuemEuXCJcbiAgfSxcbiAge1xuICAgIGlkOiBcImdzcnJmMjVcIixcbiAgICB0aXR1bG86IFwiR1NSUkYtMjUgwrcgUXVlcnkgc3RyaW5nc1wiLFxuICAgIHByaXNtYTogXCJQUklTTUE6IDdcIixcbiAgICBheXVkYTogXCJMYSBjb25zdWx0YSBleGFjdGEgcXVlIHNlIGVqZWN1dGEsIHBvciBiYXNlIGRlIGRhdG9zLlwiLFxuICAgIGRlZmF1bHQ6IFwiR2xvQkk6IHNvdXJjZVRheG9uPXtlc3BlY2llIEF9JnRhcmdldFRheG9uPXtlc3BlY2llIEJ9ICh5IHN1IGludmVyc2EpLiBDcm9zc3JlZjogJ3tlc3BlY2llIEF9IHtlc3BlY2llIEJ9IGludGVyYWN0aW9uIE9SIHByZWRhdGlvbiBPUiBjb21wZXRpdGlvbiBPUiBtdXR1YWxpc20gT1IgcGFyYXNpdGlzbSBPUiBmYWNpbGl0YXRpb24nLCBjb24gbml2ZWxlcyBkZSByZXNwYWxkbyBwcm9ncmVzaXZhbWVudGUgbWVub3MgcmVzdHJpY3Rpdm9zIHNpIG5vIGhheSByZXN1bHRhZG9zLiBDw7NkaWdvIGV4YWN0byBkb2N1bWVudGFkbyBlbiBpbnRlcmFjY2lvbmVzLnFtZC5cIlxuICB9LFxuICB7XG4gICAgaWQ6IFwiZ3NycmYyNlwiLFxuICAgIHRpdHVsbzogXCJHU1JSRi0yNiDCtyBTZWFyY2ggdmFsaWRhdGlvbiBwcm9jZWR1cmVcIixcbiAgICBwcmlzbWE6IFwiUFJJU01BOiA3XCIsXG4gICAgYXl1ZGE6IFwiU2kgc2UgdmFsaWRhIGxhIGLDunNxdWVkYSwgeSBjw7Ntby5cIixcbiAgICBkZWZhdWx0OiBcIk5vIGltcGxlbWVudGFkbyBkZSBmb3JtYSBmb3JtYWwgdG9kYXbDrWEuIFBlbmRpZW50ZTogY29tcGFyYXIgbG9zIHJlc3VsdGFkb3MgZGUgbGEgYXBwIGNvbnRyYSB1bmEgYsO6c3F1ZWRhIG1hbnVhbCBkZSBjb250cm9sIHBhcmEgdW4gY29uanVudG8gZGUgcGFyZXMgZGUgZXNwZWNpZXMgY29uIGludGVyYWNjacOzbiBjb25vY2lkYS5cIlxuICB9LFxuICB7XG4gICAgaWQ6IFwiZ3NycmYyN1wiLFxuICAgIHRpdHVsbzogXCJHU1JSRi0yNyDCtyBPdGhlciBzZWFyY2ggc3RyYXRlZ2llc1wiLFxuICAgIHByaXNtYTogXCJQUklTTUE6IDdcIixcbiAgICBheXVkYTogXCJFc3RyYXRlZ2lhcyBhZGljaW9uYWxlcyAoYXNjZW5kZW5jaWEvZGVzY2VuZGVuY2lhIGRlIGNpdGFzLCBvdHJvcyBzaXN0ZW1hcykuXCIsXG4gICAgZGVmYXVsdDogXCJObyBpbXBsZW1lbnRhZG8gdG9kYXbDrWEuIFBlbmRpZW50ZSBldmFsdWFyIGVzdHJhdGVnaWFzIGRlIGFzY2VuZGVuY2lhL2Rlc2NlbmRlbmNpYSBkZSBjaXRhcyAocmV2aXNhciByZWZlcmVuY2lhcyBjaXRhZGFzIHBvciwgbyBxdWUgY2l0YW4gYSwgbGFzIGZ1ZW50ZXMgeWEgZW5jb250cmFkYXMpLlwiXG4gIH0sXG4gIHtcbiAgICBpZDogXCJnc3JyZjI4XCIsXG4gICAgdGl0dWxvOiBcIkdTUlJGLTI4IMK3IFByb2NlZHVyZXMgdG8gY29udGFjdCBhdXRob3JzXCIsXG4gICAgcHJpc21hOiBcIlBSSVNNQTogN1wiLFxuICAgIGF5dWRhOiBcIlNpIHNlIGNvbnRhY3RhIGEgYXV0b3JlcywgY3XDoW5kbyB5IGPDs21vLlwiLFxuICAgIGRlZmF1bHQ6IFwiTm8gYXBsaWNhIGVuIGVzdGEgZXRhcGE6IGxhIGhlcnJhbWllbnRhIG5vIGNvbnRhY3RhIGF1dG9yZXMgZGlyZWN0YW1lbnRlLlwiXG4gIH0sXG4gIHtcbiAgICBpZDogXCJnc3JyZjI5XCIsXG4gICAgdGl0dWxvOiBcIkdTUlJGLTI5IMK3IFJlc3VsdHMgb2YgY29udGFjdGluZyBhdXRob3JzXCIsXG4gICAgcHJpc21hOiBcIlBSSVNNQTogMTZhXCIsXG4gICAgYXl1ZGE6IFwiU2kgc2UgcmVwb3J0YW4gbG9zIHJlc3VsdGFkb3MgZGUgY29udGFjdGFyIGF1dG9yZXMuXCIsXG4gICAgZGVmYXVsdDogXCJObyBhcGxpY2EgKHZlciBHU1JSRi0yOCkuXCJcbiAgfSxcbiAge1xuICAgIGlkOiBcImdzcnJmMzBcIixcbiAgICB0aXR1bG86IFwiR1NSUkYtMzAgwrcgU2VhcmNoIGV4cGlyYXRpb24gYW5kIHJlcGV0aXRpb25cIixcbiAgICBwcmlzbWE6IFwiUFJJU01BOiA3XCIsXG4gICAgYXl1ZGE6IFwiVmlnZW5jaWEgZGUgbGEgYsO6c3F1ZWRhIHkgc2kgc2UgcmVwaXRlLlwiLFxuICAgIGRlZmF1bHQ6IFwiQ2FkYSBjb25zdWx0YSBzZSBlamVjdXRhIGVuIHRpZW1wbyByZWFsIGFsIG1vbWVudG8gZGUgdXNvLCBzaW4gY2FjaMOpIOKAlCBlc3TDoSBhdXRvbcOhdGljYW1lbnRlIGFjdHVhbGl6YWRhIGEgbGEgZmVjaGEgZGUgY29uc3VsdGEuIE5vIGhheSBleHBpcmFjacOzbiBmaWphOyBzZSByZWNvbWllbmRhIHJlLWVqZWN1dGFyIHNpIHBhc8OzIG11Y2hvIHRpZW1wbyBkZXNkZSBlbCDDumx0aW1vIHVzby5cIlxuICB9LFxuICB7XG4gICAgaWQ6IFwiZ3NycmYzMVwiLFxuICAgIHRpdHVsbzogXCJHU1JSRi0zMSDCtyBTZWFyY2ggc3RyYXRlZ3kganVzdGlmaWNhdGlvblwiLFxuICAgIHByaXNtYTogXCJQUklTTUE6IDdcIixcbiAgICBheXVkYTogXCJQb3IgcXXDqSBzZSBlbGlnaWVyb24gZXN0YXMgYmFzZXMvaW50ZXJmYWNlcy9lc3RyYXRlZ2lhcy5cIixcbiAgICBkZWZhdWx0OiBcIlNlIHByaW9yaXphIEdsb0JJIHBvciBzZXIgdW5hIGJhc2UgY29uc3RydWlkYSBlc3BlY8OtZmljYW1lbnRlIHBhcmEgcmVnaXN0cmFyIGludGVyYWNjaW9uZXMgYmnDs3RpY2FzIGRvY3VtZW50YWRhcywgY29uIGNpdGEgZGUgb3JpZ2VuLiBDcm9zc3JlZiBzZSB1c2EgY29tbyByZWQgZGUgY29udGVuY2nDs24gcG9yIHN1IGNvYmVydHVyYSBhbXBsaWEgeSBhY2Nlc28gcMO6YmxpY28gc2luIG5lY2VzaWRhZCBkZSBjbGF2ZS4gU2UgZGVzY2FydMOzIE9wZW5BbGV4IHBvciBleGlnaXIgYXV0ZW50aWNhY2nDs24gZGVzZGUgMjAyNiwgaW5jb21wYXRpYmxlIGNvbiB1bmEgaGVycmFtaWVudGEgcMO6YmxpY2Egc2luIGJhY2tlbmQgcHJvcGlvLlwiXG4gIH0sXG4gIHtcbiAgICBpZDogXCJnc3JyZjMyXCIsXG4gICAgdGl0dWxvOiBcIkdTUlJGLTMyIMK3IE1pc2NlbGxhbmVvdXMgc2VhcmNoIHN0cmF0ZWd5IGRldGFpbHNcIixcbiAgICBwcmlzbWE6IFwiUFJJU01BOiA3XCIsXG4gICAgYXl1ZGE6IFwiQ3VhbHF1aWVyIGRldGFsbGUgbm8gY3ViaWVydG8gYXJyaWJhLlwiLFxuICAgIGRlZmF1bHQ6IFwiTGEgaGVycmFtaWVudGEgY29ycmUgY29tcGxldGFtZW50ZSBlbiBlbCBuYXZlZ2Fkb3IgZGUgcXVpZW4gbGEgdXNhIChXZWJBc3NlbWJseSB2w61hIHNoaW55bGl2ZS93ZWJSIGVuIHZlcnNpb25lcyBwcmV2aWFzOyBKYXZhU2NyaXB0IHB1cm8gZW4gbGEgdmVyc2nDs24gYWN0dWFsKSwgc2luIHNlcnZpZG9yIHByb3BpbyBuaSBhbG1hY2VuYW1pZW50byBkZSBsYXMgY29uc3VsdGFzIHJlYWxpemFkYXMuXCJcbiAgfVxuXVxuXG4vL3wgb3V0cHV0OiBmYWxzZVxuXG4vLyBFc3RhZG8gZWRpdGFibGUgZGUgbG9zIDEyIGNhbXBvcy4gU2UgYWN0dWFsaXphIGRpcmVjdGFtZW50ZSBkZXNkZSBsb3Ncbi8vIHRleHRhcmVhIChvbmlucHV0KSwgc2luIHBhc2FyIHBvciB1biB2aWV3b2Yg4oCUIGFzw60gZWwgcGFuZWwgc2UgZGlidWphXG4vLyB1bmEgc29sYSB2ZXogeSBlc2NyaWJpciBubyBsZSBoYWNlIHBlcmRlciBlbCBmb2NvIGFsIGNhbXBvLlxubXV0YWJsZSB2YWxvcmVzX2dzcnJmID0gT2JqZWN0LmZyb21FbnRyaWVzKGNhbXBvc19nc3JyZi5tYXAoYyA9PiBbYy5pZCwgYy5kZWZhdWx0XSkpXG5cbi8vfCBlY2hvOiBmYWxzZVxuXG5odG1sYDxwIHN0eWxlPVwiZm9udC1zaXplOiAwLjg1ZW07IGNvbG9yOiAjNjQ3NDhiO1wiPlxuRWRpdMOhIGN1YWxxdWllciBjYW1wbyBhbnRlcyBkZSBkZXNjYXJnYXIuIEVsIHRleHRvIHByZS1jYXJnYWRvIGVzIHVuIHB1bnRvIGRlIHBhcnRpZGEsIG5vIHVuYSByZXNwdWVzdGEgZmluYWwuXG48L3A+YFxuXG4vL3wgZWNobzogZmFsc2VcblxuaHRtbGA8ZGl2IGNsYXNzPVwiYmlvLWNvbnRhaW5lclwiPlxuJHtjYW1wb3NfZ3NycmYubWFwKGMgPT4gaHRtbGBcbiAgPGRpdiBjbGFzcz1cImJpby1maWVsZC1wYW5lbFwiPlxuICAgIDxkaXYgY2xhc3M9XCJiaW8tZmllbGQtaGVhZGVyXCI+XG4gICAgICA8c3Ryb25nPiR7Yy50aXR1bG99PC9zdHJvbmc+XG4gICAgICA8c3BhbiBjbGFzcz1cImJpby1maWVsZC1iYWRnZVwiPiR7Yy5wcmlzbWF9PC9zcGFuPlxuICAgIDwvZGl2PlxuICAgIDxwIGNsYXNzPVwiYmlvLWZpZWxkLWRlc2NcIj4ke2MuYXl1ZGF9PC9wPlxuICAgIDx0ZXh0YXJlYSBjbGFzcz1cImJpby1maWVsZC10ZXh0YXJlYVwiIHJvd3M9XCIzXCIgb25pbnB1dD0ke2UgPT4geyBtdXRhYmxlIHZhbG9yZXNfZ3NycmYgPSB7Li4udmFsb3Jlc19nc3JyZiwgW2MuaWRdOiBlLnRhcmdldC52YWx1ZX0gfX0+JHtjLmRlZmF1bHR9PC90ZXh0YXJlYT5cbiAgPC9kaXY+XG5gKX1cbjwvZGl2PmBcblxuLy98IG91dHB1dDogZmFsc2VcblxuZnVuY3Rpb24gZ2VuZXJhclByb3RvY29sb01EKHZhbG9yZXMpIHtcbiAgY29uc3QgZmVjaGEgPSBuZXcgRGF0ZSgpLnRvTG9jYWxlU3RyaW5nKCdlcy1BUicpXG4gIGNvbnN0IGJsb3F1ZXMgPSBjYW1wb3NfZ3NycmYubWFwKGMgPT5cbiAgICBgIyMgJHtjLnRpdHVsb31cXG5cXG4qJHtjLnByaXNtYX0qXFxuXFxuJHt2YWxvcmVzW2MuaWRdfVxcbmBcbiAgKS5qb2luKFwiXFxuXCIpXG4gIHJldHVybiBgIyBQcm90b2NvbG8gZGUgYsO6c3F1ZWRhIOKAlCBpbnRlcmRvbWVzdGljXG5cbkZpY2hhIGdlbmVyYWRhOiAke2ZlY2hhfVxuXG5BbGluZWFkYSBjb24gbGEgc2VjY2nDs24gXCJTZWFyY2ggc3RyYXRlZ3lcIiBkZSBsYSBHZW5lcmFsaXplZCBTeXN0ZW1hdGljIFJldmlldyBSZWdpc3RyYXRpb24gRm9ybSAoT1NGL1BSSVNNQSkuXG5cbiR7YmxvcXVlc31gXG59XG5cbi8vfCBvdXRwdXQ6IGZhbHNlXG5cbmZ1bmN0aW9uIGRlc2NhcmdhclByb3RvY29sbygpIHtcbiAgdHJ5IHtcbiAgICBjb25zdCBtZCA9IGdlbmVyYXJQcm90b2NvbG9NRCh2YWxvcmVzX2dzcnJmKVxuICAgIGNvbnN0IGJsb2IgPSBuZXcgQmxvYihbbWRdLCB7dHlwZTogXCJ0ZXh0L21hcmtkb3duO2NoYXJzZXQ9dXRmLTg7XCJ9KVxuICAgIGNvbnN0IHVybCA9IFVSTC5jcmVhdGVPYmplY3RVUkwoYmxvYilcbiAgICBjb25zdCBsaW5rID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImFcIilcbiAgICBsaW5rLmhyZWYgPSB1cmxcbiAgICBsaW5rLmRvd25sb2FkID0gYGludGVyZG9tZXN0aWNfcHJvdG9jb2xvX2J1c3F1ZWRhXyR7bmV3IERhdGUoKS50b0lTT1N0cmluZygpLnNwbGl0KCdUJylbMF19Lm1kYFxuICAgIGxpbmsuc3R5bGUuZGlzcGxheSA9IFwibm9uZVwiXG4gICAgZG9jdW1lbnQuYm9keS5hcHBlbmRDaGlsZChsaW5rKVxuICAgIGxpbmsuY2xpY2soKVxuICAgIGRvY3VtZW50LmJvZHkucmVtb3ZlQ2hpbGQobGluaylcbiAgICAvLyBSZXZvY2FyIGVsIGJsb2IgY29uIGRlbW9yYTogcmV2b2NhcmxvIGRlIGlubWVkaWF0byBlcyB1bmEgY2F1c2FcbiAgICAvLyBjb25vY2lkYSBkZSBkZXNjYXJnYXMgY29ydGFkYXMgYSBtaXRhZCBkZSBjYW1pbm8gZW4gQ2hyb21pdW0sXG4gICAgLy8gcG9ycXVlIC5jbGljaygpIGRpc3BhcmEgbGEgZGVzY2FyZ2EgZGUgZm9ybWEgYXPDrW5jcm9uYS5cbiAgICBzZXRUaW1lb3V0KCgpID0+IFVSTC5yZXZva2VPYmplY3RVUkwodXJsKSwgMTAwMClcbiAgICBjb25zb2xlLmxvZyhcImRlc2NhcmdhclByb3RvY29sbzogT0tcIilcbiAgfSBjYXRjaCAoZXJyb3IpIHtcbiAgICBjb25zb2xlLmVycm9yKFwiZGVzY2FyZ2FyUHJvdG9jb2xvOiBGQUxMw5MgLT5cIiwgZXJyb3IpXG4gICAgYWxlcnQoXCJObyBzZSBwdWRvIGdlbmVyYXIgbGEgZGVzY2FyZ2E6IFwiICsgZXJyb3IubWVzc2FnZSlcbiAgfVxufVxuXG4vL3wgZWNobzogZmFsc2VcbnZpZXdvZiBkaXNwYXJhZG9yX2Rlc2NhcmdhID0ge1xuICBjb25zdCBmb3JtID0gSW5wdXRzLmJ1dHRvbihcIvCfk6UgRGVzY2FyZ2FyIHByb3RvY29sbyAoLm1kKVwiLCB7XG4gICAgdmFsdWU6IG51bGwsXG4gICAgcmVkdWNlOiAoKSA9PiBkZXNjYXJnYXJQcm90b2NvbG8oKVxuICB9KVxuICBmb3JtLnF1ZXJ5U2VsZWN0b3IoXCJidXR0b25cIikuY2xhc3NMaXN0LmFkZChcImJpby1idXR0b25cIiwgXCJiaW8tYnV0dG9uLWdlbmVyYXRlXCIpXG4gIHJldHVybiBmb3JtXG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2Rpc3BhcmFkb3JfZGVzY2FyZ2EnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../fuente-proyecto";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

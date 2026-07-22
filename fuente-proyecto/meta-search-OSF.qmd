@@ -1,179 +1,316 @@
 ---
 title: "Meta-análisis"
-subtitle: "Ficha de protocolo de búsqueda (GSRRF / OSF)"
+subtitle: "Ficha de protocolo de búsqueda (GSRRF / OSF / OJS) - v2.0"
+date: 2026-07-22
+author: "M.A.Ordano"
+date-modified: 2026-07-22
 format:
   html:
-    resources:
-      - "*-shinylive-app/*"
+    grid:
+      sidebar-width: 250px
+    include-in-header:
+      - text: |
+          <style>
+          /* Oculta el bloque de autor y fecha en el encabezado superior */
+          .quarto-title-meta {
+            display: none !important;
+          }
+          /* Estilo personalizado y discreto para los metadatos del final */
+          .metadatos-final {
+            font-size: 0.55em;
+            color: #777777;
+            line-height: 1.4;
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee;
+            padding-top: 15px;
+          }
+          /* Estilos para la interfaz */
+          .bio-container {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          }
+          .bio-button {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s;
+          }
+          .bio-button:hover {
+            background: #f3f4f6;
+          }
+          .bio-button-generate {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+            width: 100%;
+          }
+          .bio-button-generate:hover {
+            background: #047857;
+          }
+          .bio-links-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 8px 0;
+          }
+          .bio-link-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            text-decoration: none;
+            border: 1px solid #ccc;
+          }
+          .bio-link-btn-secondary {
+            background: white;
+            color: #374151 !important;
+            border-color: #ccc;
+          }
+          /* Panel por campo GSRRF (equivalente al wellPanel de la versión shiny) */
+          .bio-field-panel {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 10px;
+          }
+          .bio-field-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+          }
+          .bio-field-badge {
+            font-size: 0.75em;
+            color: #94a3b8;
+          }
+          .bio-field-desc {
+            font-size: 0.8em;
+            color: #64748b;
+            margin: 4px 0;
+          }
+          .bio-field-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 0.9em;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            resize: vertical;
+          }
+          </style>
 ---
 
-<!-- Script de aislamiento cross-origin: habilita SharedArrayBuffer/webR en GitHub Pages -->
-<script src="../coi-serviceworker.js"></script>
-
 ::: {.callout-note appearance="simple" icon=false}
-⏳ **Primera carga:** el entorno estadístico (R) se descarga y arranca completo dentro de tu navegador — esta ficha es liviana (solo `shiny`), así que debería tardar menos que las otras apps del sitio.
+⚡ **Tiempo de carga:** esta ficha corre 100% en tu navegador con OJS (JavaScript), sin backend de R/Shiny. La carga es prácticamente instantánea.
 :::
 
 ::: {.callout-tip collapse="true" title="💡 Qué es esta ficha, y qué no es"}
-No es un buscador en vivo (para eso está **interacciones.qmd**) — es un **instrumento de documentación de protocolo**. Cubre los 12 ítems de la sección "Search strategy" de la [Generalized Systematic Review Registration Form (GSRRF)](https://doi.org/10.1186/s13643-023-02281-7) de OSF, alineada con PRISMA. Los campos vienen pre-completados con un borrador honesto de cómo funciona hoy el motor de búsqueda del proyecto — editalos, corregilos, o marcá "no aplica" donde corresponda; esa es una respuesta válida según las propias instrucciones del formulario.
+No es un buscador en vivo (para eso está **[Interacciones Bióticas](../appendix/interacciones.html)**) — es un **instrumento de documentación de protocolo**. Cubre los 12 ítems de la sección "Search strategy" de la [Generalized Systematic Review Registration Form (GSRRF)](https://doi.org/10.1186/s13643-023-02281-7) de OSF, alineada con PRISMA. Los campos vienen pre-completados con un borrador honesto de cómo funciona hoy el motor de búsqueda del proyecto — editalos, corregilos, o marcá "no aplica" donde corresponda; esa es una respuesta válida según las propias instrucciones del formulario.
 
 Las secciones de Screening, Extraction, y Synthesis del GSRRF (33 ítems restantes) quedan para una etapa posterior del proyecto, cuando haya una revisión sistemática real en curso — documentar solo lo que existe hoy, sin inventar procedimientos que todavía no aplican.
 :::
 
-A continuación, el formulario de protocolo, ejecutado localmente en su navegador:
+::: {.callout-note appearance="minimal" icon=true}
+## Sobre la ubicación de esta ficha
 
-```{shinylive-r}
-#| standalone: true
-#| viewerHeight: 900
+Esta ficha vive en **Fuente de proyecto** porque, a futuro, reflejará la búsqueda tal como quede definida en el propio registro OSF del proyecto macro — compartiendo desde ya la misma membrana digital que el resto de los dispositivos de interdomestic (ver **[Dispositivos de Interacción](devices.html)**). Todavía falta la conceptualización y la complementación con los otros componentes del proyecto; por ahora, esta es una ficha editable y descargable, no una integración automática con OSF.
+:::
 
-library(shiny)
+A continuación, la ficha de protocolo, editable en tu navegador:
 
-# Workaround para Chromium Issue 468227
-# Necesario para que la descarga de archivos funcione en shinylive
-downloadButton <- function(...) {
-  tag <- shiny::downloadButton(...)
-  tag$attribs$download <- NULL
-  tag
+```{ojs}
+//| echo: false
+
+// ============================================================
+// LOS 12 ÍTEMS DE "SEARCH STRATEGY" (GSRRF-21 a GSRRF-32)
+// fuente: van den Akker & Peters et al. 2023, Systematic Reviews 12:170
+// ============================================================
+campos_gsrrf = [
+  {
+    id: "gsrrf21",
+    titulo: "GSRRF-21 · Databases",
+    prisma: "PRISMA: 6",
+    ayuda: "Qué bases de datos se consultan.",
+    default: "GBIF (backbone taxonómico y validación de nombres científicos); GloBI - Global Biotic Interactions (registros de interacción documentada con cita de origen); Crossref (metadatos bibliográficos generales, usada como red de contención cuando GloBI no tiene registros para el par de especies consultado)."
+  },
+  {
+    id: "gsrrf22",
+    titulo: "GSRRF-22 · Interfaces",
+    prisma: "PRISMA: 6",
+    ayuda: "Qué interfaz se usó para acceder a cada base.",
+    default: "Acceso directo vía API REST pública de cada base (api.gbif.org, api.globalbioticinteractions.org, api.crossref.org). No se usa una interfaz comercial intermediaria (no Ovid, no EBSCO)."
+  },
+  {
+    id: "gsrrf23",
+    titulo: "GSRRF-23 · Grey literature",
+    prisma: "PRISMA: 6",
+    ayuda: "Estrategia para localizar literatura gris (preprints, tesis, informes no indexados).",
+    default: "No se incluye literatura gris de forma sistemática en esta etapa. GloBI agrega datasets comunitarios (p. ej. iNaturalist) que pueden incluir observaciones no publicadas formalmente en revistas indexadas."
+  },
+  {
+    id: "gsrrf24",
+    titulo: "GSRRF-24 · Inclusion and exclusion criteria",
+    prisma: "PRISMA: 5, 13a",
+    ayuda: "Criterios que informan la búsqueda y el filtrado de resultados.",
+    default: "Se prioriza evidencia que documente explícitamente la interacción entre el par de especies consultado (registro directo en GloBI). Si no existe, se amplía a literatura que mencione a ambas especies en título o resumen (Crossref). Como última red, se acepta literatura que mencione al menos una de las dos especies, marcada explícitamente como de baja confianza."
+  },
+  {
+    id: "gsrrf25",
+    titulo: "GSRRF-25 · Query strings",
+    prisma: "PRISMA: 7",
+    ayuda: "La consulta exacta que se ejecuta, por base de datos.",
+    default: "GloBI: sourceTaxon={especie A}&targetTaxon={especie B} (y su inversa). Crossref: '{especie A} {especie B} interaction OR predation OR competition OR mutualism OR parasitism OR facilitation', con niveles de respaldo progresivamente menos restrictivos si no hay resultados. Código exacto documentado en interacciones.qmd."
+  },
+  {
+    id: "gsrrf26",
+    titulo: "GSRRF-26 · Search validation procedure",
+    prisma: "PRISMA: 7",
+    ayuda: "Si se valida la búsqueda, y cómo.",
+    default: "No implementado de forma formal todavía. Pendiente: comparar los resultados de la app contra una búsqueda manual de control para un conjunto de pares de especies con interacción conocida."
+  },
+  {
+    id: "gsrrf27",
+    titulo: "GSRRF-27 · Other search strategies",
+    prisma: "PRISMA: 7",
+    ayuda: "Estrategias adicionales (ascendencia/descendencia de citas, otros sistemas).",
+    default: "No implementado todavía. Pendiente evaluar estrategias de ascendencia/descendencia de citas (revisar referencias citadas por, o que citan a, las fuentes ya encontradas)."
+  },
+  {
+    id: "gsrrf28",
+    titulo: "GSRRF-28 · Procedures to contact authors",
+    prisma: "PRISMA: 7",
+    ayuda: "Si se contacta a autores, cuándo y cómo.",
+    default: "No aplica en esta etapa: la herramienta no contacta autores directamente."
+  },
+  {
+    id: "gsrrf29",
+    titulo: "GSRRF-29 · Results of contacting authors",
+    prisma: "PRISMA: 16a",
+    ayuda: "Si se reportan los resultados de contactar autores.",
+    default: "No aplica (ver GSRRF-28)."
+  },
+  {
+    id: "gsrrf30",
+    titulo: "GSRRF-30 · Search expiration and repetition",
+    prisma: "PRISMA: 7",
+    ayuda: "Vigencia de la búsqueda y si se repite.",
+    default: "Cada consulta se ejecuta en tiempo real al momento de uso, sin caché — está automáticamente actualizada a la fecha de consulta. No hay expiración fija; se recomienda re-ejecutar si pasó mucho tiempo desde el último uso."
+  },
+  {
+    id: "gsrrf31",
+    titulo: "GSRRF-31 · Search strategy justification",
+    prisma: "PRISMA: 7",
+    ayuda: "Por qué se eligieron estas bases/interfaces/estrategias.",
+    default: "Se prioriza GloBI por ser una base construida específicamente para registrar interacciones bióticas documentadas, con cita de origen. Crossref se usa como red de contención por su cobertura amplia y acceso público sin necesidad de clave. Se descartó OpenAlex por exigir autenticación desde 2026, incompatible con una herramienta pública sin backend propio."
+  },
+  {
+    id: "gsrrf32",
+    titulo: "GSRRF-32 · Miscellaneous search strategy details",
+    prisma: "PRISMA: 7",
+    ayuda: "Cualquier detalle no cubierto arriba.",
+    default: "La herramienta corre completamente en el navegador de quien la usa (WebAssembly vía shinylive/webR en versiones previas; JavaScript puro en la versión actual), sin servidor propio ni almacenamiento de las consultas realizadas."
+  }
+]
+
+//| output: false
+
+// Estado editable de los 12 campos. Se actualiza directamente desde los
+// textarea (oninput), sin pasar por un viewof — así el panel se dibuja
+// una sola vez y escribir no le hace perder el foco al campo.
+mutable valores_gsrrf = Object.fromEntries(campos_gsrrf.map(c => [c.id, c.default]))
+
+//| echo: false
+
+html`<p style="font-size: 0.85em; color: #64748b;">
+Editá cualquier campo antes de descargar. El texto pre-cargado es un punto de partida, no una respuesta final.
+</p>`
+
+//| echo: false
+
+html`<div class="bio-container">
+${campos_gsrrf.map(c => html`
+  <div class="bio-field-panel">
+    <div class="bio-field-header">
+      <strong>${c.titulo}</strong>
+      <span class="bio-field-badge">${c.prisma}</span>
+    </div>
+    <p class="bio-field-desc">${c.ayuda}</p>
+    <textarea class="bio-field-textarea" rows="3" oninput=${e => { mutable valores_gsrrf = {...valores_gsrrf, [c.id]: e.target.value} }}>${c.default}</textarea>
+  </div>
+`)}
+</div>`
+
+//| output: false
+
+function generarProtocoloMD(valores) {
+  const fecha = new Date().toLocaleString('es-AR')
+  const bloques = campos_gsrrf.map(c =>
+    `## ${c.titulo}\n\n*${c.prisma}*\n\n${valores[c.id]}\n`
+  ).join("\n")
+  return `# Protocolo de búsqueda — interdomestic
+
+Ficha generada: ${fecha}
+
+Alineada con la sección "Search strategy" de la Generalized Systematic Review Registration Form (OSF/PRISMA).
+
+${bloques}`
 }
 
-# ==========================================
-# LOS 12 ÍTEMS DE "SEARCH STRATEGY" (GSRRF-21 a GSRRF-32)
-# fuente: van den Akker & Peters et al. 2023, Systematic Reviews 12:170
-# ==========================================
-campos_gsrrf <- list(
-  gsrrf21 = list(
-    titulo = "GSRRF-21 · Databases",
-    prisma = "PRISMA: 6",
-    ayuda = "Qué bases de datos se consultan.",
-    default = "GBIF (backbone taxonómico y validación de nombres científicos); GloBI - Global Biotic Interactions (registros de interacción documentada con cita de origen); Crossref (metadatos bibliográficos generales, usada como red de contención cuando GloBI no tiene registros para el par de especies consultado)."
-  ),
-  gsrrf22 = list(
-    titulo = "GSRRF-22 · Interfaces",
-    prisma = "PRISMA: 6",
-    ayuda = "Qué interfaz se usó para acceder a cada base.",
-    default = "Acceso directo vía API REST pública de cada base (api.gbif.org, api.globalbioticinteractions.org, api.crossref.org). No se usa una interfaz comercial intermediaria (no Ovid, no EBSCO)."
-  ),
-  gsrrf23 = list(
-    titulo = "GSRRF-23 · Grey literature",
-    prisma = "PRISMA: 6",
-    ayuda = "Estrategia para localizar literatura gris (preprints, tesis, informes no indexados).",
-    default = "No se incluye literatura gris de forma sistemática en esta etapa. GloBI agrega datasets comunitarios (p. ej. iNaturalist) que pueden incluir observaciones no publicadas formalmente en revistas indexadas."
-  ),
-  gsrrf24 = list(
-    titulo = "GSRRF-24 · Inclusion and exclusion criteria",
-    prisma = "PRISMA: 5, 13a",
-    ayuda = "Criterios que informan la búsqueda y el filtrado de resultados.",
-    default = "Se prioriza evidencia que documente explícitamente la interacción entre el par de especies consultado (registro directo en GloBI). Si no existe, se amplía a literatura que mencione a ambas especies en título o resumen (Crossref). Como última red, se acepta literatura que mencione al menos una de las dos especies, marcada explícitamente como de baja confianza."
-  ),
-  gsrrf25 = list(
-    titulo = "GSRRF-25 · Query strings",
-    prisma = "PRISMA: 7",
-    ayuda = "La consulta exacta que se ejecuta, por base de datos.",
-    default = "GloBI: sourceTaxon={especie A}&targetTaxon={especie B} (y su inversa). Crossref: '{especie A} {especie B} interaction OR predation OR competition OR mutualism OR parasitism OR facilitation', con niveles de respaldo progresivamente menos restrictivos si no hay resultados. Código exacto documentado en interacciones.qmd."
-  ),
-  gsrrf26 = list(
-    titulo = "GSRRF-26 · Search validation procedure",
-    prisma = "PRISMA: 7",
-    ayuda = "Si se valida la búsqueda, y cómo.",
-    default = "No implementado de forma formal todavía. Pendiente: comparar los resultados de la app contra una búsqueda manual de control para un conjunto de pares de especies con interacción conocida."
-  ),
-  gsrrf27 = list(
-    titulo = "GSRRF-27 · Other search strategies",
-    prisma = "PRISMA: 7",
-    ayuda = "Estrategias adicionales (ascendencia/descendencia de citas, otros sistemas).",
-    default = "No implementado todavía. Pendiente evaluar estrategias de ascendencia/descendencia de citas (revisar referencias citadas por, o que citan a, las fuentes ya encontradas)."
-  ),
-  gsrrf28 = list(
-    titulo = "GSRRF-28 · Procedures to contact authors",
-    prisma = "PRISMA: 7",
-    ayuda = "Si se contacta a autores, cuándo y cómo.",
-    default = "No aplica en esta etapa: la herramienta no contacta autores directamente."
-  ),
-  gsrrf29 = list(
-    titulo = "GSRRF-29 · Results of contacting authors",
-    prisma = "PRISMA: 16a",
-    ayuda = "Si se reportan los resultados de contactar autores.",
-    default = "No aplica (ver GSRRF-28)."
-  ),
-  gsrrf30 = list(
-    titulo = "GSRRF-30 · Search expiration and repetition",
-    prisma = "PRISMA: 7",
-    ayuda = "Vigencia de la búsqueda y si se repite.",
-    default = "Cada consulta se ejecuta en tiempo real al momento de uso, sin caché — está automáticamente actualizada a la fecha de consulta. No hay expiración fija; se recomienda re-ejecutar si pasó mucho tiempo desde el último uso."
-  ),
-  gsrrf31 = list(
-    titulo = "GSRRF-31 · Search strategy justification",
-    prisma = "PRISMA: 7",
-    ayuda = "Por qué se eligieron estas bases/interfaces/estrategias.",
-    default = "Se prioriza GloBI por ser una base construida específicamente para registrar interacciones bióticas documentadas, con cita de origen. Crossref se usa como red de contención por su cobertura amplia y acceso público sin necesidad de clave. Se descartó OpenAlex por exigir autenticación desde 2026, incompatible con una herramienta pública sin backend propio."
-  ),
-  gsrrf32 = list(
-    titulo = "GSRRF-32 · Miscellaneous search strategy details",
-    prisma = "PRISMA: 7",
-    ayuda = "Cualquier detalle no cubierto arriba.",
-    default = "La herramienta corre completamente en el navegador de quien la usa (WebAssembly vía shinylive/webR), sin servidor propio ni almacenamiento de las consultas realizadas."
-  )
-)
+//| output: false
 
-# ==========================================
-# UI
-# ==========================================
-ui <- fluidPage(
-  tags$p(style = "font-size: 0.85em; color: #64748b;",
-         "Editá cualquier campo antes de descargar. El texto pre-cargado es un punto de partida, no una respuesta final."),
-
-  lapply(names(campos_gsrrf), function(id) {
-    campo <- campos_gsrrf[[id]]
-    wellPanel(
-      style = "background: #f8fafc; border: 1px solid #e2e8f0; margin-bottom: 10px;",
-      tags$strong(campo$titulo),
-      tags$span(style = "font-size: 0.75em; color: #94a3b8; margin-left: 8px;", campo$prisma),
-      tags$p(style = "font-size: 0.8em; color: #64748b; margin: 4px 0;", campo$ayuda),
-      textAreaInput(id, NULL, value = campo$default, rows = 3, width = "100%")
-    )
-  }),
-
-  downloadButton("descargar_protocolo", "Descargar protocolo (.md)", class = "btn-primary", style = "width: 100%;"),
-
-  br(), br(),
-  wellPanel(
-    style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
-    tags$strong("Fuentes y créditos:"),
-    tags$p("Estructura de campos basada en la Generalized Systematic Review Registration Form (van den Akker, Peters et al. 2023, CC BY 4.0), alineada con PRISMA 2020 y adoptada por OSF Registries. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
-    tags$div(
-      style = "display: flex; gap: 8px; flex-wrap: wrap;",
-      tags$a(href = "https://doi.org/10.1186/s13643-023-02281-7", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GSRRF (paper)"),
-      tags$a(href = "https://osf.io", target = "_blank", class = "btn btn-sm btn-outline-secondary", "OSF"),
-      tags$a(href = "https://shiny.posit.co", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Shiny"),
-      tags$a(href = "https://posit-dev.github.io/r-shinylive/", target = "_blank", class = "btn btn-sm btn-outline-secondary", "shinylive / webR"),
-      tags$a(href = "https://quarto.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Quarto")
-    )
-  )
-)
-
-# ==========================================
-# SERVIDOR
-# ==========================================
-server <- function(input, output, session) {
-
-  output$descargar_protocolo <- downloadHandler(
-    filename = function() paste0("interdomestic_protocolo_busqueda_", Sys.Date(), ".md"),
-    content = function(file) {
-      bloques <- lapply(names(campos_gsrrf), function(id) {
-        campo <- campos_gsrrf[[id]]
-        valor <- input[[id]]
-        paste0("## ", campo$titulo, "\n\n*", campo$prisma, "*\n\n", valor, "\n")
-      })
-      texto <- paste0(
-        "# Protocolo de búsqueda — interdomestic\n\n",
-        "Ficha generada: ", format(Sys.time(), "%Y-%m-%d %H:%M %Z"), "\n\n",
-        "Alineada con la sección \"Search strategy\" de la Generalized Systematic Review Registration Form (OSF/PRISMA).\n\n",
-        paste(bloques, collapse = "\n")
-      )
-      writeLines(texto, file)
-    }
-  )
+function descargarProtocolo() {
+  try {
+    const md = generarProtocoloMD(valores_gsrrf)
+    const blob = new Blob([md], {type: "text/markdown;charset=utf-8;"})
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    link.download = `interdomestic_protocolo_busqueda_${new Date().toISOString().split('T')[0]}.md`
+    link.style.display = "none"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    // Revocar el blob con demora: revocarlo de inmediato es una causa
+    // conocida de descargas cortadas a mitad de camino en Chromium,
+    // porque .click() dispara la descarga de forma asíncrona.
+    setTimeout(() => URL.revokeObjectURL(url), 1000)
+    console.log("descargarProtocolo: OK")
+  } catch (error) {
+    console.error("descargarProtocolo: FALLÓ ->", error)
+    alert("No se pudo generar la descarga: " + error.message)
+  }
 }
 
-shinyApp(ui, server)
+//| echo: false
+viewof disparador_descarga = {
+  const form = Inputs.button("📥 Descargar protocolo (.md)", {
+    value: null,
+    reduce: () => descargarProtocolo()
+  })
+  form.querySelector("button").classList.add("bio-button", "bio-button-generate")
+  return form
+}
 ```
+
+### Fuentes y créditos
+
+Estructura de campos basada en la Generalized Systematic Review Registration Form (van den Akker, Peters et al. 2023, CC BY 4.0), alineada con PRISMA 2020 y adoptada por OSF Registries. Esta aplicación corre 100% en tu navegador sin servidor backend. Construida con Quarto + OJS.
+
+<div class="bio-links-row">
+<a class="bio-link-btn bio-link-btn-secondary" href="https://doi.org/10.1186/s13643-023-02281-7" target="_blank">GSRRF (paper)</a>
+<a class="bio-link-btn bio-link-btn-secondary" href="https://osf.io" target="_blank">OSF</a>
+<a class="bio-link-btn bio-link-btn-secondary" href="https://quarto.org" target="_blank">Quarto</a>
+</div>
+
+::: {.metadatos-final}
+Autor: {{< meta author >}}
+Fecha de publicación: {{< meta date >}}
+Última modificación: {{< meta date-modified >}}
+Versión: OJS (v2.0) — Reemplazo optimizado de la versión anterior con shinylive/webR alojada en ../archive/_meta-search-OSF.qmd
+:::
