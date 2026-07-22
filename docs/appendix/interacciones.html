@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -42,11 +77,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-3d72203b4310ab15aa61e5c21b4a12a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.10.12/shinylive/shinylive.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,6 +104,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Buscar"
   }
 }</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 <style>
 /* Oculta el bloque de autor y fecha en el encabezado superior */
 .quarto-title-meta {
@@ -81,12 +113,167 @@ ul.task-list li input[type="checkbox"] {
 }
 /* Estilo personalizado y discreto para los metadatos del final */
 .metadatos-final {
-  font-size: 0.55em;      /* Poco más de la mitad del tamaño de fuente */
-  color: #777777;         /* Gris claro para segundo plano */
+  font-size: 0.55em;
+  color: #777777;
   line-height: 1.4;
   margin-top: 40px;
-  border-top: 1px solid #eeeeee; /* Línea sutil de separación */
+  border-top: 1px solid #eeeeee;
   padding-top: 15px;
+}
+/* Estilos para la interfaz */
+.bio-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.bio-control-panel {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.bio-alert {
+  padding: 12px;
+  margin: 8px 0;
+  border-left: 4px solid;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.bio-alert-info {
+  background: #eff6ff;
+  border-color: #3b82f6;
+  color: #1e40af;
+}
+.bio-alert-warning {
+  background: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+.bio-alert-success {
+  background: #f0fdf4;
+  border-color: #10b981;
+  color: #065f46;
+}
+.bio-alert-danger {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #7f1d1d;
+}
+.bio-metadata {
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 0.85em;
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.bio-button {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s;
+}
+.bio-button:hover {
+  background: #f3f4f6;
+}
+.bio-button-primary {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+.bio-button-primary:hover {
+  background: #2563eb;
+}
+.bio-button-verify {
+  background: #4f46e5;
+  color: #ffffff;
+  border-color: #4f46e5;
+}
+.bio-button-verify:hover {
+  background: #4338ca;
+}
+.bio-button-generate {
+  background: #059669;
+  color: #ffffff;
+  border-color: #059669;
+}
+.bio-button-generate:hover {
+  background: #047857;
+}
+.bio-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.bio-species-panel {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.bio-group-box {
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid;
+}
+.bio-group-title {
+  font-size: 0.85em;
+  font-weight: 600;
+}
+.bio-group-desc {
+  font-size: 0.78em;
+  color: #64748b;
+  margin: 2px 0 8px 0;
+  font-style: italic;
+}
+.bio-checkbox-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 3px 10px 3px 0;
+  font-size: 0.85em;
+}
+.bio-links-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+.bio-link-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  text-decoration: none;
+  border: 1px solid #ccc;
+}
+.bio-link-btn-primary {
+  background: #3b82f6;
+  color: white !important;
+  border-color: #3b82f6;
+}
+.bio-link-btn-secondary {
+  background: white;
+  color: #374151 !important;
+  border-color: #ccc;
+}
+.bio-query-box {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 12px;
+  font-family: monospace;
+  font-size: 0.85em;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 8px 0;
 }
 </style>
 
@@ -348,8 +535,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Estructura del Dispositivo</h2>
+   
+  <ul>
+  <li><a href="#fuentes-y-créditos" id="toc-fuentes-y-créditos" class="nav-link active" data-scroll-target="#fuentes-y-créditos">Fuentes y créditos</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -357,7 +550,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/interacciones.html">Appendix</a></li><li class="breadcrumb-item"><a href="../appendix/interacciones.html">Interacciones Bióticas</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Interacciones Bióticas</h1>
-<p class="subtitle lead">Guía conceptual, protocolo de búsqueda, y generador de consulta - v1.0</p>
+<p class="subtitle lead">Guía conceptual, protocolo de búsqueda, y generador de consulta (FAIR/CARE / OJS) - v2.0</p>
 </div>
 
 
@@ -381,7 +574,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Fecha de última modificación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">12 de julio de 2026</p>
+      <p class="date-modified">22 de julio de 2026</p>
     </div>
   </div>
     
@@ -477,289 +670,543 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container callout-body">
 <p>Elige un par de especies y, opcionalmente, los conceptos que te interesa enfocar.</p>
-<p>La app arma una consulta de búsqueda prolija y un prompt listo para pegar en un asistente de IA, sin ejecutar ninguna búsqueda por sí misma. Es liviana (esperar un minuto en la primera carga): solo valida los nombres científicos con GBIF y el resto es texto.</p>
-<p>Puede descargar la ficha de consulta generada como archivo .md, legible en dispositivos mediados por humanos y legible por máquinas; así como directamente derivar a plataformas de búsqueda de fuente primaria de conocimiento.</p>
+<p>La app arma una consulta de búsqueda prolija y un prompt listo para pegar en un asistente de IA, sin ejecutar ninguna búsqueda por sí misma. Solo valida los nombres científicos contra GBIF; el resto es texto armado en tu navegador.</p>
+<p>Puedes descargar la ficha de consulta generada como archivo <code>.md</code>, legible por personas y por máquinas; así como derivar directamente a plataformas de búsqueda de fuente primaria de conocimiento.</p>
 </div>
 </div>
-<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
-#|   shinylive does not work in self-contained HTML documents.
-#|   Please set `embed-resources: false` in your metadata.
-#| standalone: true
-#| viewerHeight: 700
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>⚡ <strong>Tiempo de Carga:</strong> esta versión corre 100% en tu navegador con OJS (JavaScript), sin backend de R/Shiny. La carga es prácticamente instantánea; solo la verificación de nombres contra GBIF toma uno o dos segundos.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="284" data-source-offset="-189"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 283;"><span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>gruposKeywords <span class="op">=</span> ({</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>  <span class="dt">sector</span><span class="op">:</span> {</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"Interacciones bióticas"</span><span class="op">,</span></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>    <span class="dt">descripcion</span><span class="op">:</span> <span class="st">"A qué tipo de vínculo o función ecológica pertenece esta consulta."</span><span class="op">,</span></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colorFondo</span><span class="op">:</span> <span class="st">"#f0fdf4"</span><span class="op">,</span> <span class="dt">colorBorde</span><span class="op">:</span> <span class="st">"#bbf7d0"</span><span class="op">,</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>    <span class="dt">items</span><span class="op">:</span> {</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>      <span class="dt">interacciones_bioticas</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Interacciones bióticas"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"biotic interactions"</span>}<span class="op">,</span></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>      <span class="dt">planta_animal</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Interacción planta-animal"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"plant-animal interaction"</span>}<span class="op">,</span></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>      <span class="dt">redes_troficas</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Redes tróficas"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"trophic network OR food web"</span>}<span class="op">,</span></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>      <span class="dt">servicios_ecosistemicos</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Servicios ecosistémicos"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"ecosystem services OR ecosystem disservices"</span>}</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>  <span class="dt">eco_evolutiva</span><span class="op">:</span> {</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"Ecología evolutiva"</span><span class="op">,</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>    <span class="dt">descripcion</span><span class="op">:</span> <span class="st">"Qué fuerza o proceso evolutivo podría estar operando en esta interacción."</span><span class="op">,</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colorFondo</span><span class="op">:</span> <span class="st">"#fdf4ff"</span><span class="op">,</span> <span class="dt">colorBorde</span><span class="op">:</span> <span class="st">"#e9d5ff"</span><span class="op">,</span></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>    <span class="dt">items</span><span class="op">:</span> {</span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>      <span class="dt">eco_evolutiva_gral</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Ecología evolutiva"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"evolutionary ecology"</span>}<span class="op">,</span></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>      <span class="dt">seleccion_natural</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Selección natural"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"natural selection"</span>}<span class="op">,</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>      <span class="dt">coevolucion</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Co-evolución"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"coevolution"</span>}<span class="op">,</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fenotipo_extendido</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Fenotipo extendido"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"extended phenotype"</span>}<span class="op">,</span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>      <span class="dt">percepcion_interactuante</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Percepción"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"signal perception OR sensory ecology"</span>}</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>  <span class="dt">historia_vida</span><span class="op">:</span> {</span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"Rasgos de historia de vida / desempeño"</span><span class="op">,</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>    <span class="dt">descripcion</span><span class="op">:</span> <span class="st">"Cómo vive y se reproduce cada especie."</span><span class="op">,</span></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colorFondo</span><span class="op">:</span> <span class="st">"#f0f9ff"</span><span class="op">,</span> <span class="dt">colorBorde</span><span class="op">:</span> <span class="st">"#bae6fd"</span><span class="op">,</span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>    <span class="dt">items</span><span class="op">:</span> {</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tamano</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Tamaño corporal"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"body size"</span>}<span class="op">,</span></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>      <span class="dt">edad_madurez</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Edad a la madurez"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"age at maturity"</span>}<span class="op">,</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>      <span class="dt">longevidad</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Longevidad"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"longevity OR lifespan"</span>}<span class="op">,</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>      <span class="dt">crecimiento</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Tasa de crecimiento"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"growth rate"</span>}<span class="op">,</span></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fecundidad</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Fecundidad"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"fecundity"</span>}<span class="op">,</span></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>      <span class="dt">frecuencia_repro</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Frecuencia reproductiva"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"semelparity OR iteroparity"</span>}<span class="op">,</span></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>      <span class="dt">inversion_parental</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Inversión parental"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"parental investment"</span>}<span class="op">,</span></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>      <span class="dt">nutricion</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Modo nutricional"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"diet OR trophic"</span>}<span class="op">,</span></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>      <span class="dt">rendimiento_locomotor</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Rendimiento locomotor"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"locomotor performance"</span>}<span class="op">,</span></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tolerancia_termica</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Tolerancia térmica"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"thermal tolerance"</span>}</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>  <span class="dt">aplicado</span><span class="op">:</span> {</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>    <span class="dt">titulo</span><span class="op">:</span> <span class="st">"Aplicaciones"</span><span class="op">,</span></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>    <span class="dt">descripcion</span><span class="op">:</span> <span class="st">"Para qué podría servir este conocimiento más allá de la ecología básica."</span><span class="op">,</span></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colorFondo</span><span class="op">:</span> <span class="st">"#fffbeb"</span><span class="op">,</span> <span class="dt">colorBorde</span><span class="op">:</span> <span class="st">"#fde68a"</span><span class="op">,</span></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>    <span class="dt">items</span><span class="op">:</span> {</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>      <span class="dt">agroecologia</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Agroecología"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"agroecology"</span>}<span class="op">,</span></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>      <span class="dt">manejo_ambiental</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Manejo ambiental"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"environmental management"</span>}<span class="op">,</span></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>      <span class="dt">eco_epidemiologia</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Eco-epidemiología"</span><span class="op">,</span> <span class="dt">keyword</span><span class="op">:</span> <span class="st">"disease ecology OR eco-epidemiology"</span>}</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>itemsPlanos <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">assign</span>({}<span class="op">,</span> <span class="op">...</span><span class="bu">Object</span><span class="op">.</span><span class="fu">values</span>(gruposKeywords)<span class="op">.</span><span class="fu">map</span>(g <span class="kw">=&gt;</span> g<span class="op">.</span><span class="at">items</span>))</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="co">// SECCIÓN 2: ENTRADA DE ESPECIES</span></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>viewof especie_a_input <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Especie A (nombre científico):"</span><span class="op">,</span></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="st">"Vassobia breviflora"</span></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>viewof especie_b_input <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">text</span>({</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Especie B (nombre científico):"</span><span class="op">,</span></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="st">"Thraupis sayaca"</span></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>viewof verificar_trigger <span class="op">=</span> {</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"🔎 Verificar nombres contra GBIF"</span><span class="op">,</span> {</span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({<span class="dt">timestamp</span><span class="op">:</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()})</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"button"</span>)<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-button"</span><span class="op">,</span> <span class="st">"bio-button-verify"</span>)</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a><span class="co">// Función para validar nombre contra GBIF (misma lógica que en Distribución Geográfica)</span></span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">validarNombreGBIF</span>(nombreEspecie) {</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> url <span class="op">=</span> <span class="vs">`https://api.gbif.org/v1/species/match?name=</span><span class="sc">${</span><span class="pp">encodeURIComponent</span>(nombreEspecie)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> respuesta <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(url)</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> datos <span class="op">=</span> <span class="cf">await</span> respuesta<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>      <span class="dt">consulta</span><span class="op">:</span> nombreEspecie<span class="op">,</span></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>      <span class="dt">encontrado</span><span class="op">:</span> datos<span class="op">.</span><span class="at">matchType</span> <span class="op">&amp;&amp;</span> datos<span class="op">.</span><span class="at">matchType</span> <span class="op">!==</span> <span class="st">"NONE"</span><span class="op">,</span></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>      <span class="dt">matchType</span><span class="op">:</span> datos<span class="op">.</span><span class="at">matchType</span> <span class="op">||</span> <span class="st">"NONE"</span><span class="op">,</span></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>      <span class="dt">scientificName</span><span class="op">:</span> datos<span class="op">.</span><span class="at">scientificName</span> <span class="op">||</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>      <span class="dt">canonicalName</span><span class="op">:</span> datos<span class="op">.</span><span class="at">canonicalName</span> <span class="op">||</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>      <span class="dt">status</span><span class="op">:</span> datos<span class="op">.</span><span class="at">status</span> <span class="op">||</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>      <span class="dt">error</span><span class="op">:</span> <span class="kw">null</span></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>      <span class="dt">consulta</span><span class="op">:</span> nombreEspecie<span class="op">,</span></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>      <span class="dt">encontrado</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>      <span class="dt">matchType</span><span class="op">:</span> <span class="st">"ERROR"</span><span class="op">,</span></span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>      <span class="dt">error</span><span class="op">:</span> error<span class="op">.</span><span class="at">message</span></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>validaciones_nombres <span class="op">=</span> {</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verificar_trigger<span class="op">?.</span><span class="at">timestamp</span>) {</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cf">await</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">all</span>(</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>      [especie_a_input<span class="op">,</span> especie_b_input]<span class="op">.</span><span class="fu">map</span>(sp <span class="kw">=&gt;</span> <span class="fu">validarNombreGBIF</span>(sp))</span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> []</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div&gt;</span></span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>validaciones_nombres<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> validaciones_nombres<span class="op">.</span><span class="fu">map</span>(v <span class="kw">=&gt;</span> {</span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (v<span class="op">.</span><span class="at">matchType</span> <span class="op">===</span> <span class="st">"EXACT"</span>) {</span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-success"&gt;</span></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a><span class="vs">          ✅ "</span><span class="sc">${</span>v<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span><span class="vs">" → reconocido como &lt;b&gt;</span><span class="sc">${</span>v<span class="op">.</span><span class="at">scientificName</span><span class="sc">}</span><span class="vs">&lt;/b&gt; (</span><span class="sc">${</span>v<span class="op">.</span><span class="at">status</span> <span class="op">??</span> <span class="st">"sin estado"</span><span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;`</span></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> <span class="cf">if</span> (v<span class="op">.</span><span class="at">matchType</span> <span class="op">===</span> <span class="st">"FUZZY"</span> <span class="op">||</span> v<span class="op">.</span><span class="at">matchType</span> <span class="op">===</span> <span class="st">"PARTIAL"</span>) {</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-warning"&gt;</span></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="vs">          ⚠️ "</span><span class="sc">${</span>v<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span><span class="vs">" es aproximado. GBIF sugiere: &lt;b&gt;</span><span class="sc">${</span>v<span class="op">.</span><span class="at">canonicalName</span><span class="sc">}</span><span class="vs">&lt;/b&gt;. Revisá antes de generar la consulta.</span></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;`</span></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-danger"&gt;</span></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="vs">          ❌ "</span><span class="sc">${</span>v<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span><span class="vs">" no se encontró en el backbone de GBIF. Revisá la ortografía.</span></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;`</span></span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>    }) <span class="op">:</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-info"&gt;Hacé clic en "Verificar nombres" para validar los nombres científicos contra GBIF.&lt;/div&gt;`</span><span class="sc">}</span></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
 
-library(shiny)
-library(jsonlite)
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
 
-# Workaround para Chromium Issue 468227 (descarga de archivos en shinylive)
-downloadButton &lt;- function(...) {
-  tag &lt;- shiny::downloadButton(...)
-  tag$attribs$download &lt;- NULL
-  tag
-}
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
 
-# Reutilizado de bio-distribution.qmd: valida nombres contra el backbone de GBIF
-gbif_name_match &lt;- function(name) {
-  url &lt;- paste0("https://api.gbif.org/v1/species/match?name=", URLencode(name))
-  tryCatch(fromJSON(url), error = function(e) NULL)
-}
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
 
-# ==========================================
-# Los 4 ejes conceptuales (mismos que se usaron en versiones anteriores de esta app)
-# ==========================================
-grupos_keywords &lt;- list(
-  sector = list(
-    titulo = "Interacciones bióticas",
-    descripcion = "A qué tipo de vínculo o función ecológica pertenece esta consulta.",
-    color_fondo = "#f0fdf4", color_borde = "#bbf7d0",
-    items = list(
-      interacciones_bioticas = list(label = "Interacciones bióticas", keyword = "biotic interactions"),
-      planta_animal = list(label = "Interacción planta-animal", keyword = "plant-animal interaction"),
-      redes_troficas = list(label = "Redes tróficas", keyword = "trophic network OR food web"),
-      servicios_ecosistemicos = list(label = "Servicios ecosistémicos", keyword = "ecosystem services OR ecosystem disservices")
-    )
-  ),
-  eco_evolutiva = list(
-    titulo = "Ecología evolutiva",
-    descripcion = "Qué fuerza o proceso evolutivo podría estar operando en esta interacción.",
-    color_fondo = "#fdf4ff", color_borde = "#e9d5ff",
-    items = list(
-      eco_evolutiva_gral = list(label = "Ecología evolutiva", keyword = "evolutionary ecology"),
-      seleccion_natural = list(label = "Selección natural", keyword = "natural selection"),
-      coevolucion = list(label = "Co-evolución", keyword = "coevolution"),
-      fenotipo_extendido = list(label = "Fenotipo extendido", keyword = "extended phenotype"),
-      percepcion_interactuante = list(label = "Percepción", keyword = "signal perception OR sensory ecology")
-    )
-  ),
-  historia_vida = list(
-    titulo = "Rasgos de historia de vida / desempeño",
-    descripcion = "Cómo vive y se reproduce cada especie.",
-    color_fondo = "#f0f9ff", color_borde = "#bae6fd",
-    items = list(
-      tamano = list(label = "Tamaño corporal", keyword = "body size"),
-      edad_madurez = list(label = "Edad a la madurez", keyword = "age at maturity"),
-      longevidad = list(label = "Longevidad", keyword = "longevity OR lifespan"),
-      crecimiento = list(label = "Tasa de crecimiento", keyword = "growth rate"),
-      fecundidad = list(label = "Fecundidad", keyword = "fecundity"),
-      frecuencia_repro = list(label = "Frecuencia reproductiva", keyword = "semelparity OR iteroparity"),
-      inversion_parental = list(label = "Inversión parental", keyword = "parental investment"),
-      nutricion = list(label = "Modo nutricional", keyword = "diet OR trophic"),
-      rendimiento_locomotor = list(label = "Rendimiento locomotor", keyword = "locomotor performance"),
-      tolerancia_termica = list(label = "Tolerancia térmica", keyword = "thermal tolerance")
-    )
-  ),
-  aplicado = list(
-    titulo = "Aplicaciones",
-    descripcion = "Para qué podría servir este conocimiento más allá de la ecología básica.",
-    color_fondo = "#fffbeb", color_borde = "#fde68a",
-    items = list(
-      agroecologia = list(label = "Agroecología", keyword = "agroecology"),
-      manejo_ambiental = list(label = "Manejo ambiental", keyword = "environmental management"),
-      eco_epidemiologia = list(label = "Eco-epidemiología", keyword = "disease ecology OR eco-epidemiology")
-    )
-  )
-)
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
 
-items_planos &lt;- do.call(c, unname(lapply(grupos_keywords, function(g) g$items)))
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="declaration">
 
-generar_checkboxes_grupo &lt;- function(grupo_id, grupo) {
-  choices &lt;- setNames(names(grupo$items), sapply(grupo$items, function(x) x$label))
-  wellPanel(
-    style = paste0("background: ", grupo$color_fondo, "; border: 1px solid ", grupo$color_borde, "; margin-bottom: 8px;"),
-    tags$strong(style = "font-size: 0.85em;", grupo$titulo),
-    tags$p(style = "font-size: 0.78em; color: #64748b; margin: 2px 0 6px 0; font-style: italic;", grupo$descripcion),
-    checkboxGroupInput(paste0("cb_", grupo_id), NULL, choices = choices, inline = TRUE)
-  )
-}
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-7" data-nodetype="declaration">
 
-# ==========================================
-# GENERADORES: arman texto, no ejecutan ninguna búsqueda
-# ==========================================
-generar_consulta &lt;- function(especie_a, especie_b, rasgos_ids) {
-  base &lt;- paste0('"', especie_a, '" "', especie_b, '"')
-  if (length(rasgos_ids) == 0) return(base)
-  keywords &lt;- sapply(items_planos[rasgos_ids], function(x) x$keyword)
-  paste(base, paste(keywords, collapse = " OR "))
-}
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-8" data-nodetype="expression">
 
-generar_prompt_llm &lt;- function(especie_a, especie_b, rasgos_labels) {
-  foco &lt;- if (length(rasgos_labels) &gt; 0) paste0(", con foco en: ", paste(rasgos_labels, collapse = ", ")) else ""
-  paste0(
-    "Necesito referencias bibliográficas sobre la interacción biótica entre ", especie_a, " y ", especie_b, foco, ". ",
-    "Prioriza fuentes que documenten evidencia directa, fuentes primarias de base de conocimiento y publicaciones sobre esta interacción entre estas dos especies puntuales, ",
-    "además de fuentes de la historia natural y ecología de cada especie a partir de búsquedas separadas para cada especie. Para cada referencia indica: autor(es), año, título, ",
-    "y DOI o enlace si está disponible. Si no encuentras evidencia directa de la interacción entre estas dos ",
-    "especies, explicita en vez de aproximar o inventar una referencia."
-  )
-}
+</div>
+</div>
+</div>
+<details class="code-fold hidden">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="431" data-source-offset="-5886"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 430;"><span id="cb2-431"><a href="#cb2-431" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div&gt;&lt;strong&gt;Enfocar la consulta (opcional):&lt;/strong&gt;</span></span>
+<span id="cb2-432"><a href="#cb2-432" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p style="font-size:0.8em;color:#64748b;margin-top:4px;"&gt;Esto ayuda a armar una consulta más específica.&lt;/p&gt;&lt;/div&gt;`</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-9" data-nodetype="expression">
 
-# ==========================================
-# UI
-# ==========================================
-ui &lt;- fluidPage(
-  fluidRow(
-    column(6, wellPanel(
-      style = "background: #f8fafc; border: 1px solid #e2e8f0;",
-      tags$h4("Especie A"),
-      textInput("especie_a", "Nombre científico:", "Vassobia breviflora")
-    )),
-    column(6, wellPanel(
-      style = "background: #f8fafc; border: 1px solid #e2e8f0;",
-      tags$h4("Especie B"),
-      textInput("especie_b", "Nombre científico:", "Thraupis sayaca")
-    ))
-  ),
+</div>
+</div>
+</div>
+<details class="code-fold hidden">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="436" data-source-offset="-6079"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 435;"><span id="cb3-436"><a href="#cb3-436" aria-hidden="true" tabindex="-1"></a>viewof cb_sector <span class="op">=</span> {</span>
+<span id="cb3-437"><a href="#cb3-437" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> g <span class="op">=</span> gruposKeywords<span class="op">.</span><span class="at">sector</span></span>
+<span id="cb3-438"><a href="#cb3-438" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(g<span class="op">.</span><span class="at">items</span>)<span class="op">,</span> {</span>
+<span id="cb3-439"><a href="#cb3-439" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> id <span class="kw">=&gt;</span> g<span class="op">.</span><span class="at">items</span>[id]<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
+<span id="cb3-440"><a href="#cb3-440" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> []</span>
+<span id="cb3-441"><a href="#cb3-441" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-442"><a href="#cb3-442" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-group-box"</span><span class="op">,</span> <span class="st">"bio-checkbox-group"</span>)</span>
+<span id="cb3-443"><a href="#cb3-443" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">background</span> <span class="op">=</span> g<span class="op">.</span><span class="at">colorFondo</span></span>
+<span id="cb3-444"><a href="#cb3-444" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">borderColor</span> <span class="op">=</span> g<span class="op">.</span><span class="at">colorBorde</span></span>
+<span id="cb3-445"><a href="#cb3-445" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">prepend</span>(<span class="fu">html</span><span class="vs">`&lt;div class="bio-group-title"&gt;</span><span class="sc">${</span>g<span class="op">.</span><span class="at">titulo</span><span class="sc">}</span><span class="vs">&lt;/div&gt;&lt;div class="bio-group-desc"&gt;</span><span class="sc">${</span>g<span class="op">.</span><span class="at">descripcion</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span>)</span>
+<span id="cb3-446"><a href="#cb3-446" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
+<span id="cb3-447"><a href="#cb3-447" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-448"><a href="#cb3-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-449"><a href="#cb3-449" aria-hidden="true" tabindex="-1"></a>viewof cb_eco_evolutiva <span class="op">=</span> {</span>
+<span id="cb3-450"><a href="#cb3-450" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> g <span class="op">=</span> gruposKeywords<span class="op">.</span><span class="at">eco_evolutiva</span></span>
+<span id="cb3-451"><a href="#cb3-451" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(g<span class="op">.</span><span class="at">items</span>)<span class="op">,</span> {</span>
+<span id="cb3-452"><a href="#cb3-452" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> id <span class="kw">=&gt;</span> g<span class="op">.</span><span class="at">items</span>[id]<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
+<span id="cb3-453"><a href="#cb3-453" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> []</span>
+<span id="cb3-454"><a href="#cb3-454" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-455"><a href="#cb3-455" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-group-box"</span><span class="op">,</span> <span class="st">"bio-checkbox-group"</span>)</span>
+<span id="cb3-456"><a href="#cb3-456" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">background</span> <span class="op">=</span> g<span class="op">.</span><span class="at">colorFondo</span></span>
+<span id="cb3-457"><a href="#cb3-457" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">borderColor</span> <span class="op">=</span> g<span class="op">.</span><span class="at">colorBorde</span></span>
+<span id="cb3-458"><a href="#cb3-458" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">prepend</span>(<span class="fu">html</span><span class="vs">`&lt;div class="bio-group-title"&gt;</span><span class="sc">${</span>g<span class="op">.</span><span class="at">titulo</span><span class="sc">}</span><span class="vs">&lt;/div&gt;&lt;div class="bio-group-desc"&gt;</span><span class="sc">${</span>g<span class="op">.</span><span class="at">descripcion</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span>)</span>
+<span id="cb3-459"><a href="#cb3-459" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
+<span id="cb3-460"><a href="#cb3-460" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-461"><a href="#cb3-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-462"><a href="#cb3-462" aria-hidden="true" tabindex="-1"></a>viewof cb_historia_vida <span class="op">=</span> {</span>
+<span id="cb3-463"><a href="#cb3-463" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> g <span class="op">=</span> gruposKeywords<span class="op">.</span><span class="at">historia_vida</span></span>
+<span id="cb3-464"><a href="#cb3-464" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(g<span class="op">.</span><span class="at">items</span>)<span class="op">,</span> {</span>
+<span id="cb3-465"><a href="#cb3-465" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> id <span class="kw">=&gt;</span> g<span class="op">.</span><span class="at">items</span>[id]<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
+<span id="cb3-466"><a href="#cb3-466" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> []</span>
+<span id="cb3-467"><a href="#cb3-467" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-468"><a href="#cb3-468" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-group-box"</span><span class="op">,</span> <span class="st">"bio-checkbox-group"</span>)</span>
+<span id="cb3-469"><a href="#cb3-469" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">background</span> <span class="op">=</span> g<span class="op">.</span><span class="at">colorFondo</span></span>
+<span id="cb3-470"><a href="#cb3-470" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">borderColor</span> <span class="op">=</span> g<span class="op">.</span><span class="at">colorBorde</span></span>
+<span id="cb3-471"><a href="#cb3-471" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">prepend</span>(<span class="fu">html</span><span class="vs">`&lt;div class="bio-group-title"&gt;</span><span class="sc">${</span>g<span class="op">.</span><span class="at">titulo</span><span class="sc">}</span><span class="vs">&lt;/div&gt;&lt;div class="bio-group-desc"&gt;</span><span class="sc">${</span>g<span class="op">.</span><span class="at">descripcion</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span>)</span>
+<span id="cb3-472"><a href="#cb3-472" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
+<span id="cb3-473"><a href="#cb3-473" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-474"><a href="#cb3-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-475"><a href="#cb3-475" aria-hidden="true" tabindex="-1"></a>viewof cb_aplicado <span class="op">=</span> {</span>
+<span id="cb3-476"><a href="#cb3-476" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> g <span class="op">=</span> gruposKeywords<span class="op">.</span><span class="at">aplicado</span></span>
+<span id="cb3-477"><a href="#cb3-477" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(g<span class="op">.</span><span class="at">items</span>)<span class="op">,</span> {</span>
+<span id="cb3-478"><a href="#cb3-478" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> id <span class="kw">=&gt;</span> g<span class="op">.</span><span class="at">items</span>[id]<span class="op">.</span><span class="at">label</span><span class="op">,</span></span>
+<span id="cb3-479"><a href="#cb3-479" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> []</span>
+<span id="cb3-480"><a href="#cb3-480" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-481"><a href="#cb3-481" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-group-box"</span><span class="op">,</span> <span class="st">"bio-checkbox-group"</span>)</span>
+<span id="cb3-482"><a href="#cb3-482" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">background</span> <span class="op">=</span> g<span class="op">.</span><span class="at">colorFondo</span></span>
+<span id="cb3-483"><a href="#cb3-483" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">borderColor</span> <span class="op">=</span> g<span class="op">.</span><span class="at">colorBorde</span></span>
+<span id="cb3-484"><a href="#cb3-484" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">prepend</span>(<span class="fu">html</span><span class="vs">`&lt;div class="bio-group-title"&gt;</span><span class="sc">${</span>g<span class="op">.</span><span class="at">titulo</span><span class="sc">}</span><span class="vs">&lt;/div&gt;&lt;div class="bio-group-desc"&gt;</span><span class="sc">${</span>g<span class="op">.</span><span class="at">descripcion</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span>)</span>
+<span id="cb3-485"><a href="#cb3-485" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
+<span id="cb3-486"><a href="#cb3-486" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-487"><a href="#cb3-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-488"><a href="#cb3-488" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb3-489"><a href="#cb3-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-490"><a href="#cb3-490" aria-hidden="true" tabindex="-1"></a>rasgos_elegidos <span class="op">=</span> [<span class="op">...</span>cb_sector<span class="op">,</span> <span class="op">...</span>cb_eco_evolutiva<span class="op">,</span> <span class="op">...</span>cb_historia_vida<span class="op">,</span> <span class="op">...</span>cb_aplicado]</span>
+<span id="cb3-491"><a href="#cb3-491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-492"><a href="#cb3-492" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb3-493"><a href="#cb3-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-494"><a href="#cb3-494" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb3-495"><a href="#cb3-495" aria-hidden="true" tabindex="-1"></a><span class="co">// SECCIÓN 4: GENERADOR DE CONSULTA Y PROMPT</span></span>
+<span id="cb3-496"><a href="#cb3-496" aria-hidden="true" tabindex="-1"></a><span class="co">// ============================================================</span></span>
+<span id="cb3-497"><a href="#cb3-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-498"><a href="#cb3-498" aria-hidden="true" tabindex="-1"></a>viewof generar_trigger <span class="op">=</span> {</span>
+<span id="cb3-499"><a href="#cb3-499" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> form <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"Generar consulta y prompt"</span><span class="op">,</span> {</span>
+<span id="cb3-500"><a href="#cb3-500" aria-hidden="true" tabindex="-1"></a>    <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> ({<span class="dt">timestamp</span><span class="op">:</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>()})</span>
+<span id="cb3-501"><a href="#cb3-501" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-502"><a href="#cb3-502" aria-hidden="true" tabindex="-1"></a>  form<span class="op">.</span><span class="fu">querySelector</span>(<span class="st">"button"</span>)<span class="op">.</span><span class="at">classList</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"bio-button"</span><span class="op">,</span> <span class="st">"bio-button-generate"</span>)</span>
+<span id="cb3-503"><a href="#cb3-503" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> form</span>
+<span id="cb3-504"><a href="#cb3-504" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-505"><a href="#cb3-505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-506"><a href="#cb3-506" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb3-507"><a href="#cb3-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-508"><a href="#cb3-508" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">generarConsulta</span>(especieA<span class="op">,</span> especieB<span class="op">,</span> rasgosIds) {</span>
+<span id="cb3-509"><a href="#cb3-509" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> base <span class="op">=</span> <span class="vs">`"</span><span class="sc">${</span>especieA<span class="sc">}</span><span class="vs">" "</span><span class="sc">${</span>especieB<span class="sc">}</span><span class="vs">"`</span></span>
+<span id="cb3-510"><a href="#cb3-510" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (rasgosIds<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) <span class="cf">return</span> base</span>
+<span id="cb3-511"><a href="#cb3-511" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> keywords <span class="op">=</span> rasgosIds<span class="op">.</span><span class="fu">map</span>(id <span class="kw">=&gt;</span> itemsPlanos[id]<span class="op">.</span><span class="at">keyword</span>)</span>
+<span id="cb3-512"><a href="#cb3-512" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>base<span class="sc">}</span><span class="vs"> </span><span class="sc">${</span>keywords<span class="op">.</span><span class="fu">join</span>(<span class="st">" OR "</span>)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb3-513"><a href="#cb3-513" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-514"><a href="#cb3-514" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-515"><a href="#cb3-515" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb3-516"><a href="#cb3-516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-517"><a href="#cb3-517" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">generarPromptLLM</span>(especieA<span class="op">,</span> especieB<span class="op">,</span> rasgosLabels) {</span>
+<span id="cb3-518"><a href="#cb3-518" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> foco <span class="op">=</span> rasgosLabels<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="vs">`, con foco en: </span><span class="sc">${</span>rasgosLabels<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}</span><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span></span>
+<span id="cb3-519"><a href="#cb3-519" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`Necesito referencias bibliográficas sobre la interacción biótica entre </span><span class="sc">${</span>especieA<span class="sc">}</span><span class="vs"> y </span><span class="sc">${</span>especieB<span class="sc">}${</span>foco<span class="sc">}</span><span class="vs">. `</span> <span class="op">+</span></span>
+<span id="cb3-520"><a href="#cb3-520" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`Prioriza fuentes que documenten evidencia directa, fuentes primarias de base de conocimiento y publicaciones sobre esta interacción entre estas dos especies puntuales, `</span> <span class="op">+</span></span>
+<span id="cb3-521"><a href="#cb3-521" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`además de fuentes de la historia natural y ecología de cada especie a partir de búsquedas separadas para cada especie. Para cada referencia indica: autor(es), año, título, `</span> <span class="op">+</span></span>
+<span id="cb3-522"><a href="#cb3-522" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`y DOI o enlace si está disponible. Si no encuentras evidencia directa de la interacción entre estas dos `</span> <span class="op">+</span></span>
+<span id="cb3-523"><a href="#cb3-523" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`especies, explicita en vez de aproximar o inventar una referencia.`</span></span>
+<span id="cb3-524"><a href="#cb3-524" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-525"><a href="#cb3-525" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-526"><a href="#cb3-526" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb3-527"><a href="#cb3-527" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-528"><a href="#cb3-528" aria-hidden="true" tabindex="-1"></a>resultado <span class="op">=</span> {</span>
+<span id="cb3-529"><a href="#cb3-529" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (generar_trigger<span class="op">?.</span><span class="at">timestamp</span>) {</span>
+<span id="cb3-530"><a href="#cb3-530" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> ids <span class="op">=</span> rasgos_elegidos</span>
+<span id="cb3-531"><a href="#cb3-531" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> labels <span class="op">=</span> ids<span class="op">.</span><span class="fu">map</span>(id <span class="kw">=&gt;</span> itemsPlanos[id]<span class="op">.</span><span class="at">label</span>)</span>
+<span id="cb3-532"><a href="#cb3-532" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb3-533"><a href="#cb3-533" aria-hidden="true" tabindex="-1"></a>      <span class="dt">especieA</span><span class="op">:</span> especie_a_input<span class="op">,</span></span>
+<span id="cb3-534"><a href="#cb3-534" aria-hidden="true" tabindex="-1"></a>      <span class="dt">especieB</span><span class="op">:</span> especie_b_input<span class="op">,</span></span>
+<span id="cb3-535"><a href="#cb3-535" aria-hidden="true" tabindex="-1"></a>      <span class="dt">consulta</span><span class="op">:</span> <span class="fu">generarConsulta</span>(especie_a_input<span class="op">,</span> especie_b_input<span class="op">,</span> ids)<span class="op">,</span></span>
+<span id="cb3-536"><a href="#cb3-536" aria-hidden="true" tabindex="-1"></a>      <span class="dt">prompt</span><span class="op">:</span> <span class="fu">generarPromptLLM</span>(especie_a_input<span class="op">,</span> especie_b_input<span class="op">,</span> labels)<span class="op">,</span></span>
+<span id="cb3-537"><a href="#cb3-537" aria-hidden="true" tabindex="-1"></a>      <span class="dt">rasgos</span><span class="op">:</span> labels</span>
+<span id="cb3-538"><a href="#cb3-538" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-539"><a href="#cb3-539" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-540"><a href="#cb3-540" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="kw">null</span></span>
+<span id="cb3-541"><a href="#cb3-541" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-542"><a href="#cb3-542" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-543"><a href="#cb3-543" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb3-544"><a href="#cb3-544" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-545"><a href="#cb3-545" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb3-546"><a href="#cb3-546" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div&gt;</span></span>
+<span id="cb3-547"><a href="#cb3-547" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>resultado <span class="op">===</span> <span class="kw">null</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-info"&gt;Hacé clic en "Generar consulta y prompt" para armar la ficha de búsqueda.&lt;/div&gt;`</span> <span class="op">:</span> (() <span class="kw">=&gt;</span> {</span>
+<span id="cb3-548"><a href="#cb3-548" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> scholarUrl <span class="op">=</span> <span class="vs">`https://scholar.google.com/scholar?q=</span><span class="sc">${</span><span class="pp">encodeURIComponent</span>(resultado<span class="op">.</span><span class="at">consulta</span>)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb3-549"><a href="#cb3-549" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> crossrefUrl <span class="op">=</span> <span class="vs">`https://search.crossref.org/?q=</span><span class="sc">${</span><span class="pp">encodeURIComponent</span>(resultado<span class="op">.</span><span class="at">consulta</span>)<span class="sc">}</span><span class="vs">&amp;from_ui=yes`</span></span>
+<span id="cb3-550"><a href="#cb3-550" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-control-panel"&gt;</span></span>
+<span id="cb3-551"><a href="#cb3-551" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;h4&gt;Consulta generada&lt;/h4&gt;</span></span>
+<span id="cb3-552"><a href="#cb3-552" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;p style="font-size:0.8em;color:#64748b;"&gt;</span></span>
+<span id="cb3-553"><a href="#cb3-553" aria-hidden="true" tabindex="-1"></a><span class="vs">          </span><span class="sc">${</span>resultado<span class="op">.</span><span class="at">rasgos</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="vs">`Enfocada en: </span><span class="sc">${</span>resultado<span class="op">.</span><span class="at">rasgos</span><span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}</span><span class="vs">`</span> <span class="op">:</span> <span class="st">"Sin enfoque adicional (solo las dos especies)."</span><span class="sc">}</span></span>
+<span id="cb3-554"><a href="#cb3-554" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/p&gt;</span></span>
+<span id="cb3-555"><a href="#cb3-555" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>resultado<span class="op">.</span><span class="at">rasgos</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;div class="bio-alert bio-alert-warning"&gt;⚠️ Marcar varios conceptos los combina con OR, lo cual ensancha la búsqueda en vez de precisarla — por eso a veces aparecen resultados de muchas disciplinas y fuentes primarias o secundarias. Para mayor precisión, prueba con un solo concepto por búsqueda.&lt;/div&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb3-556"><a href="#cb3-556" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="bio-query-box"&gt;</span><span class="sc">${</span>resultado<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb3-557"><a href="#cb3-557" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="bio-links-row"&gt;</span></span>
+<span id="cb3-558"><a href="#cb3-558" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;a class="bio-link-btn bio-link-btn-primary" href="</span><span class="sc">${</span>scholarUrl<span class="sc">}</span><span class="vs">" target="_blank"&gt;Buscar en Google Scholar&lt;/a&gt;</span></span>
+<span id="cb3-559"><a href="#cb3-559" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;a class="bio-link-btn bio-link-btn-secondary" href="</span><span class="sc">${</span>crossrefUrl<span class="sc">}</span><span class="vs">" target="_blank"&gt;Buscar en Crossref&lt;/a&gt;</span></span>
+<span id="cb3-560"><a href="#cb3-560" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;a class="bio-link-btn bio-link-btn-secondary" href="https://www.globalbioticinteractions.org" target="_blank"&gt;Buscar en GloBI&lt;/a&gt;</span></span>
+<span id="cb3-561"><a href="#cb3-561" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
+<span id="cb3-562"><a href="#cb3-562" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;hr&gt;</span></span>
+<span id="cb3-563"><a href="#cb3-563" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;h5&gt;Prompt sugerido para un asistente de IA&lt;/h5&gt;</span></span>
+<span id="cb3-564"><a href="#cb3-564" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="bio-query-box"&gt;</span><span class="sc">${</span>resultado<span class="op">.</span><span class="at">prompt</span><span class="sc">}</span><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb3-565"><a href="#cb3-565" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;`</span></span>
+<span id="cb3-566"><a href="#cb3-566" aria-hidden="true" tabindex="-1"></a>    })()<span class="sc">}</span></span>
+<span id="cb3-567"><a href="#cb3-567" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb3-568"><a href="#cb3-568" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-10" data-nodetype="declaration">
 
-  actionButton("verificar", "🔎 Verificar nombres", class = "btn-outline-info btn-sm"),
-  uiOutput("validacion_nombres"),
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-11" data-nodetype="declaration">
 
-  br(),
-  wellPanel(
-    style = "background: #fdfaf5; border: 1px solid #eee0c8;",
-    tags$strong("Enfocar la consulta (opcional):"),
-    tags$p(style = "font-size: 0.8em; color: #64748b; margin-top: 4px;",
-           "Esto ayuda a armar una consulta más específica."),
-    generar_checkboxes_grupo("sector", grupos_keywords$sector),
-    generar_checkboxes_grupo("eco_evolutiva", grupos_keywords$eco_evolutiva),
-    generar_checkboxes_grupo("historia_vida", grupos_keywords$historia_vida),
-    generar_checkboxes_grupo("aplicado", grupos_keywords$aplicado)
-  ),
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-12" data-nodetype="declaration">
 
-  actionButton("generar", "Generar consulta y prompt", class = "btn-primary", style = "width: 100%;"),
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-13" data-nodetype="declaration">
 
-  br(), br(),
-  uiOutput("resultado_panel"),
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-14" data-nodetype="declaration">
 
-  br(),
-  wellPanel(
-    style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
-    tags$strong("Fuentes y créditos:"),
-    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Esta ficha no ejecuta búsquedas por sí misma — arma consultas y prompts para usar en Google Scholar, Crossref, GloBI, o un asistente de IA de preferencia. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
-    tags$div(
-      style = "display: flex; gap: 8px; flex-wrap: wrap;",
-      tags$a(href = "https://www.gbif.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GBIF.org"),
-      tags$a(href = "https://www.globalbioticinteractions.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GloBI"),
-      tags$a(href = "https://shiny.posit.co", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Shiny"),
-      tags$a(href = "https://quarto.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Quarto")
-    )
-  )
-)
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-15" data-nodetype="declaration">
 
-# ==========================================
-# SERVIDOR
-# ==========================================
-server &lt;- function(input, output, session) {
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-16" data-nodetype="declaration">
 
-  validacion &lt;- eventReactive(input$verificar, {
-    list(
-      a = list(consulta = input$especie_a, match = gbif_name_match(input$especie_a)),
-      b = list(consulta = input$especie_b, match = gbif_name_match(input$especie_b))
-    )
-  })
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-17" data-nodetype="declaration">
 
-  output$validacion_nombres &lt;- renderUI({
-    v &lt;- validacion()
-    tagList(lapply(list(v$a, v$b), function(r) {
-      m &lt;- r$match
-      if (is.null(m) || is.null(m$matchType) || m$matchType == "NONE") {
-        div(class = "alert alert-danger", style = "padding:6px; font-size:0.85em; margin-top:4px;",
-            paste0("❌ '", r$consulta, "' no se encontró en el backbone de GBIF."))
-      } else if (m$matchType == "EXACT") {
-        div(class = "alert alert-success", style = "padding:6px; font-size:0.85em; margin-top:4px;",
-            paste0("✅ '", r$consulta, "' reconocido como ", m$scientificName, " (", m$status, ")"))
-      } else {
-        div(class = "alert alert-warning", style = "padding:6px; font-size:0.85em; margin-top:4px;",
-            paste0("⚠️ '", r$consulta, "' es una coincidencia aproximada. GBIF sugiere: ", m$canonicalName, "."))
-      }
-    }))
-  })
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-18" data-nodetype="declaration">
 
-  rasgos_elegidos_r &lt;- reactive({
-    c(input$cb_sector, input$cb_eco_evolutiva, input$cb_historia_vida, input$cb_aplicado)
-  })
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-19" data-nodetype="expression">
 
-  resultado &lt;- eventReactive(input$generar, {
-    req(input$especie_a, input$especie_b)
-    ids &lt;- rasgos_elegidos_r()
-    labels &lt;- if (length(ids) &gt; 0) {
-      etiquetas &lt;- sapply(items_planos[ids], function(x) if (is.null(x)) NA_character_ else x$label)
-      etiquetas[!is.na(etiquetas)]
-    } else {
-      character(0)
-    }
-    list(
-      consulta = generar_consulta(input$especie_a, input$especie_b, ids),
-      prompt = generar_prompt_llm(input$especie_a, input$especie_b, labels),
-      rasgos = labels
-    )
-  })
+</div>
+</div>
+</div>
+<details class="code-fold hidden">
+<summary>Código</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="572" data-source-offset="-11690"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 571;"><span id="cb4-572"><a href="#cb4-572" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">generarMarkdown</span>(res) {</span>
+<span id="cb4-573"><a href="#cb4-573" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> fecha <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">'es-AR'</span>)</span>
+<span id="cb4-574"><a href="#cb4-574" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rasgosTxt <span class="op">=</span> res<span class="op">.</span><span class="at">rasgos</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> res<span class="op">.</span><span class="at">rasgos</span><span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> <span class="vs">`- </span><span class="sc">${</span>r<span class="sc">}</span><span class="vs">`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>) <span class="op">:</span> <span class="st">"Ninguno"</span></span>
+<span id="cb4-575"><a href="#cb4-575" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`# Registro de consulta — interdomestic</span></span>
+<span id="cb4-576"><a href="#cb4-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-577"><a href="#cb4-577" aria-hidden="true" tabindex="-1"></a><span class="vs">Generado: </span><span class="sc">${</span>fecha<span class="sc">}</span></span>
+<span id="cb4-578"><a href="#cb4-578" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-579"><a href="#cb4-579" aria-hidden="true" tabindex="-1"></a><span class="vs">## Especies</span></span>
+<span id="cb4-580"><a href="#cb4-580" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-581"><a href="#cb4-581" aria-hidden="true" tabindex="-1"></a><span class="vs">- Especie A: </span><span class="sc">${</span>res<span class="op">.</span><span class="at">especieA</span><span class="sc">}</span></span>
+<span id="cb4-582"><a href="#cb4-582" aria-hidden="true" tabindex="-1"></a><span class="vs">- Especie B: </span><span class="sc">${</span>res<span class="op">.</span><span class="at">especieB</span><span class="sc">}</span></span>
+<span id="cb4-583"><a href="#cb4-583" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-584"><a href="#cb4-584" aria-hidden="true" tabindex="-1"></a><span class="vs">## Conceptos de enfoque</span></span>
+<span id="cb4-585"><a href="#cb4-585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-586"><a href="#cb4-586" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>rasgosTxt<span class="sc">}</span></span>
+<span id="cb4-587"><a href="#cb4-587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-588"><a href="#cb4-588" aria-hidden="true" tabindex="-1"></a><span class="vs">## Consulta para buscador</span></span>
+<span id="cb4-589"><a href="#cb4-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-590"><a href="#cb4-590" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>res<span class="op">.</span><span class="at">consulta</span><span class="sc">}</span></span>
+<span id="cb4-591"><a href="#cb4-591" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-592"><a href="#cb4-592" aria-hidden="true" tabindex="-1"></a><span class="vs">## Prompt sugerido para asistente de IA</span></span>
+<span id="cb4-593"><a href="#cb4-593" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-594"><a href="#cb4-594" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>res<span class="op">.</span><span class="at">prompt</span><span class="sc">}</span></span>
+<span id="cb4-595"><a href="#cb4-595" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span>
+<span id="cb4-596"><a href="#cb4-596" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-597"><a href="#cb4-597" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-598"><a href="#cb4-598" aria-hidden="true" tabindex="-1"></a><span class="co">//| output: false</span></span>
+<span id="cb4-599"><a href="#cb4-599" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-600"><a href="#cb4-600" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">descargarMD</span>() {</span>
+<span id="cb4-601"><a href="#cb4-601" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="op">!</span>resultado) <span class="cf">return</span></span>
+<span id="cb4-602"><a href="#cb4-602" aria-hidden="true" tabindex="-1"></a>  <span class="cf">try</span> {</span>
+<span id="cb4-603"><a href="#cb4-603" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> md <span class="op">=</span> <span class="fu">generarMarkdown</span>(resultado)</span>
+<span id="cb4-604"><a href="#cb4-604" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> blob <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([md]<span class="op">,</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"text/markdown;charset=utf-8;"</span>})</span>
+<span id="cb4-605"><a href="#cb4-605" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> url <span class="op">=</span> URL<span class="op">.</span><span class="fu">createObjectURL</span>(blob)</span>
+<span id="cb4-606"><a href="#cb4-606" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> link <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">createElement</span>(<span class="st">"a"</span>)</span>
+<span id="cb4-607"><a href="#cb4-607" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">href</span> <span class="op">=</span> url</span>
+<span id="cb4-608"><a href="#cb4-608" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">download</span> <span class="op">=</span> <span class="vs">`interdomestic_consulta_</span><span class="sc">${</span><span class="kw">new</span> <span class="bu">Date</span>()<span class="op">.</span><span class="fu">toISOString</span>()<span class="op">.</span><span class="fu">split</span>(<span class="st">'T'</span>)[<span class="dv">0</span>]<span class="sc">}</span><span class="vs">.md`</span></span>
+<span id="cb4-609"><a href="#cb4-609" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">display</span> <span class="op">=</span> <span class="st">"none"</span></span>
+<span id="cb4-610"><a href="#cb4-610" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">appendChild</span>(link)</span>
+<span id="cb4-611"><a href="#cb4-611" aria-hidden="true" tabindex="-1"></a>    link<span class="op">.</span><span class="fu">click</span>()</span>
+<span id="cb4-612"><a href="#cb4-612" aria-hidden="true" tabindex="-1"></a>    <span class="bu">document</span><span class="op">.</span><span class="at">body</span><span class="op">.</span><span class="fu">removeChild</span>(link)</span>
+<span id="cb4-613"><a href="#cb4-613" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Revocar el blob con demora: revocarlo de inmediato es una causa</span></span>
+<span id="cb4-614"><a href="#cb4-614" aria-hidden="true" tabindex="-1"></a>    <span class="co">// conocida de descargas cortadas a mitad de camino en Chromium,</span></span>
+<span id="cb4-615"><a href="#cb4-615" aria-hidden="true" tabindex="-1"></a>    <span class="co">// porque .click() dispara la descarga de forma asíncrona.</span></span>
+<span id="cb4-616"><a href="#cb4-616" aria-hidden="true" tabindex="-1"></a>    <span class="pp">setTimeout</span>(() <span class="kw">=&gt;</span> URL<span class="op">.</span><span class="fu">revokeObjectURL</span>(url)<span class="op">,</span> <span class="dv">1000</span>)</span>
+<span id="cb4-617"><a href="#cb4-617" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"descargarMD: OK"</span>)</span>
+<span id="cb4-618"><a href="#cb4-618" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">catch</span> (error) {</span>
+<span id="cb4-619"><a href="#cb4-619" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(<span class="st">"descargarMD: FALLÓ -&gt;"</span><span class="op">,</span> error)</span>
+<span id="cb4-620"><a href="#cb4-620" aria-hidden="true" tabindex="-1"></a>    <span class="fu">alert</span>(<span class="st">"No se pudo generar la descarga: "</span> <span class="op">+</span> error<span class="op">.</span><span class="at">message</span>)</span>
+<span id="cb4-621"><a href="#cb4-621" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-622"><a href="#cb4-622" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-623"><a href="#cb4-623" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-624"><a href="#cb4-624" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb4-625"><a href="#cb4-625" aria-hidden="true" tabindex="-1"></a>viewof disparador_descarga <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"📥 Descargar registro (.md)"</span><span class="op">,</span> {</span>
+<span id="cb4-626"><a href="#cb4-626" aria-hidden="true" tabindex="-1"></a>  <span class="dt">disabled</span><span class="op">:</span> resultado <span class="op">===</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb4-627"><a href="#cb4-627" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb4-628"><a href="#cb4-628" aria-hidden="true" tabindex="-1"></a>  <span class="dt">reduce</span><span class="op">:</span> () <span class="kw">=&gt;</span> <span class="fu">descargarMD</span>()</span>
+<span id="cb4-629"><a href="#cb4-629" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-20" data-nodetype="declaration">
 
-  output$resultado_panel &lt;- renderUI({
-    res &lt;- resultado()
-    req(res)
-    scholar_url &lt;- paste0("https://scholar.google.com/scholar?q=", URLencode(res$consulta))
-    crossref_url &lt;- paste0("https://search.crossref.org/?q=", URLencode(res$consulta), "&amp;from_ui=yes")
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-21" data-nodetype="declaration">
 
-    wellPanel(
-      style = "background: #ffffff; border: 1px solid #d1d5db;",
-      tags$h4("Consulta generada"),
-      tags$p(style = "font-size: 0.8em; color: #64748b;",
-             if (length(res$rasgos) &gt; 0) paste0("Enfocada en: ", paste(res$rasgos, collapse = ", ")) else "Sin enfoque adicional (solo las dos especies)."),
-      if (length(res$rasgos) &gt; 1) div(class = "alert alert-warning", style = "padding:6px; font-size:0.78em;",
-          "⚠️ Marcar varios conceptos los combina con OR, lo cual ensancha la búsqueda en vez de precisarla — por eso a veces aparecen resultados de muchas disciplinas y fuentes primarias o secundarias. Para mayor precisión, prueba con un solo concepto por búsqueda."),
-      verbatimTextOutput("consulta_texto"),
-      tags$div(
-        style = "display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0;",
-        tags$a(href = scholar_url, target = "_blank", class = "btn btn-sm btn-primary", "Buscar en Google Scholar"),
-        tags$a(href = crossref_url, target = "_blank", class = "btn btn-sm btn-outline-secondary", "Buscar en Crossref"),
-        tags$a(href = "https://www.globalbioticinteractions.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Buscar en GloBI")
-      ),
-      tags$hr(),
-      tags$h5("Prompt sugerido para un asistente de IA"),
-      verbatimTextOutput("prompt_texto"),
-      br(),
-      downloadButton("descargar_registro", "Descargar registro (.md)", class = "btn-outline-secondary")
-    )
-  })
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-22" data-nodetype="declaration">
 
-  output$consulta_texto &lt;- renderText({ resultado()$consulta })
-  output$prompt_texto &lt;- renderText({ resultado()$prompt })
-
-  output$descargar_registro &lt;- downloadHandler(
-    filename = function() paste0("interdomestic_consulta_", Sys.Date(), ".md"),
-    content = function(file) {
-      res &lt;- resultado()
-      req(res)
-
-      especie_a &lt;- if (is.null(input$especie_a) || !nzchar(input$especie_a)) "(sin especificar)" else input$especie_a
-      especie_b &lt;- if (is.null(input$especie_b) || !nzchar(input$especie_b)) "(sin especificar)" else input$especie_b
-      rasgos_txt &lt;- if (length(res$rasgos) &gt; 0) paste0("- ", res$rasgos, collapse = "\n") else "Ninguno"
-      consulta_txt &lt;- if (is.null(res$consulta) || !nzchar(res$consulta)) "(no disponible)" else res$consulta
-      prompt_txt &lt;- if (is.null(res$prompt) || !nzchar(res$prompt)) "(no disponible)" else res$prompt
-      fecha_txt &lt;- tryCatch(format(Sys.time(), "%Y-%m-%d %H:%M"), error = function(e) as.character(Sys.time()))
-
-      texto &lt;- paste0(
-        "# Registro de consulta — interdomestic\n\n",
-        "Generado: ", fecha_txt, "\n\n",
-        "## Especies\n\n- Especie A: ", especie_a, "\n- Especie B: ", especie_b, "\n\n",
-        "## Conceptos de enfoque\n\n", rasgos_txt, "\n\n",
-        "## Consulta para buscador\n\n", consulta_txt, "\n\n",
-        "## Prompt sugerido para asistente de IA\n\n", prompt_txt, "\n"
-      )
-      cat(texto, file = file)
-    }
-  )
-}
-
-shinyApp(ui, server)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<section id="fuentes-y-créditos" class="level3">
+<h3 class="anchored" data-anchor-id="fuentes-y-créditos">Fuentes y créditos</h3>
+<p>La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Esta ficha no ejecuta búsquedas por sí misma — arma consultas y prompts para usar en Google Scholar, Crossref, GloBI, o un asistente de IA de preferencia. Esta aplicación corre 100% en tu navegador sin servidor backend. Construida con Quarto + OJS.</p>
 <div class="metadatos-final">
-<p><strong>Autor:</strong> M.A.Ordano<br>
-<strong>Fecha de publicación:</strong> 11 de julio de 2026<br>
-<strong>Última modificación:</strong> 12 de julio de 2026</p>
+<p>Autor: M.A.Ordano Fecha de publicación: 11 de julio de 2026 Última modificación: 22 de julio de 2026 Versión: OJS (v2.0) — Reemplazo optimizado de la versión anterior con shinylive/webR alojada en ../archive/_interacciones.qmd</p>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG4vLyBTRUNDScOTTiAxOiBMT1MgNCBFSkVTIENPTkNFUFRVQUxFUyBZIFNVUyBQQUxBQlJBUyBDTEFWRVxuLy8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5cbmdydXBvc0tleXdvcmRzID0gKHtcbiAgc2VjdG9yOiB7XG4gICAgdGl0dWxvOiBcIkludGVyYWNjaW9uZXMgYmnDs3RpY2FzXCIsXG4gICAgZGVzY3JpcGNpb246IFwiQSBxdcOpIHRpcG8gZGUgdsOtbmN1bG8gbyBmdW5jacOzbiBlY29sw7NnaWNhIHBlcnRlbmVjZSBlc3RhIGNvbnN1bHRhLlwiLFxuICAgIGNvbG9yRm9uZG86IFwiI2YwZmRmNFwiLCBjb2xvckJvcmRlOiBcIiNiYmY3ZDBcIixcbiAgICBpdGVtczoge1xuICAgICAgaW50ZXJhY2Npb25lc19iaW90aWNhczoge2xhYmVsOiBcIkludGVyYWNjaW9uZXMgYmnDs3RpY2FzXCIsIGtleXdvcmQ6IFwiYmlvdGljIGludGVyYWN0aW9uc1wifSxcbiAgICAgIHBsYW50YV9hbmltYWw6IHtsYWJlbDogXCJJbnRlcmFjY2nDs24gcGxhbnRhLWFuaW1hbFwiLCBrZXl3b3JkOiBcInBsYW50LWFuaW1hbCBpbnRlcmFjdGlvblwifSxcbiAgICAgIHJlZGVzX3Ryb2ZpY2FzOiB7bGFiZWw6IFwiUmVkZXMgdHLDs2ZpY2FzXCIsIGtleXdvcmQ6IFwidHJvcGhpYyBuZXR3b3JrIE9SIGZvb2Qgd2ViXCJ9LFxuICAgICAgc2VydmljaW9zX2Vjb3Npc3RlbWljb3M6IHtsYWJlbDogXCJTZXJ2aWNpb3MgZWNvc2lzdMOpbWljb3NcIiwga2V5d29yZDogXCJlY29zeXN0ZW0gc2VydmljZXMgT1IgZWNvc3lzdGVtIGRpc3NlcnZpY2VzXCJ9XG4gICAgfVxuICB9LFxuICBlY29fZXZvbHV0aXZhOiB7XG4gICAgdGl0dWxvOiBcIkVjb2xvZ8OtYSBldm9sdXRpdmFcIixcbiAgICBkZXNjcmlwY2lvbjogXCJRdcOpIGZ1ZXJ6YSBvIHByb2Nlc28gZXZvbHV0aXZvIHBvZHLDrWEgZXN0YXIgb3BlcmFuZG8gZW4gZXN0YSBpbnRlcmFjY2nDs24uXCIsXG4gICAgY29sb3JGb25kbzogXCIjZmRmNGZmXCIsIGNvbG9yQm9yZGU6IFwiI2U5ZDVmZlwiLFxuICAgIGl0ZW1zOiB7XG4gICAgICBlY29fZXZvbHV0aXZhX2dyYWw6IHtsYWJlbDogXCJFY29sb2fDrWEgZXZvbHV0aXZhXCIsIGtleXdvcmQ6IFwiZXZvbHV0aW9uYXJ5IGVjb2xvZ3lcIn0sXG4gICAgICBzZWxlY2Npb25fbmF0dXJhbDoge2xhYmVsOiBcIlNlbGVjY2nDs24gbmF0dXJhbFwiLCBrZXl3b3JkOiBcIm5hdHVyYWwgc2VsZWN0aW9uXCJ9LFxuICAgICAgY29ldm9sdWNpb246IHtsYWJlbDogXCJDby1ldm9sdWNpw7NuXCIsIGtleXdvcmQ6IFwiY29ldm9sdXRpb25cIn0sXG4gICAgICBmZW5vdGlwb19leHRlbmRpZG86IHtsYWJlbDogXCJGZW5vdGlwbyBleHRlbmRpZG9cIiwga2V5d29yZDogXCJleHRlbmRlZCBwaGVub3R5cGVcIn0sXG4gICAgICBwZXJjZXBjaW9uX2ludGVyYWN0dWFudGU6IHtsYWJlbDogXCJQZXJjZXBjacOzblwiLCBrZXl3b3JkOiBcInNpZ25hbCBwZXJjZXB0aW9uIE9SIHNlbnNvcnkgZWNvbG9neVwifVxuICAgIH1cbiAgfSxcbiAgaGlzdG9yaWFfdmlkYToge1xuICAgIHRpdHVsbzogXCJSYXNnb3MgZGUgaGlzdG9yaWEgZGUgdmlkYSAvIGRlc2VtcGXDsW9cIixcbiAgICBkZXNjcmlwY2lvbjogXCJDw7NtbyB2aXZlIHkgc2UgcmVwcm9kdWNlIGNhZGEgZXNwZWNpZS5cIixcbiAgICBjb2xvckZvbmRvOiBcIiNmMGY5ZmZcIiwgY29sb3JCb3JkZTogXCIjYmFlNmZkXCIsXG4gICAgaXRlbXM6IHtcbiAgICAgIHRhbWFubzoge2xhYmVsOiBcIlRhbWHDsW8gY29ycG9yYWxcIiwga2V5d29yZDogXCJib2R5IHNpemVcIn0sXG4gICAgICBlZGFkX21hZHVyZXo6IHtsYWJlbDogXCJFZGFkIGEgbGEgbWFkdXJlelwiLCBrZXl3b3JkOiBcImFnZSBhdCBtYXR1cml0eVwifSxcbiAgICAgIGxvbmdldmlkYWQ6IHtsYWJlbDogXCJMb25nZXZpZGFkXCIsIGtleXdvcmQ6IFwibG9uZ2V2aXR5IE9SIGxpZmVzcGFuXCJ9LFxuICAgICAgY3JlY2ltaWVudG86IHtsYWJlbDogXCJUYXNhIGRlIGNyZWNpbWllbnRvXCIsIGtleXdvcmQ6IFwiZ3Jvd3RoIHJhdGVcIn0sXG4gICAgICBmZWN1bmRpZGFkOiB7bGFiZWw6IFwiRmVjdW5kaWRhZFwiLCBrZXl3b3JkOiBcImZlY3VuZGl0eVwifSxcbiAgICAgIGZyZWN1ZW5jaWFfcmVwcm86IHtsYWJlbDogXCJGcmVjdWVuY2lhIHJlcHJvZHVjdGl2YVwiLCBrZXl3b3JkOiBcInNlbWVscGFyaXR5IE9SIGl0ZXJvcGFyaXR5XCJ9LFxuICAgICAgaW52ZXJzaW9uX3BhcmVudGFsOiB7bGFiZWw6IFwiSW52ZXJzacOzbiBwYXJlbnRhbFwiLCBrZXl3b3JkOiBcInBhcmVudGFsIGludmVzdG1lbnRcIn0sXG4gICAgICBudXRyaWNpb246IHtsYWJlbDogXCJNb2RvIG51dHJpY2lvbmFsXCIsIGtleXdvcmQ6IFwiZGlldCBPUiB0cm9waGljXCJ9LFxuICAgICAgcmVuZGltaWVudG9fbG9jb21vdG9yOiB7bGFiZWw6IFwiUmVuZGltaWVudG8gbG9jb21vdG9yXCIsIGtleXdvcmQ6IFwibG9jb21vdG9yIHBlcmZvcm1hbmNlXCJ9LFxuICAgICAgdG9sZXJhbmNpYV90ZXJtaWNhOiB7bGFiZWw6IFwiVG9sZXJhbmNpYSB0w6lybWljYVwiLCBrZXl3b3JkOiBcInRoZXJtYWwgdG9sZXJhbmNlXCJ9XG4gICAgfVxuICB9LFxuICBhcGxpY2Fkbzoge1xuICAgIHRpdHVsbzogXCJBcGxpY2FjaW9uZXNcIixcbiAgICBkZXNjcmlwY2lvbjogXCJQYXJhIHF1w6kgcG9kcsOtYSBzZXJ2aXIgZXN0ZSBjb25vY2ltaWVudG8gbcOhcyBhbGzDoSBkZSBsYSBlY29sb2fDrWEgYsOhc2ljYS5cIixcbiAgICBjb2xvckZvbmRvOiBcIiNmZmZiZWJcIiwgY29sb3JCb3JkZTogXCIjZmRlNjhhXCIsXG4gICAgaXRlbXM6IHtcbiAgICAgIGFncm9lY29sb2dpYToge2xhYmVsOiBcIkFncm9lY29sb2fDrWFcIiwga2V5d29yZDogXCJhZ3JvZWNvbG9neVwifSxcbiAgICAgIG1hbmVqb19hbWJpZW50YWw6IHtsYWJlbDogXCJNYW5lam8gYW1iaWVudGFsXCIsIGtleXdvcmQ6IFwiZW52aXJvbm1lbnRhbCBtYW5hZ2VtZW50XCJ9LFxuICAgICAgZWNvX2VwaWRlbWlvbG9naWE6IHtsYWJlbDogXCJFY28tZXBpZGVtaW9sb2fDrWFcIiwga2V5d29yZDogXCJkaXNlYXNlIGVjb2xvZ3kgT1IgZWNvLWVwaWRlbWlvbG9neVwifVxuICAgIH1cbiAgfVxufSlcblxuLy98IG91dHB1dDogZmFsc2VcblxuaXRlbXNQbGFub3MgPSBPYmplY3QuYXNzaWduKHt9LCAuLi5PYmplY3QudmFsdWVzKGdydXBvc0tleXdvcmRzKS5tYXAoZyA9PiBnLml0ZW1zKSlcblxuLy98IGVjaG86IGZhbHNlXG5cbi8vID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuLy8gU0VDQ0nDk04gMjogRU5UUkFEQSBERSBFU1BFQ0lFU1xuLy8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5cbnZpZXdvZiBlc3BlY2llX2FfaW5wdXQgPSBJbnB1dHMudGV4dCh7XG4gIGxhYmVsOiBcIkVzcGVjaWUgQSAobm9tYnJlIGNpZW50w61maWNvKTpcIixcbiAgdmFsdWU6IFwiVmFzc29iaWEgYnJldmlmbG9yYVwiXG59KVxuXG52aWV3b2YgZXNwZWNpZV9iX2lucHV0ID0gSW5wdXRzLnRleHQoe1xuICBsYWJlbDogXCJFc3BlY2llIEIgKG5vbWJyZSBjaWVudMOtZmljbyk6XCIsXG4gIHZhbHVlOiBcIlRocmF1cGlzIHNheWFjYVwiXG59KVxuXG52aWV3b2YgdmVyaWZpY2FyX3RyaWdnZXIgPSB7XG4gIGNvbnN0IGZvcm0gPSBJbnB1dHMuYnV0dG9uKFwi8J+UjiBWZXJpZmljYXIgbm9tYnJlcyBjb250cmEgR0JJRlwiLCB7XG4gICAgcmVkdWNlOiAoKSA9PiAoe3RpbWVzdGFtcDogRGF0ZS5ub3coKX0pXG4gIH0pXG4gIGZvcm0ucXVlcnlTZWxlY3RvcihcImJ1dHRvblwiKS5jbGFzc0xpc3QuYWRkKFwiYmlvLWJ1dHRvblwiLCBcImJpby1idXR0b24tdmVyaWZ5XCIpXG4gIHJldHVybiBmb3JtXG59XG5cbi8vfCBvdXRwdXQ6IGZhbHNlXG5cbi8vIEZ1bmNpw7NuIHBhcmEgdmFsaWRhciBub21icmUgY29udHJhIEdCSUYgKG1pc21hIGzDs2dpY2EgcXVlIGVuIERpc3RyaWJ1Y2nDs24gR2VvZ3LDoWZpY2EpXG5hc3luYyBmdW5jdGlvbiB2YWxpZGFyTm9tYnJlR0JJRihub21icmVFc3BlY2llKSB7XG4gIGNvbnN0IHVybCA9IGBodHRwczovL2FwaS5nYmlmLm9yZy92MS9zcGVjaWVzL21hdGNoP25hbWU9JHtlbmNvZGVVUklDb21wb25lbnQobm9tYnJlRXNwZWNpZSl9YFxuICB0cnkge1xuICAgIGNvbnN0IHJlc3B1ZXN0YSA9IGF3YWl0IGZldGNoKHVybClcbiAgICBjb25zdCBkYXRvcyA9IGF3YWl0IHJlc3B1ZXN0YS5qc29uKClcbiAgICByZXR1cm4ge1xuICAgICAgY29uc3VsdGE6IG5vbWJyZUVzcGVjaWUsXG4gICAgICBlbmNvbnRyYWRvOiBkYXRvcy5tYXRjaFR5cGUgJiYgZGF0b3MubWF0Y2hUeXBlICE9PSBcIk5PTkVcIixcbiAgICAgIG1hdGNoVHlwZTogZGF0b3MubWF0Y2hUeXBlIHx8IFwiTk9ORVwiLFxuICAgICAgc2NpZW50aWZpY05hbWU6IGRhdG9zLnNjaWVudGlmaWNOYW1lIHx8IG51bGwsXG4gICAgICBjYW5vbmljYWxOYW1lOiBkYXRvcy5jYW5vbmljYWxOYW1lIHx8IG51bGwsXG4gICAgICBzdGF0dXM6IGRhdG9zLnN0YXR1cyB8fCBudWxsLFxuICAgICAgZXJyb3I6IG51bGxcbiAgICB9XG4gIH0gY2F0Y2ggKGVycm9yKSB7XG4gICAgcmV0dXJuIHtcbiAgICAgIGNvbnN1bHRhOiBub21icmVFc3BlY2llLFxuICAgICAgZW5jb250cmFkbzogZmFsc2UsXG4gICAgICBtYXRjaFR5cGU6IFwiRVJST1JcIixcbiAgICAgIGVycm9yOiBlcnJvci5tZXNzYWdlXG4gICAgfVxuICB9XG59XG5cbi8vfCBvdXRwdXQ6IGZhbHNlXG5cbnZhbGlkYWNpb25lc19ub21icmVzID0ge1xuICBpZiAodmVyaWZpY2FyX3RyaWdnZXI/LnRpbWVzdGFtcCkge1xuICAgIHJldHVybiBhd2FpdCBQcm9taXNlLmFsbChcbiAgICAgIFtlc3BlY2llX2FfaW5wdXQsIGVzcGVjaWVfYl9pbnB1dF0ubWFwKHNwID0+IHZhbGlkYXJOb21icmVHQklGKHNwKSlcbiAgICApXG4gIH1cbiAgcmV0dXJuIFtdXG59XG5cbi8vfCBlY2hvOiBmYWxzZVxuXG5odG1sYFxuICA8ZGl2PlxuICAgICR7dmFsaWRhY2lvbmVzX25vbWJyZXMubGVuZ3RoID4gMCA/IHZhbGlkYWNpb25lc19ub21icmVzLm1hcCh2ID0+IHtcbiAgICAgIGlmICh2Lm1hdGNoVHlwZSA9PT0gXCJFWEFDVFwiKSB7XG4gICAgICAgIHJldHVybiBodG1sYDxkaXYgY2xhc3M9XCJiaW8tYWxlcnQgYmlvLWFsZXJ0LXN1Y2Nlc3NcIj5cbiAgICAgICAgICDinIUgXCIke3YuY29uc3VsdGF9XCIg4oaSIHJlY29ub2NpZG8gY29tbyA8Yj4ke3Yuc2NpZW50aWZpY05hbWV9PC9iPiAoJHt2LnN0YXR1cyA/PyBcInNpbiBlc3RhZG9cIn0pXG4gICAgICAgIDwvZGl2PmBcbiAgICAgIH0gZWxzZSBpZiAodi5tYXRjaFR5cGUgPT09IFwiRlVaWllcIiB8fCB2Lm1hdGNoVHlwZSA9PT0gXCJQQVJUSUFMXCIpIHtcbiAgICAgICAgcmV0dXJuIGh0bWxgPGRpdiBjbGFzcz1cImJpby1hbGVydCBiaW8tYWxlcnQtd2FybmluZ1wiPlxuICAgICAgICAgIOKaoO+4jyBcIiR7di5jb25zdWx0YX1cIiBlcyBhcHJveGltYWRvLiBHQklGIHN1Z2llcmU6IDxiPiR7di5jYW5vbmljYWxOYW1lfTwvYj4uIFJldmlzw6EgYW50ZXMgZGUgZ2VuZXJhciBsYSBjb25zdWx0YS5cbiAgICAgICAgPC9kaXY+YFxuICAgICAgfSBlbHNlIHtcbiAgICAgICAgcmV0dXJuIGh0bWxgPGRpdiBjbGFzcz1cImJpby1hbGVydCBiaW8tYWxlcnQtZGFuZ2VyXCI+XG4gICAgICAgICAg4p2MIFwiJHt2LmNvbnN1bHRhfVwiIG5vIHNlIGVuY29udHLDsyBlbiBlbCBiYWNrYm9uZSBkZSBHQklGLiBSZXZpc8OhIGxhIG9ydG9ncmFmw61hLlxuICAgICAgICA8L2Rpdj5gXG4gICAgICB9XG4gICAgfSkgOiBodG1sYDxkaXYgY2xhc3M9XCJiaW8tYWxlcnQgYmlvLWFsZXJ0LWluZm9cIj5IYWPDqSBjbGljIGVuIFwiVmVyaWZpY2FyIG5vbWJyZXNcIiBwYXJhIHZhbGlkYXIgbG9zIG5vbWJyZXMgY2llbnTDrWZpY29zIGNvbnRyYSBHQklGLjwvZGl2PmB9XG4gIDwvZGl2PlxuYFxuXG4vL3wgZWNobzogZmFsc2VcblxuLy8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG4vLyBTRUNDScOTTiAzOiBFTkZPUVVFIE9QQ0lPTkFMIChjaGVja2JveGVzIHBvciBncnVwbyBjb25jZXB0dWFsKVxuLy8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5cbmh0bWxgPGRpdj48c3Ryb25nPkVuZm9jYXIgbGEgY29uc3VsdGEgKG9wY2lvbmFsKTo8L3N0cm9uZz5cbjxwIHN0eWxlPVwiZm9udC1zaXplOjAuOGVtO2NvbG9yOiM2NDc0OGI7bWFyZ2luLXRvcDo0cHg7XCI+RXN0byBheXVkYSBhIGFybWFyIHVuYSBjb25zdWx0YSBtw6FzIGVzcGVjw61maWNhLjwvcD48L2Rpdj5gXG5cbi8vfCBlY2hvOiBmYWxzZVxuXG52aWV3b2YgY2Jfc2VjdG9yID0ge1xuICBjb25zdCBnID0gZ3J1cG9zS2V5d29yZHMuc2VjdG9yXG4gIGNvbnN0IGZvcm0gPSBJbnB1dHMuY2hlY2tib3goT2JqZWN0LmtleXMoZy5pdGVtcyksIHtcbiAgICBmb3JtYXQ6IGlkID0+IGcuaXRlbXNbaWRdLmxhYmVsLFxuICAgIHZhbHVlOiBbXVxuICB9KVxuICBmb3JtLmNsYXNzTGlzdC5hZGQoXCJiaW8tZ3JvdXAtYm94XCIsIFwiYmlvLWNoZWNrYm94LWdyb3VwXCIpXG4gIGZvcm0uc3R5bGUuYmFja2dyb3VuZCA9IGcuY29sb3JGb25kb1xuICBmb3JtLnN0eWxlLmJvcmRlckNvbG9yID0gZy5jb2xvckJvcmRlXG4gIGZvcm0ucHJlcGVuZChodG1sYDxkaXYgY2xhc3M9XCJiaW8tZ3JvdXAtdGl0bGVcIj4ke2cudGl0dWxvfTwvZGl2PjxkaXYgY2xhc3M9XCJiaW8tZ3JvdXAtZGVzY1wiPiR7Zy5kZXNjcmlwY2lvbn08L2Rpdj5gKVxuICByZXR1cm4gZm9ybVxufVxuXG52aWV3b2YgY2JfZWNvX2V2b2x1dGl2YSA9IHtcbiAgY29uc3QgZyA9IGdydXBvc0tleXdvcmRzLmVjb19ldm9sdXRpdmFcbiAgY29uc3QgZm9ybSA9IElucHV0cy5jaGVja2JveChPYmplY3Qua2V5cyhnLml0ZW1zKSwge1xuICAgIGZvcm1hdDogaWQgPT4gZy5pdGVtc1tpZF0ubGFiZWwsXG4gICAgdmFsdWU6IFtdXG4gIH0pXG4gIGZvcm0uY2xhc3NMaXN0LmFkZChcImJpby1ncm91cC1ib3hcIiwgXCJiaW8tY2hlY2tib3gtZ3JvdXBcIilcbiAgZm9ybS5zdHlsZS5iYWNrZ3JvdW5kID0gZy5jb2xvckZvbmRvXG4gIGZvcm0uc3R5bGUuYm9yZGVyQ29sb3IgPSBnLmNvbG9yQm9yZGVcbiAgZm9ybS5wcmVwZW5kKGh0bWxgPGRpdiBjbGFzcz1cImJpby1ncm91cC10aXRsZVwiPiR7Zy50aXR1bG99PC9kaXY+PGRpdiBjbGFzcz1cImJpby1ncm91cC1kZXNjXCI+JHtnLmRlc2NyaXBjaW9ufTwvZGl2PmApXG4gIHJldHVybiBmb3JtXG59XG5cbnZpZXdvZiBjYl9oaXN0b3JpYV92aWRhID0ge1xuICBjb25zdCBnID0gZ3J1cG9zS2V5d29yZHMuaGlzdG9yaWFfdmlkYVxuICBjb25zdCBmb3JtID0gSW5wdXRzLmNoZWNrYm94KE9iamVjdC5rZXlzKGcuaXRlbXMpLCB7XG4gICAgZm9ybWF0OiBpZCA9PiBnLml0ZW1zW2lkXS5sYWJlbCxcbiAgICB2YWx1ZTogW11cbiAgfSlcbiAgZm9ybS5jbGFzc0xpc3QuYWRkKFwiYmlvLWdyb3VwLWJveFwiLCBcImJpby1jaGVja2JveC1ncm91cFwiKVxuICBmb3JtLnN0eWxlLmJhY2tncm91bmQgPSBnLmNvbG9yRm9uZG9cbiAgZm9ybS5zdHlsZS5ib3JkZXJDb2xvciA9IGcuY29sb3JCb3JkZVxuICBmb3JtLnByZXBlbmQoaHRtbGA8ZGl2IGNsYXNzPVwiYmlvLWdyb3VwLXRpdGxlXCI+JHtnLnRpdHVsb308L2Rpdj48ZGl2IGNsYXNzPVwiYmlvLWdyb3VwLWRlc2NcIj4ke2cuZGVzY3JpcGNpb259PC9kaXY+YClcbiAgcmV0dXJuIGZvcm1cbn1cblxudmlld29mIGNiX2FwbGljYWRvID0ge1xuICBjb25zdCBnID0gZ3J1cG9zS2V5d29yZHMuYXBsaWNhZG9cbiAgY29uc3QgZm9ybSA9IElucHV0cy5jaGVja2JveChPYmplY3Qua2V5cyhnLml0ZW1zKSwge1xuICAgIGZvcm1hdDogaWQgPT4gZy5pdGVtc1tpZF0ubGFiZWwsXG4gICAgdmFsdWU6IFtdXG4gIH0pXG4gIGZvcm0uY2xhc3NMaXN0LmFkZChcImJpby1ncm91cC1ib3hcIiwgXCJiaW8tY2hlY2tib3gtZ3JvdXBcIilcbiAgZm9ybS5zdHlsZS5iYWNrZ3JvdW5kID0gZy5jb2xvckZvbmRvXG4gIGZvcm0uc3R5bGUuYm9yZGVyQ29sb3IgPSBnLmNvbG9yQm9yZGVcbiAgZm9ybS5wcmVwZW5kKGh0bWxgPGRpdiBjbGFzcz1cImJpby1ncm91cC10aXRsZVwiPiR7Zy50aXR1bG99PC9kaXY+PGRpdiBjbGFzcz1cImJpby1ncm91cC1kZXNjXCI+JHtnLmRlc2NyaXBjaW9ufTwvZGl2PmApXG4gIHJldHVybiBmb3JtXG59XG5cbi8vfCBvdXRwdXQ6IGZhbHNlXG5cbnJhc2dvc19lbGVnaWRvcyA9IFsuLi5jYl9zZWN0b3IsIC4uLmNiX2Vjb19ldm9sdXRpdmEsIC4uLmNiX2hpc3RvcmlhX3ZpZGEsIC4uLmNiX2FwbGljYWRvXVxuXG4vL3wgZWNobzogZmFsc2VcblxuLy8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG4vLyBTRUNDScOTTiA0OiBHRU5FUkFET1IgREUgQ09OU1VMVEEgWSBQUk9NUFRcbi8vID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuXG52aWV3b2YgZ2VuZXJhcl90cmlnZ2VyID0ge1xuICBjb25zdCBmb3JtID0gSW5wdXRzLmJ1dHRvbihcIkdlbmVyYXIgY29uc3VsdGEgeSBwcm9tcHRcIiwge1xuICAgIHJlZHVjZTogKCkgPT4gKHt0aW1lc3RhbXA6IERhdGUubm93KCl9KVxuICB9KVxuICBmb3JtLnF1ZXJ5U2VsZWN0b3IoXCJidXR0b25cIikuY2xhc3NMaXN0LmFkZChcImJpby1idXR0b25cIiwgXCJiaW8tYnV0dG9uLWdlbmVyYXRlXCIpXG4gIHJldHVybiBmb3JtXG59XG5cbi8vfCBvdXRwdXQ6IGZhbHNlXG5cbmZ1bmN0aW9uIGdlbmVyYXJDb25zdWx0YShlc3BlY2llQSwgZXNwZWNpZUIsIHJhc2dvc0lkcykge1xuICBjb25zdCBiYXNlID0gYFwiJHtlc3BlY2llQX1cIiBcIiR7ZXNwZWNpZUJ9XCJgXG4gIGlmIChyYXNnb3NJZHMubGVuZ3RoID09PSAwKSByZXR1cm4gYmFzZVxuICBjb25zdCBrZXl3b3JkcyA9IHJhc2dvc0lkcy5tYXAoaWQgPT4gaXRlbXNQbGFub3NbaWRdLmtleXdvcmQpXG4gIHJldHVybiBgJHtiYXNlfSAke2tleXdvcmRzLmpvaW4oXCIgT1IgXCIpfWBcbn1cblxuLy98IG91dHB1dDogZmFsc2VcblxuZnVuY3Rpb24gZ2VuZXJhclByb21wdExMTShlc3BlY2llQSwgZXNwZWNpZUIsIHJhc2dvc0xhYmVscykge1xuICBjb25zdCBmb2NvID0gcmFzZ29zTGFiZWxzLmxlbmd0aCA+IDAgPyBgLCBjb24gZm9jbyBlbjogJHtyYXNnb3NMYWJlbHMuam9pbihcIiwgXCIpfWAgOiBcIlwiXG4gIHJldHVybiBgTmVjZXNpdG8gcmVmZXJlbmNpYXMgYmlibGlvZ3LDoWZpY2FzIHNvYnJlIGxhIGludGVyYWNjacOzbiBiacOzdGljYSBlbnRyZSAke2VzcGVjaWVBfSB5ICR7ZXNwZWNpZUJ9JHtmb2NvfS4gYCArXG4gICAgYFByaW9yaXphIGZ1ZW50ZXMgcXVlIGRvY3VtZW50ZW4gZXZpZGVuY2lhIGRpcmVjdGEsIGZ1ZW50ZXMgcHJpbWFyaWFzIGRlIGJhc2UgZGUgY29ub2NpbWllbnRvIHkgcHVibGljYWNpb25lcyBzb2JyZSBlc3RhIGludGVyYWNjacOzbiBlbnRyZSBlc3RhcyBkb3MgZXNwZWNpZXMgcHVudHVhbGVzLCBgICtcbiAgICBgYWRlbcOhcyBkZSBmdWVudGVzIGRlIGxhIGhpc3RvcmlhIG5hdHVyYWwgeSBlY29sb2fDrWEgZGUgY2FkYSBlc3BlY2llIGEgcGFydGlyIGRlIGLDunNxdWVkYXMgc2VwYXJhZGFzIHBhcmEgY2FkYSBlc3BlY2llLiBQYXJhIGNhZGEgcmVmZXJlbmNpYSBpbmRpY2E6IGF1dG9yKGVzKSwgYcOxbywgdMOtdHVsbywgYCArXG4gICAgYHkgRE9JIG8gZW5sYWNlIHNpIGVzdMOhIGRpc3BvbmlibGUuIFNpIG5vIGVuY3VlbnRyYXMgZXZpZGVuY2lhIGRpcmVjdGEgZGUgbGEgaW50ZXJhY2Npw7NuIGVudHJlIGVzdGFzIGRvcyBgICtcbiAgICBgZXNwZWNpZXMsIGV4cGxpY2l0YSBlbiB2ZXogZGUgYXByb3hpbWFyIG8gaW52ZW50YXIgdW5hIHJlZmVyZW5jaWEuYFxufVxuXG4vL3wgb3V0cHV0OiBmYWxzZVxuXG5yZXN1bHRhZG8gPSB7XG4gIGlmIChnZW5lcmFyX3RyaWdnZXI/LnRpbWVzdGFtcCkge1xuICAgIGNvbnN0IGlkcyA9IHJhc2dvc19lbGVnaWRvc1xuICAgIGNvbnN0IGxhYmVscyA9IGlkcy5tYXAoaWQgPT4gaXRlbXNQbGFub3NbaWRdLmxhYmVsKVxuICAgIHJldHVybiB7XG4gICAgICBlc3BlY2llQTogZXNwZWNpZV9hX2lucHV0LFxuICAgICAgZXNwZWNpZUI6IGVzcGVjaWVfYl9pbnB1dCxcbiAgICAgIGNvbnN1bHRhOiBnZW5lcmFyQ29uc3VsdGEoZXNwZWNpZV9hX2lucHV0LCBlc3BlY2llX2JfaW5wdXQsIGlkcyksXG4gICAgICBwcm9tcHQ6IGdlbmVyYXJQcm9tcHRMTE0oZXNwZWNpZV9hX2lucHV0LCBlc3BlY2llX2JfaW5wdXQsIGxhYmVscyksXG4gICAgICByYXNnb3M6IGxhYmVsc1xuICAgIH1cbiAgfVxuICByZXR1cm4gbnVsbFxufVxuXG4vL3wgZWNobzogZmFsc2VcblxuaHRtbGBcbiAgPGRpdj5cbiAgICAke3Jlc3VsdGFkbyA9PT0gbnVsbCA/IGh0bWxgPGRpdiBjbGFzcz1cImJpby1hbGVydCBiaW8tYWxlcnQtaW5mb1wiPkhhY8OpIGNsaWMgZW4gXCJHZW5lcmFyIGNvbnN1bHRhIHkgcHJvbXB0XCIgcGFyYSBhcm1hciBsYSBmaWNoYSBkZSBiw7pzcXVlZGEuPC9kaXY+YCA6ICgoKSA9PiB7XG4gICAgICBjb25zdCBzY2hvbGFyVXJsID0gYGh0dHBzOi8vc2Nob2xhci5nb29nbGUuY29tL3NjaG9sYXI/cT0ke2VuY29kZVVSSUNvbXBvbmVudChyZXN1bHRhZG8uY29uc3VsdGEpfWBcbiAgICAgIGNvbnN0IGNyb3NzcmVmVXJsID0gYGh0dHBzOi8vc2VhcmNoLmNyb3NzcmVmLm9yZy8/cT0ke2VuY29kZVVSSUNvbXBvbmVudChyZXN1bHRhZG8uY29uc3VsdGEpfSZmcm9tX3VpPXllc2BcbiAgICAgIHJldHVybiBodG1sYDxkaXYgY2xhc3M9XCJiaW8tY29udHJvbC1wYW5lbFwiPlxuICAgICAgICA8aDQ+Q29uc3VsdGEgZ2VuZXJhZGE8L2g0PlxuICAgICAgICA8cCBzdHlsZT1cImZvbnQtc2l6ZTowLjhlbTtjb2xvcjojNjQ3NDhiO1wiPlxuICAgICAgICAgICR7cmVzdWx0YWRvLnJhc2dvcy5sZW5ndGggPiAwID8gYEVuZm9jYWRhIGVuOiAke3Jlc3VsdGFkby5yYXNnb3Muam9pbihcIiwgXCIpfWAgOiBcIlNpbiBlbmZvcXVlIGFkaWNpb25hbCAoc29sbyBsYXMgZG9zIGVzcGVjaWVzKS5cIn1cbiAgICAgICAgPC9wPlxuICAgICAgICAke3Jlc3VsdGFkby5yYXNnb3MubGVuZ3RoID4gMSA/IGh0bWxgPGRpdiBjbGFzcz1cImJpby1hbGVydCBiaW8tYWxlcnQtd2FybmluZ1wiPuKaoO+4jyBNYXJjYXIgdmFyaW9zIGNvbmNlcHRvcyBsb3MgY29tYmluYSBjb24gT1IsIGxvIGN1YWwgZW5zYW5jaGEgbGEgYsO6c3F1ZWRhIGVuIHZleiBkZSBwcmVjaXNhcmxhIOKAlCBwb3IgZXNvIGEgdmVjZXMgYXBhcmVjZW4gcmVzdWx0YWRvcyBkZSBtdWNoYXMgZGlzY2lwbGluYXMgeSBmdWVudGVzIHByaW1hcmlhcyBvIHNlY3VuZGFyaWFzLiBQYXJhIG1heW9yIHByZWNpc2nDs24sIHBydWViYSBjb24gdW4gc29sbyBjb25jZXB0byBwb3IgYsO6c3F1ZWRhLjwvZGl2PmAgOiBcIlwifVxuICAgICAgICA8ZGl2IGNsYXNzPVwiYmlvLXF1ZXJ5LWJveFwiPiR7cmVzdWx0YWRvLmNvbnN1bHRhfTwvZGl2PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiYmlvLWxpbmtzLXJvd1wiPlxuICAgICAgICAgIDxhIGNsYXNzPVwiYmlvLWxpbmstYnRuIGJpby1saW5rLWJ0bi1wcmltYXJ5XCIgaHJlZj1cIiR7c2Nob2xhclVybH1cIiB0YXJnZXQ9XCJfYmxhbmtcIj5CdXNjYXIgZW4gR29vZ2xlIFNjaG9sYXI8L2E+XG4gICAgICAgICAgPGEgY2xhc3M9XCJiaW8tbGluay1idG4gYmlvLWxpbmstYnRuLXNlY29uZGFyeVwiIGhyZWY9XCIke2Nyb3NzcmVmVXJsfVwiIHRhcmdldD1cIl9ibGFua1wiPkJ1c2NhciBlbiBDcm9zc3JlZjwvYT5cbiAgICAgICAgICA8YSBjbGFzcz1cImJpby1saW5rLWJ0biBiaW8tbGluay1idG4tc2Vjb25kYXJ5XCIgaHJlZj1cImh0dHBzOi8vd3d3Lmdsb2JhbGJpb3RpY2ludGVyYWN0aW9ucy5vcmdcIiB0YXJnZXQ9XCJfYmxhbmtcIj5CdXNjYXIgZW4gR2xvQkk8L2E+XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8aHI+XG4gICAgICAgIDxoNT5Qcm9tcHQgc3VnZXJpZG8gcGFyYSB1biBhc2lzdGVudGUgZGUgSUE8L2g1PlxuICAgICAgICA8ZGl2IGNsYXNzPVwiYmlvLXF1ZXJ5LWJveFwiPiR7cmVzdWx0YWRvLnByb21wdH08L2Rpdj5cbiAgICAgIDwvZGl2PmBcbiAgICB9KSgpfVxuICA8L2Rpdj5cbmBcblxuLy98IG91dHB1dDogZmFsc2VcblxuZnVuY3Rpb24gZ2VuZXJhck1hcmtkb3duKHJlcykge1xuICBjb25zdCBmZWNoYSA9IG5ldyBEYXRlKCkudG9Mb2NhbGVTdHJpbmcoJ2VzLUFSJylcbiAgY29uc3QgcmFzZ29zVHh0ID0gcmVzLnJhc2dvcy5sZW5ndGggPiAwID8gcmVzLnJhc2dvcy5tYXAociA9PiBgLSAke3J9YCkuam9pbihcIlxcblwiKSA6IFwiTmluZ3Vub1wiXG4gIHJldHVybiBgIyBSZWdpc3RybyBkZSBjb25zdWx0YSDigJQgaW50ZXJkb21lc3RpY1xuXG5HZW5lcmFkbzogJHtmZWNoYX1cblxuIyMgRXNwZWNpZXNcblxuLSBFc3BlY2llIEE6ICR7cmVzLmVzcGVjaWVBfVxuLSBFc3BlY2llIEI6ICR7cmVzLmVzcGVjaWVCfVxuXG4jIyBDb25jZXB0b3MgZGUgZW5mb3F1ZVxuXG4ke3Jhc2dvc1R4dH1cblxuIyMgQ29uc3VsdGEgcGFyYSBidXNjYWRvclxuXG4ke3Jlcy5jb25zdWx0YX1cblxuIyMgUHJvbXB0IHN1Z2VyaWRvIHBhcmEgYXNpc3RlbnRlIGRlIElBXG5cbiR7cmVzLnByb21wdH1cbmBcbn1cblxuLy98IG91dHB1dDogZmFsc2VcblxuZnVuY3Rpb24gZGVzY2FyZ2FyTUQoKSB7XG4gIGlmICghcmVzdWx0YWRvKSByZXR1cm5cbiAgdHJ5IHtcbiAgICBjb25zdCBtZCA9IGdlbmVyYXJNYXJrZG93bihyZXN1bHRhZG8pXG4gICAgY29uc3QgYmxvYiA9IG5ldyBCbG9iKFttZF0sIHt0eXBlOiBcInRleHQvbWFya2Rvd247Y2hhcnNldD11dGYtODtcIn0pXG4gICAgY29uc3QgdXJsID0gVVJMLmNyZWF0ZU9iamVjdFVSTChibG9iKVxuICAgIGNvbnN0IGxpbmsgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiYVwiKVxuICAgIGxpbmsuaHJlZiA9IHVybFxuICAgIGxpbmsuZG93bmxvYWQgPSBgaW50ZXJkb21lc3RpY19jb25zdWx0YV8ke25ldyBEYXRlKCkudG9JU09TdHJpbmcoKS5zcGxpdCgnVCcpWzBdfS5tZGBcbiAgICBsaW5rLnN0eWxlLmRpc3BsYXkgPSBcIm5vbmVcIlxuICAgIGRvY3VtZW50LmJvZHkuYXBwZW5kQ2hpbGQobGluaylcbiAgICBsaW5rLmNsaWNrKClcbiAgICBkb2N1bWVudC5ib2R5LnJlbW92ZUNoaWxkKGxpbmspXG4gICAgLy8gUmV2b2NhciBlbCBibG9iIGNvbiBkZW1vcmE6IHJldm9jYXJsbyBkZSBpbm1lZGlhdG8gZXMgdW5hIGNhdXNhXG4gICAgLy8gY29ub2NpZGEgZGUgZGVzY2FyZ2FzIGNvcnRhZGFzIGEgbWl0YWQgZGUgY2FtaW5vIGVuIENocm9taXVtLFxuICAgIC8vIHBvcnF1ZSAuY2xpY2soKSBkaXNwYXJhIGxhIGRlc2NhcmdhIGRlIGZvcm1hIGFzw61uY3JvbmEuXG4gICAgc2V0VGltZW91dCgoKSA9PiBVUkwucmV2b2tlT2JqZWN0VVJMKHVybCksIDEwMDApXG4gICAgY29uc29sZS5sb2coXCJkZXNjYXJnYXJNRDogT0tcIilcbiAgfSBjYXRjaCAoZXJyb3IpIHtcbiAgICBjb25zb2xlLmVycm9yKFwiZGVzY2FyZ2FyTUQ6IEZBTEzDkyAtPlwiLCBlcnJvcilcbiAgICBhbGVydChcIk5vIHNlIHB1ZG8gZ2VuZXJhciBsYSBkZXNjYXJnYTogXCIgKyBlcnJvci5tZXNzYWdlKVxuICB9XG59XG5cbi8vfCBlY2hvOiBmYWxzZVxudmlld29mIGRpc3BhcmFkb3JfZGVzY2FyZ2EgPSBJbnB1dHMuYnV0dG9uKFwi8J+TpSBEZXNjYXJnYXIgcmVnaXN0cm8gKC5tZClcIiwge1xuICBkaXNhYmxlZDogcmVzdWx0YWRvID09PSBudWxsLFxuICB2YWx1ZTogbnVsbCxcbiAgcmVkdWNlOiAoKSA9PiBkZXNjYXJnYXJNRCgpXG59KVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2VzcGVjaWVfYV9pbnB1dCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdlc3BlY2llX2JfaW5wdXQnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgndmVyaWZpY2FyX3RyaWdnZXInKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnY2Jfc2VjdG9yJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2NiX2Vjb19ldm9sdXRpdmEnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnY2JfaGlzdG9yaWFfdmlkYScpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdjYl9hcGxpY2FkbycpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdnZW5lcmFyX3RyaWdnZXInKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnZGlzcGFyYWRvcl9kZXNjYXJnYScpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../appendix";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

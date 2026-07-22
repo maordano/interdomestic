@@ -1,0 +1,393 @@
+---
+title: "Interacciones Bióticas"
+subtitle: "Guía conceptual, protocolo de búsqueda, y generador de consulta - v1.0"
+date: 2026-07-11
+author: "M.A.Ordano"
+date-modified: 2026-07-12
+
+format: 
+  html:
+    include-in-header:
+      - text: |
+          <style>
+          /* Oculta el bloque de autor y fecha en el encabezado superior */
+          .quarto-title-meta {
+            display: none !important;
+          }
+          /* Estilo personalizado y discreto para los metadatos del final */
+          .metadatos-final {
+            font-size: 0.55em;      /* Poco más de la mitad del tamaño de fuente */
+            color: #777777;         /* Gris claro para segundo plano */
+            line-height: 1.4;
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee; /* Línea sutil de separación */
+            padding-top: 15px;
+          }
+          </style>
+    resources:
+      - "*-shinylive-app/*"
+---
+
+::: {.callout-note appearance="minimal" icon=true}
+
+## ¿Qué son las interacciones bióticas?
+
+Una interacción biótica es cualquier tipo de interacción entre formas de vida orgánicas a cualquier nivel de organización biológica.
+
+A nivel de personas o individuos biológicamente identificados, se define como una relación entre seres vivos, sean personas humanas o no, y se clasifican de varias maneras, como muchas cosas del entorno doméstico. 
+
+Hay muchos tipos de interacciones bióticas. Una relación mínima como la comunicación es una interacción, hay al menos una persona receptora, hay al menos una persona emisora, y la información va y viene. 
+
+Definir el estado del conocimiento sobre temas complejos es un camino meticuloso, que parece más fácil a medida que se acerca la singularidad.
+
+Las interacciones bióticas son abordadas típicamente desde la ecología y la evolución, sin embargo, está siendo abordada por muchas ramas disciplinares de la construcción del conocimiento, de manera determinada o indirectamente. Sumado a ello, desde los sistemas de clasificación de la vida, las interacciones bióticas nos incluyen.
+
+Las interacciones bióticas son la pieza conceptual sobre la que se construye interdomestic: caracterizar cómo se relacionan las especies en el ámbito doméstico requiere primero y clasificar las diversas especies y formas de la vida silvestre con las que nos relacionamos.
+
+Como un ejemplo tipológico, en este diagrama se representan las principales clases de interacciones entre especies.
+
+```{=html}
+<svg width="100%" viewBox="0 0 680 220" role="img" style="margin: 1.5rem 0;">
+<title>Tipos _tipológicos_ de interacciones bióticas</title>
+<desc>Cinco categorías tipológicas de interacciones bióticas: depredación, parasitismo, competencia, facilitación, mutualismo.</desc>
+<g fill="none">
+<rect x="50" y="40" width="180" height="56" rx="8" stroke-width="0.5" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="140" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">Depredación</text>
+<text x="140" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">{(+)[-]}</text>
+<rect x="250" y="40" width="180" height="56" rx="8" stroke-width="0.5" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="340" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">Competencia</text>
+<text x="340" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">{(-)[-],(+0-)[-]}</text>
+<rect x="450" y="40" width="180" height="56" rx="8" stroke-width="0.5" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="540" y="58" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">Mutualismo</text>
+<text x="540" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">{(+)[+],(+)[-0+]}</text>
+<rect x="130" y="140" width="200" height="56" rx="8" stroke-width="0.5" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="230" y="158" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">Parasitismo</text>
+<text x="230" y="178" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">{(+)[-],(+)[-0+]}</text>
+<rect x="350" y="140" width="200" height="56" rx="8" stroke-width="0.5" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="450" y="158" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#085041">Facilitación</text>
+<text x="450" y="178" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">{(0)[+],(0+)[0+]}</text>
+</g>
+</svg>
+```
+
+Por figurar un ejemplo de búsqueda de conocimiento aplicado a partir de múltiples interacciones bióticas; en la agricultura, en el manejo ambiental, y en la eco-epidemiología; las interacciones también se clasifican con criterio funcional y aplicable a la relación humana-naturaleza: los **servicios ecosistémicos**, o servicios de la naturaleza a la vida humana; y sus contrapartes, los _dis-servicios ecosistémicos_, con procesos también derivados de interacciones bióticas que perjudican la vida humana.
+
+:::
+
+::: {.callout-note appearance="simple" icon=false}
+
+En esta aplicación hacemos el ejercicio de elegir 2 especies sobre las cuales interesa buscar información para una revisión sistematizada. 
+
+El armado de búsqueda se puede filtrar por palabras clave en torno a las interacciones bióticas en el ámbito doméstico, y generar un documento de consulta para usar como prompt en buscadores de literatura de primera fuente, o en su asistente de IA de preferencia (modelo híbrido de construcción del conocimiento).
+
+:::
+
+::: {.callout-note appearance="minimal" icon=true}
+
+## Protocolo de búsqueda — PRISMA aplicado
+
+Para buscar literatura sobre una interacción específica, un paso clave de la construcción del conocimiento -además del resultado-, es conocer cómo fue generado el conocimiento, o sea, **documentar el proceso**, — es lo que exige un protocolo tipo PRISMA, y lo que ya armamos en detalle en la ficha de **[Meta-análisis](bio-meta.html)** de este mismo apéndice (los 12 campos de "Search strategy" de la GSRRF de OSF).
+
+Los cuatro pasos clásicos de PRISMA, aplicados a un ejemplo de interacción:
+
+1. **Identificación** — se define el par de especies y los conceptos de interés (por ejemplo, *Psychotria carthagenensis* y *Turdus rufiventris*, con foco en dispersión de semillas), y se arma la consulta de búsqueda.
+
+2. **Cribado** — se revisan los títulos/resúmenes de lo que la búsqueda trae, descartando lo que no menciona a ninguna de las dos especies o al fenómeno de interés.
+
+3. **Elegibilidad** — de lo que queda, se lee el texto completo de cada documento candidato para confirmar que documenta evidencia "real" -de fuente primaria en la base de conocimiento- de la interacción (por ejemplo, que descarte una mención al paso sobre una de las especies, mientras que se elige el que documenta datos procesables de la interacción).
+
+4. **Inclusión** — las referencias que pasan los tres filtros anteriores forman el "conjunto final", documentado con su cita completa y — cuando la interacción esté formalmente registrada — su ficha en [GloBI](https://www.globalbioticinteractions.org), la base de datos de interacciones bióticas documentadas (ver también **Apps** en este apéndice).
+
+Los pasos 2 a 4 son trabajo profundo de lectura, estudio y criterio; procesos cuyos contenidos van más allá de los alcances de esta herramienta. 
+
+Esta herramienta ayuda con el paso 1: armar una consulta o prompt estructurada y documentada, lista para llevar al buscador (o al asistente de IA) de su preferencia.
+
+:::
+
+::: {.callout-note appearance="minimal" icon=true}
+
+## Generador de consulta
+
+Elige un par de especies y, opcionalmente, los conceptos que te interesa enfocar. 
+
+La app arma una consulta de búsqueda prolija y un prompt listo para pegar en un asistente de IA, sin ejecutar ninguna búsqueda por sí misma. Es liviana (esperar un minuto en la primera carga): solo valida los nombres científicos con GBIF y el resto es texto.
+
+Puede descargar la ficha de consulta generada como archivo .md, legible en dispositivos mediados por humanos y legible por máquinas; así como directamente derivar a plataformas de búsqueda de fuente primaria de conocimiento.
+
+:::
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 700
+
+library(shiny)
+library(jsonlite)
+
+# Workaround para Chromium Issue 468227 (descarga de archivos en shinylive)
+downloadButton <- function(...) {
+  tag <- shiny::downloadButton(...)
+  tag$attribs$download <- NULL
+  tag
+}
+
+# Reutilizado de bio-distribution.qmd: valida nombres contra el backbone de GBIF
+gbif_name_match <- function(name) {
+  url <- paste0("https://api.gbif.org/v1/species/match?name=", URLencode(name))
+  tryCatch(fromJSON(url), error = function(e) NULL)
+}
+
+# ==========================================
+# Los 4 ejes conceptuales (mismos que se usaron en versiones anteriores de esta app)
+# ==========================================
+grupos_keywords <- list(
+  sector = list(
+    titulo = "Interacciones bióticas",
+    descripcion = "A qué tipo de vínculo o función ecológica pertenece esta consulta.",
+    color_fondo = "#f0fdf4", color_borde = "#bbf7d0",
+    items = list(
+      interacciones_bioticas = list(label = "Interacciones bióticas", keyword = "biotic interactions"),
+      planta_animal = list(label = "Interacción planta-animal", keyword = "plant-animal interaction"),
+      redes_troficas = list(label = "Redes tróficas", keyword = "trophic network OR food web"),
+      servicios_ecosistemicos = list(label = "Servicios ecosistémicos", keyword = "ecosystem services OR ecosystem disservices")
+    )
+  ),
+  eco_evolutiva = list(
+    titulo = "Ecología evolutiva",
+    descripcion = "Qué fuerza o proceso evolutivo podría estar operando en esta interacción.",
+    color_fondo = "#fdf4ff", color_borde = "#e9d5ff",
+    items = list(
+      eco_evolutiva_gral = list(label = "Ecología evolutiva", keyword = "evolutionary ecology"),
+      seleccion_natural = list(label = "Selección natural", keyword = "natural selection"),
+      coevolucion = list(label = "Co-evolución", keyword = "coevolution"),
+      fenotipo_extendido = list(label = "Fenotipo extendido", keyword = "extended phenotype"),
+      percepcion_interactuante = list(label = "Percepción", keyword = "signal perception OR sensory ecology")
+    )
+  ),
+  historia_vida = list(
+    titulo = "Rasgos de historia de vida / desempeño",
+    descripcion = "Cómo vive y se reproduce cada especie.",
+    color_fondo = "#f0f9ff", color_borde = "#bae6fd",
+    items = list(
+      tamano = list(label = "Tamaño corporal", keyword = "body size"),
+      edad_madurez = list(label = "Edad a la madurez", keyword = "age at maturity"),
+      longevidad = list(label = "Longevidad", keyword = "longevity OR lifespan"),
+      crecimiento = list(label = "Tasa de crecimiento", keyword = "growth rate"),
+      fecundidad = list(label = "Fecundidad", keyword = "fecundity"),
+      frecuencia_repro = list(label = "Frecuencia reproductiva", keyword = "semelparity OR iteroparity"),
+      inversion_parental = list(label = "Inversión parental", keyword = "parental investment"),
+      nutricion = list(label = "Modo nutricional", keyword = "diet OR trophic"),
+      rendimiento_locomotor = list(label = "Rendimiento locomotor", keyword = "locomotor performance"),
+      tolerancia_termica = list(label = "Tolerancia térmica", keyword = "thermal tolerance")
+    )
+  ),
+  aplicado = list(
+    titulo = "Aplicaciones",
+    descripcion = "Para qué podría servir este conocimiento más allá de la ecología básica.",
+    color_fondo = "#fffbeb", color_borde = "#fde68a",
+    items = list(
+      agroecologia = list(label = "Agroecología", keyword = "agroecology"),
+      manejo_ambiental = list(label = "Manejo ambiental", keyword = "environmental management"),
+      eco_epidemiologia = list(label = "Eco-epidemiología", keyword = "disease ecology OR eco-epidemiology")
+    )
+  )
+)
+
+items_planos <- do.call(c, unname(lapply(grupos_keywords, function(g) g$items)))
+
+generar_checkboxes_grupo <- function(grupo_id, grupo) {
+  choices <- setNames(names(grupo$items), sapply(grupo$items, function(x) x$label))
+  wellPanel(
+    style = paste0("background: ", grupo$color_fondo, "; border: 1px solid ", grupo$color_borde, "; margin-bottom: 8px;"),
+    tags$strong(style = "font-size: 0.85em;", grupo$titulo),
+    tags$p(style = "font-size: 0.78em; color: #64748b; margin: 2px 0 6px 0; font-style: italic;", grupo$descripcion),
+    checkboxGroupInput(paste0("cb_", grupo_id), NULL, choices = choices, inline = TRUE)
+  )
+}
+
+# ==========================================
+# GENERADORES: arman texto, no ejecutan ninguna búsqueda
+# ==========================================
+generar_consulta <- function(especie_a, especie_b, rasgos_ids) {
+  base <- paste0('"', especie_a, '" "', especie_b, '"')
+  if (length(rasgos_ids) == 0) return(base)
+  keywords <- sapply(items_planos[rasgos_ids], function(x) x$keyword)
+  paste(base, paste(keywords, collapse = " OR "))
+}
+
+generar_prompt_llm <- function(especie_a, especie_b, rasgos_labels) {
+  foco <- if (length(rasgos_labels) > 0) paste0(", con foco en: ", paste(rasgos_labels, collapse = ", ")) else ""
+  paste0(
+    "Necesito referencias bibliográficas sobre la interacción biótica entre ", especie_a, " y ", especie_b, foco, ". ",
+    "Prioriza fuentes que documenten evidencia directa, fuentes primarias de base de conocimiento y publicaciones sobre esta interacción entre estas dos especies puntuales, ",
+    "además de fuentes de la historia natural y ecología de cada especie a partir de búsquedas separadas para cada especie. Para cada referencia indica: autor(es), año, título, ",
+    "y DOI o enlace si está disponible. Si no encuentras evidencia directa de la interacción entre estas dos ",
+    "especies, explicita en vez de aproximar o inventar una referencia."
+  )
+}
+
+# ==========================================
+# UI
+# ==========================================
+ui <- fluidPage(
+  fluidRow(
+    column(6, wellPanel(
+      style = "background: #f8fafc; border: 1px solid #e2e8f0;",
+      tags$h4("Especie A"),
+      textInput("especie_a", "Nombre científico:", "Vassobia breviflora")
+    )),
+    column(6, wellPanel(
+      style = "background: #f8fafc; border: 1px solid #e2e8f0;",
+      tags$h4("Especie B"),
+      textInput("especie_b", "Nombre científico:", "Thraupis sayaca")
+    ))
+  ),
+
+  actionButton("verificar", "🔎 Verificar nombres", class = "btn-outline-info btn-sm"),
+  uiOutput("validacion_nombres"),
+
+  br(),
+  wellPanel(
+    style = "background: #fdfaf5; border: 1px solid #eee0c8;",
+    tags$strong("Enfocar la consulta (opcional):"),
+    tags$p(style = "font-size: 0.8em; color: #64748b; margin-top: 4px;",
+           "Esto ayuda a armar una consulta más específica."),
+    generar_checkboxes_grupo("sector", grupos_keywords$sector),
+    generar_checkboxes_grupo("eco_evolutiva", grupos_keywords$eco_evolutiva),
+    generar_checkboxes_grupo("historia_vida", grupos_keywords$historia_vida),
+    generar_checkboxes_grupo("aplicado", grupos_keywords$aplicado)
+  ),
+
+  actionButton("generar", "Generar consulta y prompt", class = "btn-primary", style = "width: 100%;"),
+
+  br(), br(),
+  uiOutput("resultado_panel"),
+
+  br(),
+  wellPanel(
+    style = "background: #fafaf9; border: 1px solid #e7e5e4; font-size: 0.85em;",
+    tags$strong("Fuentes y créditos:"),
+    tags$p("La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Esta ficha no ejecuta búsquedas por sí misma — arma consultas y prompts para usar en Google Scholar, Crossref, GloBI, o un asistente de IA de preferencia. La aplicación corre en su navegador vía Shiny (R) y shinylive/webR (WebAssembly), embebida con Quarto."),
+    tags$div(
+      style = "display: flex; gap: 8px; flex-wrap: wrap;",
+      tags$a(href = "https://www.gbif.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GBIF.org"),
+      tags$a(href = "https://www.globalbioticinteractions.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "GloBI"),
+      tags$a(href = "https://shiny.posit.co", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Shiny"),
+      tags$a(href = "https://quarto.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Quarto")
+    )
+  )
+)
+
+# ==========================================
+# SERVIDOR
+# ==========================================
+server <- function(input, output, session) {
+
+  validacion <- eventReactive(input$verificar, {
+    list(
+      a = list(consulta = input$especie_a, match = gbif_name_match(input$especie_a)),
+      b = list(consulta = input$especie_b, match = gbif_name_match(input$especie_b))
+    )
+  })
+
+  output$validacion_nombres <- renderUI({
+    v <- validacion()
+    tagList(lapply(list(v$a, v$b), function(r) {
+      m <- r$match
+      if (is.null(m) || is.null(m$matchType) || m$matchType == "NONE") {
+        div(class = "alert alert-danger", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+            paste0("❌ '", r$consulta, "' no se encontró en el backbone de GBIF."))
+      } else if (m$matchType == "EXACT") {
+        div(class = "alert alert-success", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+            paste0("✅ '", r$consulta, "' reconocido como ", m$scientificName, " (", m$status, ")"))
+      } else {
+        div(class = "alert alert-warning", style = "padding:6px; font-size:0.85em; margin-top:4px;",
+            paste0("⚠️ '", r$consulta, "' es una coincidencia aproximada. GBIF sugiere: ", m$canonicalName, "."))
+      }
+    }))
+  })
+
+  rasgos_elegidos_r <- reactive({
+    c(input$cb_sector, input$cb_eco_evolutiva, input$cb_historia_vida, input$cb_aplicado)
+  })
+
+  resultado <- eventReactive(input$generar, {
+    req(input$especie_a, input$especie_b)
+    ids <- rasgos_elegidos_r()
+    labels <- if (length(ids) > 0) {
+      etiquetas <- sapply(items_planos[ids], function(x) if (is.null(x)) NA_character_ else x$label)
+      etiquetas[!is.na(etiquetas)]
+    } else {
+      character(0)
+    }
+    list(
+      consulta = generar_consulta(input$especie_a, input$especie_b, ids),
+      prompt = generar_prompt_llm(input$especie_a, input$especie_b, labels),
+      rasgos = labels
+    )
+  })
+
+  output$resultado_panel <- renderUI({
+    res <- resultado()
+    req(res)
+    scholar_url <- paste0("https://scholar.google.com/scholar?q=", URLencode(res$consulta))
+    crossref_url <- paste0("https://search.crossref.org/?q=", URLencode(res$consulta), "&from_ui=yes")
+
+    wellPanel(
+      style = "background: #ffffff; border: 1px solid #d1d5db;",
+      tags$h4("Consulta generada"),
+      tags$p(style = "font-size: 0.8em; color: #64748b;",
+             if (length(res$rasgos) > 0) paste0("Enfocada en: ", paste(res$rasgos, collapse = ", ")) else "Sin enfoque adicional (solo las dos especies)."),
+      if (length(res$rasgos) > 1) div(class = "alert alert-warning", style = "padding:6px; font-size:0.78em;",
+          "⚠️ Marcar varios conceptos los combina con OR, lo cual ensancha la búsqueda en vez de precisarla — por eso a veces aparecen resultados de muchas disciplinas y fuentes primarias o secundarias. Para mayor precisión, prueba con un solo concepto por búsqueda."),
+      verbatimTextOutput("consulta_texto"),
+      tags$div(
+        style = "display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0;",
+        tags$a(href = scholar_url, target = "_blank", class = "btn btn-sm btn-primary", "Buscar en Google Scholar"),
+        tags$a(href = crossref_url, target = "_blank", class = "btn btn-sm btn-outline-secondary", "Buscar en Crossref"),
+        tags$a(href = "https://www.globalbioticinteractions.org", target = "_blank", class = "btn btn-sm btn-outline-secondary", "Buscar en GloBI")
+      ),
+      tags$hr(),
+      tags$h5("Prompt sugerido para un asistente de IA"),
+      verbatimTextOutput("prompt_texto"),
+      br(),
+      downloadButton("descargar_registro", "Descargar registro (.md)", class = "btn-outline-secondary")
+    )
+  })
+
+  output$consulta_texto <- renderText({ resultado()$consulta })
+  output$prompt_texto <- renderText({ resultado()$prompt })
+
+  output$descargar_registro <- downloadHandler(
+    filename = function() paste0("interdomestic_consulta_", Sys.Date(), ".md"),
+    content = function(file) {
+      res <- resultado()
+      req(res)
+
+      especie_a <- if (is.null(input$especie_a) || !nzchar(input$especie_a)) "(sin especificar)" else input$especie_a
+      especie_b <- if (is.null(input$especie_b) || !nzchar(input$especie_b)) "(sin especificar)" else input$especie_b
+      rasgos_txt <- if (length(res$rasgos) > 0) paste0("- ", res$rasgos, collapse = "\n") else "Ninguno"
+      consulta_txt <- if (is.null(res$consulta) || !nzchar(res$consulta)) "(no disponible)" else res$consulta
+      prompt_txt <- if (is.null(res$prompt) || !nzchar(res$prompt)) "(no disponible)" else res$prompt
+      fecha_txt <- tryCatch(format(Sys.time(), "%Y-%m-%d %H:%M"), error = function(e) as.character(Sys.time()))
+
+      texto <- paste0(
+        "# Registro de consulta — interdomestic\n\n",
+        "Generado: ", fecha_txt, "\n\n",
+        "## Especies\n\n- Especie A: ", especie_a, "\n- Especie B: ", especie_b, "\n\n",
+        "## Conceptos de enfoque\n\n", rasgos_txt, "\n\n",
+        "## Consulta para buscador\n\n", consulta_txt, "\n\n",
+        "## Prompt sugerido para asistente de IA\n\n", prompt_txt, "\n"
+      )
+      cat(texto, file = file)
+    }
+  )
+}
+
+shinyApp(ui, server)
+```
+
+::: {.metadatos-final}
+**Autor:** {{< meta author >}}  
+**Fecha de publicación:** {{< meta date >}}  
+**Última modificación:** {{< meta date-modified >}}
+:::
