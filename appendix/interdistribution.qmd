@@ -508,6 +508,7 @@ function generarCSV(datos) {
 //| output: false
 
 function descargarCSV() {
+  console.log("botón descargar: click detectado")
   try {
     const csv = generarCSV(datos_csv_export)
     const blob = new Blob([csv], {type: "text/csv;charset=utf-8;"})
@@ -531,7 +532,7 @@ function descargarCSV() {
 }
 
 html`
-  <button class="bio-button bio-button-primary" onclick=${() => { console.log("botón descargar: click detectado"); descargarCSV() }}
+  <button class="bio-button bio-button-primary" onclick=${() => descargarCSV()}
           disabled=${todos_los_datos.length === 0}>
     📥 Descargar datos (.csv)
   </button>
