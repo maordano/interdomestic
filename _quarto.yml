@@ -122,11 +122,11 @@ website:
        <button onclick="toggleTextoAVoz()" id="btn-voz" class="btn-acc">🔊 Escuchar Página</button>
     right:
       - icon: github
-        href: https://github.com
+        href: https://github.com/maordano/interdomestic
         aria-label: "Repositorio Informático"
       - icon: share
         text: "OSF"
-        href: https://osf.io
+        href: https://osf.io/mhx7r/overview
       - icon: kanban
         text: "STAPLE"
         href: https://staple.science
