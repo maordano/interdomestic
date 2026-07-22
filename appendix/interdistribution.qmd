@@ -194,28 +194,16 @@ viewof especies_input = Inputs.textarea({
 viewof max_registros = Inputs.range([10, 500], {
   label: "Registros máx. por especie:", 
   step: 10, 
-  value: 100
+  value: 50
 })
 
- {
-  const btn = html`<button class="bio-button bio-button-verify">🔎 Verificar nombres contra GBIF</button>`
-  btn.value = undefined
-  btn.onclick = () => {
-    btn.value = {timestamp: Date.now()}
-    btn.dispatchEvent(new CustomEvent("input"))
-  }
-  return btn
-}
+viewof verificar_nombres_trigger = Inputs.button("🔎 Verificar nombres contra GBIF", {
+  reduce: () => ({timestamp: Date.now()})
+})
 
-viewof sincronizar_trigger = {
-  const btn = html`<button class="bio-button bio-button-sync">🗺️ Sincronizar Distribución Geográfica</button>`
-  btn.value = undefined
-  btn.onclick = () => {
-    btn.value = {timestamp: Date.now()}
-    btn.dispatchEvent(new CustomEvent("input"))
-  }
-  return btn
-}
+viewof sincronizar_trigger = Inputs.button("🗺️ Sincronizar Distribución Geográfica", {
+  reduce: () => ({timestamp: Date.now()})
+})
 
 //| echo: false
 
