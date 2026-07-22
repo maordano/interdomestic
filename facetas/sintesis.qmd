@@ -4,27 +4,27 @@ title: "🧬 Síntesis"
 
 Puerta de entrada a interdomestic desde la síntesis: meta-análisis sobre variación fenotípica de la vida silvestre en el ámbito doméstico, en tres tópicos de aplicación.
 
+*(en desarrollo)*
+
+
 ::: {.grid}
 
 ::: {.g-col-12 .g-col-md-4}
 ### Agricultura / Agroecología
 Meta-análisis de relaciones humano-naturaleza mediadas por otras especies y "dispositivos de interacción" en el ámbito agrícola.
 
-*(pendiente de desarrollo)*
 :::
 
 ::: {.g-col-12 .g-col-md-4}
 ### Manejo ambiental
 Meta-análisis orientado a decisiones de manejo ambiental en el ámbito doméstico.
 
-*(pendiente de desarrollo)*
 :::
 
 ::: {.g-col-12 .g-col-md-4}
 ### Eco-epidemiología
 Meta-análisis de interacciones bióticas con relevancia eco-epidemiológica.
 
-*(pendiente de desarrollo)*
 :::
 
 :::
@@ -37,7 +37,6 @@ Meta-análisis de interacciones bióticas con relevancia eco-epidemiológica.
 ### Meta-análisis (Bio-meta)
 Sistema de meta-análisis asociado al proyecto de síntesis.
 
-*(en desarrollo)*
 
 [Ir a Meta-análisis →](../fuente-proyecto/meta-search-OSF.qmd)
 :::
