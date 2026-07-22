@@ -82,14 +82,14 @@ website:
       - section: "Appendix"
         icon: grid-3x3-gap
         contents:
+          - text: "Información Extra"
+            href: appendix/bio-info.qmd
           - text: "Interacciones Bióticas"
             href: appendix/interacciones.qmd
-          - text: "Meta-análisis"
-            href: appendix/bio-meta.qmd
-          - text: "Apps"
-            href: appendix/bio-info.qmd
           - text: "Distribución Geográfica"
             href: appendix/geodistribution.qmd
+          - text: "Meta-análisis"
+            href: appendix/bio-meta.qmd
       - section: "Manual"
         icon: journal-bookmark
         contents:
