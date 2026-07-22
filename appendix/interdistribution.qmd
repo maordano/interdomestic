@@ -531,12 +531,13 @@ function descargarCSV() {
   }
 }
 
-html`
-  <button class="bio-button bio-button-primary" onclick=${() => descargarCSV()}
-          disabled=${todos_los_datos.length === 0}>
-    📥 Descargar datos (.csv)
-  </button>
-`
+//| echo: false
+viewof disparador_descarga = Inputs.button("📥 Descargar datos (.csv)", {
+  disabled: todos_los_datos.length === 0,
+  value: null,
+  reduce: () => descargarCSV()
+})
+
 ```
 
 ### Fuentes y créditos
