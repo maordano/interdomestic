@@ -116,6 +116,26 @@ format:
           .bio-button-primary:hover {
             background: #2563eb;
           }
+          .bio-button-verify {
+            background: #4f46e5;
+            color: #ffffff;
+            border-color: #4f46e5;
+          }
+          .bio-button-verify:hover {
+            background: #4338ca;
+          }
+          .bio-button-sync {
+            background: #059669;
+            color: #ffffff;
+            border-color: #059669;
+          }
+          .bio-button-sync:hover {
+            background: #047857;
+          }
+          .bio-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
           .bio-map-legend {
             background: rgba(255, 255, 255, 0.92);
             padding: 8px 10px;
@@ -197,13 +217,21 @@ viewof max_registros = Inputs.range([10, 500], {
   value: 50
 })
 
-viewof verificar_nombres_trigger = Inputs.button("🔎 Verificar nombres contra GBIF", {
-  reduce: () => ({timestamp: Date.now()})
-})
+viewof verificar_nombres_trigger = {
+  const form = Inputs.button("🔎 Verificar nombres contra GBIF", {
+    reduce: () => ({timestamp: Date.now()})
+  })
+  form.querySelector("button").classList.add("bio-button", "bio-button-verify")
+  return form
+}
 
-viewof sincronizar_trigger = Inputs.button("🗺️ Sincronizar Distribución Geográfica", {
-  reduce: () => ({timestamp: Date.now()})
-})
+viewof sincronizar_trigger = {
+  const form = Inputs.button("🗺️ Sincronizar Distribución Geográfica", {
+    reduce: () => ({timestamp: Date.now()})
+  })
+  form.querySelector("button").classList.add("bio-button", "bio-button-sync")
+  return form
+}
 
 //| echo: false
 
@@ -275,7 +303,7 @@ html_validacion_nombres = html`
           ❌ "${v.consulta}" no se encontró en GBIF. Revisá la ortografía.
         </div>`
       }
-    }).join("") : html`<div class="bio-alert bio-alert-info">Haz clic en "Verificar nombres" para validar.</div>`}
+    }) : html`<div class="bio-alert bio-alert-info">Haz clic en "Verificar nombres" para validar.</div>`}
   </div>
 `
 
@@ -362,9 +390,12 @@ container_mapa = html`<div style="height: 450px; width: 100%; border-radius: 8px
 {
   // Evitar renderizar si no hay datos
   if (todos_los_datos.length === 0) {
+    const mensaje = sincronizar_trigger?.timestamp
+      ? "No se encontraron registros con coordenadas para estos nombres. Revisá la ortografía, probá con otro nombre científico, o puede que GBIF no tenga registros geolocalizados para esa especie."
+      : 'Hacé clic en "🗺️ Sincronizar" para cargar datos en el mapa'
     container_mapa.innerHTML = `
-      <div style="height: 100%; display: flex; align-items: center; justify-content: center; background: #f3f4f6; color: #6b7280; font-size: 1.1em;">
-        Haz clic en "🗺️ Sincronizar" para cargar datos en el mapa
+      <div style="height: 100%; display: flex; align-items: center; justify-content: center; background: #f3f4f6; color: #6b7280; font-size: 1.1em; text-align: center; padding: 20px;">
+        ${mensaje}
       </div>
     `
     invalidation.then(() => {})
@@ -482,7 +513,10 @@ function descargarCSV() {
   const link = document.createElement("a")
   link.href = URL.createObjectURL(blob)
   link.download = `interdomestic_gbif_${new Date().toISOString().split('T')[0]}.csv`
+  link.style.display = "none"
+  document.body.appendChild(link)
   link.click()
+  document.body.removeChild(link)
   URL.revokeObjectURL(link.href)
 }
 
