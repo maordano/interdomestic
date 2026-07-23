@@ -12,7 +12,7 @@ Un dispositivo de interacción con infraestructura de artefacto, co-creado y med
 
 ## Cómo se organiza
 
-Al menos una persona humana interactúa con un ordenador. El ordenador se conecta a Internet. Una forma de un espacio de trabajo _interdomestic_ integra drives/nubes, [STAPLE](htpps://staple.science), [OSF](htpps://osf.io), [RStudio](https://posit.co/downloads), [GitHub](https://github.com) y [Zenodo](https://zenodo.org). 
+Al menos una persona humana interactúa con un ordenador. El ordenador se conecta a Internet. Una forma de un espacio de trabajo con  _interdomestic_ integra, drives/nubes, sistemas de comunicación (correos, chats, reuniones virtuales o presenciales), [STAPLE](htpps://staple.science), [OSF](htpps://osf.io), [RStudio](https://posit.co/downloads), [GitHub](https://github.com) y [Zenodo](https://zenodo.org). 
 
 La construcción de conocimiento para la síntesis requiere aprendizaje e investigación, por lo que se organizan tres facetas del proceso de construcción: Aprendizaje, Investigación y Síntesis. 
 
