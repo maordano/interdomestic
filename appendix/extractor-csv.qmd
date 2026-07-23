@@ -60,7 +60,7 @@ Configura los parámetros para extraer el mapa de gobernanza del país seleccion
 //| echo: false
 // METODO DE OPTIMIZACION 1: Carga asíncrona descentralizada desde el repositorio
 // Reemplaza la ruta relativa dependiendo de dónde coloques este .qmd
-db_ambient_global = FileAttachment("../data/governance_db.json").json()
+db_ambient_global = FileAttachment("../_data/governance_db.json").json()
 
 // Selectores reactivos mapeados automáticamente a partir del contenido del JSON
 viewof pais_foco = Inputs.select(
@@ -108,7 +108,7 @@ Al presionar el botón de descarga, se inyectarán de forma automatizada los met
 // METODO DE OPTIMIZACION 2: Construcción del archivo CSV enriquecido con metadatos de origen
 function crearCSVConMetadatos(data, pais) {
   const metadatos = [
-    `# PROYECTO: interdomestic (https://github.io)`,
+    `# PROYECTO: interdomestic (https://github.com/maordano/interdomestic)`,
     `# ARTEFACTO: Extractor de Gobernanza Ambiental y Vida Silvestre`,
     `# LICENCIA: CC BY 4.0 2026`,
     `# TRAZABILIDAD: Pais evaluado: ${pais} | Fecha de extraccion: ${new Date().toISOString().split('T')[0]}`,
