@@ -4,7 +4,7 @@ format: html
 subtitle: "Registro cronológico del proceso de aprendizaje e investigación"
 date: 2026-07-05
 author: "M.A.Ordano"
-date-modified: 2026-07-16
+date-modified: 2026-07-23
 # Metadatos del ciclo de vida del proyecto
 project_phase: "Ideación Interactiva"
 data_status: "Borrador Conceptual"
@@ -28,6 +28,24 @@ Cada registro incluye los metadatos que identifican desde dónde y cómo se cons
 * **Estado:** Consolidación de la infraestructura del dispositivo en RStudio y Quarto.
 * **Descripción:** Soldadura del puente de Git entre la computadora local y la subcarpeta `/interdomestic/`, habilitando controles de percepción y accesibilidad en el pie de página. El chasis del sistema queda estable -candidate release- para recibir los datos de las metas de proyecto.
 :::
+
+::: {.callout-note appearance="simple"}
+### Registro #002: Testing de la Membrana Digital
+* **Fecha:** 2026-07-13
+* **Ruta de Co-participación:** Modelo B (Agencialidad Híbrida / Asistencia de IA)
+* **Estado:** Release GitHub, registro OSF y Zenodo.
+* **Descripción:** Diagnosis de consistencia informática, estructura conceptual y posibilidades de escalamiento. Revisión y registro de actividades del proyecto. Entrenamiento con STAPLE, OSF, RStudio y GitHub.
+Cambio de estructura de relaciones en el árbol de archivos, corrección y agregado de texto.  
+:::
+
+::: {.callout-note appearance="simple"}
+### Registro #003: Pulido y Revisión de la Membrana Digital
+* **Fecha:** 2026-07-23
+* **Ruta de Co-participación:** Modelo B (Agencialidad Híbrida / Asistencia de IA)
+* **Estado:** Licencia CC-4.0-Internacional.
+* **Descripción:** Preparación para un nuevo release con características de prototipo en fase de desarrollo. Cambio de estructura de relaciones en el árbol de archivos, corrección y agregado de texto, revisión general del dispositivo y el proyecto.  
+:::
+
 
 ---
 

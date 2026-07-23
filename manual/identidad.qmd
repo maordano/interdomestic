@@ -70,7 +70,7 @@ En concordancia con las legislaciones internacionales de privacidad y protecció
 
 -   **Naturaleza de los Datos:** Esta plataforma no almacena, solicita ni procesa datos personales sensibles de las personas ciudadanas visitantes.
 -   **Investigación:** Los datos de "Contribuyentes", "Autores", "Creadores", "Comentaristas", "Revisores", "Colaboradores", y otras etiquetas de roles de aprendizaje e investigación, extraídos en el marco de la revisión sistemática, corresponden a información bibliográfica pública e indexada, utilizada estrictamente con fines de atribución académica, reconocimiento de autoría y transparencia científica, y traza para la verificación libre de bases del conocimiento ("el conocimiento está vivo").
--   **Derechos ARCO:** Cualquier persona en cualquier rol en Interdomestic puede solicitar la rectificación o actualización de la información bibliográfica visible en la plataforma contactando a la administración del repositorio: interdomestic@proton.me (M.A.Ordano).
+-   **Derechos ARCO:** Cualquier persona en cualquier rol en Interdomestic puede solicitar la rectificación o actualización de la información bibliográfica visible en la plataforma contactando a la administración del repositorio: interdomestic@proton.me [M.A.Ordano](htpps://maordano.github.io/).
 
  ---  
 
@@ -98,7 +98,7 @@ Si estás replicando este template, utiliza este espacio para declarar las polí
 
 **Diagrama del ecosistema de aprendizaje, investigación y síntesis**
 
-En construcción.
+En construcción. Ver [Inicio](https://maordano.github.io/interdomestic/)
 
  ---  
 
@@ -111,7 +111,7 @@ En construcción.
 
 ## Nuestra Mediación Humana
 
-A medida que el proyecto *cuore* madure, aquí se detallarán nuestras reglas de interacción, co-participación y convivencia.
+A medida que el proyecto *cuore* madure, aquí se detallarán nuestras reglas de interacción, co-participación y convivencia/coexistencia.
 
 ::: {.metadatos-final}
 **Autor:** {{< meta author >}}  

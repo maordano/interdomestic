@@ -33,7 +33,7 @@ Definimos nuestra labor buscando claridad identitaria, entendiendo el conocimien
 Nuestras observaciones (biológicas o no) operan bajo un marco de **Conocimiento Situado**, entendiendo que la investigación -que genera sistemas de aprendizaje, experiencias y dispositivos para productos publicados que representan base de conocimiento- está siendo  apropiada en multiplicidad y diversidad por la población humana de manera libre y abierta, como una propiedad emergente colectiva; la cual se genera desde personas humanas y entornos concretos. Por ejemplo, una oficina, un laboratorio, un área natural, un campo agrícola, un entorno productivo, un aula, un parque, un patio de escuela, una casa, un hogar, centros de investigación, instituciones de desarrollo educativo, espacios y tiempos de cotidianidad humana. ¡Tantas esferas humanas! Y herramientas típicamente inorgánicas: dispositivos de interacción.
 
 ## 2. Agencialidad Simétrica
-Reconocemos y documentamos explícitamente tres rutas de interacción para la construcción de nuestras bases de "saberes":
+Reconocemos y documentamos explícitamente tres rutas de interacción para la construcción de nuestras bases de conocimientos o "saberes" [ver Métodos](https://maordano.github.io/interdomestic/fuente-proyecto/metodos.html):
 *   **Humana:** red de interacción humana definida por proximidad, historia de vida, ciudadanía y coautoría tradicional (**pedigrees**, historias de vida).
 *   **Híbrida:** Sesiones de ideación interactiva y andamiaje mental asistido por IA (este documento).
 *   **Sintética:** Procesamiento analítico automatizado de datos mediante código de R interoperable a otras codificaciones, agentes de IA, dispositivos no humanos.

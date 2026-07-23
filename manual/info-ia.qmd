@@ -10,11 +10,11 @@ format:
     toc-depth: 3
 ---
 
-Este documento -_en desarrollo_- detalla el posicionamiento ético y normativo de **Interdomestic** respecto a la interacción con tecnologías de Inteligencia Artificial (IA). En consonancia con nuestro modelo híbrido de construcción del conocimiento, establecemos "salvaguardas para proteger la mediación humana", evitar la "explotación automatizada no regulada" y garantizar "justicia epistémica".
+Este documento detalla el posicionamiento ético y normativo de **Interdomestic** respecto a la interacción con tecnologías de Inteligencia Artificial (IA). En consonancia con nuestro modelo híbrido de construcción del conocimiento, establecemos "salvaguardas para proteger la mediación humana", evitar la "explotación automatizada no regulada" y garantizar "justicia epistémica" o ciertas "formas adaptativas mutuamente satisfactorias".
 
 ## 1. Alineación con Organismos de Ética Editorial
 
-_Interdomestic_ adopta y hace suyos los criterios regulatorios de los principales organismos globales de integridad académica y científica para orientar la toma de decisiones sobre el software asistido por IA y la asignación de créditos:
+_Interdomestic_ adopta criterios regulatorios de los principales organismos globales de integridad académica y científica para orientar la toma de decisiones sobre el software asistido por IA y la asignación de créditos:
 
 *   **ICMJE (International Committee of Medical Journal Editors):** Se prohíbe de forma taxativa registrar a una IA o modelo de lenguaje masivo (LLM) como coautor de cualquier síntesis o componente del dispositivo. Todo uso de IA en el procesamiento de datos o redacción de contenidos debe ser transparentado explícitamente en la metodología.
 *   **COPE (Committee on Publication Ethics):** Al carecer de personería legal, la IA no puede asumir responsabilidades por derechos de autor, propiedad intelectual o conflictos de interés. _Interdomestic_ utiliza las directrices de COPE para auditar posibles prácticas de "fábricas de publicaciones" (*paper mills*) en los estudios primarios que forman parte de nuestro meta-análisis. Una excepción en _Interdomestic_ debería discutirse para el caso de investigaciones explicitadas para la automatización, mediadas por humanos (creadas, auditadas, diagnosticadas, supervisadas por humanos) y sus asistentes de IA, en la relación con robots.
@@ -23,29 +23,29 @@ _Interdomestic_ adopta y hace suyos los criterios regulatorios de los principale
 
 ## 2. Integración de FAIR/CARE en la Gobernanza de la IA
 
-La convergencia entre los datos reproducibles y la justicia social guía nuestras interacciones con los entornos algorítmicos bajo un doble eje:
+La convergencia entre los datos reproducibles y la "justicia" al producir conocimiento (determinada por una apertura plena, excepto datos personales o sensibles), guía nuestras interacciones con los entornos algorítmicos bajo un doble eje:
 
 ### Dimensión FAIR (Infraestructura y Datos Limpios)
-*   **Auditoría de Entrenamiento:** Los datos y scripts de R alojados en **OSF** y **GitHub** operan bajo metadatos estandarizados (DataCite). Esto permite verificar si los datos utilizados para entrenar modelos de IA locales están libres de duplicaciones y son técnicamente trazables.
-*   **Legibilidad por Máquinas:** Aseguramos que nuestras matrices (`codebook.csv`) e interfaces sean interoperables de manera transparente para que los sistemas de automatización puedan auditar la reproducibilidad de nuestras síntesis sin cajas negras informáticas.
+*   **Auditoría de Entrenamiento:** Los datos y scripts informáticos alojados en **GitHub** y **OSF** operan bajo metadatos estandarizados (DataCite). Esto permite verificar si los datos utilizados para entrenar modelos de IA locales están libres de duplicaciones y son técnicamente trazables.
+*   **Legibilidad por Máquinas:** Aseguramos que nuestras matrices (`codebook.csv`) e interfaces sean interoperables de manera transparente para que los sistemas de automatización puedan auditar la reproducibilidad de nuestras síntesis sin cajas informáticas cerradas.
 
 ### Dimensión CARE (Soberanía y Protección del Conocimiento Local)
-*   **Vallas ante Usos Maliciosos:** Activamos restricciones amigables en el módulo de *Investigación* para evitar el "raspado" (*scraping*) masivo y descontextualizado por parte de IA comerciales que vulneren los derechos territoriales o extraigan datos sin un beneficio colectivo claro para los objetivos de las comunidades humanas que usan este tipo de dispositivos, como _Interdomestic_.
+*   **Vallas ante Usos Maliciosos:** Activamos restricciones amigables en el módulo de *Investigación* para evitar el "raspado" (*scraping*) masivo y descontextualizado por parte de IA comerciales que vulneren los derechos territoriales o jurisdiccionales, o extraigan datos sin un beneficio colectivo claro para los objetivos de las comunidades humanas que usan este tipo de dispositivos, como _Interdomestic_.
 *   **Responsabilidad del Sesgo Lingüístico:** Evaluamos críticamente cómo las herramientas de IA perpetúan sesgos teóricos o jergas académicas que estigmatizan o devalúan ciertas especies o saberes locales, asumiendo la responsabilidad sociológica del lenguaje desplegado en la interfaz.
 
 ## 3. Créditos de Autoría y Taxonomía Humana
 
-Para garantizar una atribución justa en este collage tecnológico, _Interdomestic_ se alinea con los estándares de la taxonomía **CRediT** (Contributor Roles Taxonomy) y las recomendaciones del Consejo Internacional de Ciencias (ISC):
+Para garantizar una atribución de participación en este "collage tecnológico", _Interdomestic_ se alinea con los estándares de la taxonomía **CRediT** (Contributor Roles Taxonomy) y las recomendaciones del Consejo Internacional de Ciencias (ISC):
 
-1.  **Exclusividad Humana:** Los roles de autoría, revisión, curaduría y comentarios están reservados estrictamente para personas humanas.
+1.  **Exclusividad Humana:** Los roles de autoría y contribución, revisión conceptual, curaduría y comentarios están reservados estrictamente para personas humanas (aunque las personas humanas usamos dispositivos con IA).
 2.  **Transparencia de Software:** Las herramientas de IA no reciben crédito de contribución; se declaran formalmente como recursos de infraestructura técnica o herramientas metodológicas de soporte. También se describen dentro de la gestión operativa (**STAPLE**), y en el archivado de prompts en la administración de _Interdomestic_.
-3.  **Verificación de la "Fuente Única de Verdad":** Toda asistencia algorítmica en la extracción de datos bibliográficos públicos es tratada como un borrador intermedio, requiriendo validación y traza humana obligatoria antes de consolidarse en la base de conocimiento viva de la plataforma.
+3.  **Verificación de la "Fuente Única de Verdad":** Toda asistencia algorítmica en la extracción de datos bibliográficos públicos es tratada como un "borrador intermedio", requiriendo validación y traza humana obligatoria antes de consolidarse en la base de conocimiento viva de la plataforma (proceso a cristalizar).
 
 ## 4. Bloque Práctico: Declaración Estándar de Contribuciones e IA
 
 Para garantizar la transparencia activa en las publicaciones, síntesis o actualizaciones derivadas de **Interdomestic**, se adopta un formato estandarizado que combina la taxonomía humana **CRediT** con la declaración de herramientas de soporte (IA).
 
-### Ejemplo de Plantilla de Declaración (Metadatos del Manuscrito)
+### Ejemplo de Plantilla de Declaración (Metadatos de Manuscrito)
 
 ```markdown
 ### Contribuciones de Autoría (CRediT)
@@ -54,8 +54,8 @@ Para garantizar la transparencia activa en las publicaciones, síntesis o actual
 
 ### Declaración de Infraestructura Tecnológica y Asistencia de IA
 De acuerdo con las políticas éticas del dispositivo, se declaran las siguientes interacciones de soporte algorítmico:
-1.  **Software de Asistencia Lingüística/Estructuración:** Se utilizó Claude Sonet (Anthropic, 2026) y Gemini (Google, 2026) para .... 
-2.  **Supervisión y Control:** El control conceptual, la validación de las citas bibliográficas indexadas, la corrección de errores fácticos y la redacción final del texto técnico fueron realizados exclusivamente por los autores humanos (a integrar con el estándar operativo STAPLE). El asistente o interfaz de IA no asume responsabilidad legal ni autoral.
+1.  **Software de Asistencia Lingüística/Estructuración:** Se utilizó [Claude Sonet (Anthropic, 2026), Gemini (Google, 2026) y GitHub Copilot] para [...] 
+2.  **Supervisión y Control:** El control conceptual, la validación de las citas bibliográficas indexadas, la corrección de errores fácticos y la redacción final del texto técnico fueron realizados exclusivamente por personas humanos (a integrar con el estándar operativo STAPLE). El asistente o interfaz de IA no asume responsabilidad legal ni autoral.
 ```
 
 ::: {.callout-note}
@@ -63,9 +63,9 @@ De acuerdo con las políticas éticas del dispositivo, se declaran las siguiente
 Cuando la asistencia algorítmica involucre la curación inicial de datos para la matriz (`codebook.csv`), el equipo de cocina interior registrará en la bitácora local una traza con la siguiente estructura mínima:
 
 *   **Fecha de consulta:** `[AAAA-MM-DD]`
-*   **Sistema/Versión:** `[Ej. Claude Sonnet / Gemini de Google/OpenAI API v1]`
+*   **Sistema/Versión:** `[Ej. Claude Sonnet / Gemini de Google/OpenAI API v1 / Copilot de GitHub]`
 *   **Meta-Prompt Utilizado:** `"[Aquí se copia el prompt en texto]"`
-*   **Operación Humana de Verificación:** `[Ej. Verificado manualmente contra el PDF primario por [Nombre de autoría] el AAAA-MM-DD]`.
+*   **Operación Humana de Verificación:** `[Ej. Verificado manualmente contra el documento primario por [Nombre de autoría] el AAAA-MM-DD]`.
 :::
 
 ## 5. Declaración de Infraestructura Tecnológica y Asistencia de IA

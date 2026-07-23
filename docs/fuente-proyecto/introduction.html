@@ -8,7 +8,7 @@
 
 <meta name="author" content="M.A.Ordano">
 
-<title>Bitácora –  interdomestic</title>
+<title>Introducción –  interdomestic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,21 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Buscar"
   }
 }</script>
+<style>
+/* Oculta el bloque de autor y fecha en el encabezado superior */
+.quarto-title-meta {
+  display: none !important;
+}
+/* Estilo personalizado y discreto para los metadatos del final */
+.metadatos-final {
+  font-size: 0.55em;      /* Poco más de la mitad del tamaño de fuente */
+  color: #777777;         /* Gris claro para segundo plano */
+  line-height: 1.4;
+  margin-top: 40px;
+  border-top: 1px solid #eeeeee; /* Línea sutil de separación */
+  padding-top: 15px;
+}
+</style>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -114,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manual/identidad.html">Manual</a></li><li class="breadcrumb-item"><a href="../manual/bitacora.html">Bitácora</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../fuente-proyecto/marco.html">Fuente de proyecto</a></li><li class="breadcrumb-item"><a href="../fuente-proyecto/introduction.html">Introducción</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -201,14 +216,14 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false"><i class="bi bi-file-earmark-text" role="img">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true"><i class="bi bi-file-earmark-text" role="img">
 </i> 
  <span class="menu-text">Fuente de proyecto</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../fuente-proyecto/marco.html" class="sidebar-item-text sidebar-link">
@@ -217,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../fuente-proyecto/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../fuente-proyecto/introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Introducción</span></a>
   </div>
 </li>
@@ -291,14 +306,14 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true"><i class="bi bi-journal-bookmark" role="img">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false"><i class="bi bi-journal-bookmark" role="img">
 </i> 
  <span class="menu-text">Manual</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../manual/identidad.html" class="sidebar-item-text sidebar-link"><i class="bi bi-gear-wide-connected" role="img">
@@ -322,7 +337,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../manual/bitacora.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-heart-pulse" role="img">
+  <a href="../manual/bitacora.html" class="sidebar-item-text sidebar-link"><i class="bi bi-heart-pulse" role="img">
 </i> 
  <span class="menu-text">Bitácora</span></a>
   </div>
@@ -334,23 +349,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Estructura del Dispositivo</h2>
-   
-  <ul>
-  <li><a href="#registros-recientes" id="toc-registros-recientes" class="nav-link active" data-scroll-target="#registros-recientes">Registros Recientes</a></li>
-  <li><a href="#archivo-histórico" id="toc-archivo-histórico" class="nav-link" data-scroll-target="#archivo-histórico">Archivo Histórico</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manual/identidad.html">Manual</a></li><li class="breadcrumb-item"><a href="../manual/bitacora.html">Bitácora</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../fuente-proyecto/marco.html">Fuente de proyecto</a></li><li class="breadcrumb-item"><a href="../fuente-proyecto/introduction.html">Introducción</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Bitácora</h1>
-<p class="subtitle lead">Registro cronológico del proceso de aprendizaje e investigación</p>
+<h1 class="title">Introducción</h1>
+<p class="subtitle lead">Bases precedentes de la estructura causal y conceptual sobre la variación fenotípica de la vida silvestre en el ámbito doméstico</p>
 </div>
 
 
@@ -367,7 +375,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Fecha de publicación</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">5 de julio de 2026</p>
+      <p class="date">23 de julio de 2026</p>
     </div>
   </div>
   
@@ -385,78 +393,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Esta sección funciona como nuestro <strong>Lab Logbook</strong> o “bitácora”.</p>
+<p>En esta sección se detallan los antecedentes del tema de estudio, en componentes compatibles con las plantillas de OSF, evitando la duplicación.</p>
 <ul>
-<li>¿En qué medida pudo haber representado un hito, para una definición de límite de tiempo del Antropoceno, haber tenido un <strong>device</strong> para soporte de códigos para y entre seres humanos?</li>
+<li><p>Introducción</p></li>
+<li><p>Objetivos</p></li>
 </ul>
-<p>Aquí se asientan, registran, con una interfase verificable; hallazgos empíricos, desafíos metodológicos y observaciones sobre la variación fenotípica de la vida silvestre en el ámbito doméstico. Cada registro incluye los metadatos que identifican desde dónde y cómo se construye el conocimiento.</p>
 <hr>
-<section id="registros-recientes" class="level2">
-<h2 class="anchored" data-anchor-id="registros-recientes">Registros Recientes</h2>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="metadatos-final">
+<p><strong>Autor:</strong> M.A.Ordano<br>
+<strong>Fecha de publicación:</strong> 23 de julio de 2026<br>
+<strong>Última modificación:</strong> 23 de julio de 2026</p>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Registro #001: Diseño de la Membrana Digital
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><strong>Fecha:</strong> 2026-07-05</li>
-<li><strong>Ruta de Co-participación:</strong> Modelo B (Agencialidad Híbrida / Asistencia de IA)</li>
-<li><strong>Estado:</strong> Consolidación de la infraestructura del dispositivo en RStudio y Quarto.</li>
-<li><strong>Descripción:</strong> Soldadura del puente de Git entre la computadora local y la subcarpeta <code>/interdomestic/</code>, habilitando controles de percepción y accesibilidad en el pie de página. El chasis del sistema queda estable -candidate release- para recibir los datos de las metas de proyecto.</li>
-</ul>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Registro #002: Testing de la Membrana Digital
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><strong>Fecha:</strong> 2026-07-13</li>
-<li><strong>Ruta de Co-participación:</strong> Modelo B (Agencialidad Híbrida / Asistencia de IA)</li>
-<li><strong>Estado:</strong> Release GitHub, registro OSF y Zenodo.</li>
-<li><strong>Descripción:</strong> Diagnosis de consistencia informática, estructura conceptual y posibilidades de escalamiento. Revisión y registro de actividades del proyecto. Entrenamiento con STAPLE, OSF, RStudio y GitHub. Cambio de estructura de relaciones en el árbol de archivos, corrección y agregado de texto.<br>
-</li>
-</ul>
-</div>
-</div>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Registro #003: Pulido y Revisión de la Membrana Digital
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><strong>Fecha:</strong> 2026-07-23</li>
-<li><strong>Ruta de Co-participación:</strong> Modelo B (Agencialidad Híbrida / Asistencia de IA)</li>
-<li><strong>Estado:</strong> Licencia CC-4.0-Internacional.</li>
-<li><strong>Descripción:</strong> Preparación para un nuevo release con características de prototipo en fase de desarrollo. Cambio de estructura de relaciones en el árbol de archivos, corrección y agregado de texto, revisión general del dispositivo y el proyecto.<br>
-</li>
-</ul>
-</div>
-</div>
-<hr>
-</section>
-<section id="archivo-histórico" class="level2">
-<h2 class="anchored" data-anchor-id="archivo-histórico">Archivo Histórico</h2>
-<p><em>A medida que la “orquesta” avance y sumemos nuevas observaciones sobre el proyecto, esta sección utilizará motores de listado dinámico para organizar los hilos del proceso por categorías y fechas de registro.</em></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
