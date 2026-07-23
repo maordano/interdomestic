@@ -12,35 +12,135 @@ Un dispositivo de interacción con infraestructura de artefacto, co-creado y med
 
 ## Cómo se organiza
 
-```{mermaid}
-flowchart TD
-    ID["interdomestic"]
-    ID --> A["🎓 Aprendizaje"]
-    ID --> I["🔬 Investigación"]
-    ID --> S["🧬 Síntesis"]
+```{=html}
+<div class="idx-diagram" role="img" aria-label="Persona humana interactúa con el ordenador. El ordenador integra un espacio de trabajo interdomestic, que integra drives o nubes, STAPLE, OSF, RStudio, GitHub y Zenodo. Desde ese espacio de trabajo se organizan tres facetas: Aprendizaje, Investigación y Síntesis.">
 
-    ID -. ecosistema abierto .-> GH["GitHub · repositorio de código"]
-    GH --> Z["Zenodo · registro DOI"]
-    ID -.-> OSF["OSF · macro proyecto - registros de proyectos componentes, metadatos"]
-    ID -.-> ST["STAPLE · gestión de trazabilidad, ciclo de vida del proyecto, comunicación, roles, equipo de cocina interior"]
+  <div class="idx-row idx-row-top">
+    <div class="idx-node idx-neutral">👤<br>PERSONA HUMANA</div>
+    <div class="idx-arrow">
+      <span class="idx-arrow-bidi">↔</span>
+      <span class="idx-arrow-vert">↕</span>
+      <span class="idx-arrow-label">interacción</span>
+    </div>
+    <div class="idx-node idx-neutral">💻<br>ORDENADOR</div>
+  </div>
 
-    style ID fill:#2c3e50,color:#ffffff,stroke:#2c3e50
-    style A fill:#27ae60,color:#ffffff,stroke:#27ae60
-    style I fill:#2980b9,color:#ffffff,stroke:#2980b9
-    style S fill:#8e44ad,color:#ffffff,stroke:#8e44ad
-    style GH fill:#ecf0f1,stroke:#7f8c8d
-    style Z fill:#ecf0f1,stroke:#7f8c8d
-    style OSF fill:#ecf0f1,stroke:#7f8c8d
-    style ST fill:#ecf0f1,stroke:#7f8c8d
+  <div class="idx-arrow idx-arrow-single">↓</div>
+
+  <div class="idx-node idx-espacio">
+    <div class="idx-espacio-title">🗂️ ESPACIO DE TRABAJO <em>interdomestic</em></div>
+    <div class="idx-chips">
+      <span class="idx-chip">☁️ drive/cloud</span>
+      <span class="idx-chip">📋 STAPLE</span>
+      <span class="idx-chip">📋 OSF</span>
+      <span class="idx-chip">📊 RStudio</span>
+      <span class="idx-chip">🐙 GitHub</span>
+      <span class="idx-chip">🗄️ Zenodo</span>
+    </div>
+  </div>
+
+  <div class="idx-arrow idx-arrow-single">↓</div>
+
+  <div class="idx-row idx-row-facetas">
+    <div class="idx-node idx-faceta idx-aprendizaje">🎓<br>APRENDIZAJE</div>
+    <div class="idx-node idx-faceta idx-investigacion">🔬<br>INVESTIGACIÓN</div>
+    <div class="idx-node idx-faceta idx-sintesis">🧬<br>SÍNTESIS</div>
+  </div>
+
+</div>
+
+<style>
+.idx-diagram{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.9rem;
+  margin:1.5rem 0;
+  width:100%;
+}
+.idx-row{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:.9rem;
+  width:100%;
+}
+.idx-node{
+  border-radius:.6rem;
+  padding:.8rem 1.1rem;
+  font-size:clamp(1rem, 3.6vw, 1.25rem);
+  font-weight:700;
+  line-height:1.25;
+  text-align:center;
+  color:#ffffff;
+  min-width:9.5rem;
+}
+.idx-neutral{ background:#34495e; }
+.idx-espacio{
+  background:#2c3e50;
+  width:100%;
+  max-width:38rem;
+  padding:1.1rem 1.2rem;
+}
+.idx-espacio-title{
+  font-size:clamp(1rem, 3.6vw, 1.25rem);
+  font-weight:700;
+  margin-bottom:.7rem;
+}
+.idx-chips{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.5rem;
+}
+.idx-chip{
+  background:#ecf0f1;
+  color:#2c3e50;
+  border-radius:.4rem;
+  padding:.4rem .7rem;
+  font-size:clamp(.9rem, 3.2vw, 1.05rem);
+  font-weight:600;
+}
+.idx-faceta{ min-width:8rem; }
+.idx-aprendizaje{ background:#27ae60; }
+.idx-investigacion{ background:#2980b9; }
+.idx-sintesis{ background:#8e44ad; }
+.idx-arrow{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:clamp(1.4rem, 4.5vw, 1.8rem);
+  font-weight:700;
+  color:#2c3e50;
+  line-height:1;
+}
+.idx-arrow-label{
+  font-size:clamp(.75rem, 2.8vw, .9rem);
+  font-weight:600;
+  margin-top:.15rem;
+}
+.idx-arrow-single{ font-size:clamp(1.4rem, 4.5vw, 1.8rem); }
+.idx-arrow-vert{ display:none; }
+
+/* En pantallas angostas: persona/ordenador se apilan y la flecha pasa a vertical */
+@media (max-width: 40rem){
+  .idx-row-top{ flex-direction:column; }
+  .idx-arrow-bidi{ display:none; }
+  .idx-arrow-vert{ display:inline; }
+}
+</style>
 ```
 
 <!--
-Nota técnica: el diagrama queda como mapa visual, NO clicable.
-Los nodos "click" de Mermaid dependen del securityLevel del renderer
-y no son consistentes con lectores de pantalla ni con los modos de
-alto contraste/daltonismo que ya tiene el sitio (ver cambiarPercepcion()
-en _quarto.yml). La navegación real ocurre por las tarjetas de abajo,
-que sí son accesibles y quedan cubiertas por el botón "Escuchar Página".
+Nota técnica: el diagrama es HTML/CSS puro (no Mermaid/SVG), para que:
+  1) el texto sea real texto DOM -> lo traduce Google Translate sin romper el layout;
+  2) el tamaño de letra sea responsive vía clamp() -> legible en celular sin hacer zoom;
+  3) en pantallas angostas los bloques se apilan en columna (flex-wrap / media query)
+     en vez de achicarse.
+El diagrama es decorativo/conceptual (role="img" + aria-label describe el flujo completo
+para lectores de pantalla). La navegación real ocurre por las tarjetas de abajo, que sí
+son accesibles y quedan cubiertas por el botón "Escuchar Página".
 -->
 
 ## Tres facetas, tres puertas de entrada

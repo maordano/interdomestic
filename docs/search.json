@@ -501,7 +501,7 @@
     "href": "index.html#cómo-se-organiza",
     "title": "interdomestic",
     "section": "Cómo se organiza",
-    "text": "Cómo se organiza\n\n\n\n\n\nflowchart TD\n    ID[\"interdomestic\"]\n    ID --&gt; A[\"🎓 Aprendizaje\"]\n    ID --&gt; I[\"🔬 Investigación\"]\n    ID --&gt; S[\"🧬 Síntesis\"]\n\n    ID -. ecosistema abierto .-&gt; GH[\"GitHub · repositorio de código\"]\n    GH --&gt; Z[\"Zenodo · registro DOI\"]\n    ID -.-&gt; OSF[\"OSF · macro proyecto - registros de proyectos componentes, metadatos\"]\n    ID -.-&gt; ST[\"STAPLE · gestión de trazabilidad, ciclo de vida del proyecto, comunicación, roles, equipo de cocina interior\"]\n\n    style ID fill:#2c3e50,color:#ffffff,stroke:#2c3e50\n    style A fill:#27ae60,color:#ffffff,stroke:#27ae60\n    style I fill:#2980b9,color:#ffffff,stroke:#2980b9\n    style S fill:#8e44ad,color:#ffffff,stroke:#8e44ad\n    style GH fill:#ecf0f1,stroke:#7f8c8d\n    style Z fill:#ecf0f1,stroke:#7f8c8d\n    style OSF fill:#ecf0f1,stroke:#7f8c8d\n    style ST fill:#ecf0f1,stroke:#7f8c8d",
+    "text": "Cómo se organiza\n\n\n  \n    👤PERSONA HUMANA\n    \n      ↔\n      ↕\n      interacción\n    \n    💻ORDENADOR\n  \n\n  ↓\n\n  \n    🗂️ ESPACIO DE TRABAJO interdomestic\n    \n      ☁️ drive/cloud\n      📋 STAPLE\n      📋 OSF\n      📊 RStudio\n      🐙 GitHub\n      🗄️ Zenodo\n    \n  \n\n  ↓\n\n  \n    🎓APRENDIZAJE\n    🔬INVESTIGACIÓN\n    🧬SÍNTESIS",
     "crumbs": [
       "Inicio"
     ]
