@@ -12,13 +12,13 @@ Un dispositivo de interacción con infraestructura de artefacto, co-creado y med
 
 ## Cómo se organiza
 
-Al menos una persona humana interactúa con un ordenador. El ordenador se conecta a Internet. Una forma de un espacio de trabajo con  _interdomestic_ integra, drives/nubes, sistemas de comunicación (correos, chats, reuniones virtuales o presenciales), [STAPLE](htpps://staple.science), [OSF](htpps://osf.io), [RStudio](https://posit.co/downloads), [GitHub](https://github.com) y [Zenodo](https://zenodo.org). 
+Al menos una persona humana interactúa con un ordenador (en cierto _ámbito_). El ordenador se conecta a Internet. Se forma un espacio de trabajo con  _interdomestic_, interfase con drives/nubes, sistemas de comunicación (correos, chats, reuniones virtuales o presenciales), [STAPLE](htpps://staple.science), [OSF](htpps://osf.io), [RStudio](https://posit.co/downloads), [GitHub](https://github.com) y [Zenodo](https://zenodo.org). 
 
 La construcción de conocimiento para la síntesis requiere aprendizaje e investigación, por lo que se organizan tres facetas del proceso de construcción: Aprendizaje, Investigación y Síntesis. 
 
 Esta división es operativa a diferentes objetivos, que se figuran como puertas de entrada para la interacción con el dispositivo, y el desarrollo de los objetivos generales de investigación sobre variación fenotípica de la vida silvestre en el ámbito doméstico y nuestra relación humana-naturaleza.
 
-_Interdomestic_ está siendo esta página web, una  especie de libro abierto y activo del proyecto de investigación general; una interfase polifuncional; un dispositivo de interacción (o ideación interactiva) para desarrollar formas de aprendizaje e investigación para nuestra base de conocimiento humana.
+_Interdomestic_ está siendo esta página web, una  especie de libro activo del proyecto de investigación general; una interfase polifuncional; un dispositivo de interacción (o ideación interactiva) para desarrollar formas de aprendizaje e investigación para nuestra base de conocimiento humana.
 
 ```{=html}
 <div class="idx-diagram" role="img" aria-label="Persona humana interactúa con el ordenador. El ordenador integra un espacio de trabajo interdomestic, que integra drives o nubes, STAPLE, OSF, RStudio, GitHub y Zenodo. Desde ese espacio de trabajo se organizan tres facetas: Aprendizaje, Investigación y Síntesis.">
@@ -153,6 +153,10 @@ son accesibles y quedan cubiertas por el botón "Escuchar Página".
 
 ## Tres facetas, tres puertas de entrada
 
+En esta primera fase **en desarrollo** de _interdomestic_ diseñamos el dispositivo para satisfacer necesidades del proyecto general de síntesis "Variación fenotípica de la vida silvestre en el ámbito doméstico: una revisión sistemática", suponiendo además que el proceso de construcción se alimente con principios FAIR/CARE para aprendizaje e investigación abierta. 
+
+Y en el camino investigamos y aprendemos, aprendemos e investigamos. Una y otra vez verificamos nuestra base de conocimiento, construcción colectiva verificable, reproducible, disponible.
+
 ::: {.grid}
 
 ::: {.g-col-12 .g-col-md-4}
@@ -160,7 +164,6 @@ son accesibles y quedan cubiertas por el botón "Escuchar Página".
 
 Conexión con herramientas de aprendizaje sobre ecología evolutiva de interacciones bióticas y relaciones humano-naturaleza, desde múltiples perspectivas disciplinares.
 
-*(módulo en desarrollo)*
 
 [Entrar por Aprendizaje →](facetas/aprendizaje.qmd)
 :::
@@ -170,7 +173,6 @@ Conexión con herramientas de aprendizaje sobre ecología evolutiva de interacci
 
 Sistemas de participación y consulta de interacciones bióticas para construir conocimiento de forma abierta, con vallas amigables ante 'usos maliciosos', o prácticas que no corresponden con el marco FAIR/CARE y construcción abierta del aprendizaje, investigación, síntesis de información, y bases de conocimiento (propiedad emergente mediada por personas humanas).
 
-*(módulo en desarrollo)*
 
 [Entrar por Investigación →](facetas/investigacion.qmd)
 :::
@@ -180,7 +182,6 @@ Sistemas de participación y consulta de interacciones bióticas para construir 
 
 Meta-análisis sobre variación fenotípica de la vida silvestre en el ámbito doméstico, organizado en agricultura/agroecología, manejo ambiental y eco-epidemiología.
 
-*(módulo en desarrollo)*
 
 [Entrar por Síntesis →](facetas/sintesis.qmd)
 :::
