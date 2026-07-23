@@ -543,6 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#dimensión-fair-infraestructura-y-datos-limpios" id="toc-dimensión-fair-infraestructura-y-datos-limpios" class="nav-link" data-scroll-target="#dimensión-fair-infraestructura-y-datos-limpios">Dimensión FAIR (Infraestructura y Datos Limpios)</a></li>
   <li><a href="#dimensión-care-soberanía-y-protección-del-conocimiento-local" id="toc-dimensión-care-soberanía-y-protección-del-conocimiento-local" class="nav-link" data-scroll-target="#dimensión-care-soberanía-y-protección-del-conocimiento-local">Dimensión CARE (Soberanía y Protección del Conocimiento Local)</a></li>
+  <li><a href="#regulación-del-raspado-automatizado-módulo-de-investigación" id="toc-regulación-del-raspado-automatizado-módulo-de-investigación" class="nav-link" data-scroll-target="#regulación-del-raspado-automatizado-módulo-de-investigación">Regulación del Raspado Automatizado (Módulo de Investigación)</a></li>
   </ul></li>
   <li><a href="#créditos-de-autoría-y-taxonomía-humana" id="toc-créditos-de-autoría-y-taxonomía-humana" class="nav-link" data-scroll-target="#créditos-de-autoría-y-taxonomía-humana">3. Créditos de Autoría y Taxonomía Humana</a></li>
   <li><a href="#bloque-práctico-declaración-estándar-de-contribuciones-e-ia" id="toc-bloque-práctico-declaración-estándar-de-contribuciones-e-ia" class="nav-link" data-scroll-target="#bloque-práctico-declaración-estándar-de-contribuciones-e-ia">4. Bloque Práctico: Declaración Estándar de Contribuciones e IA</a>
@@ -597,7 +598,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Este documento detalla el posicionamiento ético y normativo de <strong>Interdomestic</strong> respecto a la interacción con tecnologías de Inteligencia Artificial (IA). En consonancia con nuestro modelo híbrido de construcción del conocimiento, establecemos “salvaguardas para proteger la mediación humana”, evitar la “explotación automatizada no regulada” y garantizar “justicia epistémica” o ciertas “formas adaptativas mutuamente satisfactorias”.</p>
+<p>Este documento detalla el posicionamiento ético y normativo de <strong>Interdomestic</strong> respecto a la interacción con tecnologías de Inteligencia Artificial (IA).</p>
+<p>En consonancia con nuestro modelo híbrido de construcción del conocimiento, establecemos “salvaguardas para proteger la mediación humana”, evitar la “explotación automatizada no regulada” y garantizar “justicia epistémica” o ciertas “formas adaptativas mutuamente satisfactorias”.</p>
 <section id="alineación-con-organismos-de-ética-editorial" class="level2">
 <h2 class="anchored" data-anchor-id="alineación-con-organismos-de-ética-editorial">1. Alineación con Organismos de Ética Editorial</h2>
 <p><em>Interdomestic</em> adopta criterios regulatorios de los principales organismos globales de integridad académica y científica para orientar la toma de decisiones sobre el software asistido por IA y la asignación de créditos:</p>
@@ -624,6 +626,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Vallas ante Usos Maliciosos:</strong> Activamos restricciones amigables en el módulo de <em>Investigación</em> para evitar el “raspado” (<em>scraping</em>) masivo y descontextualizado por parte de IA comerciales que vulneren los derechos territoriales o jurisdiccionales, o extraigan datos sin un beneficio colectivo claro para los objetivos de las comunidades humanas que usan este tipo de dispositivos, como <em>Interdomestic</em>.</li>
 <li><strong>Responsabilidad del Sesgo Lingüístico:</strong> Evaluamos críticamente cómo las herramientas de IA perpetúan sesgos teóricos o jergas académicas que estigmatizan o devalúan ciertas especies o saberes locales, asumiendo la responsabilidad sociológica del lenguaje desplegado en la interfaz.</li>
 </ul>
+</section>
+<section id="regulación-del-raspado-automatizado-módulo-de-investigación" class="level3">
+<h3 class="anchored" data-anchor-id="regulación-del-raspado-automatizado-módulo-de-investigación">Regulación del Raspado Automatizado (Módulo de Investigación)</h3>
+<p>Para operativizar el principio CARE de <strong>Autoridad de Control</strong> y <strong>Beneficio Colectivo</strong>, <em>Interdomestic</em> implementa restricciones técnicas (<em>vallas amigables</em>) mediante directrices en su archivo <code>robots.txt</code>. 1. <strong>Denegación por Defecto a Agentes de IA Comercial:</strong> Se prohíbe explícitamente el acceso a los directorios <code>/research/</code> y <code>/data/</code> a indexadores masivos comerciales (como <em>GPTBot</em>, <em>ClaudeBot</em>, <em>Google-Extended</em> y <em>CCBot</em>). 2. <strong>Acceso Humano y Académico Abierto:</strong> Estas restricciones no afectan a investigadores humanos, estudiantes ni a indexadores científicos tradicionales (como Google Scholar), garantizando que el conocimiento permanezca abierto para la comunidad global pero protegido de la mercantilización algorítmica opaca. 3. <strong>Protocolo para Proyectos de Macro-Datos:</strong> Cualquier equipo de investigación que requiera realizar minería de texto y datos (<em>TDM</em>) sobre el corpus de Interdomestic para fines estrictamente académicos y sin fines de lucro, debe solicitar una excepción técnica <a href="https://github.com/maordano/interdomestic">abriendo un <em>Issue</em> formal en nuestro repositorio de GitHub</a> para coordinar un acceso ordenado vía API o descarga de dumps.</p>
 </section>
 </section>
 <section id="créditos-de-autoría-y-taxonomía-humana" class="level2">
