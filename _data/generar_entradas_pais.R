@@ -34,6 +34,7 @@ nuevos_paises <- data.frame(
   pais        = c("Ecuador", "Bolivia"),
   iso2        = c("EC", "BO"),
   iso3        = c("ECU", "BOL"),
+  slug_landportal = c("ecuador", "bolivia"),  # slug en https://landportal.org/voc/regions/{slug} -- VERIFICAR
   continente  = c("América", "América"),
   hemisferio  = c("Sur", "Sur"),
   url_gob     = c("https://www.ambiente.gob.ec", "https://www.madrudp.gob.bo"),
@@ -79,6 +80,33 @@ construir_entradas <- function(fila) {
       recurso = paste0("[PENDIENTE] Nomenclador de nombres vernáculos de ", fila$pais),
       url = "",
       descripcion = "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes.",
+      continente = fila$continente, hemisferio = fila$hemisferio,
+      curaduria = "manual_pendiente"
+    ),
+    # --- PLANTILLA ISO3: Áreas Protegidas vía Protected Planet / WDPA (UNEP-WCMC + IUCN) ---
+    list(
+      pais = fila$pais, tipo = "Áreas Protegidas",
+      recurso = paste0("Protected Planet — Áreas protegidas de ", fila$pais, " (WDPA)"),
+      url = paste0("https://www.protectedplanet.net/country/", tolower(fila$iso3)),
+      descripcion = "Base de datos mundial de áreas protegidas (WDPA), UNEP-WCMC + IUCN. Conteo, cobertura territorial y categorías de manejo por país.",
+      continente = fila$continente, hemisferio = fila$hemisferio,
+      curaduria = "plantilla_iso3"
+    ),
+    # --- PLANTILLA SLUG (provisoria): Ordenamiento Territorial vía Land Portal ---
+    list(
+      pais = fila$pais, tipo = "Ordenamiento Territorial",
+      recurso = paste0("Land Portal — Perfil de gobernanza de la tierra: ", fila$pais),
+      url = paste0("https://landportal.org/voc/regions/", fila$slug_landportal),
+      descripcion = "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra. VERIFICAR que la URL resuelva (el slug es el nombre del país en inglés, minúscula, con guiones); si no coincide, buscar en https://landportal.org/book/countries",
+      continente = fila$continente, hemisferio = fila$hemisferio,
+      curaduria = "plantilla_slug_provisoria"
+    ),
+    # --- MANUAL: Biodiversidad (NBSAP) — el portal del CBD no admite URL parametrizable ---
+    list(
+      pais = fila$pais, tipo = "Biodiversidad (NBSAP)",
+      recurso = paste0("[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — ", fila$pais),
+      url = "https://www.cbd.int/countries",
+      descripcion = paste0("PENDIENTE DE CURADURIA MANUAL: el selector de país del CBD es dinámico (sin parámetro de URL estable). Entrar, elegir '", fila$pais, "' y reemplazar este registro por la URL resultante."),
       continente = fila$continente, hemisferio = fila$hemisferio,
       curaduria = "manual_pendiente"
     )

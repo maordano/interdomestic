@@ -861,5 +861,665 @@
     "continente": "Oceanía",
     "hemisferio": "Sur",
     "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Argentina",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Argentina (WDPA)",
+    "url": "https://www.protectedplanet.net/country/arg",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Argentina",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Argentina",
+    "url": "https://landportal.org/voc/regions/argentina",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Argentina",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Argentina",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Argentina' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Chile",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Chile (WDPA)",
+    "url": "https://www.protectedplanet.net/country/chl",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Chile",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Chile",
+    "url": "https://landportal.org/voc/regions/chile",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Chile",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Chile",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Chile' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "México",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de México (WDPA)",
+    "url": "https://www.protectedplanet.net/country/mex",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "México",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: México",
+    "url": "https://landportal.org/voc/regions/mexico",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "México",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — México",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'México' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Estados Unidos",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Estados Unidos (WDPA)",
+    "url": "https://www.protectedplanet.net/country/usa",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Estados Unidos",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Estados Unidos",
+    "url": "https://landportal.org/voc/regions/united-states",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Estados Unidos",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Estados Unidos",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Estados Unidos' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Canadá",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Canadá (WDPA)",
+    "url": "https://www.protectedplanet.net/country/can",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Canadá",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Canadá",
+    "url": "https://landportal.org/voc/regions/canada",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Canadá",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Canadá",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Canadá' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Costa Rica",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Costa Rica (WDPA)",
+    "url": "https://www.protectedplanet.net/country/cri",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Costa Rica",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Costa Rica",
+    "url": "https://landportal.org/voc/regions/costa-rica",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Costa Rica",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Costa Rica",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Costa Rica' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Brasil",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Brasil (WDPA)",
+    "url": "https://www.protectedplanet.net/country/bra",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Brasil",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Brasil",
+    "url": "https://landportal.org/voc/regions/brazil",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Brasil",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Brasil",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Brasil' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Colombia",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Colombia (WDPA)",
+    "url": "https://www.protectedplanet.net/country/col",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Colombia",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Colombia",
+    "url": "https://landportal.org/voc/regions/colombia",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Colombia",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Colombia",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Colombia' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Perú",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Perú (WDPA)",
+    "url": "https://www.protectedplanet.net/country/per",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Perú",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Perú",
+    "url": "https://landportal.org/voc/regions/peru",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Perú",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Perú",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Perú' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Uruguay",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Uruguay (WDPA)",
+    "url": "https://www.protectedplanet.net/country/ury",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Uruguay",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Uruguay",
+    "url": "https://landportal.org/voc/regions/uruguay",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Uruguay",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Uruguay",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Uruguay' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "España",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de España (WDPA)",
+    "url": "https://www.protectedplanet.net/country/esp",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "España",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: España",
+    "url": "https://landportal.org/voc/regions/spain",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "España",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — España",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'España' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Alemania",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Alemania (WDPA)",
+    "url": "https://www.protectedplanet.net/country/deu",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Alemania",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Alemania",
+    "url": "https://landportal.org/voc/regions/germany",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Alemania",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Alemania",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Alemania' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Reino Unido",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Reino Unido (WDPA)",
+    "url": "https://www.protectedplanet.net/country/gbr",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Reino Unido",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Reino Unido",
+    "url": "https://landportal.org/voc/regions/united-kingdom",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Reino Unido",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Reino Unido",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Reino Unido' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "India",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de India (WDPA)",
+    "url": "https://www.protectedplanet.net/country/ind",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "India",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: India",
+    "url": "https://landportal.org/voc/regions/india",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "India",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — India",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'India' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "China",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de China (WDPA)",
+    "url": "https://www.protectedplanet.net/country/chn",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "China",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: China",
+    "url": "https://landportal.org/voc/regions/china",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "China",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — China",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'China' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Indonesia",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Indonesia (WDPA)",
+    "url": "https://www.protectedplanet.net/country/idn",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "Asia",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Indonesia",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Indonesia",
+    "url": "https://landportal.org/voc/regions/indonesia",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "Asia",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Indonesia",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Indonesia",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Indonesia' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "Asia",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Sudáfrica",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Sudáfrica (WDPA)",
+    "url": "https://www.protectedplanet.net/country/zaf",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Sudáfrica",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Sudáfrica",
+    "url": "https://landportal.org/voc/regions/south-africa",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Sudáfrica",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Sudáfrica",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Sudáfrica' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Kenia",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Kenia (WDPA)",
+    "url": "https://www.protectedplanet.net/country/ken",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Kenia",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Kenia",
+    "url": "https://landportal.org/voc/regions/kenya",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Kenia",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Kenia",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Kenia' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Marruecos",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Marruecos (WDPA)",
+    "url": "https://www.protectedplanet.net/country/mar",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "África",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Marruecos",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Marruecos",
+    "url": "https://landportal.org/voc/regions/morocco",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "África",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Marruecos",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Marruecos",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Marruecos' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "África",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Namibia",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Namibia (WDPA)",
+    "url": "https://www.protectedplanet.net/country/nam",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Namibia",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Namibia",
+    "url": "https://landportal.org/voc/regions/namibia",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Namibia",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Namibia",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Namibia' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Australia",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Australia (WDPA)",
+    "url": "https://www.protectedplanet.net/country/aus",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Australia",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Australia",
+    "url": "https://landportal.org/voc/regions/australia",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Australia",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Australia",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Australia' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Nueva Zelanda",
+    "tipo": "Áreas Protegidas",
+    "recurso": "Protected Planet — Áreas protegidas de Nueva Zelanda (WDPA)",
+    "url": "https://www.protectedplanet.net/country/nzl",
+    "descripcion": "Base de datos mundial de áreas protegidas (WDPA), operada por UNEP-WCMC e IUCN. Incluye conteo, cobertura territorial y listado de categorías de manejo por país.",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Nueva Zelanda",
+    "tipo": "Ordenamiento Territorial",
+    "recurso": "Land Portal — Perfil de gobernanza de la tierra: Nueva Zelanda",
+    "url": "https://landportal.org/voc/regions/new-zealand",
+    "descripcion": "Perfil país sobre tenencia, uso, valor y desarrollo de la tierra (land governance), agregando fuentes gubernamentales, académicas y de organismos internacionales. VERIFICAR que la URL resuelva: si el slug no coincide, buscar el país en https://landportal.org/book/countries",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_slug_provisoria"
+  },
+  {
+    "pais": "Nueva Zelanda",
+    "tipo": "Biodiversidad (NBSAP)",
+    "recurso": "[BUSCAR MANUALMENTE] Estrategia Nacional de Biodiversidad (NBSAP) — Nueva Zelanda",
+    "url": "https://www.cbd.int/countries",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: el portal de perfiles país del CBD usa un selector dinámico sin URL parametrizable por país. Entrar al enlace, elegir 'Nueva Zelanda' en el desplegable y reemplazar este registro por la URL resultante (perfil NBSAP / Sexto Informe Nacional).",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
   }
 ]

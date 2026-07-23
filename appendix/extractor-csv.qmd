@@ -49,6 +49,9 @@ Cada país organiza su conocimiento biótico en dimensiones interconectadas. Exp
 2. **Líneas Base de Conservación (Libros Rojos):** Diagnósticos científicos sobre el estado de amenaza de las especies. Fundamentan las decisiones legales.
 3. **Marcos Regulatorios (Leyes):** Herramientas vinculantes que penalizan el tráfico silvestre, protegen ambientes o "hábitats" críticos o regulan recursos nativos.
 4. **Dimensión Cultural (Nombres Comunes):** El puente directo entre la taxonomía de laboratorio y el saber local/doméstico. Crucial para la participación ciudadana general, la multidisciplina, y el registro de interacciones bióticas comunitarias.
+5. **Espacialización de la Conservación (Áreas Protegidas):** Delimitación territorial formal de reservas, parques y otras figuras de manejo (WDPA/Protected Planet). Ubica en el mapa dónde la gobernanza ambiental se vuelve jurisdicción concreta.
+6. **Planificación del Territorio (Ordenamiento Territorial):** Marcos de tenencia, uso y valor de la tierra que condicionan qué convivencia biótica es posible en cada parcela — desde el catastro rural hasta la zonificación urbana.
+7. **Horizonte Estratégico (Biodiversidad / NBSAP):** Estrategias Nacionales de Biodiversidad y Planes de Acción (Convenio de Diversidad Biológica). El documento político de mayor escala: articula compromisos internacionales con metas nacionales.
 
 ---
 
@@ -81,10 +84,10 @@ viewof pais_foco = Inputs.select(
 )
 
 viewof dimensiones = Inputs.checkbox(
-  ["Gubernamental", "Libro Rojo", "Leyes", "Nombres Comunes"], 
+  ["Gubernamental", "Libro Rojo", "Leyes", "Nombres Comunes", "Áreas Protegidas", "Ordenamiento Territorial", "Biodiversidad (NBSAP)"],
   {
-    label: "3. Dimensiones de análisis:", 
-    value: ["Gubernamental", "Libro Rojo", "Leyes", "Nombres Comunes"]
+    label: "3. Dimensiones de análisis:",
+    value: ["Gubernamental", "Libro Rojo", "Leyes", "Nombres Comunes", "Áreas Protegidas", "Ordenamiento Territorial", "Biodiversidad (NBSAP)"]
   }
 )
 ```
@@ -113,7 +116,7 @@ Inputs.table(datos_filtrados, {
 ```
 
 ::: {.callout-note appearance="minimal"}
-**Estados de curaduría:** `manual` = enlace curado y verificado puntualmente · `plantilla_iso3` / `plantilla_iso2_provisoria` = generado automáticamente a partir de un patrón de URL internacional (FAOLEX / GBIF), recomendable pero no reemplaza una fuente nacional oficial · `manual_pendiente` = falta completar la curaduría de esa dimensión para ese país.
+**Estados de curaduría:** `manual` = enlace curado y verificado puntualmente · `plantilla_iso3` = generado automáticamente por código ISO3 (FAOLEX, Protected Planet/WDPA) · `plantilla_iso2_provisoria` = generado por código ISO2, calidad aproximada (GBIF) · `plantilla_slug_provisoria` = generado por nombre del país en inglés (Land Portal), verificar que resuelva · `manual_pendiente` = falta completar la curaduría de esa dimensión para ese país.
 :::
 
 ### Exportación con Trazabilidad Científica
