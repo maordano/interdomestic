@@ -1,0 +1,22 @@
+name: Gestión Automatizada de Solicitudes TDM
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  bienvenida_care:
+    runs-on: ubuntu-latest
+    # Se ejecuta solo si el issue proviene de la plantilla de Minería de Datos
+    if: contains(github.event.issue.labels.*.name, 'solicitud-tdm')
+    steps:
+      - name: Enviar mensaje de recepción ética
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `### 🤖 Interdomestic Data Governance Bot\n\nHola @${context.payload.issue.user.login},\n\nGracias por iniciar este protocolo de solicitud para **Minería de Texto y Datos (TDM)** bajo el marco ético de nuestro dispositivo.\n\nEste Issue ha sido clasificado bajo la dimensión **CARE (Autoridad de Control y Beneficio Colectivo)**. El equipo de cocina interior de Interdomestic (humano) revisará los detalles de tu afiliación institucional y el propósito académico declarado.\n\n**Próximos pasos:**\n1. El administrador evaluará la consistencia del beneficio colectivo.\n2. Se coordinará por esta vía la apertura temporal de la valla técnica (\`robots.txt\`) o se facilitará un dump estático seguro.\n\n*Nota: Este es un comentario automatizado de infraestructura técnica. La decisión final será tomada exclusivamente por mediación humana.*`
+            })
