@@ -2,7 +2,7 @@
 title: "Dispositivos o Devices"
 author:
   - name: "M. A. Ordano"
-    roles: [conceptualization, "writing - original draft", "writing - review & editing", validation]
+    roles: ["conceptualization", "writing - review & editing"]
     corresponding: true
 date: 2026-07-05
 date-modified: 2026-07-23

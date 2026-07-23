@@ -1,0 +1,51 @@
+[
+  {
+    "pais": "Argentina",
+    "tipo": "Gubernamental",
+    "recurso": "Ministerio de Ambiente y Desarrollo Sostenible",
+    "url": "https://argentina.gob.ar",
+    "descripcion": "Autoridad nacional de aplicación encargada del diseño de políticas ambientales macro y de sostenibilidad."
+  },
+  {
+    "pais": "Argentina",
+    "tipo": "Gubernamental",
+    "recurso": "Sistema Nacional de Información sobre Biodiversidad (SIB)",
+    "url": "https://sib.gob.ar",
+    "descripcion": "Portal oficializado que recopila y mapea los datos bióticos de áreas protegidas federales."
+  },
+  {
+    "pais": "Argentina",
+    "tipo": "Libro Rojo",
+    "recurso": "Categorización de los Mamíferos de Argentina (SAREM)",
+    "url": "https://sarem.org.ar",
+    "descripcion": "Diagnóstico científico participativo sobre el estado de conservación y amenazas de mastozoología nativa."
+  },
+  {
+    "pais": "Argentina",
+    "tipo": "Leyes",
+    "recurso": "Ley de Conservación de la Fauna (Ley 22.421)",
+    "url": "https://infoleg.gob.ar",
+    "descripcion": "Norma marco rectora que regula la caza, protección y manejo legal de la fauna nativa silvestre."
+  },
+  {
+    "pais": "Argentina",
+    "tipo": "Nombres Comunes",
+    "recurso": "Nomenclador y Nombres Comunes de la Flora Argentina (Darwinion)",
+    "url": "http://floraargentina.edu.ar",
+    "descripcion": "Diccionario taxonómico referencial que conecta nombres científicos con su denominación popular/local."
+  },
+  {
+    "pais": "Chile",
+    "tipo": "Gubernamental",
+    "recurso": "Ministerio del Medio Ambiente Chile",
+    "url": "https://mma.gob.cl",
+    "descripcion": "Secretaría de Estado a cargo de la gestión, planes de descontaminación y biodiversidad en el territorio chileno."
+  },
+  {
+    "pais": "Chile",
+    "tipo": "Libro Rojo",
+    "recurso": "Reglamento de Clasificación de Especies (RCE)",
+    "url": "https://mma.gob.cl",
+    "descripcion": "Catálogo nacionalizado y oficial que dictamina el estado de vulnerabilidad de los ecosistemas locales."
+  }
+]

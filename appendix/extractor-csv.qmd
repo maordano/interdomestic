@@ -1,0 +1,159 @@
+---
+title: "Módulo Situado: Extractor y Mapeador de Gobernanza Ambiental"
+subtitle: "Dispositivo de interacción con infraestructura de artefacto para la búsqueda de información sobre vida silvestre en el ámbito doméstico"
+author:
+  - name: "M. A. Ordano"
+    roles: ["conceptualization", "writing - review & editing"]
+    corresponding: true
+date: 2026-07-21
+date-modified: 2026-07-23
+format: 
+  html:
+    page-layout: article
+    include-in-header:
+      - text: |
+          <style>
+          /* Oculta el bloque de autor y fecha en el encabezado superior */
+          .quarto-title-meta {
+            display: none !important;
+          }
+          /* Estilo personalizado y discreto para los metadatos del final */
+          .metadatos-final {
+            font-size: 0.55em;      /* Poco más de la mitad del tamaño de fuente */
+            color: #777777;         /* Gris claro para segundo plano */
+            line-height: 1.4;
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee; /* Línea sutil de separación */
+            padding-top: 15px;
+          }
+          </style>
+---
+
+Este componente es un generador de archivos independientes; es también un mapa de ruta guiado para explorar cómo las sociedades institucionalizan, regulan y nombran la vida silvestre en sus jurisdicciones/territorios de proximidad.
+
+::: {.callout-tip appearance="minimal"}
+### 🧭 ¿Cómo usar este dispositivo según tu objetivo?
+Selecciona la pestaña que corresponda a la fase actual de tu trabajo en la plataforma **interdomestic**.
+:::
+
+::: {.panel-tabset}
+
+## 🎓 1. Aprendizaje: Alfabetización Institucional
+
+Antes de descargar conjuntos de datos, es fundamental comprender *de dónde vienen* y *bajo qué marcos operan*. 
+
+### El Ecosistema de la Información Ambiental
+Cada país organiza su conocimiento biótico en dimensiones interconectadas. Explora las definiciones conceptuales antes de realizar tu consulta:
+
+1. **Gobernanza Central (Gubernamental):** Autoridades de aplicación que dictan políticas macro y administran áreas protegidas.
+2. **Líneas Base de Conservación (Libros Rojos):** Diagnósticos científicos sobre el estado de amenaza de las especies. Fundamentan las decisiones legales.
+3. **Marcos Regulatorios (Leyes):** Herramientas vinculantes que penalizan el tráfico silvestre, protegen ambientes o "hábitats" críticos o regulan recursos nativos.
+4. **Dimensión Cultural (Nombres Comunes):** El puente directo entre la taxonomía de laboratorio y el saber local/doméstico. Crucial para la participación ciudadana general, la multidisciplina, y el registro de interacciones bióticas comunitarias.
+
+---
+
+## 🔬 2. Investigación: Consulta y Extracción Situada
+
+Configura los parámetros para extraer el mapa de gobernanza del país seleccionado. Al generar el archivo, estás construyendo un registro transparente bajo principios **FAIR/CARE**.
+
+```{ojs}
+//| echo: false
+// METODO DE OPTIMIZACION 1: Carga asíncrona descentralizada desde el repositorio
+// Reemplaza la ruta relativa dependiendo de dónde coloques este .qmd
+db_ambient_global = FileAttachment("../data/governance_db.json").json()
+
+// Selectores reactivos mapeados automáticamente a partir del contenido del JSON
+viewof pais_foco = Inputs.select(
+  d3.groups(db_ambient_global, d => d.pais).map(g => g[0]), 
+  {label: "1. País bajo estudio:"}
+)
+
+viewof dimensiones = Inputs.checkbox(
+  ["Gubernamental", "Libro Rojo", "Leyes", "Nombres Comunes"], 
+  {
+    label: "2. Dimensiones de análisis:", 
+    value: ["Gubernamental", "Libro Rojo", "Leyes", "Nombres Comunes"]
+  }
+)
+```
+
+### Vista Previa de la Infraestructura de Datos
+
+```{ojs}
+//| echo: false
+// Filtrado inmediato en el cliente
+datos_filtrados = db_ambient_global.filter(d => 
+  d.pais === pais_foco && 
+  dimensiones.includes(d.tipo)
+)
+
+// Renderizado de tabla interactiva nativa de Quarto
+Inputs.table(datos_filtrados, {
+  columns: ["tipo", "recurso", "descripcion"],
+  header: { 
+    tipo: "Dimensión", 
+    recurso: "Recurso / Organización", 
+    descripcion: "Rol Pedagógico y Alcance" 
+  },
+  layout: "fixed"
+})
+```
+
+### Exportación con Trazabilidad Científica
+
+Al presionar el botón de descarga, se inyectarán de forma automatizada los metadatos de autoría de la plataforma directamente en las filas del CSV, asegurando la reproducibilidad del origen de la fuente.
+
+```{ojs}
+//| echo: false
+// METODO DE OPTIMIZACION 2: Construcción del archivo CSV enriquecido con metadatos de origen
+function crearCSVConMetadatos(data, pais) {
+  const metadatos = [
+    `# PROYECTO: interdomestic (https://github.io)`,
+    `# ARTEFACTO: Extractor de Gobernanza Ambiental y Vida Silvestre`,
+    `# LICENCIA: CC BY 4.0 2026`,
+    `# TRAZABILIDAD: Pais evaluado: ${pais} | Fecha de extraccion: ${new Date().toISOString().split('T')[0]}`,
+    `# INSTRUCCIONES: Importar en R/Python/Excel omitiendo comentarios que inicien con '#'\n`
+  ].join("\n");
+
+  const columnas = "Pais,Dimension,Recurso,URL\n";
+  const filas = data.map(i => `"${i.pais}","${i.tipo}","${i.recurso}","${i.url}"`).join("\n");
+  
+  return metadatos + columnas + filas;
+}
+
+// Botón reactivo de descarga directa en local
+DOM.download(
+  new Blob([crearCSVConMetadatos(datos_filtrados, pais_foco)], {type: "text/csv;charset=utf-8;"}), 
+  `interdomestic_${pais_foco.toLowerCase()}_meta.csv`, 
+  `📥 Descargar Dataset Estructurado con Trazabilidad (${pais_foco})`
+)
+```
+
+::: {.callout-important appearance="simple"}
+### 🛠️ Transparencia de Procesos (Vallas amigables)
+Al descargar este archivo portátil, evitas intermediarios comerciales o sesgos algorítmicos opacos de plataformas cerradas. Este CSV puede ser resguardado en tu bitácora o indexado con identificadores digitales de investigación o ciencia abierta.
+:::
+
+---
+
+## 🧬 3. Síntesis: Conexión con el Ámbito Doméstico
+
+¿Cómo se intersectan estos enlaces institucionales de escala macro con la realidad biótica de tu jardín, patio, balcón de una ciudad o entorno rural de proximidad? 
+
+### Propuesta de Ejercicio Analítico Cruzado:
+1. **Fase A (Importación):** Carga el archivo `.csv` descargado en tu espacio de procesamiento preferido (RStudio, Jupyter, o planillas abiertas).
+2. **Fase B (Interacción Local):** Cruza el catálogo de *Nombres Comunes* obtenido mediante este extractor con las observaciones sistemáticas de vida silvestre que registres en tus dispositivos domésticos.
+3. **Fase C (Evaluación Crítica):** Diagnostica brechas informacionales: ¿Las especies de insectos, aves o plantas nativas con las que cohabitas aparecen priorizadas en las listas de los *Libros Rojos* del país? ¿Qué *Leyes* o marcos de manejo ordenan las dinámicas de los recursos ecosistémicos que utilizas a diario (ej. agua, suelo, arbolado urbano)?
+
+::: {.callout-note}
+### 📊 Próximo Flujo del Ciclo de Vida
+Los resultados derivados de este ejercicio de síntesis relacional están conceptualizados para nutrir de manera directa el bloque de **Meta-análisis** disponible en la arquitectura principal de la plataforma.
+:::
+
+:::
+
+::: {.metadatos-final}
+**Autor:** {{< meta author >}}  
+**Fecha de publicación:** {{< meta date >}}  
+**Última modificación:** {{< meta date-modified >}}
+:::

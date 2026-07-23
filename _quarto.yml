@@ -88,6 +88,8 @@ website:
             href: appendix/interacciones.qmd
           - text: "Distribución Geográfica"
             href: appendix/geodistribution.qmd
+          - text: "Normativa por País"
+            href: appendix/info-extra.qmd
           - text: "Información Extra"
             href: appendix/info-extra.qmd
       - section: "Manual"
