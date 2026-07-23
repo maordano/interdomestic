@@ -4,48 +4,862 @@
     "tipo": "Gubernamental",
     "recurso": "Ministerio de Ambiente y Desarrollo Sostenible",
     "url": "https://argentina.gob.ar",
-    "descripcion": "Autoridad nacional de aplicación encargada del diseño de políticas ambientales macro y de sostenibilidad."
+    "descripcion": "Autoridad nacional de aplicación encargada del diseño de políticas ambientales macro y de sostenibilidad.",
+    "continente": "América",
+    "hemisferio": "Sur"
   },
   {
     "pais": "Argentina",
     "tipo": "Gubernamental",
     "recurso": "Sistema Nacional de Información sobre Biodiversidad (SIB)",
     "url": "https://sib.gob.ar",
-    "descripcion": "Portal oficializado que recopila y mapea los datos bióticos de áreas protegidas federales."
+    "descripcion": "Portal oficializado que recopila y mapea los datos bióticos de áreas protegidas federales.",
+    "continente": "América",
+    "hemisferio": "Sur"
   },
   {
     "pais": "Argentina",
     "tipo": "Libro Rojo",
     "recurso": "Categorización de los Mamíferos de Argentina (SAREM)",
     "url": "https://sarem.org.ar",
-    "descripcion": "Diagnóstico científico participativo sobre el estado de conservación y amenazas de mastozoología nativa."
+    "descripcion": "Diagnóstico científico participativo sobre el estado de conservación y amenazas de mastozoología nativa.",
+    "continente": "América",
+    "hemisferio": "Sur"
   },
   {
     "pais": "Argentina",
     "tipo": "Leyes",
     "recurso": "Ley de Conservación de la Fauna (Ley 22.421)",
     "url": "https://infoleg.gob.ar",
-    "descripcion": "Norma marco rectora que regula la caza, protección y manejo legal de la fauna nativa silvestre."
+    "descripcion": "Norma marco rectora que regula la caza, protección y manejo legal de la fauna nativa silvestre.",
+    "continente": "América",
+    "hemisferio": "Sur"
   },
   {
     "pais": "Argentina",
     "tipo": "Nombres Comunes",
     "recurso": "Nomenclador y Nombres Comunes de la Flora Argentina (Darwinion)",
     "url": "http://floraargentina.edu.ar",
-    "descripcion": "Diccionario taxonómico referencial que conecta nombres científicos con su denominación popular/local."
+    "descripcion": "Diccionario taxonómico referencial que conecta nombres científicos con su denominación popular/local.",
+    "continente": "América",
+    "hemisferio": "Sur"
   },
   {
     "pais": "Chile",
     "tipo": "Gubernamental",
     "recurso": "Ministerio del Medio Ambiente Chile",
     "url": "https://mma.gob.cl",
-    "descripcion": "Secretaría de Estado a cargo de la gestión, planes de descontaminación y biodiversidad en el territorio chileno."
+    "descripcion": "Secretaría de Estado a cargo de la gestión, planes de descontaminación y biodiversidad en el territorio chileno.",
+    "continente": "América",
+    "hemisferio": "Sur"
   },
   {
     "pais": "Chile",
     "tipo": "Libro Rojo",
     "recurso": "Reglamento de Clasificación de Especies (RCE)",
     "url": "https://mma.gob.cl",
-    "descripcion": "Catálogo nacionalizado y oficial que dictamina el estado de vulnerabilidad de los ecosistemas locales."
+    "descripcion": "Catálogo nacionalizado y oficial que dictamina el estado de vulnerabilidad de los ecosistemas locales.",
+    "continente": "América",
+    "hemisferio": "Sur"
+  },
+  {
+    "pais": "México",
+    "tipo": "Gubernamental",
+    "recurso": "Secretaría de Medio Ambiente y Recursos Naturales (SEMARNAT)",
+    "url": "https://www.gob.mx/semarnat",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "México",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de México (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=MEX",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "México",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en México (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=MX&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "México",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de México",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Estados Unidos",
+    "tipo": "Gubernamental",
+    "recurso": "U.S. Fish and Wildlife Service (USFWS)",
+    "url": "https://www.fws.gov",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Estados Unidos",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Estados Unidos (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=USA",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Estados Unidos",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Estados Unidos (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=US&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Estados Unidos",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Estados Unidos",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Canadá",
+    "tipo": "Gubernamental",
+    "recurso": "Environment and Climate Change Canada (ECCC)",
+    "url": "https://www.canada.ca/en/environment-climate-change.html",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Canadá",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Canadá (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=CAN",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Canadá",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Canadá (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=CA&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Canadá",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Canadá",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Costa Rica",
+    "tipo": "Gubernamental",
+    "recurso": "Ministerio de Ambiente y Energía (MINAE)",
+    "url": "https://www.minae.go.cr",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Costa Rica",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Costa Rica (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=CRI",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Costa Rica",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Costa Rica (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=CR&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Costa Rica",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Costa Rica",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "América",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Brasil",
+    "tipo": "Gubernamental",
+    "recurso": "Ministério do Meio Ambiente e Mudança do Clima (MMA)",
+    "url": "https://www.gov.br/mma/pt-br",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Brasil",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Brasil (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=BRA",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Brasil",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Brasil (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=BR&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Brasil",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Brasil",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Colombia",
+    "tipo": "Gubernamental",
+    "recurso": "Ministerio de Ambiente y Desarrollo Sostenible",
+    "url": "https://www.minambiente.gov.co",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Colombia",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Colombia (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=COL",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Colombia",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Colombia (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=CO&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Colombia",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Colombia",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Perú",
+    "tipo": "Gubernamental",
+    "recurso": "Ministerio del Ambiente (MINAM)",
+    "url": "https://www.gob.pe/minam",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Perú",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Perú (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=PER",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Perú",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Perú (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=PE&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Perú",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Perú",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Uruguay",
+    "tipo": "Gubernamental",
+    "recurso": "Ministerio de Ambiente",
+    "url": "https://www.gub.uy/ministerio-ambiente",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Uruguay",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Uruguay (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=URY",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Uruguay",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Uruguay (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=UY&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Uruguay",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Uruguay",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "América",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "España",
+    "tipo": "Gubernamental",
+    "recurso": "Ministerio para la Transición Ecológica y el Reto Demográfico",
+    "url": "https://www.miteco.gob.es",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "España",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de España (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=ESP",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "España",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en España (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=ES&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "España",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de España",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Alemania",
+    "tipo": "Gubernamental",
+    "recurso": "Bundesministerium für Umwelt (BMUV)",
+    "url": "https://www.bmuv.de",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Alemania",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Alemania (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=DEU",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Alemania",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Alemania (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=DE&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Alemania",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Alemania",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Reino Unido",
+    "tipo": "Gubernamental",
+    "recurso": "Department for Environment, Food & Rural Affairs (DEFRA)",
+    "url": "https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Reino Unido",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Reino Unido (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=GBR",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Reino Unido",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Reino Unido (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=GB&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Reino Unido",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Reino Unido",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "Europa",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "India",
+    "tipo": "Gubernamental",
+    "recurso": "Ministry of Environment, Forest and Climate Change",
+    "url": "https://moef.gov.in",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "India",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de India (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=IND",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "India",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en India (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=IN&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "India",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de India",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "China",
+    "tipo": "Gubernamental",
+    "recurso": "Ministry of Ecology and Environment (MEE)",
+    "url": "https://english.mee.gov.cn",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "China",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de China (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=CHN",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "China",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en China (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=CN&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "China",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de China",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "Asia",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Indonesia",
+    "tipo": "Gubernamental",
+    "recurso": "Kementerian Lingkungan Hidup dan Kehutanan (KLHK)",
+    "url": "https://www.menlhk.go.id",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "Asia",
+    "hemisferio": "Sur",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Indonesia",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Indonesia (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=IDN",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "Asia",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Indonesia",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Indonesia (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=ID&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "Asia",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Indonesia",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Indonesia",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "Asia",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Sudáfrica",
+    "tipo": "Gubernamental",
+    "recurso": "Department of Forestry, Fisheries and the Environment (DFFE)",
+    "url": "https://www.dffe.gov.za",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Sudáfrica",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Sudáfrica (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=ZAF",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Sudáfrica",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Sudáfrica (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=ZA&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Sudáfrica",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Sudáfrica",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Kenia",
+    "tipo": "Gubernamental",
+    "recurso": "Ministry of Environment, Climate Change and Forestry",
+    "url": "https://www.environment.go.ke",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Kenia",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Kenia (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=KEN",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Kenia",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Kenia (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=KE&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Kenia",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Kenia",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Marruecos",
+    "tipo": "Gubernamental",
+    "recurso": "Ministère de la Transition Énergétique et du Développement Durable",
+    "url": "https://www.environnement.gov.ma",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "África",
+    "hemisferio": "Norte",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Marruecos",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Marruecos (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=MAR",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "África",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Marruecos",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Marruecos (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=MA&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "África",
+    "hemisferio": "Norte",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Marruecos",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Marruecos",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "África",
+    "hemisferio": "Norte",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Namibia",
+    "tipo": "Gubernamental",
+    "recurso": "Ministry of Environment, Forestry and Tourism (MEFT)",
+    "url": "https://www.meft.gov.na",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Namibia",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Namibia (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=NAM",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Namibia",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Namibia (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=NA&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Namibia",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Namibia",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "África",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Australia",
+    "tipo": "Gubernamental",
+    "recurso": "Department of Climate Change, Energy, the Environment and Water",
+    "url": "https://www.dcceew.gov.au",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Australia",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Australia (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=AUS",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Australia",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Australia (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=AU&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Australia",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Australia",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
+  },
+  {
+    "pais": "Nueva Zelanda",
+    "tipo": "Gubernamental",
+    "recurso": "Ministry for the Environment (Manatū Mō Te Taiao)",
+    "url": "https://environment.govt.nz",
+    "descripcion": "Autoridad nacional de aplicación en política ambiental y vida silvestre. [VERIFICAR VIGENCIA DEL ENLACE]",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "manual"
+  },
+  {
+    "pais": "Nueva Zelanda",
+    "tipo": "Leyes",
+    "recurso": "FAOLEX — Perfil legislativo de Nueva Zelanda (FAO)",
+    "url": "https://www.fao.org/faolex/country-profiles/general-profile/en/?iso3=NZL",
+    "descripcion": "Repositorio comparado de legislación nacional sobre fauna silvestre, ecosistemas y recursos naturales, indexado por FAO.",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso3"
+  },
+  {
+    "pais": "Nueva Zelanda",
+    "tipo": "Libro Rojo",
+    "recurso": "GBIF — Ocurrencias con categoría IUCN en Nueva Zelanda (aproximado)",
+    "url": "https://api.gbif.org/v1/occurrence/search?country=NZ&iucnRedListCategory=CR,EN,VU",
+    "descripcion": "Consulta programática (API JSON) de registros con categoría de amenaza IUCN (CR/EN/VU) filtrados por país. Usar como capa provisoria hasta incorporar el Libro Rojo nacional oficial cuando exista.",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "plantilla_iso2_provisoria"
+  },
+  {
+    "pais": "Nueva Zelanda",
+    "tipo": "Nombres Comunes",
+    "recurso": "[PENDIENTE] Nomenclador de nombres vernáculos de Nueva Zelanda",
+    "url": "",
+    "descripcion": "PENDIENTE DE CURADURIA MANUAL: buscar checklist taxonómico nacional o portal de biodiversidad local con nombres comunes (ej. flora/fauna nativa).",
+    "continente": "Oceanía",
+    "hemisferio": "Sur",
+    "curaduria": "manual_pendiente"
   }
 ]

@@ -62,16 +62,28 @@ Configura los parámetros para extraer el mapa de gobernanza del país seleccion
 // Reemplaza la ruta relativa dependiendo de dónde coloques este .qmd
 db_ambient_global = FileAttachment("../_data/governance_db.json").json()
 
+// NUEVO: Selector de continente — filtra la lista de países disponible en el paso siguiente.
+// "Todos" preserva el comportamiento original (todos los países mezclados).
+viewof continente_foco = Inputs.select(
+  ["Todos", ...d3.groups(db_ambient_global, d => d.continente).map(g => g[0]).sort()],
+  {label: "1. Continente:"}
+)
+
+// Lista de países ahora depende reactivamente del continente elegido
+paises_disponibles = continente_foco === "Todos"
+  ? db_ambient_global
+  : db_ambient_global.filter(d => d.continente === continente_foco)
+
 // Selectores reactivos mapeados automáticamente a partir del contenido del JSON
 viewof pais_foco = Inputs.select(
-  d3.groups(db_ambient_global, d => d.pais).map(g => g[0]), 
-  {label: "1. País bajo estudio:"}
+  d3.groups(paises_disponibles, d => d.pais).map(g => g[0]),
+  {label: "2. País bajo estudio:"}
 )
 
 viewof dimensiones = Inputs.checkbox(
   ["Gubernamental", "Libro Rojo", "Leyes", "Nombres Comunes"], 
   {
-    label: "2. Dimensiones de análisis:", 
+    label: "3. Dimensiones de análisis:", 
     value: ["Gubernamental", "Libro Rojo", "Leyes", "Nombres Comunes"]
   }
 )
@@ -89,15 +101,20 @@ datos_filtrados = db_ambient_global.filter(d =>
 
 // Renderizado de tabla interactiva nativa de Quarto
 Inputs.table(datos_filtrados, {
-  columns: ["tipo", "recurso", "descripcion"],
+  columns: ["tipo", "recurso", "descripcion", "curaduria"],
   header: { 
     tipo: "Dimensión", 
     recurso: "Recurso / Organización", 
-    descripcion: "Rol Pedagógico y Alcance" 
+    descripcion: "Rol Pedagógico y Alcance",
+    curaduria: "Estado de la fuente"
   },
   layout: "fixed"
 })
 ```
+
+::: {.callout-note appearance="minimal"}
+**Estados de curaduría:** `manual` = enlace curado y verificado puntualmente · `plantilla_iso3` / `plantilla_iso2_provisoria` = generado automáticamente a partir de un patrón de URL internacional (FAOLEX / GBIF), recomendable pero no reemplaza una fuente nacional oficial · `manual_pendiente` = falta completar la curaduría de esa dimensión para ese país.
+:::
 
 ### Exportación con Trazabilidad Científica
 
@@ -115,8 +132,8 @@ function crearCSVConMetadatos(data, pais) {
     `# INSTRUCCIONES: Importar en R/Python/Excel omitiendo comentarios que inicien con '#'\n`
   ].join("\n");
 
-  const columnas = "Pais,Dimension,Recurso,URL\n";
-  const filas = data.map(i => `"${i.pais}","${i.tipo}","${i.recurso}","${i.url}"`).join("\n");
+  const columnas = "Pais,Continente,Dimension,Recurso,URL,EstadoCuraduria\n";
+  const filas = data.map(i => `"${i.pais}","${i.continente ?? ""}","${i.tipo}","${i.recurso}","${i.url}","${i.curaduria ?? "manual"}"`).join("\n");
   
   return metadatos + columnas + filas;
 }
