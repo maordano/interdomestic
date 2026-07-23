@@ -88,7 +88,7 @@ website:
             href: appendix/interacciones.qmd
           - text: "Distribución Geográfica"
             href: appendix/geodistribution.qmd
-          - text: "Normativa por País"
+          - text: "Gobernanza Ambiental"
             href: appendix/extractor-csv.qmd
           - text: "Información Extra"
             href: appendix/info-extra.qmd
