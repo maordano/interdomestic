@@ -88,8 +88,8 @@ website:
             href: appendix/interacciones.qmd
           - text: "Distribución Geográfica"
             href: appendix/geodistribution.qmd
-          - text: "Enlaces Extra"
-            href: appendix/enlaces-extra.qmd
+          - text: "Información Extra"
+            href: appendix/info-extra.qmd
       - section: "Manual"
         icon: journal-bookmark
         contents:
