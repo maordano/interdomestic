@@ -118,5 +118,3 @@ A medida que el proyecto *cuore* madure, aquí se detallarán nuestras reglas de
 **Fecha de publicación:** {{< meta date >}}  
 **Última modificación:** {{< meta date-modified >}}
 :::
-
-- Desarrollo pendiente: Vinculación

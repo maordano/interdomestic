@@ -4,11 +4,32 @@ author:
   - name: "M. A. Ordano"
     roles: [conceptualization, "writing - original draft", "writing - review & editing", validation]
     corresponding: true
+date: 2026-07-05
+date-modified: 2026-07-23
+format: 
+  html:
+    include-in-header:
+      - text: |
+          <style>
+          /* Oculta el bloque de autor y fecha en el encabezado superior */
+          .quarto-title-meta {
+            display: none !important;
+          }
+          /* Estilo personalizado y discreto para los metadatos del final */
+          .metadatos-final {
+            font-size: 0.55em;      /* Poco más de la mitad del tamaño de fuente */
+            color: #777777;         /* Gris claro para segundo plano */
+            line-height: 1.4;
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee; /* Línea sutil de separación */
+            padding-top: 15px;
+          }
+          </style>
 ---
 
-## Definición (en desarrollo)
+## Definición
 
-Un *dispositivo* o *device* es un articulador inorgánico que opera en la interfaz de una interacción humano–vida silvestre, ampliando, permitiendo o mediando la percepción o la acción de alguna de los dos organismos de esa interacción. No es un organismo, no es una persona: es lo que hace posible, o hace perceptible, o hace diferente, el encuentro entre ambas especies, la persona humana y esa entidad viva real no-humana; lo que se define como una interacción biótica.
+Un *dispositivo* o *device* estaría siendo un articulador inorgánico que opera en la interfaz de una interacción humana–vida silvestre, ampliando, permitiendo o mediando la percepción o la acción de alguna de los dos organismos de esa interacción. No es un organismo, no es una persona: es lo que hace posible, o hace perceptible, o hace diferente, el encuentro entre ambas especies, la persona humana y esa entidad viva real no-humana; lo que se define como una interacción biótica.
 
 **Alcance taxonómico, explícito:** "vida silvestre" aquí se usa en el más amplio sentido de "biota" o "componente biótico" de un ecosistema natural. Incluye fauna (en su más amplio sentido, el mundo animal), flora (en su más amplio sentido, el mundo vegetal), hongos y microbiota — cualquier organismo o comunidad no-humana de organismos (sea etiquetado como "ensemble", "assemblage", "community", "inter-specific group"), con la que una persona humana interactúa en el ámbito doméstico. Una plaga de cultivo, un enemigo natural que la controla, o la comunidad de descomponedores de una compostera son, en este marco, tan "vida silvestre" como una bandadita mixta de aves en un comedero del balcón o del patio. La definición también admite que el término no-humano de la interacción sea una **comunidad** y no un organismo individual. Las personas humanas, consideradas individuales, con ID, huella digital y traza genética casi única a nivel global, también somos "holobiontes" (un conjunto de organismos funcionando como ensamble o comunidad en el organismo de la persona humana). Y nosotros, holobiontes, podemos interactuar con un sistema vivo, como el suelo; tal el caso de la microbiota de una compostera ("ejemplo paradigmático"): no hay "un" organismo con el que la persona interactúa, sino un ensamble de especies, una comunidad heterogénea de descomponedores; y el dispositivo (la compostera, o el tambor rotativo, la pila estructurada) es lo que articula esa interacción de la holobionte humana con la comunidad no-humana en su conjunto. Ahí, cuando se hace interacción articulada, ahí tenemos un dispositivo de interacción.
 
@@ -16,8 +37,9 @@ La analogía es deliberada: así como un complejo CRISPR no es ni la guía de AR
 
 Criterio de inclusión de un dispositivo como parte de una interacción humano-naturaleza: si un artefacto media la interfaz de la interacción, aquí es considerado dispositivo o _device_. Si es contexto de esa interacción pero no media la interfaz directamente (una libreta de notas, la computadora donde se escribe un informe), no es considerado un dispositivo de interacción. La excepción es que se defina como articula respecto de la acción de las dos partes de la interacción humano-naturaleza.
 
-**Por qué los ejemplos tienden a fauna, y por qué eso no debería fijar una categorización:** los ejemplos con vertebrados (audífonos, cámaras trampa, comederos) dominan el catálogo por una razón práctica, no conceptual — son los casos donde el dato empírico es más accesible y donde "la gente lo puede ver" directamente (las personas humanas tenemos _percepción sesgada a la visión_, "evolutivamente hablando"), lo cual vuelve más tangible el arranque de proyectos de aprendizaje o investigación. 
-La definición y el árbol de decisión de más abajo no distinguen reino taxonómico: se aplican igual a un insecto plaga, a un hongo fitopatógeno o a una comunidad microbiana. Es decir, toma una "aproximación funcional" para facetar el sistema de estudio. Mantener ejemplos de flora, plagas, enemigos naturales y microbiota junto a los de fauna, desde el principio, es lo que evita que el catálogo derive de facto hacia un sesgo zoocéntrico no declarado.
+**Por qué los ejemplos sobre fauna abundan, y por qué eso no debería fijar una categorización:** los ejemplos con fauna de vertebrados (audífonos, cámaras trampa, comederos) dominan el catálogo por una razón práctica, no conceptual. Son los casos donde el dato empírico es más accesible y donde "la gente lo puede ver" directamente. Las personas humanas tenemos _percepción sesgada a la visión_, "evolutivamente hablando", lo cual vuelve más tangible el arranque de proyectos de aprendizaje o investigación en la interacción con la fauna silvestre. 
+
+Sin embargo, la definición y el árbol de decisión de más abajo no distinguen reino taxonómico: se aplican igual a un insecto plaga, a un hongo fitopatógeno o a una comunidad microbiana. Es decir, toma una "aproximación funcional" para facetar el sistema de estudio. Mantener ejemplos de flora, plagas, enemigos naturales y microbiota junto a los de fauna, desde el principio, es lo que evita que el catálogo derive de facto hacia un sesgo zoocéntrico no declarado.
 
 ## Pregunta disparadora
 
@@ -183,4 +205,9 @@ Esta declaración sigue las recomendaciones de ICMJE, COPE y el Council of Scien
 - Verbeek, P.-P. (2005). *What Things Do: Philosophical Reflections on Technology, Agency, and Design*. Pennsylvania State University Press.
 - Verbeek, P.-P. (2011). *Moralizing Technology: Understanding and Designing the Morality of Things*. University of Chicago Press.
 
+::: {.metadatos-final}
+**Autor:** {{< meta author >}}  
+**Fecha de publicación:** {{< meta date >}}  
+**Última modificación:** {{< meta date-modified >}}
+:::
 
