@@ -228,7 +228,7 @@ Cambio de estructura de relaciones en el árbol de archivos, corrección y agreg
 *A medida que la "orquesta" avance y sumemos nuevas observaciones sobre el proyecto, esta sección utilizará motores de listado dinámico para organizar los hilos del proceso por categorías y fechas de registro.*
 
 ::: {.metadatos-final}
-Autor: {{< meta author >}}
-Fecha de publicación: {{< meta date >}}
-Última modificación: {{< meta date-modified >}}
+**Autor**: {{< meta author >}}
+**Fecha de publicación**: {{< meta date >}}
+**Última modificación**: {{< meta date-modified >}}
 :::

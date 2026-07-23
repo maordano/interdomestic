@@ -256,7 +256,7 @@ Google. (2026). Gemini 2.5 Flash [Modelo de lenguaje masivo ejecutado mediante l
 
 
 ::: {.metadatos-final}
-Autor: {{< meta author >}}
-Fecha de publicación: {{< meta date >}}
-Última modificación: {{< meta date-modified >}}
+**Autor:** {{< meta author >}}  
+**Fecha de publicación:** {{< meta date >}}  
+**Última modificación:** {{< meta date-modified >}}
 :::

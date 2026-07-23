@@ -635,8 +635,8 @@ viewof disparador_descarga = Inputs.button("📥 Descargar registro (.md)", {
 La validación de nombres científicos usa el backbone taxonómico de GBIF.org. Esta ficha no ejecuta búsquedas por sí misma — arma consultas y prompts para usar en Google Scholar, Crossref, GloBI, o un asistente de IA de preferencia. Esta aplicación corre 100% en tu navegador sin servidor backend. Construida con Quarto + OJS.
 
 ::: {.metadatos-final}
-Autor: {{< meta author >}}
-Fecha de publicación: {{< meta date >}}
-Última modificación: {{< meta date-modified >}}
-Versión: OJS (v2.0) — Reemplazo optimizado de la versión anterior con shinylive/webR alojada en ../archive/_interacciones.qmd
+**Autor**: {{< meta author >}}
+**Fecha de publicación**: {{< meta date >}}
+**Última modificación**: {{< meta date-modified >}}
+**Versión**: OJS (v2.0) — Reemplazo optimizado de la versión anterior con shinylive/webR alojada en ../archive/_interacciones.qmd
 :::
