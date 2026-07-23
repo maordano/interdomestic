@@ -68,8 +68,6 @@ website:
         contents:
           - text: "Marco"
             href: fuente-proyecto/marco.qmd
-          - text: "Introducción"
-            href: fuente-proyecto/introduction.qmd
           - text: "Sistema de estudio"
             href: fuente-proyecto/sistema-estudio.qmd
           - text: "Variables"
