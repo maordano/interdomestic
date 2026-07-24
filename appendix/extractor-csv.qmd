@@ -1,6 +1,6 @@
 ---
 title: "Módulo Situado: Extractor y Mapeador de Gobernanza Ambiental"
-subtitle: "Dispositivo de interacción con infraestructura de artefacto para la búsqueda de información sobre vida silvestre en el ámbito doméstico"
+subtitle: "Dispositivo de interacción con infraestructura de artefacto para la búsqueda de información sobre vida silvestre en el ámbito doméstico, a partir de sitios institucionales"
 author:
   - name: "M. A. Ordano"
     roles: ["conceptualization", "writing - review & editing"]
@@ -29,7 +29,7 @@ format:
           </style>
 ---
 
-Este componente es un generador de archivos independientes; es también un mapa de ruta guiado para explorar cómo las sociedades institucionalizan, regulan y nombran la vida silvestre en sus jurisdicciones/territorios de proximidad.
+Este componente es un generador de archivos independientes; y es también un mapa de ruta guiado para explorar cómo las sociedades institucionalizan, regulan y nombran la vida silvestre y en términos más genéricos, cómo consideran formalmente a la biodiversidad, los recursos naturales y los procesos de relación humana-naturaleza en sus jurisdicciones/territorios de proximidad, estructurado básicamente por país.
 
 ::: {.callout-tip appearance="minimal"}
 ### 🧭 ¿Cómo usar este dispositivo según tu objetivo?
@@ -40,24 +40,26 @@ Selecciona la pestaña que corresponda a la fase actual de tu trabajo en la plat
 
 ## 🎓 1. Aprendizaje: Alfabetización Institucional
 
-Antes de descargar conjuntos de datos, es fundamental comprender *de dónde vienen* y *bajo qué marcos operan*. 
+Antes de descargar conjuntos de datos, es fundamental explorar *de dónde vienen los datos* y *bajo qué marcos operan*. 
 
 ### El Ecosistema de la Información Ambiental
-Cada país organiza su conocimiento biótico en dimensiones interconectadas. Explora las definiciones conceptuales antes de realizar tu consulta:
+Cada país organiza su conocimiento biótico en dimensiones interconectadas. 
 
-1. **Gobernanza Central (Gubernamental):** Autoridades de aplicación que dictan políticas macro y administran áreas protegidas.
-2. **Líneas Base de Conservación (Libros Rojos):** Diagnósticos científicos sobre el estado de amenaza de las especies. Fundamentan las decisiones legales.
-3. **Marcos Regulatorios (Leyes):** Herramientas vinculantes que penalizan el tráfico silvestre, protegen ambientes o "hábitats" críticos o regulan recursos nativos.
-4. **Dimensión Cultural (Nombres Comunes):** El puente directo entre la taxonomía de laboratorio y el saber local/doméstico. Crucial para la participación ciudadana general, la multidisciplina, y el registro de interacciones bióticas comunitarias.
-5. **Espacialización de la Conservación (Áreas Protegidas):** Delimitación territorial formal de reservas, parques y otras figuras de manejo (WDPA/Protected Planet). Ubica en el mapa dónde la gobernanza ambiental se vuelve jurisdicción concreta.
+Explora las definiciones conceptuales antes de realizar tu consulta:
+
+1. **Gobernanza Central (Gubernamental):** Autoridades de aplicación que establecen  políticas macro y administran áreas protegidas.
+2. **Líneas de Base de Conservación (Libros Rojos):** Diagnósticos académicos, de expertos o de científicos sobre el estado de amenaza de las especies. Típicamente fundamentan decisiones legales.
+3. **Marcos Regulatorios (Leyes):** Herramientas formales vinculantes que penalizan el tráfico silvestre y otros procesos detrimentales de los beneficios de la relación humana-naturaleza; protegen ambientes o "hábitats" críticos o regulan recursos nativos, o las relaciones entre "especies domesticadas" y especies de la vida silvestre ( _feralization_, _wild relatives_, _rewilding_).
+4. **Dimensión Cultural (Nombres Comunes):** El puente directo entre la taxonomía de laboratorio y el saber local/doméstico. Crucial para la participación ciudadana general, la multidisciplina, y el registro de interacciones bióticas por participación abierta.
+5. **Espacialización de la Conservación (Áreas Protegidas):** Delimitación territorial formal de reservas, parques y otras figuras de manejo (WDPA/Protected Planet), con figura jurídica, esto es, jurisdicción concreta. Un espacio delimitado en el mapa ubica dónde la gobernanza ambiental tiene reglas especiales para esa jurisdicción.
 6. **Planificación del Territorio (Ordenamiento Territorial):** Marcos de tenencia, uso y valor de la tierra que condicionan qué convivencia biótica es posible en cada parcela — desde el catastro rural hasta la zonificación urbana.
-7. **Horizonte Estratégico (Biodiversidad / NBSAP):** Estrategias Nacionales de Biodiversidad y Planes de Acción (Convenio de Diversidad Biológica). El documento político de mayor escala: articula compromisos internacionales con metas nacionales.
+7. **Horizonte Estratégico (Biodiversidad / NBSAP):** Estrategias Nacionales de Biodiversidad y Planes de Acción (Convenios de Diversidad Biológica). Los convenios pueden involucrar un documento político de mayor escala, que articula compromisos internacionales con metas nacionales.
 
 ---
 
 ## 🔬 2. Investigación: Consulta y Extracción Situada
 
-Configura los parámetros para extraer el mapa de gobernanza del país seleccionado. Al generar el archivo, estás construyendo un registro transparente bajo principios **FAIR/CARE**.
+Configura los parámetros para extraer el "mapa de gobernanza" del país seleccionado. Al generar el archivo, estás construyendo un registro transparente bajo principios **FAIR/CARE**.
 
 ```{ojs}
 //| echo: false
@@ -104,7 +106,7 @@ datos_filtrados = db_ambient_global.filter(d =>
 
 // Renderizado de tabla interactiva nativa de Quarto
 Inputs.table(datos_filtrados, {
-  columns: ["tipo", "recurso", "descripcion", "curaduria"],
+  columns: ["tipo", "recurso", "descripción", "curaduría"],
   header: { 
     tipo: "Dimensión", 
     recurso: "Recurso / Organización", 
@@ -121,7 +123,7 @@ Inputs.table(datos_filtrados, {
 
 ### Exportación con Trazabilidad Científica
 
-Al presionar el botón de descarga, se inyectarán de forma automatizada los metadatos de autoría de la plataforma directamente en las filas del CSV, asegurando la reproducibilidad del origen de la fuente.
+Al presionar el botón de descarga, se inyectarán de forma automatizada los metadatos de contribución y autoría de la plataforma en las filas del CSV, asegurando la reproducibilidad del origen de la fuente.
 
 ```{ojs}
 //| echo: false
@@ -150,8 +152,8 @@ DOM.download(
 ```
 
 ::: {.callout-important appearance="simple"}
-### 🛠️ Transparencia de Procesos (Vallas amigables)
-Al descargar este archivo portátil, evitas intermediarios comerciales o sesgos algorítmicos opacos de plataformas cerradas. Este CSV puede ser resguardado en tu bitácora o indexado con identificadores digitales de investigación o ciencia abierta.
+### 🛠️ Transparencia de Procesos   ( _Vallas amigables_ )
+Al descargar este archivo portátil, evitas intermediarios comerciales o sesgos algorítmicos _turbios_ de plataformas cerradas. Este CSV puede ser resguardado en tu bitácora o indexado con identificadores digitales de investigación o ciencia abierta.
 :::
 
 ---
@@ -160,14 +162,14 @@ Al descargar este archivo portátil, evitas intermediarios comerciales o sesgos 
 
 ¿Cómo se intersectan estos enlaces institucionales de escala macro con la realidad biótica de tu jardín, patio, balcón de una ciudad o entorno rural de proximidad? 
 
-### Propuesta de Ejercicio Analítico Cruzado:
+### Propuesta de Ejercicio Cruzado:
 1. **Fase A (Importación):** Carga el archivo `.csv` descargado en tu espacio de procesamiento preferido (RStudio, Jupyter, o planillas abiertas).
 2. **Fase B (Interacción Local):** Cruza el catálogo de *Nombres Comunes* obtenido mediante este extractor con las observaciones sistemáticas de vida silvestre que registres en tus dispositivos domésticos.
-3. **Fase C (Evaluación Crítica):** Diagnostica brechas informacionales: ¿Las especies de insectos, aves o plantas nativas con las que cohabitas aparecen priorizadas en las listas de los *Libros Rojos* del país? ¿Qué *Leyes* o marcos de manejo ordenan las dinámicas de los recursos ecosistémicos que utilizas a diario (ej. agua, suelo, arbolado urbano)?
+3. **Fase C (Evaluación Crítica):** Diagnostica brechas informacionales: ¿Las especies de insectos, aves o plantas nativas con las que cohabitas aparecen priorizadas en las listas de los *Libros Rojos* del país? ¿Qué *Leyes* o marcos de manejo ordenan las dinámicas de los recursos ecosistémicos que utilizas a diario (ejemplos: agua, suelo, arbolado urbano)?
 
 ::: {.callout-note}
 ### 📊 Próximo Flujo del Ciclo de Vida
-Los resultados derivados de este ejercicio de síntesis relacional están conceptualizados para nutrir de manera directa el bloque de **Meta-análisis** disponible en la arquitectura principal de la plataforma.
+Los resultados derivados de este ejercicio de síntesis relacional están conceptualizados para nutrir el proceso de **Meta-análisis** en la arquitectura principal de la plataforma (en desarrollo).
 :::
 
 :::
