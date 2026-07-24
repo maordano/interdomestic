@@ -121,7 +121,7 @@ Inputs.table(datos_filtrados, {
 **Estados de curaduría:** `manual` = enlace curado y verificado puntualmente · `plantilla_iso3` = generado automáticamente por código ISO3 (FAOLEX, Protected Planet/WDPA) · `plantilla_iso2_provisoria` = generado por código ISO2, calidad aproximada (GBIF) · `plantilla_slug_provisoria` = generado por nombre del país en inglés (Land Portal), verificar que resuelva · `manual_pendiente` = falta completar la curaduría de esa dimensión para ese país.
 :::
 
-### Exportación con Trazabilidad Científica
+### Exportación con Trazabilidad
 
 Al presionar el botón de descarga, se inyectarán de forma automatizada los metadatos de contribución y autoría de la plataforma en las filas del CSV, asegurando la reproducibilidad del origen de la fuente.
 

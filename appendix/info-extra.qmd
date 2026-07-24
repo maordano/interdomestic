@@ -32,6 +32,9 @@ Aplicaciones y sistemas para el aprendizaje, la investigación y síntesis sobre
 
 - [**Ocean Biodiversity Information System**](https://obis.org/) - sistema de información sobre biodiversidad marina.
 
+- [**Planeta Protegido & OECMs**](https://www.protectedplanet.net/en) - sistema de información sobre áreas naturales protegidas bajo distintas clasificaciones de tierras y jurisdiccionales (y más).
+
+
 - [**re3data**](https://www.re3data.org/) - registro de repositorios de datos de investigación; el buscador está al ingresar; usa palabras clave para encontrar portales, por ejemplo: "biodiversidad".
 
 - [**SDMtoolbox**](http://www.sdmtoolbox.org/) - caja de herramientas donde se desarrollan y despliegan aplicaciones para la modelación de la distribución de especies y la estimación de variables de análisis.
