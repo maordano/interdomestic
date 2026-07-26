@@ -1,6 +1,6 @@
 ---
-title: "Registro de Contribuciones e Impacto Compartido"
-subtitle: "Dispositivo interactivo para la asignación de roles híbridos entre academia, gestión comunitaria y ciencia ciudadana (módulo situado)"
+title: "Módulo Situado: Registro de Contribuciones e Impacto Compartido"
+subtitle: "Dispositivo interactivo para la asignación de roles híbridos entre academia, gestión comunitaria y ciencia ciudadana"
 author:
   - name: "M. A. Ordano"
     roles: ["conceptualization", "writing - review & editing"]
@@ -50,7 +50,7 @@ Ingresa el número de personas o colectivos institucionales/comunitarios que for
 
 ```{ojs}
 //| echo: false
-// Definición estática de la taxonomía integrada planteada en la respuesta anterior
+// Definición estática de la taxonomía integrada
 roles_taxonomia = [
   { id: "conceptualization", fase: "1. Ideation", rol: "Conceptualization", trad: "Co-Creators / Public Stakeholders", desc: "Diseño de preguntas de investigación o hipótesis comunitarias locales." },
   { id: "funding", fase: "2. Funding", rol: "Funding Acquisition", trad: "Institutional Enablers / Crowdfunders", desc: "Gestión de fondos comunitarios, institucionales o micro-donaciones." },
@@ -60,14 +60,23 @@ roles_taxonomia = [
   { id: "administration", fase: "6. Oversight", rol: "Project Administration", trad: "Community Liaisons / Enablers", desc: "Coordinación, puentes de confianza entre academia y territorio (Líderes locales/ONGs)." },
   { id: "writing", fase: "7. Reporting", rol: "Writing – Review & Editing", trad: "Group Co-Authors / Public Advocates", desc: "Redacción conjunta, revisión de pertinencia local o comunicación pública de resultados." }
 ]
+```
 
+```{ojs}
+//| echo: false
 // Selector dinámico para clonar los formularios de participantes
 viewof cantidad_participantes = Inputs.range([1, 10], {step: 1, value: 1, label: "Número de participantes a registrar:"})
+```
 
+---
+
+```{ojs}
 //| echo: false
-// Generación dinámica de la interfaz de carga individualizada utilizando mutables
 html`<div class="alert alert-secondary"><strong>Panel de Configuración de Casillas</strong></div>`
+```
 
+```{ojs}
+//| echo: false
 // Estructura dinámica de inputs según la cantidad seleccionada
 viewof datos_formulario = {
   const inputs = [];
@@ -100,7 +109,7 @@ viewof datos_formulario = {
   }
 
   const container = html`<div>${inputs}</div>`;
-  
+
   // Función validadora del estado interno del DOM inyectado por OJS
   const getValues = () => {
     const res = [];
@@ -109,14 +118,14 @@ viewof datos_formulario = {
       const organizacion = container.querySelector(`#org_${i}`)?.value || "Particular/Comunidad";
       const fecha_inicio = container.querySelector(`#inicio_${i}`)?.value || "No especificada";
       const fecha_fin = container.querySelector(`#fin_${i}`)?.value || "No especificada";
-      
+
       const roles_seleccionados = [];
       roles_taxonomia.forEach(r => {
         if (container.querySelector(`#role_${r.id}_${i}`)?.checked) {
           roles_seleccionados.push(r.id);
         }
       });
-      
+
       res.push({ nombre, organizacion, fecha_inicio, fecha_fin, roles: roles_seleccionados });
     }
     return res;
@@ -238,7 +247,3 @@ DOM.download(
 **Fecha de publicación:** {{< meta date >}}  
 **Última modificación:** {{< meta date-modified >}}
 :::
-
-
-    
-
