@@ -34,11 +34,13 @@ format:
           </style>
 ---
 
-Este componente interactivo es un dispositivo diseñado para registrar de forma explícita y granular los aportes en proyectos de investigación compartida y ciencia ciudadana. Va más allá de una lógica tradicional de autoría académica, dando visibilidad y trazabilidad formal a personas voluntarias, tecnólogas, investigadoras, técnicas, científicas, y comunidades o grupos locales, bajo principios **FAIR/CARE**.
+Este componente interactivo es un dispositivo diseñado para registrar de forma explícita y granular los aportes en proyectos de investigación compartida y ciencia ciudadana.  
+
+Va más allá de una lógica tradicional de autoría académica, dando visibilidad y trazabilidad formal a personas voluntarias, tecnólogas, investigadoras, técnicas, científicas, y comunidades o grupos locales, bajo principios **FAIR/CARE**.
 
 ::: {.callout-tip appearance="minimal"}
 ### 🧭 ¿Cómo usar este dispositivo?
-1. Configura los datos de los participantes en la pestaña **1. Registro**.
+1. Configura los datos de los participantes en la pestaña **1. Registro**. Una vez cargados ir a pestaña 2.
 2. Explora y descarga la matriz resultante en la pestaña **2. Matriz y Exportación**.
 :::
 
@@ -46,19 +48,19 @@ Este componente interactivo es un dispositivo diseñado para registrar de forma 
 
 ## 👥 1. Registro de Contribuciones
 
-Ingresa el número de personas o colectivos institucionales/comunitarios que formaron parte del ciclo de trabajo para habilitar sus respectivas fichas de carga.
+Ingresa el número de personas o grupos institucionales/comunitarios que formaron o forman parte del ciclo de trabajo para habilitar sus respectivas fichas de carga.
 
 ```{ojs}
 //| echo: false
 // Definición estática de la taxonomía integrada
 roles_taxonomia = [
-  { id: "conceptualization", fase: "1. Ideation", rol: "Conceptualization", trad: "Co-Creators / Public Stakeholders", desc: "Diseño de preguntas de investigación o hipótesis comunitarias locales." },
-  { id: "funding", fase: "2. Funding", rol: "Funding Acquisition", trad: "Institutional Enablers / Crowdfunders", desc: "Gestión de fondos comunitarios, institucionales o micro-donaciones." },
-  { id: "resources", fase: "3. Infrastructure", rol: "Resources / Software", trad: "Platform Developers / Tech Volunteers", desc: "Desarrollo de apps, infraestructura digital o donación de hardware/cómputo." },
-  { id: "investigation", fase: "4. Execution", rol: "Investigation / Data Curation", trad: "Contributory Citizens", desc: "Monitoreo en territorio, recolección de muestras o digitalización de archivos." },
-  { id: "analysis", fase: "5. Analysis", rol: "Formal Analysis", trad: "Collaborative Citizens", desc: "Análisis de datos comunitario, clasificación gamificada o validación local." },
-  { id: "administration", fase: "6. Oversight", rol: "Project Administration", trad: "Community Liaisons / Enablers", desc: "Coordinación, puentes de confianza entre academia y territorio (Líderes locales/ONGs)." },
-  { id: "writing", fase: "7. Reporting", rol: "Writing – Review & Editing", trad: "Group Co-Authors / Public Advocates", desc: "Redacción conjunta, revisión de pertinencia local o comunicación pública de resultados." }
+  { id: "conceptualization", fase: "1. Ideation", rol: "Conceptualization", trad: "Co-Creators / Public Stakeholders", desc: "Diseño de preguntas de investigación, premisas o hipótesis" },
+  { id: "funding", fase: "2. Funding", rol: "Funding Acquisition", trad: "Institutional Enablers / Crowdfunders", desc: "Gestión de fondos, institucionales, grupales o micro-donaciones." },
+  { id: "resources", fase: "3. Infrastructure", rol: "Resources / Software", trad: "Platform Developers / Tech Volunteers", desc: "Desarrollo de apps, infraestructura digital, donación de hardware/cómputo." },
+  { id: "investigation", fase: "4. Execution", rol: "Investigation / Data Curation", trad: "Contributory Citizens", desc: "Monitoreo en territorio, recolección o registro de muestras, digitalización de archivos, observaciones que cambian la toma de decisiones dentro del proyecto." },
+  { id: "analysis", fase: "5. Analysis", rol: "Formal Analysis", trad: "Collaborative Citizens", desc: "Manejo de datos, clasificación gamificada o validación local." },
+  { id: "administration", fase: "6. Oversight", rol: "Project Administration", trad: "Community Liaisons / Enablers", desc: "Coordinación, puentes entre academia y territorio (líderes locales/ONGs, personas coordinadoras)." },
+  { id: "writing", fase: "7. Reporting", rol: "Writing – Review & Editing", trad: "Group Co-Authors / Public Advocates", desc: "Redacción conjunta, revisión de pertinencia local,  comunicación pública de resultados." }
 ]
 ```
 
@@ -153,7 +155,7 @@ viewof datos_formulario = {
 
 ## 🔬 2. Matriz y Exportación
 
-Aquí puedes auditar la consistencia del registro, visualizar el mapa de metadatos procesado e interactuar con la descarga inmediata del conjunto estructurado.
+Aquí puedes auditar la consistencia del registro, visualizar el mapa de metadatos procesado e interactuar con la descarga inmediata del conjunto estructurado. En esta versión básica los roles son asignados como 0 o 1, aunque cada rol podría considerar una escala continua dentro del rol participado.
 
 ### Ficha Resumen de Metadatos Generados
 
