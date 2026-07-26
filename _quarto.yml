@@ -92,6 +92,8 @@ website:
             href: appendix/extractor-csv.qmd
           - text: "Información Extra"
             href: appendix/info-extra.qmd
+          - text: "Matriz de Roles de Contribución"
+            href: appendix/contributorship.qmd          
       - section: "Manual"
         icon: journal-bookmark
         contents:

@@ -1,0 +1,246 @@
+---
+title: "Módulo Situado: Registro de Contribuciones e Impacto Compartido"
+subtitle: "Dispositivo interactivo para la asignación de roles híbridos entre academia, gestión comunitaria y ciencia ciudadana"
+author:
+  - name: "M. A. Ordano"
+    roles: ["conceptualization", "writing - review & editing"]
+    corresponding: true
+date: 2026-07-26
+date-modified: 2026-07-26
+format: 
+  html:
+    page-layout: article
+    include-in-header:
+      - text: |
+          <style>
+          .quarto-title-meta {
+            display: none !important;
+          }
+          .card-participante {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            background-color: #fcfcfc;
+          }
+          .metadatos-final {
+            font-size: 0.55em;
+            color: #777777;
+            line-height: 1.4;
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee;
+            padding-top: 15px;
+          }
+          </style>
+---
+
+Este componente interactivo es un dispositivo diseñado para registrar de forma explícita y granular los aportes en proyectos de investigación compartida y ciencia ciudadana. Va más allá de una lógica tradicional de autoría académica, dando visibilidad y trazabilidad formal a personas voluntarias, tecnólogas, investigadoras, técnicas, científicas, y comunidades o grupos locales, bajo principios **FAIR/CARE**.
+
+::: {.callout-tip appearance="minimal"}
+### 🧭 ¿Cómo usar este dispositivo?
+1. Configura los datos de los participantes en la pestaña **1. Registro**.
+2. Explora y descarga la matriz resultante en la pestaña **2. Matriz y Exportación**.
+:::
+
+::: {.panel-tabset}
+
+## 👥 1. Registro de Contribuciones
+
+Ingresa el número de personas o colectivos institucionales/comunitarios que formaron parte del ciclo de trabajo para habilitar sus respectivas fichas de carga.
+
+```{ojs}
+//| echo: false
+// Definición estática de la taxonomía integrada planteada en la respuesta anterior
+roles_taxonomia = [
+  { id: "conceptualization", fase: "1. Ideation", rol: "Conceptualization", trad: "Co-Creators / Public Stakeholders", desc: "Diseño de preguntas de investigación o hipótesis comunitarias locales." },
+  { id: "funding", fase: "2. Funding", rol: "Funding Acquisition", trad: "Institutional Enablers / Crowdfunders", desc: "Gestión de fondos comunitarios, institucionales o micro-donaciones." },
+  { id: "resources", fase: "3. Infrastructure", rol: "Resources / Software", trad: "Platform Developers / Tech Volunteers", desc: "Desarrollo de apps, infraestructura digital o donación de hardware/cómputo." },
+  { id: "investigation", fase: "4. Execution", rol: "Investigation / Data Curation", trad: "Contributory Citizens", desc: "Monitoreo en territorio, recolección de muestras o digitalización de archivos." },
+  { id: "analysis", fase: "5. Analysis", rol: "Formal Analysis", trad: "Collaborative Citizens", desc: "Análisis de datos comunitario, clasificación gamificada o validación local." },
+  { id: "administration", fase: "6. Oversight", rol: "Project Administration", trad: "Community Liaisons / Enablers", desc: "Coordinación, puentes de confianza entre academia y territorio (Líderes locales/ONGs)." },
+  { id: "writing", fase: "7. Reporting", rol: "Writing – Review & Editing", trad: "Group Co-Authors / Public Advocates", desc: "Redacción conjunta, revisión de pertinencia local o comunicación pública de resultados." }
+]
+
+// Selector dinámico para clonar los formularios de participantes
+viewof cantidad_participantes = Inputs.range([1, 10], {step: 1, value: 1, label: "Número de participantes a registrar:"})
+```
+
+---
+
+```{ojs}
+//| echo: false
+// Generación dinámica de la interfaz de carga individualizada utilizando mutables
+html`<div class="alert alert-secondary"><strong>Panel de Configuración de Casillas</strong></div>`
+
+// Estructura dinámica de inputs según la cantidad seleccionada
+viewof datos_formulario = {
+  const inputs = [];
+  for (let i = 0; i < cantidad_participantes; i++) {
+    inputs.push(html`<div class="card-participante">
+      <h5>Participante #${i + 1}</h5>
+      <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+        <input type="text" id="nombre_${i}" placeholder="Nombre o Identidad Colectiva (ej. Colectivo de Observadores)" style="flex: 2; padding: 4px;" required />
+        <input type="text" id="org_${i}" placeholder="Organización / Localidad" style="flex: 1; padding: 4px;" />
+      </div>
+      <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <label style="font-size:0.9em; align-self:center;">Ventana de participación:</label>
+        <input type="date" id="inicio_${i}" style="padding: 2px;" />
+        <span style="align-self:center;">al</span>
+        <input type="date" id="fin_${i}" style="padding: 2px;" />
+      </div>
+      <h6>Roles desempeñados (Matriz Integrada):</h6>
+      <div style="display: grid; grid-template-columns: 1fr; gap: 5px; font-size: 0.9em;">
+        ${roles_taxonomia.map(r => html`
+          <label style="display: flex; align-items: start; gap: 8px; cursor: pointer;">
+            <input type="checkbox" id="role_${r.id}_${i}" value="${r.id}" style="margin-top: 4px;" />
+            <div>
+              <strong>${r.fase} - ${r.rol}</strong> <span class="text-muted">(${r.trad})</span><br/>
+              <small style="color: #666; display:block; margin-top:-2px;">${r.desc}</small>
+            </div>
+          </label>
+        `).join('')}
+      </div>
+    </div>`);
+  }
+
+  const container = html`<div>${inputs}</div>`;
+  
+  // Función validadora del estado interno del DOM inyectado por OJS
+  const getValues = () => {
+    const res = [];
+    for (let i = 0; i < cantidad_participantes; i++) {
+      const nombre = container.querySelector(`#nombre_${i}`)?.value || `Participante ${i+1}`;
+      const organizacion = container.querySelector(`#org_${i}`)?.value || "Particular/Comunidad";
+      const fecha_inicio = container.querySelector(`#inicio_${i}`)?.value || "No especificada";
+      const fecha_fin = container.querySelector(`#fin_${i}`)?.value || "No especificada";
+      
+      const roles_seleccionados = [];
+      roles_taxonomia.forEach(r => {
+        if (container.querySelector(`#role_${r.id}_${i}`)?.checked) {
+          roles_seleccionados.push(r.id);
+        }
+      });
+      
+      res.push({ nombre, organizacion, fecha_inicio, fecha_fin, roles: roles_seleccionados });
+    }
+    return res;
+  };
+
+  // Escuchar eventos dentro del contenedor para propagar el estado de forma reactiva
+  container.addEventListener("input", () => {
+    container.value = getValues();
+    container.dispatchEvent(new CustomEvent("input"));
+  });
+
+  // Inicialización del valor por defecto
+  setTimeout(() => {
+    container.value = getValues();
+    container.dispatchEvent(new CustomEvent("input"));
+  }, 100);
+
+  return container;
+}
+```
+
+---
+
+## 🔬 2. Matriz y Exportación
+
+Aquí puedes auditar la consistencia del registro, visualizar el mapa de metadatos procesado e interactuar con la descarga inmediata del conjunto estructurado.
+
+### Ficha Resumen de Metadatos Generados
+
+```{ojs}
+//| echo: false
+// Renderizado dinámico de la ficha de metadatos en formato YAML/Markdown amigable
+html`
+<div style="background-color: #f4f6f8; border-left: 4px solid #007bff; padding: 15px; font-family: monospace; white-space: pre-wrap; font-size:0.85em;">
+# FILTRADO DE CONTRIBUTORSHIP METADATA
+# PROYECTO: interdomestic
+# FECHA DE PROCESAMIENTO: ${new Date().toISOString().split('T')[0]}
+------------------------------------------------------------------
+${datos_formulario.map((p, idx) => `
+[Participante #${idx + 1}]
+Identidad:    ${p.nombre}
+Ecosistema:   ${p.organizacion}
+Trayectoria:  Desde ${p.fecha_inicio} hasta ${p.fecha_fin}
+Roles Activos:
+${p.roles.length > 0 
+  ? p.roles.map(r => `  - ${r} (${roles_taxonomia.find(t => t.id === r).rol})`).join("\n")
+  : "  - Ningún rol seleccionado formalmente."}
+`).join("\n")}
+</div>`
+```
+
+### Matriz Cruzada de Contribución (`.csv`)
+
+La siguiente tabla resume la estructura matricial que se compilará en el archivo descargable. Un valor de `1` representa participación activa; `0` representa ausencia de intervención en dicha fase. (La asignación podría ser continua entre 0 y 1, no desarrollado aquí).
+
+```{ojs}
+//| echo: false
+// Transformación de los datos planos a un formato tabular denso para visualización y CSV
+filas_matriz_csv = datos_formulario.map(p => {
+  const base = {
+    "Participante": p.nombre,
+    "Organizacion": p.organizacion,
+    "Fecha_Inicio": p.fecha_inicio,
+    "Fecha_Fin": p.fecha_fin
+  };
+  // Inyectar 1 o 0 dinámicamente según la taxonomía mapeada
+  roles_taxonomia.forEach(r => {
+    base[r.rol] = p.roles.includes(r.id) ? 1 : 0;
+  });
+  return base;
+})
+
+// Mostrar tabla interactiva integrada
+Inputs.table(filas_matriz_csv)
+```
+
+::: {.callout-important appearance="minimal"}
+### 💾 Descarga del Artefacto de Trazabilidad
+El archivo resultante incluye un encabezado estructurado de comentarios (`#`) compatible con lectores analíticos convencionales como `read_csv()` en R o Pandas en Python.
+:::
+
+```{ojs}
+//| echo: false
+// Lógica de construcción del archivo binario descargable en el cliente
+DOM.download(
+  (() => {
+    const cabecera_metadatos = [
+      `# PROYECTO: interdomestic (https://github.com/maordano/interdomestic)`,
+      `# ARTEFACTO: Ficha de Trazabilidad y Matriz de Contributorship Integrada`,
+      `# ESQUEMA: CRediT + Ciencia Ciudadana Typologies (Bonney/Shirk)`,
+      `# LICENCIA: CC BY 4.0 2026`,
+      `# CONFIGURACIÓN: Generado dinámicamente por la interfaz de usuario en fecha ${new Date().toISOString().split('T')[0]}`,
+      `# INSTRUCCIONES: Omitir líneas con '#' al procesar estadísticamente.\n`
+    ].join("\n");
+
+    const columnas = ["Participante", "Organizacion", "Fecha_Inicio", "Fecha_Fin", ...roles_taxonomia.map(r => r.rol)].join(",");
+
+    const lineas_filas = filas_matriz_csv.map(f => {
+      const datos_fijos = `"${f.Participante}","${f.Organizacion}","${f.Fecha_Inicio}","${f.Fecha_Fin}"`;
+      const datos_roles = roles_taxonomia.map(r => f[r.rol]).join(",");
+      return `${datos_fijos},${datos_roles}`;
+    }).join("\n");
+
+    const contenido_completo = cabecera_metadatos + columnas + "\n" + lineas_filas;
+
+    return new Blob([contenido_completo], { type: "text/csv;charset=utf-8;" });
+  })(),
+  `matriz_contributorship_${new Date().toISOString().split('T')[0]}.csv`,
+  "Descargar Matriz de Contribuciones (.csv)"
+)
+```
+
+:::
+
+::: {.metadatos-final}
+**Autor:** {{< meta author >}}  
+**Fecha de publicación:** {{< meta date >}}  
+**Última modificación:** {{< meta date-modified >}}
+:::
+
+
+    
+
