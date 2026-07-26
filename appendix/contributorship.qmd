@@ -63,11 +63,7 @@ roles_taxonomia = [
 
 // Selector dinámico para clonar los formularios de participantes
 viewof cantidad_participantes = Inputs.range([1, 10], {step: 1, value: 1, label: "Número de participantes a registrar:"})
-```
 
----
-
-```{ojs}
 //| echo: false
 // Generación dinámica de la interfaz de carga individualizada utilizando mutables
 html`<div class="alert alert-secondary"><strong>Panel de Configuración de Casillas</strong></div>`
