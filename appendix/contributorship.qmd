@@ -1,6 +1,6 @@
 ---
-title: "Módulo Situado: Registro de Contribuciones e Impacto Compartido"
-subtitle: "Dispositivo interactivo para la asignación de roles híbridos entre academia, gestión comunitaria y ciencia ciudadana"
+title: "Registro de Contribuciones e Impacto Compartido"
+subtitle: "Dispositivo interactivo para la asignación de roles híbridos entre academia, gestión comunitaria y ciencia ciudadana (módulo situado)"
 author:
   - name: "M. A. Ordano"
     roles: ["conceptualization", "writing - review & editing"]
@@ -103,7 +103,7 @@ viewof datos_formulario = {
               <small style="color: #666; display:block; margin-top:-2px;">${r.desc}</small>
             </div>
           </label>
-        `).join('')}
+        `)}
       </div>
     </div>`);
   }
