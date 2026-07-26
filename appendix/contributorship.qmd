@@ -1,6 +1,6 @@
 ---
-title: "Registro de Contribuciones e Impacto Compartido"
-subtitle: "Dispositivo interactivo para la asignación de roles híbridos entre academia, gestión comunitaria y ciencia ciudadana (módulo situado)"
+title: "Módulo Situado: Registro de Contribuciones e Impacto Compartido"
+subtitle: "Dispositivo interactivo para la asignación de roles híbridos entre academia, gestión comunitaria y ciencia ciudadana"
 author:
   - name: "M. A. Ordano"
     roles: ["conceptualization", "writing - review & editing"]
@@ -127,7 +127,9 @@ viewof datos_formulario = {
   };
 
   // Escuchar eventos dentro del contenedor para propagar el estado de forma reactiva
-  container.addEventListener("input", () => {
+  // (se ignoran los eventos que el propio container dispara, para evitar un bucle infinito)
+  container.addEventListener("input", (event) => {
+    if (event.target === container) return;
     container.value = getValues();
     container.dispatchEvent(new CustomEvent("input"));
   });
