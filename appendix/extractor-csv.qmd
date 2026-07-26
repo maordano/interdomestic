@@ -1,6 +1,6 @@
 ---
-title: "Módulo Situado: Extractor y Mapeador de Gobernanza Ambiental"
-subtitle: "Dispositivo de interacción con infraestructura de artefacto para la búsqueda de información sobre vida silvestre en el ámbito doméstico, a partir de sitios institucionales"
+title: "Extractor y Mapeador de Gobernanza Ambiental"
+subtitle: "Dispositivo de interacción con infraestructura de artefacto para la búsqueda de información sobre vida silvestre en el ámbito doméstico, a partir de sitios institucionales (módulo situado)"
 author:
   - name: "M. A. Ordano"
     roles: ["conceptualization", "writing - review & editing"]
