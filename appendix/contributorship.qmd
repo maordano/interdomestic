@@ -36,11 +36,12 @@ format:
 
 Este componente interactivo es un dispositivo diseñado para registrar de forma explícita y granular los aportes en proyectos de investigación compartida y ciencia ciudadana.  
 
+
 Va más allá de una lógica tradicional de autoría académica, dando visibilidad y trazabilidad formal a personas voluntarias, tecnólogas, investigadoras, técnicas, científicas, y comunidades o grupos locales, bajo principios **FAIR/CARE**.
 
 ::: {.callout-tip appearance="minimal"}
 ### 🧭 ¿Cómo usar este dispositivo?
-1. Configura los datos de los participantes en la pestaña **1. Registro**. Una vez cargados ir a pestaña 2.
+1. Configura los datos de los participantes en la pestaña **1. Registro**. Una vez cargado el registro, pasa directamente al paso 2.
 2. Explora y descarga la matriz resultante en la pestaña **2. Matriz y Exportación**.
 :::
 
@@ -48,19 +49,19 @@ Va más allá de una lógica tradicional de autoría académica, dando visibilid
 
 ## 👥 1. Registro de Contribuciones
 
-Ingresa el número de personas o grupos institucionales/comunitarios que formaron o forman parte del ciclo de trabajo para habilitar sus respectivas fichas de carga.
+Ingresa el número de personas o grupos institucionales/comunitarios que formaron parte del ciclo de trabajo para habilitar sus respectivas fichas de carga.
 
 ```{ojs}
 //| echo: false
 // Definición estática de la taxonomía integrada
 roles_taxonomia = [
-  { id: "conceptualization", fase: "1. Ideation", rol: "Conceptualization", trad: "Co-Creators / Public Stakeholders", desc: "Diseño de preguntas de investigación, premisas o hipótesis" },
-  { id: "funding", fase: "2. Funding", rol: "Funding Acquisition", trad: "Institutional Enablers / Crowdfunders", desc: "Gestión de fondos, institucionales, grupales o micro-donaciones." },
-  { id: "resources", fase: "3. Infrastructure", rol: "Resources / Software", trad: "Platform Developers / Tech Volunteers", desc: "Desarrollo de apps, infraestructura digital, donación de hardware/cómputo." },
-  { id: "investigation", fase: "4. Execution", rol: "Investigation / Data Curation", trad: "Contributory Citizens", desc: "Monitoreo en territorio, recolección o registro de muestras, digitalización de archivos, observaciones que cambian la toma de decisiones dentro del proyecto." },
-  { id: "analysis", fase: "5. Analysis", rol: "Formal Analysis", trad: "Collaborative Citizens", desc: "Manejo de datos, clasificación gamificada o validación local." },
-  { id: "administration", fase: "6. Oversight", rol: "Project Administration", trad: "Community Liaisons / Enablers", desc: "Coordinación, puentes entre academia y territorio (líderes locales/ONGs, personas coordinadoras)." },
-  { id: "writing", fase: "7. Reporting", rol: "Writing – Review & Editing", trad: "Group Co-Authors / Public Advocates", desc: "Redacción conjunta, revisión de pertinencia local,  comunicación pública de resultados." }
+  { id: "conceptualization", fase: "1. Ideation", rol: "Conceptualization", trad: "Co-Creators / Public Stakeholders", desc: "Diseño de preguntas de investigación o hipótesis comunitarias locales." },
+  { id: "funding", fase: "2. Funding", rol: "Funding Acquisition", trad: "Institutional Enablers / Crowdfunders", desc: "Gestión de fondos comunitarios, institucionales o micro-donaciones." },
+  { id: "resources", fase: "3. Infrastructure", rol: "Resources / Software", trad: "Platform Developers / Tech Volunteers", desc: "Desarrollo de apps, infraestructura digital o donación de hardware/cómputo." },
+  { id: "investigation", fase: "4. Execution", rol: "Investigation / Data Curation", trad: "Contributory Citizens", desc: "Monitoreo en territorio, recolección de muestras o digitalización de archivos." },
+  { id: "analysis", fase: "5. Analysis", rol: "Formal Analysis", trad: "Collaborative Citizens", desc: "Análisis de datos comunitario, clasificación gamificada o validación local." },
+  { id: "administration", fase: "6. Oversight", rol: "Project Administration", trad: "Community Liaisons / Enablers", desc: "Coordinación, puentes de confianza entre academia y territorio (Líderes locales/ONGs)." },
+  { id: "writing", fase: "7. Reporting", rol: "Writing – Review & Editing", trad: "Group Co-Authors / Public Advocates", desc: "Redacción conjunta, revisión de pertinencia local o comunicación pública de resultados." }
 ]
 ```
 
@@ -107,10 +108,31 @@ viewof datos_formulario = {
           </label>
         `)}
       </div>
+      <div style="margin-top: 12px; padding-top: 10px; border-top: 1px dashed #cccccc;">
+        <label style="display: flex; align-items: start; gap: 8px; cursor: pointer;">
+          <input type="checkbox" id="otro_check_${i}" style="margin-top: 4px;" />
+          <div>
+            <strong>Otro Rol</strong> <span class="text-muted">(No contemplado en la taxonomía)</span><br/>
+            <small style="color: #666; display:block; margin-top:-2px;">Si considera que su actividad no está expresada en los grupos anteriores, describa brevemente cuál sería la expresión que correspondería a su contribución. Esta puede ser re-clasificada en alguna de las clases de roles, o servir para mejorar el desarrollo de la aplicación.</small>
+          </div>
+        </label>
+        <textarea id="otro_texto_${i}" placeholder="Describa brevemente su contribución..." rows="2" style="width: 100%; margin-top: 6px; padding: 4px; display: none; font-family: inherit; font-size: 0.9em;"></textarea>
+      </div>
     </div>`);
   }
 
   const container = html`<div>${inputs}</div>`;
+
+  // Alternar la visibilidad del textarea de "Otro Rol" según el estado del checkbox correspondiente
+  for (let i = 0; i < cantidad_participantes; i++) {
+    const otro_check = container.querySelector(`#otro_check_${i}`);
+    const otro_texto = container.querySelector(`#otro_texto_${i}`);
+    if (otro_check && otro_texto) {
+      otro_check.addEventListener("change", () => {
+        otro_texto.style.display = otro_check.checked ? "block" : "none";
+      });
+    }
+  }
 
   // Función validadora del estado interno del DOM inyectado por OJS
   const getValues = () => {
@@ -128,7 +150,10 @@ viewof datos_formulario = {
         }
       });
 
-      res.push({ nombre, organizacion, fecha_inicio, fecha_fin, roles: roles_seleccionados });
+      const otro_marcado = container.querySelector(`#otro_check_${i}`)?.checked || false;
+      const otro_rol = otro_marcado ? (container.querySelector(`#otro_texto_${i}`)?.value || "").trim() : "";
+
+      res.push({ nombre, organizacion, fecha_inicio, fecha_fin, roles: roles_seleccionados, otro_rol });
     }
     return res;
   };
@@ -155,7 +180,7 @@ viewof datos_formulario = {
 
 ## 🔬 2. Matriz y Exportación
 
-Aquí puedes auditar la consistencia del registro, visualizar el mapa de metadatos procesado e interactuar con la descarga inmediata del conjunto estructurado. En esta versión básica los roles son asignados como 0 o 1, aunque cada rol podría considerar una escala continua dentro del rol participado.
+Aquí puedes auditar la consistencia del registro, visualizar el mapa de metadatos procesado e interactuar con la descarga inmediata del conjunto estructurado.
 
 ### Ficha Resumen de Metadatos Generados
 
@@ -177,6 +202,7 @@ Roles Activos:
 ${p.roles.length > 0 
   ? p.roles.map(r => `  - ${r} (${roles_taxonomia.find(t => t.id === r).rol})`).join("\n")
   : "  - Ningún rol seleccionado formalmente."}
+${p.otro_rol ? `Otro Rol declarado:\n  - ${p.otro_rol}` : ""}
 `).join("\n")}
 </div>`
 ```
@@ -199,6 +225,7 @@ filas_matriz_csv = datos_formulario.map(p => {
   roles_taxonomia.forEach(r => {
     base[r.rol] = p.roles.includes(r.id) ? 1 : 0;
   });
+  base["Otro_Rol_Descripcion"] = p.otro_rol || "";
   return base;
 })
 
@@ -225,12 +252,14 @@ DOM.download(
       `# INSTRUCCIONES: Omitir líneas con '#' al procesar estadísticamente.\n`
     ].join("\n");
 
-    const columnas = ["Participante", "Organizacion", "Fecha_Inicio", "Fecha_Fin", ...roles_taxonomia.map(r => r.rol)].join(",");
+    const columnas = ["Participante", "Organizacion", "Fecha_Inicio", "Fecha_Fin", ...roles_taxonomia.map(r => r.rol), "Otro_Rol_Descripcion"].join(",");
 
     const lineas_filas = filas_matriz_csv.map(f => {
       const datos_fijos = `"${f.Participante}","${f.Organizacion}","${f.Fecha_Inicio}","${f.Fecha_Fin}"`;
       const datos_roles = roles_taxonomia.map(r => f[r.rol]).join(",");
-      return `${datos_fijos},${datos_roles}`;
+      // Escapar comillas dobles en el campo de texto libre, ya que puede contener comas o comillas
+      const otro_rol_esc = (f.Otro_Rol_Descripcion || "").replace(/"/g, '""');
+      return `${datos_fijos},${datos_roles},"${otro_rol_esc}"`;
     }).join("\n");
 
     const contenido_completo = cabecera_metadatos + columnas + "\n" + lineas_filas;
