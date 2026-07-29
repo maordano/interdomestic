@@ -9,6 +9,9 @@ date: 2026-07-29
 date-modified: 2026-07-29
 format: 
   html:
+    toc: true
+    toc-depth: 3
+    theme: cosmic
     page-layout: article
     include-in-header:
       - text: |
