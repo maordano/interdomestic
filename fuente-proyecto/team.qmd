@@ -50,7 +50,7 @@ La infraestructura del artefacto se entiende como una red simbiótica entre agen
 
 Atendiendo a la complejidad ecosistémica del proyecto, la taxonomía contempla la inclusión potencial de agentes no-humanos bióticos (como plantas o animales domesticados), reconociendo su rol como entidades con agencia dentro del entorno de interacción, interactuando con los dispositivos en simetría con el equipo técnico.
 
-```mermaid
+```{mermaid}
 graph TD
     %% Nodo Central
     Ecosistema[Infraestructura de Artefacto] --> PersonasHumanas[Agentes Humanos]
@@ -74,6 +74,7 @@ graph TD
     %% Rama Biótica (Lógica Multiespecie)
     AgentesBioticos --> Organismos[Plantas / Animales Domesticados]
     Organismos --> Indicadores[Bio-indicadores de Interacción]
+
 ```
 
 ## 3. Modelo de Contribución (Contributorship Matrix)
