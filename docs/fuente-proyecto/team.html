@@ -429,16 +429,18 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="taxonomía-de-árbol-humanos-y-dispositivos" class="level2">
 <h2 class="anchored" data-anchor-id="taxonomía-de-árbol-humanos-y-dispositivos">2. Taxonomía de Árbol: Humanos y Dispositivos</h2>
-<p>La infraestructura del artefacto se entiende como una red simbiótica entre agentes humanos (roles, contribuciones al proyecto) y los dispositivos inorgánicos y agentes no-humanos (dispositivos de interacción, sensores, interfaces). Más clases se podrían armar para el caso quizá raro por el momento, en que intervengan plantas o animales domesticados como miembros decisores en un equipo.</p>
+<p>La infraestructura del artefacto se entiende como una red simbiótica entre agentes humanos (roles, contribuciones al proyecto) y los dispositivos inorgánicos y agentes no-humanos (dispositivos de interacción, sensores, interfaces).</p>
+<p>Atendiendo a la complejidad ecosistémica del proyecto, la taxonomía contempla la inclusión potencial de agentes no-humanos bióticos (como plantas o animales domesticados), reconociendo su rol como entidades con agencia dentro del entorno de interacción, interactuando con los dispositivos en simetría con el equipo técnico.</p>
 <pre class="mermaid"><code>graph TD
     %% Nodo Central
-    Ecosistema[Infraestructura de Artefacto] --&gt; Personas-Humanas[Relaciones Humanas]
+    Ecosistema[Infraestructura de Artefacto] --&gt; PersonasHumanas[Agentes Humanos]
     Ecosistema --&gt; Dispositivos[Dispositivos de Interacción]
+    Ecosistema --&gt; AgentesBioticos[Agentes No-Humanos Bióticos]
 
     %% Rama Humana (Estilo Contributorship)
-    Personas-Humanas --&gt; CoreTeam[Core Team / Gobernanza]
-    Personas-Humanas --&gt; Colaboradores[Colaboradores Externos]
-    Personas-Humanas --&gt; Usuarios[Comunidad / Usuarios Finales]
+    PersonasHumanas --&gt; CoreTeam[Core Team / Gobernanza]
+    PersonasHumanas --&gt; Colaboradores[Colaboradores Externos]
+    PersonasHumanas --&gt; Usuarios[Comunidad / Usuarios Finales]
 
     CoreTeam --&gt; C_FAIR[Enlace de Datos / FAIR Steward]
     CoreTeam --&gt; C_CARE[Mediador Ético / CARE Steward]
@@ -446,8 +448,12 @@ ul.task-list li input[type="checkbox"] {
 
     %% Rama Dispositivos
     Dispositivos --&gt; Captura[Nodos de Captura / Sensores]
-    Dispositivos --&gt; Actuación[Nodos de Actuación / Interfaces]
-    Dispositivos --&gt; Almacenamiento[Nodos de Borde / Almacenamiento local]</code></pre>
+    Dispositivos --&gt; Actuacion[Nodos de Actuación / Interfaces]
+    Dispositivos --&gt; Almacenamiento[Nodos de Borde / Almacenamiento local]
+
+    %% Rama Biótica (Lógica Multiespecie)
+    AgentesBioticos --&gt; Organismos[Plantas / Animales Domesticados]
+    Organismos --&gt; Indicadores[Bio-indicadores de Interacción]</code></pre>
 </section>
 <section id="modelo-de-contribución-contributorship-matrix" class="level2">
 <h2 class="anchored" data-anchor-id="modelo-de-contribución-contributorship-matrix">3. Modelo de Contribución (Contributorship Matrix)</h2>
@@ -491,7 +497,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="integración-en-el-plan-de-gestión-de-datos-pgd" class="level2">
 <h2 class="anchored" data-anchor-id="integración-en-el-plan-de-gestión-de-datos-pgd">4. Integración en el Plan de Gestión de Datos (PGD)</h2>
-<p>Esta taxonomía opera en la <strong>Fase de Preparación</strong> del ciclo de vida del proyecto científico-tecnológico. Asegura que: 1. Cada dispositivo tenga una persona humana responsable asignada. 2. Cada flujo de datos respete la procedencia e integridad (FAIR). 3. Los grupos o comunidades impactadas por los dispositivos “mantengan soberanía” sobre los datos capturados (CARE).</p>
+<p>Esta taxonomía opera en la <strong>Fase de Preparación</strong> del ciclo de vida del proyecto científico-tecnológico. Asegura que: 1. Cada dispositivo tenga una persona humana responsable asignada. 2. Cada flujo de datos respe te la procedencia e integridad (FAIR). 3. Los grupos o comunidades impactadas por los dispositivos “mantengan soberanía” sobre los datos capturados (CARE).</p>
 <div class="metadatos-final">
 <p><strong>Autor:</strong> M. A. Ordano<br>
 <strong>Fecha de publicación:</strong> 29 de julio de 2026<br>

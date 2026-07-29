@@ -47,18 +47,20 @@ Este proyecto adopta de manera nativa los principios **FAIR** (Findable, Accessi
 ## 2. Taxonomía de Árbol: Humanos y Dispositivos
 
 La infraestructura del artefacto se entiende como una red simbiótica entre agentes humanos (roles, contribuciones al proyecto) y los dispositivos inorgánicos y agentes no-humanos (dispositivos de interacción, sensores, interfaces). 
-Más clases se podrían armar para el caso quizá raro por el momento, en que intervengan plantas o animales domesticados como miembros decisores en un equipo.
+
+Atendiendo a la complejidad ecosistémica del proyecto, la taxonomía contempla la inclusión potencial de agentes no-humanos bióticos (como plantas o animales domesticados), reconociendo su rol como entidades con agencia dentro del entorno de interacción, interactuando con los dispositivos en simetría con el equipo técnico.
 
 ```mermaid
 graph TD
     %% Nodo Central
-    Ecosistema[Infraestructura de Artefacto] --> Personas-Humanas[Relaciones Humanas]
+    Ecosistema[Infraestructura de Artefacto] --> PersonasHumanas[Agentes Humanos]
     Ecosistema --> Dispositivos[Dispositivos de Interacción]
+    Ecosistema --> AgentesBioticos[Agentes No-Humanos Bióticos]
 
     %% Rama Humana (Estilo Contributorship)
-    Personas-Humanas --> CoreTeam[Core Team / Gobernanza]
-    Personas-Humanas --> Colaboradores[Colaboradores Externos]
-    Personas-Humanas --> Usuarios[Comunidad / Usuarios Finales]
+    PersonasHumanas --> CoreTeam[Core Team / Gobernanza]
+    PersonasHumanas --> Colaboradores[Colaboradores Externos]
+    PersonasHumanas --> Usuarios[Comunidad / Usuarios Finales]
 
     CoreTeam --> C_FAIR[Enlace de Datos / FAIR Steward]
     CoreTeam --> C_CARE[Mediador Ético / CARE Steward]
@@ -66,8 +68,12 @@ graph TD
 
     %% Rama Dispositivos
     Dispositivos --> Captura[Nodos de Captura / Sensores]
-    Dispositivos --> Actuación[Nodos de Actuación / Interfaces]
+    Dispositivos --> Actuacion[Nodos de Actuación / Interfaces]
     Dispositivos --> Almacenamiento[Nodos de Borde / Almacenamiento local]
+
+    %% Rama Biótica (Lógica Multiespecie)
+    AgentesBioticos --> Organismos[Plantas / Animales Domesticados]
+    Organismos --> Indicadores[Bio-indicadores de Interacción]
 ```
 
 ## 3. Modelo de Contribución (Contributorship Matrix)
@@ -84,11 +90,12 @@ Inspirado en la lógica de `contributorship.qmd` de *interdomestic*, definimos l
 
 Esta taxonomía opera en la **Fase de Preparación** del ciclo de vida del proyecto científico-tecnológico. Asegura que:
 1. Cada dispositivo tenga una persona humana responsable asignada.
-2. Cada flujo de datos respete la procedencia e integridad (FAIR).
+2. Cada flujo de datos respe te la procedencia e integridad (FAIR).
 3. Los grupos o comunidades impactadas por los dispositivos "mantengan soberanía" sobre los datos capturados (CARE).
 
 ::: {.metadatos-final}
-**Autor:** {{< meta author >}}  
+**Autor:** M. A. Ordano  
 **Fecha de publicación:** {{< meta date >}}  
 **Última modificación:** {{< meta date-modified >}}
 :::
+
