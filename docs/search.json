@@ -466,35 +466,60 @@
     "href": "fuente-proyecto/team.html",
     "title": "Taxonomía de Relaciones Humanas y Dispositivos de Interacción",
     "section": "",
-    "text": "Este proyecto adopta de manera nativa los principios FAIR (Findable, Accessible, Interoperable, Reusable) para la gestión de datos e infraestructuras, en simetría con los principios CARE (Collective Benefit, Authority to Control, Responsibility, Ethics) para el gobierno de datos humanos, grupales y comunitarios.\n\nFAIR: Infraestructura abierta, metadatos legibles por máquina y persistencia de artefactos.\nCARE: Retribución comunitaria, control de la interacción, responsabilidad en el sesgo de dispositivos y diseño ético."
+    "text": "Este proyecto adopta de manera nativa los principios FAIR (Findable, Accessible, Interoperable, Reusable) para la gestión de datos e infraestructuras, en simetría con los principios CARE (Collective Benefit, Authority to Control, Responsibility, Ethics) para el gobierno de datos humanos, grupales y comunitarios.\n\nFAIR: Infraestructura abierta, metadatos legibles por máquina y persistencia de artefactos.\nCARE: Retribución comunitaria, control de la interacción, responsabilidad en el sesgo de dispositivos y diseño ético.",
+    "crumbs": [
+      "Inicio",
+      "Fuente de proyecto",
+      "Formación de Grupo"
+    ]
   },
   {
     "objectID": "fuente-proyecto/team.html#declaración-de-principios-fair-care",
     "href": "fuente-proyecto/team.html#declaración-de-principios-fair-care",
     "title": "Taxonomía de Relaciones Humanas y Dispositivos de Interacción",
     "section": "",
-    "text": "Este proyecto adopta de manera nativa los principios FAIR (Findable, Accessible, Interoperable, Reusable) para la gestión de datos e infraestructuras, en simetría con los principios CARE (Collective Benefit, Authority to Control, Responsibility, Ethics) para el gobierno de datos humanos, grupales y comunitarios.\n\nFAIR: Infraestructura abierta, metadatos legibles por máquina y persistencia de artefactos.\nCARE: Retribución comunitaria, control de la interacción, responsabilidad en el sesgo de dispositivos y diseño ético."
+    "text": "Este proyecto adopta de manera nativa los principios FAIR (Findable, Accessible, Interoperable, Reusable) para la gestión de datos e infraestructuras, en simetría con los principios CARE (Collective Benefit, Authority to Control, Responsibility, Ethics) para el gobierno de datos humanos, grupales y comunitarios.\n\nFAIR: Infraestructura abierta, metadatos legibles por máquina y persistencia de artefactos.\nCARE: Retribución comunitaria, control de la interacción, responsabilidad en el sesgo de dispositivos y diseño ético.",
+    "crumbs": [
+      "Inicio",
+      "Fuente de proyecto",
+      "Formación de Grupo"
+    ]
   },
   {
     "objectID": "fuente-proyecto/team.html#taxonomía-de-árbol-humanos-y-dispositivos",
     "href": "fuente-proyecto/team.html#taxonomía-de-árbol-humanos-y-dispositivos",
     "title": "Taxonomía de Relaciones Humanas y Dispositivos de Interacción",
     "section": "2. Taxonomía de Árbol: Humanos y Dispositivos",
-    "text": "2. Taxonomía de Árbol: Humanos y Dispositivos\nLa infraestructura del artefacto se entiende como una red simbiótica entre agentes humanos (roles, contribuciones al proyecto) y los dispositivos inorgánicos y agentes no-humanos (dispositivos de interacción, sensores, interfaces). Más clases se podrían armar para el caso quizá raro por el momento, en que intervengan plantas o animales domesticados como miembros decisores en un equipo.\ngraph TD\n    %% Nodo Central\n    Ecosistema[Infraestructura de Artefacto] --&gt; Personas-Humanas[Relaciones Humanas]\n    Ecosistema --&gt; Dispositivos[Dispositivos de Interacción]\n\n    %% Rama Humana (Estilo Contributorship)\n    Personas-Humanas --&gt; CoreTeam[Core Team / Gobernanza]\n    Personas-Humanas --&gt; Colaboradores[Colaboradores Externos]\n    Personas-Humanas --&gt; Usuarios[Comunidad / Usuarios Finales]\n\n    CoreTeam --&gt; C_FAIR[Enlace de Datos / FAIR Steward]\n    CoreTeam --&gt; C_CARE[Mediador Ético / CARE Steward]\n    CoreTeam --&gt; C_Dev[Desarrollador de Artefactos]\n\n    %% Rama Dispositivos\n    Dispositivos --&gt; Captura[Nodos de Captura / Sensores]\n    Dispositivos --&gt; Actuación[Nodos de Actuación / Interfaces]\n    Dispositivos --&gt; Almacenamiento[Nodos de Borde / Almacenamiento local]"
+    "text": "2. Taxonomía de Árbol: Humanos y Dispositivos\nLa infraestructura del artefacto se entiende como una red simbiótica entre agentes humanos (roles, contribuciones al proyecto) y los dispositivos inorgánicos y agentes no-humanos (dispositivos de interacción, sensores, interfaces). Más clases se podrían armar para el caso quizá raro por el momento, en que intervengan plantas o animales domesticados como miembros decisores en un equipo.\ngraph TD\n    %% Nodo Central\n    Ecosistema[Infraestructura de Artefacto] --&gt; Personas-Humanas[Relaciones Humanas]\n    Ecosistema --&gt; Dispositivos[Dispositivos de Interacción]\n\n    %% Rama Humana (Estilo Contributorship)\n    Personas-Humanas --&gt; CoreTeam[Core Team / Gobernanza]\n    Personas-Humanas --&gt; Colaboradores[Colaboradores Externos]\n    Personas-Humanas --&gt; Usuarios[Comunidad / Usuarios Finales]\n\n    CoreTeam --&gt; C_FAIR[Enlace de Datos / FAIR Steward]\n    CoreTeam --&gt; C_CARE[Mediador Ético / CARE Steward]\n    CoreTeam --&gt; C_Dev[Desarrollador de Artefactos]\n\n    %% Rama Dispositivos\n    Dispositivos --&gt; Captura[Nodos de Captura / Sensores]\n    Dispositivos --&gt; Actuación[Nodos de Actuación / Interfaces]\n    Dispositivos --&gt; Almacenamiento[Nodos de Borde / Almacenamiento local]",
+    "crumbs": [
+      "Inicio",
+      "Fuente de proyecto",
+      "Formación de Grupo"
+    ]
   },
   {
     "objectID": "fuente-proyecto/team.html#modelo-de-contribución-contributorship-matrix",
     "href": "fuente-proyecto/team.html#modelo-de-contribución-contributorship-matrix",
     "title": "Taxonomía de Relaciones Humanas y Dispositivos de Interacción",
     "section": "3. Modelo de Contribución (Contributorship Matrix)",
-    "text": "3. Modelo de Contribución (Contributorship Matrix)\nInspirado en la lógica de contributorship.qmd de interdomestic, definimos los roles del Core Team no por jerarquía, sino por su tipo de interacción con el artefacto y la comunidad.\n\n\n\n\n\n\n\n\n\nRol / Agente\nResponsabilidad Principal\nPrincipio Rector\nTipo de Interacción con el Dispositivo\n\n\n\n\nFAIR Steward\nCuraduría de datos, metadatos y apertura.\nFAIR (Interoperable)\nGestión de APIs y Repositorios.\n\n\nCARE Steward\nConsentimiento local, soberanía de datos.\nCARE (Ética)\nAuditoría de interfaces y privacidad.\n\n\nArtefact Designer\nDesarrollo de hardware/software base.\nFAIR (Reusable)\nProgramación de firmware y firmware OTA."
+    "text": "3. Modelo de Contribución (Contributorship Matrix)\nInspirado en la lógica de contributorship.qmd de interdomestic, definimos los roles del Core Team no por jerarquía, sino por su tipo de interacción con el artefacto y la comunidad.\n\n\n\n\n\n\n\n\n\nRol / Agente\nResponsabilidad Principal\nPrincipio Rector\nTipo de Interacción con el Dispositivo\n\n\n\n\nFAIR Steward\nCuraduría de datos, metadatos y apertura.\nFAIR (Interoperable)\nGestión de APIs y Repositorios.\n\n\nCARE Steward\nConsentimiento local, soberanía de datos.\nCARE (Ética)\nAuditoría de interfaces y privacidad.\n\n\nArtefact Designer\nDesarrollo de hardware/software base.\nFAIR (Reusable)\nProgramación de firmware y firmware OTA.",
+    "crumbs": [
+      "Inicio",
+      "Fuente de proyecto",
+      "Formación de Grupo"
+    ]
   },
   {
     "objectID": "fuente-proyecto/team.html#integración-en-el-plan-de-gestión-de-datos-pgd",
     "href": "fuente-proyecto/team.html#integración-en-el-plan-de-gestión-de-datos-pgd",
     "title": "Taxonomía de Relaciones Humanas y Dispositivos de Interacción",
     "section": "4. Integración en el Plan de Gestión de Datos (PGD)",
-    "text": "4. Integración en el Plan de Gestión de Datos (PGD)\nEsta taxonomía opera en la Fase de Preparación del ciclo de vida del proyecto científico-tecnológico. Asegura que: 1. Cada dispositivo tenga una persona humana responsable asignada. 2. Cada flujo de datos respete la procedencia e integridad (FAIR). 3. Los grupos o comunidades impactadas por los dispositivos “mantengan soberanía” sobre los datos capturados (CARE).\n\nAutor: M. A. Ordano\nFecha de publicación: 29 de julio de 2026\nÚltima modificación: 29 de julio de 2026"
+    "text": "4. Integración en el Plan de Gestión de Datos (PGD)\nEsta taxonomía opera en la Fase de Preparación del ciclo de vida del proyecto científico-tecnológico. Asegura que: 1. Cada dispositivo tenga una persona humana responsable asignada. 2. Cada flujo de datos respete la procedencia e integridad (FAIR). 3. Los grupos o comunidades impactadas por los dispositivos “mantengan soberanía” sobre los datos capturados (CARE).\n\nAutor: M. A. Ordano\nFecha de publicación: 29 de julio de 2026\nÚltima modificación: 29 de julio de 2026",
+    "crumbs": [
+      "Inicio",
+      "Fuente de proyecto",
+      "Formación de Grupo"
+    ]
   },
   {
     "objectID": "fuente-proyecto/metodos.html",

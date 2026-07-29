@@ -80,6 +80,8 @@ website:
             href: fuente-proyecto/meta-search-OSF.qmd
           - text: "Plan de Gestión de Datos"
             href: fuente-proyecto/pgd.qmd
+          - text: "Formación de Grupo"
+            href: fuente-proyecto/team.qmd
 
       - section: "Appendix"
         icon: grid-3x3-gap
