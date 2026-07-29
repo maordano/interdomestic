@@ -1,0 +1,91 @@
+---
+title: "Taxonomía de Relaciones Humanas y Dispositivos de Interacción"
+subtitle: "Infraestructura de Artefacto y Constitución del Grupo Responsable o 'Core Team' (Fase de Preparación)"
+author:
+  - name: "M. A. Ordano"
+    roles: ["conceptualization", "writing - review & editing"]
+    corresponding: true
+date: 2026-07-29
+date-modified: 2026-07-29
+format: 
+  html:
+    page-layout: article
+    include-in-header:
+      - text: |
+          <style>
+          .quarto-title-meta {
+            display: none !important;
+          }
+          .card-participante {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            background-color: #fcfcfc;
+          }
+          .metadatos-final {
+            font-size: 0.55em;
+            color: #777777;
+            line-height: 1.4;
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee;
+            padding-top: 15px;
+          }
+          </style>
+---
+
+## 1. Declaración de Principios (FAIR / CARE)
+
+Este proyecto adopta de manera nativa los principios **FAIR** (Findable, Accessible, Interoperable, Reusable) para la gestión de datos e infraestructuras, en simetría con los principios **CARE** (Collective Benefit, Authority to Control, Responsibility, Ethics) para el gobierno de datos humanos, grupales y comunitarios.
+
+* **FAIR:** Infraestructura abierta, metadatos legibles por máquina y persistencia de artefactos.
+* **CARE:** Retribución comunitaria, control de la interacción, responsabilidad en el sesgo de dispositivos y diseño ético.
+
+## 2. Taxonomía de Árbol: Humanos y Dispositivos
+
+La infraestructura del artefacto se entiende como una red simbiótica entre agentes humanos (roles, contribuciones al proyecto) y los dispositivos inorgánicos y agentes no-humanos (dispositivos de interacción, sensores, interfaces). 
+Más clases se podrían armar para el caso quizá raro por el momento, en que intervengan plantas o animales domesticados como miembros decisores en un equipo.
+
+```mermaid
+graph TD
+    %% Nodo Central
+    Ecosistema[Infraestructura de Artefacto] --> Personas-Humanas[Relaciones Humanas]
+    Ecosistema --> Dispositivos[Dispositivos de Interacción]
+
+    %% Rama Humana (Estilo Contributorship)
+    Personas-Humanas --> CoreTeam[Core Team / Gobernanza]
+    Personas-Humanas --> Colaboradores[Colaboradores Externos]
+    Personas-Humanas --> Usuarios[Comunidad / Usuarios Finales]
+
+    CoreTeam --> C_FAIR[Enlace de Datos / FAIR Steward]
+    CoreTeam --> C_CARE[Mediador Ético / CARE Steward]
+    CoreTeam --> C_Dev[Desarrollador de Artefactos]
+
+    %% Rama Dispositivos
+    Dispositivos --> Captura[Nodos de Captura / Sensores]
+    Dispositivos --> Actuación[Nodos de Actuación / Interfaces]
+    Dispositivos --> Almacenamiento[Nodos de Borde / Almacenamiento local]
+```
+
+## 3. Modelo de Contribución (Contributorship Matrix)
+
+Inspirado en la lógica de `contributorship.qmd` de *interdomestic*, definimos los roles del Core Team no por jerarquía, sino por su tipo de interacción con el artefacto y la comunidad.
+
+| Rol / Agente | Responsabilidad Principal | Principio Rector | Tipo de Interacción con el Dispositivo |
+|---|---|---|---|
+| **FAIR Steward** | Curaduría de datos, metadatos y apertura. | FAIR (Interoperable) | Gestión de APIs y Repositorios. |
+| **CARE Steward** | Consentimiento local, soberanía de datos. | CARE (Ética) | Auditoría de interfaces y privacidad. |
+| **Artefact Designer** | Desarrollo de hardware/software base. | FAIR (Reusable) | Programación de firmware y firmware OTA. |
+
+## 4. Integración en el Plan de Gestión de Datos (PGD)
+
+Esta taxonomía opera en la **Fase de Preparación** del ciclo de vida del proyecto científico-tecnológico. Asegura que:
+1. Cada dispositivo tenga una persona humana responsable asignada.
+2. Cada flujo de datos respete la procedencia e integridad (FAIR).
+3. Los grupos o comunidades impactadas por los dispositivos "mantengan soberanía" sobre los datos capturados (CARE).
+
+::: {.metadatos-final}
+**Autor:** {{< meta author >}}  
+**Fecha de publicación:** {{< meta date >}}  
+**Última modificación:** {{< meta date-modified >}}
+:::

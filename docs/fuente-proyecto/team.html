@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="M. A. Ordano">
 
-<title>Variables –  interdomestic</title>
+<title>Taxonomía de Relaciones Humanas y Dispositivos de Interacción –  interdomestic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,6 +69,26 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Buscar"
   }
 }</script>
+<style>
+.quarto-title-meta {
+  display: none !important;
+}
+.card-participante {
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  background-color: #fcfcfc;
+}
+.metadatos-final {
+  font-size: 0.55em;
+  color: #777777;
+  line-height: 1.4;
+  margin-top: 40px;
+  border-top: 1px solid #eeeeee;
+  padding-top: 15px;
+}
+</style>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -113,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../fuente-proyecto/marco.html">Fuente de proyecto</a></li><li class="breadcrumb-item"><a href="../fuente-proyecto/variables.html">Variables</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Taxonomía de Relaciones Humanas y Dispositivos de Interacción</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -200,14 +221,14 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true"><i class="bi bi-file-earmark-text" role="img">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false"><i class="bi bi-file-earmark-text" role="img">
 </i> 
  <span class="menu-text">Fuente de proyecto</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../fuente-proyecto/marco.html" class="sidebar-item-text sidebar-link">
@@ -222,7 +243,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../fuente-proyecto/variables.html" class="sidebar-item-text sidebar-link active">
+  <a href="../fuente-proyecto/variables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variables</span></a>
   </div>
 </li>
@@ -339,24 +360,51 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Estructura del Dispositivo</h2>
+   
+  <ul>
+  <li><a href="#declaración-de-principios-fair-care" id="toc-declaración-de-principios-fair-care" class="nav-link active" data-scroll-target="#declaración-de-principios-fair-care">1. Declaración de Principios (FAIR / CARE)</a></li>
+  <li><a href="#taxonomía-de-árbol-humanos-y-dispositivos" id="toc-taxonomía-de-árbol-humanos-y-dispositivos" class="nav-link" data-scroll-target="#taxonomía-de-árbol-humanos-y-dispositivos">2. Taxonomía de Árbol: Humanos y Dispositivos</a></li>
+  <li><a href="#modelo-de-contribución-contributorship-matrix" id="toc-modelo-de-contribución-contributorship-matrix" class="nav-link" data-scroll-target="#modelo-de-contribución-contributorship-matrix">3. Modelo de Contribución (Contributorship Matrix)</a></li>
+  <li><a href="#integración-en-el-plan-de-gestión-de-datos-pgd" id="toc-integración-en-el-plan-de-gestión-de-datos-pgd" class="nav-link" data-scroll-target="#integración-en-el-plan-de-gestión-de-datos-pgd">4. Integración en el Plan de Gestión de Datos (PGD)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../fuente-proyecto/marco.html">Fuente de proyecto</a></li><li class="breadcrumb-item"><a href="../fuente-proyecto/variables.html">Variables</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Variables</h1>
-<p class="subtitle lead">Descripción de tipos de variables de interacciones</p>
+<h1 class="title">Taxonomía de Relaciones Humanas y Dispositivos de Interacción</h1>
+<p class="subtitle lead">Infraestructura de Artefacto y Constitución del Grupo Responsable o ‘Core Team’ (Fase de Preparación)</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>M. A. Ordano </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">29 de julio de 2026</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de última modificación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">29 de julio de 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -365,25 +413,87 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p><strong>Tipos de variables en la interacción con el registro de datos</strong></p>
-<p>Se establecen 3 tipos de variables básicas, para distinguir el rol de los dispositivos de interacción en el proceso de toma y registro de datos.</p>
-<p>Todos los tipos resultantes se diseñan con principios FAIR/CARE, con consideración de términos y condiciones para la protección de datos personales.</p>
-<ol type="1">
-<li><p><strong>Interacción humana</strong>. Personas humanas interactuamos con la vida silvestre y registramos el dato con algún dispositivo. El registro del dato en la base de datos del proyecto se realiza posteriormente al momento de la interacción-registro (por ejemplo, observación de aves comiendo frutos en el jardín o en el balcón, escritura con lápiz en un cuaderno, toma de fotos, grabaciones con el celular). Los casos de intervención de plantas o animales domésticos serían una versión extendida de este modelo humano, ya que la etiqueta de híbrido se usa para el siguiente modelo. La interacción con animales o plantas domesticadas como parte de un proceso de construcción, sería posible en casos donde los objetivos implicados consideren además vida no humana domesticada. Por ejemplo, que un observatorio esté sobre un árbol cultivado, o perros que grupos humanos usan como aduana o en rescate de animales silvestres.</p></li>
-<li><p><strong>Interacción híbrida</strong>. Personas humanas usamos dispositivos con asistencia de Inteligencia Artificial para la captura de datos y el registro en la base de datos (por ejemplo, trampas-cámara multifunción, drones).</p></li>
-<li><p><strong>Interacción autónoma</strong>. Sistemas automatizados de captura y registro en base de datos, mediado por agentes de IA (por ejemplo, datos climáticos, percepción remota satelital).</p></li>
-</ol>
-</div>
-</div>
+<section id="declaración-de-principios-fair-care" class="level2">
+<h2 class="anchored" data-anchor-id="declaración-de-principios-fair-care">1. Declaración de Principios (FAIR / CARE)</h2>
+<p>Este proyecto adopta de manera nativa los principios <strong>FAIR</strong> (Findable, Accessible, Interoperable, Reusable) para la gestión de datos e infraestructuras, en simetría con los principios <strong>CARE</strong> (Collective Benefit, Authority to Control, Responsibility, Ethics) para el gobierno de datos humanos, grupales y comunitarios.</p>
+<ul>
+<li><strong>FAIR:</strong> Infraestructura abierta, metadatos legibles por máquina y persistencia de artefactos.</li>
+<li><strong>CARE:</strong> Retribución comunitaria, control de la interacción, responsabilidad en el sesgo de dispositivos y diseño ético.</li>
+</ul>
+</section>
+<section id="taxonomía-de-árbol-humanos-y-dispositivos" class="level2">
+<h2 class="anchored" data-anchor-id="taxonomía-de-árbol-humanos-y-dispositivos">2. Taxonomía de Árbol: Humanos y Dispositivos</h2>
+<p>La infraestructura del artefacto se entiende como una red simbiótica entre agentes humanos (roles, contribuciones al proyecto) y los dispositivos inorgánicos y agentes no-humanos (dispositivos de interacción, sensores, interfaces). Más clases se podrían armar para el caso quizá raro por el momento, en que intervengan plantas o animales domesticados como miembros decisores en un equipo.</p>
+<pre class="mermaid"><code>graph TD
+    %% Nodo Central
+    Ecosistema[Infraestructura de Artefacto] --&gt; Personas-Humanas[Relaciones Humanas]
+    Ecosistema --&gt; Dispositivos[Dispositivos de Interacción]
+
+    %% Rama Humana (Estilo Contributorship)
+    Personas-Humanas --&gt; CoreTeam[Core Team / Gobernanza]
+    Personas-Humanas --&gt; Colaboradores[Colaboradores Externos]
+    Personas-Humanas --&gt; Usuarios[Comunidad / Usuarios Finales]
+
+    CoreTeam --&gt; C_FAIR[Enlace de Datos / FAIR Steward]
+    CoreTeam --&gt; C_CARE[Mediador Ético / CARE Steward]
+    CoreTeam --&gt; C_Dev[Desarrollador de Artefactos]
+
+    %% Rama Dispositivos
+    Dispositivos --&gt; Captura[Nodos de Captura / Sensores]
+    Dispositivos --&gt; Actuación[Nodos de Actuación / Interfaces]
+    Dispositivos --&gt; Almacenamiento[Nodos de Borde / Almacenamiento local]</code></pre>
+</section>
+<section id="modelo-de-contribución-contributorship-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-de-contribución-contributorship-matrix">3. Modelo de Contribución (Contributorship Matrix)</h2>
+<p>Inspirado en la lógica de <code>contributorship.qmd</code> de <em>interdomestic</em>, definimos los roles del Core Team no por jerarquía, sino por su tipo de interacción con el artefacto y la comunidad.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rol / Agente</th>
+<th>Responsabilidad Principal</th>
+<th>Principio Rector</th>
+<th>Tipo de Interacción con el Dispositivo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>FAIR Steward</strong></td>
+<td>Curaduría de datos, metadatos y apertura.</td>
+<td>FAIR (Interoperable)</td>
+<td>Gestión de APIs y Repositorios.</td>
+</tr>
+<tr class="even">
+<td><strong>CARE Steward</strong></td>
+<td>Consentimiento local, soberanía de datos.</td>
+<td>CARE (Ética)</td>
+<td>Auditoría de interfaces y privacidad.</td>
+</tr>
+<tr class="odd">
+<td><strong>Artefact Designer</strong></td>
+<td>Desarrollo de hardware/software base.</td>
+<td>FAIR (Reusable)</td>
+<td>Programación de firmware y firmware OTA.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="integración-en-el-plan-de-gestión-de-datos-pgd" class="level2">
+<h2 class="anchored" data-anchor-id="integración-en-el-plan-de-gestión-de-datos-pgd">4. Integración en el Plan de Gestión de Datos (PGD)</h2>
+<p>Esta taxonomía opera en la <strong>Fase de Preparación</strong> del ciclo de vida del proyecto científico-tecnológico. Asegura que: 1. Cada dispositivo tenga una persona humana responsable asignada. 2. Cada flujo de datos respete la procedencia e integridad (FAIR). 3. Los grupos o comunidades impactadas por los dispositivos “mantengan soberanía” sobre los datos capturados (CARE).</p>
+<div class="metadatos-final">
+<p><strong>Autor:</strong> M. A. Ordano<br>
+<strong>Fecha de publicación:</strong> 29 de julio de 2026<br>
+<strong>Última modificación:</strong> 29 de julio de 2026</p>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
