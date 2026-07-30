@@ -6,7 +6,7 @@ author:
     roles: ["conceptualization", "writing - review & editing"]
     corresponding: true
 date: 2026-07-29
-date-modified: 2026-07-29
+date-modified: 2026-07-30
 format: 
   html:
     toc: true
@@ -34,21 +34,65 @@ format:
             border-top: 1px solid #eeeeee;
             padding-top: 15px;
           }
+          .panel-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            align-items: end;
+            border: 1px dashed #cfcfcf;
+            border-radius: 6px;
+            padding: 14px;
+            margin-bottom: 16px;
+            background-color: #fbfbfb;
+          }
+          .estado-seleccion {
+            font-size: 0.95em;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background-color: #eef3f6;
+            border: 1px solid #d7e3ea;
+            margin: 10px 0;
+          }
+          .rel-badge {
+            display: inline-block;
+            font-size: 0.75em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background-color: #2c3e50;
+            color: #ffffff;
+            margin-right: 4px;
+          }
+          table.tabla-relaciones {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+          }
+          table.tabla-relaciones th, table.tabla-relaciones td {
+            border-bottom: 1px solid #e5e5e5;
+            padding: 6px 8px;
+            text-align: left;
+          }
+          table.tabla-relaciones button {
+            font-size: 0.8em;
+            padding: 2px 8px;
+            cursor: pointer;
+          }
           </style>
 ---
 
 ## 1. Declaración de Principios (FAIR / CARE)
 
-Este proyecto adopta de manera nativa los principios **FAIR** (Findable, Accessible, Interoperable, Reusable) para la gestión de datos e infraestructuras, en simetría con los principios **CARE** (Collective Benefit, Authority to Control, Responsibility, Ethics) para el gobierno de datos humanos, grupales y comunitarios.
+Este proyecto adopta de manera nativa los principios **FAIR** (Findable, Accessible, Interoperable, Reusable) para la gestión de datos e infraestructuras, en simetría con los principios **CARE** (Collective Benefit, Authority to Control, Responsibility, Ethics) para la gestión de datos humanos, grupales y comunitarios.
 
 * **FAIR:** Infraestructura abierta, metadatos legibles por máquina y persistencia de artefactos.
 * **CARE:** Retribución comunitaria, control de la interacción, responsabilidad en el sesgo de dispositivos y diseño ético.
 
 ## 2. Taxonomía de Árbol: Humanos y Dispositivos
 
-La infraestructura del artefacto se entiende como una red simbiótica entre agentes humanos (roles, contribuciones al proyecto) y los dispositivos inorgánicos y agentes no-humanos (dispositivos de interacción, sensores, interfaces). 
+La infraestructura del artefacto se entiende como una red entre personas y funciones humanas (roles, contribuciones al proyecto) y los dispositivos inorgánicos y agentes no-humanos (dispositivos de interacción, sensores, interfaces).
 
-Atendiendo a la complejidad ecosistémica del proyecto, la taxonomía contempla la inclusión potencial de agentes no-humanos bióticos (como plantas o animales domesticados), reconociendo su rol como entidades con agencia dentro del entorno de interacción, interactuando con los dispositivos en simetría con el equipo técnico.
+Atendiendo a la complejidad ecosistémica del proyecto, la taxonomía contempla la inclusión potencial de especies de la vida silvestre (como plantas o animales domesticados), reconociendo su rol como entidades con agencia dentro del entorno de interacción, interactuando con los dispositivos en el conjunto del equipo técnico.
+
 
 ```{mermaid}
 graph TD
@@ -79,24 +123,472 @@ graph TD
 
 ## 3. Modelo de Contribución (Contributorship Matrix)
 
-Inspirado en la lógica de `contributorship.qmd` de *interdomestic*, definimos los roles del Core Team no por jerarquía, sino por su tipo de interacción con el artefacto y la comunidad.
+Inspirado en la lógica de clasificación de [contribuciones y autoría](https://maordano.github.io/interdomestic/appendix/contributorship.html), definimos los roles del Core Team por el tipo de interacción con el artefacto y el grupo o comunidad (no necesariamente por jerarquía).
 
-| Rol / Agente | Responsabilidad Principal | Principio Rector | Tipo de Interacción con el Dispositivo |
+| Rol / Agente | Responsabilidad Principal | Principio | Tipo de Interacción con el Dispositivo |
 |---|---|---|---|
 | **FAIR Steward** | Curaduría de datos, metadatos y apertura. | FAIR (Interoperable) | Gestión de APIs y Repositorios. |
 | **CARE Steward** | Consentimiento local, soberanía de datos. | CARE (Ética) | Auditoría de interfaces y privacidad. |
 | **Artefact Designer** | Desarrollo de hardware/software base. | FAIR (Reusable) | Programación de firmware y firmware OTA. |
 
-## 4. Integración en el Plan de Gestión de Datos (PGD)
+## 4. Explorador Interactivo de Relaciones (Círculos Concéntricos)
+
+Este módulo permite registrar agentes (humanos y dispositivos), ubicarlos en el árbol taxonómico como un diagrama de círculos concéntricos, y declarar relaciones puntuales entre dos agentes seleccionados con el mouse. Cada relación puede exportarse luego a `.csv`.
+
+**Cómo usarlo:** 1) Registra una persona o agente con el formulario. 2) Haz clic en dos nodos del diagrama (origen y luego destino). 3) Elige el tipo de relación y confirma. 4) Descarga el `.csv`.
+
+### 4.1 Taxonomías base
+
+```{ojs}
+//| output: false
+categoriasHumanas = ({
+  "CoreTeam": ["FAIR Steward", "CARE Steward", "Artefact Designer", "Otro"],
+  "Colaboradores": ["Contribuidor de datos", "Revisor / Revisora", "Traductor / Traductora", "Otro"],
+  "Usuarios": ["Usuario Final", "Comunidad Local", "Otro"]
+})
+```
+
+```{ojs}
+//| output: false
+categoriasDispositivos = ({
+  "Captura": ["Sensor de Movimiento", "Cámara Trampa", "Micrófono Ambiental", "Otro"],
+  "Actuación": ["Interfaz de Usuario", "Actuador Físico", "Notificador", "Otro"],
+  "Almacenamiento": ["Nodo de Borde", "Base de Datos Local", "Repositorio en la Nube", "Otro"]
+})
+```
+
+```{ojs}
+//| output: false
+tiposRelacion = [
+  "Responsable de",
+  "Colabora con",
+  "Usa / Opera",
+  "Mantiene",
+  "Cede datos a",
+  "Recibe datos de",
+  "Supervisa",
+  "Otro"
+]
+```
+
+### 4.2 Registro de personas o agentes
+
+```{ojs}
+//| output: false
+mutable participantes = []
+```
+
+```{ojs}
+//| output: false
+mutable relaciones = []
+```
+
+```{ojs}
+//| output: false
+mutable seleccionOrigen = null
+```
+
+```{ojs}
+//| output: false
+mutable seleccionDestino = null
+```
+
+```{ojs}
+viewof tipoAgente = Inputs.select(["Humano", "Dispositivo"], {label: "Tipo de agente", value: "Humano"})
+```
+
+```{ojs}
+//| output: false
+categoriaOpciones = tipoAgente === "Humano" ? Object.keys(categoriasHumanas) : Object.keys(categoriasDispositivos)
+```
+
+```{ojs}
+viewof categoriaAgente = Inputs.select(categoriaOpciones, {label: "Categoría"})
+```
+
+```{ojs}
+//| output: false
+rolOpciones = tipoAgente === "Humano" ? categoriasHumanas[categoriaAgente] : categoriasDispositivos[categoriaAgente]
+```
+
+```{ojs}
+viewof rolAgente = Inputs.select(rolOpciones, {label: "Rol específico"})
+```
+
+```{ojs}
+viewof rolOtro = Inputs.text({label: "Especificar 'Otro Rol' (si aplica)", placeholder: "Escriba el rol si seleccionó 'Otro'"})
+```
+
+```{ojs}
+viewof nombreAgente = Inputs.text({label: "Nombre / Identificador", placeholder: "Ej. M. Ordano, Sensor-01"})
+```
+
+```{ojs}
+viewof agregarParticipante = Inputs.button("Agregar agente", {
+  value: null,
+  reduce: () => {
+    if (!nombreAgente || nombreAgente.trim() === "") return null;
+    const rolFinal = (rolAgente === "Otro" && rolOtro && rolOtro.trim() !== "") ? rolOtro.trim() : rolAgente;
+    const nuevo = {
+      id: `p${Date.now()}`,
+      nombre: nombreAgente.trim(),
+      tipo: tipoAgente,
+      categoria: categoriaAgente,
+      rol: rolFinal
+    };
+    mutable participantes = [...participantes, nuevo];
+    return null;
+  }
+})
+```
+
+### 4.3 Diagrama de círculos concéntricos
+
+Cada rama (Humano / Dispositivo) ocupa un semicírculo. El segundo anillo son las categorías del árbol taxonómico. Los puntos exteriores son los agentes registrados; **un clic los marca como origen, el siguiente clic como destino**.
+
+```{ojs}
+//| output: false
+d3 = require("d3@7")
+```
+
+```{ojs}
+//| output: false
+posiciones = {
+  const rEnt = 280;
+  const anguloRama = Math.PI;
+  const ramas = [
+    {nombre: "Humano", cats: categoriasHumanas},
+    {nombre: "Dispositivo", cats: categoriasDispositivos}
+  ];
+  const mapa = new Map();
+
+  ramas.forEach((rama, iRama) => {
+    const a0 = -Math.PI / 2 + iRama * anguloRama;
+    const cats = Object.keys(rama.cats);
+    const anguloPorCat = anguloRama / cats.length;
+
+    cats.forEach((cat, iCat) => {
+      const c0 = a0 + iCat * anguloPorCat;
+      const items = participantes.filter(p => p.tipo === rama.nombre && p.categoria === cat);
+      const n = Math.max(items.length, 1);
+
+      items.forEach((p, iItem) => {
+        const frac = (iItem + 0.5) / n;
+        const ang = c0 + frac * anguloPorCat;
+        mapa.set(p.id, {
+          x: 340 + rEnt * Math.cos(ang),
+          y: 340 + rEnt * Math.sin(ang),
+          rama: rama.nombre,
+          cat
+        });
+      });
+    });
+  });
+
+  return mapa;
+}
+```
+
+```{ojs}
+chart = {
+  const width = 680;
+  const height = 680;
+  const cx = width / 2;
+  const cy = height / 2;
+  const rInfra = 42;
+  const rBranch = 130;
+  const rCat = 210;
+
+  const svg = d3.create("svg")
+    .attr("viewBox", [0, 0, width, height])
+    .attr("width", "100%")
+    .attr("height", "auto")
+    .style("max-width", "100%")
+    .style("font", "11px sans-serif");
+
+  const ramas = [
+    {nombre: "Humano", color: "#3a7ca5", cats: categoriasHumanas, etiqueta: "Relaciones Humanas"},
+    {nombre: "Dispositivo", color: "#c96f36", cats: categoriasDispositivos, etiqueta: "Dispositivos de Interacción"}
+  ];
+
+  const arcBranch = d3.arc().innerRadius(rInfra + 4).outerRadius(rBranch);
+  const arcCat = d3.arc().innerRadius(rBranch + 4).outerRadius(rCat);
+  const anguloRama = Math.PI;
+
+  // Anillos: rama y categoría
+  ramas.forEach((rama, iRama) => {
+    const a0 = -Math.PI / 2 + iRama * anguloRama;
+    const a1 = a0 + anguloRama;
+
+    svg.append("path")
+      .attr("transform", `translate(${cx},${cy})`)
+      .attr("d", arcBranch({startAngle: a0, endAngle: a1}))
+      .attr("fill", rama.color)
+      .attr("fill-opacity", 0.85);
+
+    const aMedRama = (a0 + a1) / 2;
+    svg.append("text")
+      .attr("x", cx + (rInfra + rBranch) / 2 * Math.cos(aMedRama))
+      .attr("y", cy + (rInfra + rBranch) / 2 * Math.sin(aMedRama))
+      .attr("text-anchor", "middle")
+      .attr("fill", "#ffffff")
+      .attr("font-size", "9px")
+      .text(rama.etiqueta);
+
+    const cats = Object.keys(rama.cats);
+    const anguloPorCat = anguloRama / cats.length;
+
+    cats.forEach((cat, iCat) => {
+      const c0 = a0 + iCat * anguloPorCat;
+      const c1 = c0 + anguloPorCat;
+      const aMedCat = (c0 + c1) / 2;
+
+      svg.append("path")
+        .attr("transform", `translate(${cx},${cy})`)
+        .attr("d", arcCat({startAngle: c0, endAngle: c1}))
+        .attr("fill", rama.color)
+        .attr("fill-opacity", 0.4)
+        .attr("stroke", "#ffffff")
+        .attr("stroke-width", 1);
+
+      svg.append("text")
+        .attr("x", cx + (rBranch + rCat) / 2 * Math.cos(aMedCat))
+        .attr("y", cy + (rBranch + rCat) / 2 * Math.sin(aMedCat))
+        .attr("text-anchor", "middle")
+        .attr("fill", "#2c2c2c")
+        .attr("font-size", "9px")
+        .text(cat);
+    });
+  });
+
+  // Núcleo central
+  svg.append("circle")
+    .attr("cx", cx).attr("cy", cy).attr("r", rInfra)
+    .attr("fill", "#2c3e50");
+  svg.append("text")
+    .attr("x", cx).attr("y", cy)
+    .attr("text-anchor", "middle")
+    .attr("dy", "0.35em")
+    .attr("fill", "#ffffff")
+    .attr("font-size", "9px")
+    .attr("font-weight", "bold")
+    .text("Infraestructura");
+
+  // Líneas de relaciones ya registradas (debajo de los nodos)
+  relaciones.forEach(r => {
+    const po = posiciones.get(r.origen);
+    const pd = posiciones.get(r.destino);
+    if (!po || !pd) return;
+    svg.append("path")
+      .attr("d", `M${po.x},${po.y} Q${cx},${cy} ${pd.x},${pd.y}`)
+      .attr("fill", "none")
+      .attr("stroke", "#2c3e50")
+      .attr("stroke-width", 1.2)
+      .attr("stroke-opacity", 0.5);
+  });
+
+  // Nodos de agentes (encima de todo, clicleables)
+  const seleccionActual = new Set([seleccionOrigen, seleccionDestino].filter(x => x));
+
+  svg.selectAll("circle.entidad")
+    .data(Array.from(posiciones.entries()), d => d[0])
+    .join("circle")
+    .attr("class", "entidad")
+    .attr("cx", d => d[1].x)
+    .attr("cy", d => d[1].y)
+    .attr("r", 9)
+    .attr("fill", d => seleccionActual.has(d[0]) ? "#e63946" : (d[1].rama === "Humano" ? "#3a7ca5" : "#c96f36"))
+    .attr("stroke", "#ffffff")
+    .attr("stroke-width", 1.5)
+    .style("cursor", "pointer")
+    .append("title")
+    .text(d => {
+      const p = participantes.find(pp => pp.id === d[0]);
+      return p ? `${p.nombre} (${p.rol})` : d[0];
+    });
+
+  svg.selectAll("circle.entidad")
+    .on("click", function(event, d) {
+      const id = d[0];
+      if (seleccionOrigen === null) {
+        mutable seleccionOrigen = id;
+      } else if (seleccionDestino === null && id !== seleccionOrigen) {
+        mutable seleccionDestino = id;
+      } else {
+        mutable seleccionOrigen = id;
+        mutable seleccionDestino = null;
+      }
+    });
+
+  return svg.node();
+}
+```
+
+```{ojs}
+chart
+```
+
+```{ojs}
+estadoSeleccion = {
+  const nombreO = seleccionOrigen ? (participantes.find(p => p.id === seleccionOrigen)?.nombre ?? seleccionOrigen) : "— (clic en un nodo)";
+  const nombreD = seleccionDestino ? (participantes.find(p => p.id === seleccionDestino)?.nombre ?? seleccionDestino) : "— (clic en un segundo nodo)";
+  return html`<div class="estado-seleccion"><strong>Origen:</strong> ${nombreO} &nbsp;→&nbsp; <strong>Destino:</strong> ${nombreD}</div>`;
+}
+```
+
+```{ojs}
+estadoSeleccion
+```
+
+```{ojs}
+viewof tipoRelacionSel = Inputs.select(tiposRelacion, {label: "Tipo de relación"})
+```
+
+```{ojs}
+viewof tipoRelacionOtro = Inputs.text({label: "Especificar 'Otro Rol' (relación)", placeholder: "Escriba el tipo de relación si seleccionó 'Otro'"})
+```
+
+```{ojs}
+viewof confirmarRelacion = Inputs.button("Registrar relación", {
+  value: null,
+  reduce: () => {
+    if (!seleccionOrigen || !seleccionDestino) return null;
+    const tipoFinal = (tipoRelacionSel === "Otro" && tipoRelacionOtro && tipoRelacionOtro.trim() !== "") ? tipoRelacionOtro.trim() : tipoRelacionSel;
+    mutable relaciones = [...relaciones, {
+      id: `r${Date.now()}`,
+      origen: seleccionOrigen,
+      destino: seleccionDestino,
+      tipo: tipoFinal
+    }];
+    mutable seleccionOrigen = null;
+    mutable seleccionDestino = null;
+    return null;
+  }
+})
+```
+
+```{ojs}
+viewof cancelarSeleccion = Inputs.button("Cancelar selección", {
+  value: null,
+  reduce: () => {
+    mutable seleccionOrigen = null;
+    mutable seleccionDestino = null;
+    return null;
+  }
+})
+```
+
+### 4.4 Fichas de agentes registrados
+
+```{ojs}
+fichasParticipantes = {
+  const eliminarParticipante = (id) => {
+    mutable participantes = participantes.filter(p => p.id !== id);
+    mutable relaciones = relaciones.filter(r => r.origen !== id && r.destino !== id);
+  };
+
+  if (participantes.length === 0) {
+    return html`<p><em>Todavía no se registraron agentes.</em></p>`;
+  }
+
+  const tarjetas = participantes.map(p => html`<div class="card-participante">
+    <span class="rel-badge">${p.tipo}</span>
+    <span class="rel-badge">${p.categoria}</span>
+    <strong>${p.nombre}</strong> — ${p.rol}
+    <div style="margin-top:6px;"><button onclick=${() => eliminarParticipante(p.id)}>Eliminar agente</button></div>
+  </div>`);
+
+  return html`<div>${tarjetas}</div>`;
+}
+```
+
+```{ojs}
+fichasParticipantes
+```
+
+### 4.5 Matriz de relaciones registradas
+
+```{ojs}
+tablaRelaciones = {
+  const eliminarRelacion = (id) => {
+    mutable relaciones = relaciones.filter(r => r.id !== id);
+  };
+
+  if (relaciones.length === 0) {
+    return html`<p><em>Todavía no se registraron relaciones. Seleccioná dos nodos en el diagrama.</em></p>`;
+  }
+
+  const filas = relaciones.map(r => {
+    const o = participantes.find(p => p.id === r.origen);
+    const d = participantes.find(p => p.id === r.destino);
+    return html`<tr>
+      <td>${o ? o.nombre : "(eliminado)"}</td>
+      <td>${o ? o.tipo : ""}</td>
+      <td>${r.tipo}</td>
+      <td>${d ? d.nombre : "(eliminado)"}</td>
+      <td>${d ? d.tipo : ""}</td>
+      <td><button onclick=${() => eliminarRelacion(r.id)}>Eliminar</button></td>
+    </tr>`;
+  });
+
+  return html`<table class="tabla-relaciones">
+    <thead><tr><th>Origen</th><th>Tipo origen</th><th>Relación</th><th>Destino</th><th>Tipo destino</th><th></th></tr></thead>
+    <tbody>${filas}</tbody>
+  </table>`;
+}
+```
+
+```{ojs}
+tablaRelaciones
+```
+
+### 4.6 Exportar a CSV
+
+```{ojs}
+viewof exportarCSV = Inputs.button("Descargar CSV de relaciones", {
+  value: null,
+  reduce: () => {
+    const escapar = (v) => `"${(v ?? "").toString().replace(/"/g, '""')}"`;
+    const encabezado = ["origen_id", "origen_nombre", "origen_tipo", "origen_categoria", "origen_rol",
+                         "tipo_relacion",
+                         "destino_id", "destino_nombre", "destino_tipo", "destino_categoria", "destino_rol"].join(",");
+
+    const filas = relaciones.map(r => {
+      const o = participantes.find(p => p.id === r.origen) ?? {};
+      const d = participantes.find(p => p.id === r.destino) ?? {};
+      return [o.id, o.nombre, o.tipo, o.categoria, o.rol,
+              r.tipo,
+              d.id, d.nombre, d.tipo, d.categoria, d.rol].map(escapar).join(",");
+    });
+
+    const csv = [encabezado, ...filas].join("\n");
+    const blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "relaciones_taxonomia_interdomestic.csv";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 100);
+
+    return null;
+  }
+})
+```
+
+## 5. Integración en el Plan de Gestión de Datos (PGD)
 
 Esta taxonomía opera en la **Fase de Preparación** del ciclo de vida del proyecto científico-tecnológico. Asegura que:
+
 1. Cada dispositivo tenga una persona humana responsable asignada.
-2. Cada flujo de datos respe te la procedencia e integridad (FAIR).
+2. Cada flujo de datos respete la procedencia e integridad (FAIR).
 3. Los grupos o comunidades impactadas por los dispositivos "mantengan soberanía" sobre los datos capturados (CARE).
 
 ::: {.metadatos-final}
-**Autor:** M. A. Ordano  
+**Autor:** {{< meta author >}}  
 **Fecha de publicación:** {{< meta date >}}  
 **Última modificación:** {{< meta date-modified >}}
 :::
-
