@@ -127,15 +127,15 @@ Inspirado en la lógica de clasificación de [contribuciones y autoría](https:/
 
 | Rol / Agente | Responsabilidad Principal | Principio | Tipo de Interacción con el Dispositivo |
 |---|---|---|---|
-| **FAIR Steward** | Curaduría de datos, metadatos y apertura. | FAIR (Interoperable) | Gestión de APIs y Repositorios. |
-| **CARE Steward** | Consentimiento local, soberanía de datos. | CARE (Ética) | Auditoría de interfaces y privacidad. |
-| **Artefact Designer** | Desarrollo de hardware/software base. | FAIR (Reusable) | Programación de firmware y firmware OTA. |
+| **Responsable FAIR** | Curaduría de datos, metadatos y apertura. | FAIR (Interoperable) | Gestión de APIs y Repositorios. |
+| **Responsable CARE** | Consentimiento local, soberanía de datos. | CARE (Ética) | Auditoría de interfaces y privacidad. |
+| **Diseño de Artefacto** | Desarrollo de hardware/software base. | FAIR (Reusable) | Programación de firmware y firmware OTA. |
 
 ## 4. Explorador Interactivo de Relaciones (Círculos Concéntricos)
 
 Este módulo permite registrar agentes (humanos y dispositivos), ubicarlos en el árbol taxonómico como un diagrama de círculos concéntricos, y declarar relaciones puntuales entre dos agentes seleccionados con el mouse. Cada relación puede exportarse luego a `.csv`.
 
-**Cómo usarlo:** 1) Registra una persona o agente con el formulario. 2) Haz clic en dos nodos del diagrama (origen y luego destino). 3) Elige el tipo de relación y confirma. 4) Descarga el `.csv`.
+**Cómo usarlo:** 1) Registra una persona o agente con el formulario. 2) Haz clic en dos nodos del diagrama (origen y luego destino). 3) Elige el tipo de relación y confirma. 4) Descarga el `.csv`. Mientras se llenan opciones al principio, los datos se registran directamente en el punto 4.4. O sea que una vez que pica una opción, ya se registra.
 
 ### 4.1 Taxonomías base
 
