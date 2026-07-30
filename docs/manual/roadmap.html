@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="M. A. Ordano">
 
-<title>🎓 Aprendizaje –  interdomestic</title>
+<title>Roadmap de interdomestic –  interdomestic</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -40,7 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3d72203b4310ab15aa61e5c21b4a12a1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-da02934a7cc7533623f58371217ce437.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,6 +69,50 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Buscar"
   }
 }</script>
+<meta name="mermaid-theme" content="neutral">
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<style>
+.quarto-title-meta {
+  display: none !important;
+}
+.estado-badge {
+  display: inline-block;
+  font-size: 0.78em;
+  padding: 3px 10px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.estado-completado { background-color: #2e7d32; }
+.estado-encurso { background-color: #b7791f; }
+.estado-planificado { background-color: #6c757d; }
+table.tabla-roadmap {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92em;
+  margin: 16px 0 24px 0;
+}
+table.tabla-roadmap th, table.tabla-roadmap td {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+table.tabla-roadmap th {
+  background-color: #f7f7f7;
+}
+.metadatos-final {
+  font-size: 0.55em;
+  color: #777777;
+  line-height: 1.4;
+  margin-top: 40px;
+  border-top: 1px solid #eeeeee;
+  padding-top: 15px;
+}
+</style>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -113,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../facetas/aprendizaje.html">Aprendizaje</a></li><li class="breadcrumb-item"><a href="../facetas/aprendizaje.html">Puerta de entrada</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manual/identidad.html">Manual</a></li><li class="breadcrumb-item"><a href="../manual/roadmap.html">Mapa de rutas</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -146,17 +191,17 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true"><i class="bi bi-mortarboard" role="img">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false"><i class="bi bi-mortarboard" role="img">
 </i> 
  <span class="menu-text">Aprendizaje</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../facetas/aprendizaje.html" class="sidebar-item-text sidebar-link active">
+  <a href="../facetas/aprendizaje.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Puerta de entrada</span></a>
   </div>
 </li>
@@ -302,14 +347,14 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false"><i class="bi bi-journal-bookmark" role="img">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true"><i class="bi bi-journal-bookmark" role="img">
 </i> 
  <span class="menu-text">Manual</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../manual/identidad.html" class="sidebar-item-text sidebar-link"><i class="bi bi-gear-wide-connected" role="img">
@@ -340,7 +385,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../manual/roadmap.html" class="sidebar-item-text sidebar-link"><i class="bi bi-heart-pulse" role="img">
+  <a href="../manual/roadmap.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-heart-pulse" role="img">
 </i> 
  <span class="menu-text">Mapa de rutas</span></a>
   </div>
@@ -356,28 +401,47 @@ ul.task-list li input[type="checkbox"] {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Estructura del Dispositivo</h2>
    
-  <ul>
-  <li><a href="#explorar-con-datos" id="toc-explorar-con-datos" class="nav-link active" data-scroll-target="#explorar-con-datos">Explorar con datos</a>
   <ul class="collapse">
-  <li><a href="#bio-distribución" id="toc-bio-distribución" class="nav-link" data-scroll-target="#bio-distribución">Bio-distribución</a></li>
-  </ul></li>
+  <li><a href="#mapa-de-dependencias" id="toc-mapa-de-dependencias" class="nav-link active" data-scroll-target="#mapa-de-dependencias">1. Mapa de dependencias</a></li>
+  <li><a href="#estado-por-frente-de-trabajo" id="toc-estado-por-frente-de-trabajo" class="nav-link" data-scroll-target="#estado-por-frente-de-trabajo">2. Estado por frente de trabajo</a></li>
+  <li><a href="#próximos-hitos-concretos" id="toc-próximos-hitos-concretos" class="nav-link" data-scroll-target="#próximos-hitos-concretos">3. Próximos hitos concretos</a></li>
+  <li><a href="#cómo-mantener-este-documento" id="toc-cómo-mantener-este-documento" class="nav-link" data-scroll-target="#cómo-mantener-este-documento">4. Cómo mantener este documento</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../facetas/aprendizaje.html">Aprendizaje</a></li><li class="breadcrumb-item"><a href="../facetas/aprendizaje.html">Puerta de entrada</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../manual/identidad.html">Manual</a></li><li class="breadcrumb-item"><a href="../manual/roadmap.html">Mapa de rutas</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">🎓 Aprendizaje</h1>
+<h1 class="title">Roadmap de interdomestic</h1>
+<p class="subtitle lead">Vista panorámica del estado del proyecto</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>M. A. Ordano </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">30 de julio de 2026</p>
+    </div>
+  </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de última modificación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">30 de julio de 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -386,34 +450,198 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Puerta de entrada a interdomestic desde el aprendizaje: conexión a herramientas didácticas y guías sobre ecología evolutiva de interacciones bióticas y relaciones humano-naturaleza, desde todas las perspectivas disciplinares.</p>
-<div class="grid">
-<section id="objetivo-de-aprendizaje" class="level3 g-col-12 g-col-md-4">
-<h3 class="anchored" data-anchor-id="objetivo-de-aprendizaje">Objetivo de aprendizaje</h3>
-<p>Herramientas para definir un marco y objetivo de aprendizaje y corresponderlo con los métodos de aplicación disponibles.</p>
-<p><em>(pendiente de desarrollo)</em></p>
-</section>
-<section id="pregunta-de-investigación" class="level3 g-col-12 g-col-md-4">
-<h3 class="anchored" data-anchor-id="pregunta-de-investigación">Pregunta de investigación</h3>
-<p>Herramientas para dimensionar un marco de investigación, formular una pregunta, buscar información, y esbozar un plan de estudio y gestión de datos.</p>
-<p><em>(módulo en desarrollo)</em></p>
-<p><a href="../fuente-proyecto/sistema-estudio.html">Ver Sistema de estudio →</a> · <a href="../fuente-proyecto/variables.html">Ver Variables →</a> · <a href="../fuente-proyecto/metodos.html">Ver Métodos →</a> · <a href="../fuente-proyecto/pgd.html">Ver Plan de Gestión de Datos →</a></p>
-</section>
-<section id="por-qué-sintetizar" class="level3 g-col-12 g-col-md-4">
-<h3 class="anchored" data-anchor-id="por-qué-sintetizar">¿Por qué sintetizar?</h3>
-<p>Herramienta para definir cuándo y por qué abordar una síntesis, con enlace a los sistemas disponibles.</p>
-<p><em>(módulo en desarrollo)</em></p>
-<p><a href="../facetas/sintesis.html">Ir a la puerta de Síntesis →</a></p>
-</section>
+<p>Este documento resume el estado de <em>interdomestic</em> por frente de trabajo, para tener una vista de conjunto sin tener que reconstruir el contexto revisando cada <code>.qmd</code> por separado. Por el momento se actualiza a mano “cada tanto” (no es un dashboard automático).</p>
+<section id="mapa-de-dependencias" class="level2">
+<h2 class="anchored" data-anchor-id="mapa-de-dependencias">1. Mapa de dependencias</h2>
+<p>Los módulos técnicos sostienen la infraestructura de datos; los módulos de contenido y ruta de componentes (gobernanza) se apoyan en esa infraestructura para publicarse de forma abierta y reproducible.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    OJS[Motor OJS puro] --&gt; Modulos[Modulos interactivos]
+    Modulos --&gt; Contributorship[Contributorship y Relaciones]
+    Modulos --&gt; Interacciones[Consultas de Interacciones Bioticas]
+    Modulos --&gt; GeoDistrib[Distribucion Geografica GBIF]
+
+    Gobernanza[Base de Gobernanza 22+ paises] --&gt; Sitio[Arquitectura del Sitio]
+    Contributorship --&gt; Sitio
+    Interacciones --&gt; Sitio
+    GeoDistrib --&gt; Sitio
+
+    Sitio --&gt; Pages[GitHub Pages]
+    Sitio --&gt; OSF[Registro OSF]
+    OSF --&gt; Zenodo[Zenodo DOI Open Code]
+
+    Documentacion[Bitacora y CHANGELOG] --&gt; STAPLE[STAPLE fuente unica]
+    STAPLE --&gt; OSF
+
+</pre>
 </div>
-<section id="explorar-con-datos" class="level2">
-<h2 class="anchored" data-anchor-id="explorar-con-datos">Explorar con datos</h2>
-<div class="grid">
-<section id="bio-distribución" class="level3 g-col-12 g-col-md-6">
-<h3 class="anchored" data-anchor-id="bio-distribución">Bio-distribución</h3>
-<p>Mapeador de ocurrencias GBIF: una forma concreta de aprender explorando distribución de especies.</p>
-<p><a href="../appendix/geodistribution.html">Ir a Bio-distribución →</a></p>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
+<section id="estado-por-frente-de-trabajo" class="level2">
+<h2 class="anchored" data-anchor-id="estado-por-frente-de-trabajo">2. Estado por frente de trabajo</h2>
+<table class="tabla-roadmap">
+<thead>
+<tr>
+<th>
+Frente
+</th>
+<th>
+Estado
+</th>
+<th>
+Qué implica
+</th>
+<th>
+Próximo paso
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<strong>Migración shinylive/webR → OJS puro</strong>
+</td>
+<td>
+<span class="estado-badge estado-completado">Consolidado</span>
+</td>
+<td>
+Convenciones fijadas (<code>mutable</code> + <code>oninput</code>, Blob/setTimeout para descargas, clases <code>.bio-*</code>) usando <code>geodistribution.qmd</code> como plantilla. <code>interacciones.qmd</code> y <code>meta-search-OSF.qmd</code> ya migrados.
+</td>
+<td>
+Migrar los módulos que aún queden en shinylive/webR, si los hay.
+</td>
+</tr>
+<tr>
+<td>
+<strong>Base de gobernanza</strong>
+</td>
+<td>
+<span class="estado-badge estado-encurso">En curso</span>
+</td>
+<td>
+22+ países, 5 continentes, 7 dimensiones de recursos. <code>generar_entradas_pais.R</code> agiliza altas nuevas.
+</td>
+<td>
+Curaduría continua — sobre todo enlaces NBSAP de CBD, que requieren carga manual por no tener URL estable.
+</td>
+</tr>
+<tr>
+<td>
+<strong>Arquitectura y navegación del sitio</strong>
+</td>
+<td>
+<span class="estado-badge estado-encurso">Beta3/Beta4</span>
+</td>
+<td>
+Migrado de navbar simple a sidebar acoplado con tres facetas: Aprendizaje, Investigación, Síntesis.
+</td>
+<td>
+Cerrar la sincronización de documentación (ver frente siguiente) antes de subir de versión beta.
+</td>
+</tr>
+<tr>
+<td>
+<strong>Documentación: bitácora → CHANGELOG → STAPLE</strong>
+</td>
+<td>
+<span class="estado-badge estado-planificado">Planificado</span>
+</td>
+<td>
+Definido como fuente única de verdad en el roadmap del proyecto, pero la sincronización entre los tres todavía no está implementada de punta a punta.
+</td>
+<td>
+Definir el flujo de sincronización y quién/qué lo dispara.
+</td>
+</tr>
+<tr>
+<td>
+<strong>Reconocimiento de contribuciones</strong>
+</td>
+<td>
+<span class="estado-badge estado-encurso">En curso</span>
+</td>
+<td>
+Niveles definidos: core team, CRediT, comentaristas. El módulo <code>contributorship.qmd</code> ya soporta taxonomía híbrida CRediT/ciencia ciudadana y opción “Otro Rol”.
+</td>
+<td>
+El nuevo módulo de <strong>relaciones humano-dispositivo</strong> (grafo de fuerza, exportación CSV) recién se agregó — falta pulir estética (tamaño del contenedor) y probarlo con datos “reales” (formales) del equipo.
+</td>
+</tr>
+<tr>
+<td>
+<strong>Rollout en dos fases (“traslucid ovum”)</strong>
+</td>
+<td>
+<span class="estado-badge estado-planificado">Planificado</span>
+</td>
+<td>
+Estrategia de publicación gradual ya diseñada conceptualmente.
+</td>
+<td>
+Definir el disparador concreto de la fase 2 (¿fecha, hito de contenido, o revisión externa?).
+</td>
+</tr>
+<tr>
+<td>
+<strong>Integración OSF / Zenodo</strong>
+</td>
+<td>
+<span class="estado-badge estado-completado">Activo</span>
+</td>
+<td>
+Badge de Open Code activado, vinculado al DOI versionado de Zenodo (<code>10.5281/zenodo.21365402</code>). Arquitectura de tres piezas documentada (registro, snapshot congelado, proyecto activo con repo de GitHub).
+</td>
+<td>
+Mantener al día la wiki del proyecto activo cuando cambie la arquitectura (la wiki del registro es de solo lectura post-registro).
+</td>
+</tr>
+<tr>
+<td>
+<strong><code>devices.qmd</code> — marco teórico</strong>
+</td>
+<td>
+<span class="estado-badge estado-completado">Redactado</span>
+</td>
+<td>
+Define “dispositivos” como articuladores inorgánicos, integrando seis genealogías teóricas (niche construction/HIREC, postfenomenología, Verbeek, material engagement, ANT, Haraway).
+</td>
+<td>
+Enlazarlo explícitamente desde los módulos que hablan de dispositivos (incluyendo el nuevo módulo de relaciones).
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="próximos-hitos-concretos" class="level2">
+<h2 class="anchored" data-anchor-id="próximos-hitos-concretos">3. Próximos hitos concretos</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Pre-registro en OSF de proyecto macro y proyectos-componentes</label></li>
+<li><label><input type="checkbox">Definir el flujo de sincronización bitácora → CHANGELOG → STAPLE.</label></li>
+<li><label><input type="checkbox">Cargar agentes reales del equipo en el módulo de relaciones y revisar si la taxonomía de roles alcanza.</label></li>
+<li><label><input type="checkbox">Ajustar la estética del gráfico de relaciones (tamaño del contenedor según cantidad de nodos).</label></li>
+<li><label><input type="checkbox">Completar curaduría NBSAP pendiente en la base de gobernanza.</label></li>
+<li><label><input type="checkbox">Decidir el disparador de la fase 2 del rollout “traslucid ovum”.</label></li>
+</ul>
+</section>
+<section id="cómo-mantener-este-documento" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-mantener-este-documento">4. Cómo mantener este documento</h2>
+<p>Este roadmap no se autoactualiza. Cuando cierres un frente o abras uno nuevo, alcanza con:</p>
+<ol type="1">
+<li>Mover el <code>estado-badge</code> correspondiente (<code>completado</code> / <code>encurso</code> / <code>planificado</code>).</li>
+<li>Actualizar la columna “Próximo paso”.</li>
+<li>Tachar o agregar ítems en la lista de hitos concretos.</li>
+</ol>
+<div class="metadatos-final">
+<p><strong>Autor:</strong> M. A. Ordano<br>
+<strong>Fecha de publicación:</strong> 30 de julio de 2026<br>
+<strong>Última modificación:</strong> 30 de julio de 2026</p>
 </div>
 
 

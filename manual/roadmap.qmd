@@ -1,0 +1,164 @@
+---
+title: "Roadmap de interdomestic"
+subtitle: "Vista panorámica del estado del proyecto"
+author:
+  - name: "M. A. Ordano"
+    roles: ["writing - review & editing"]
+date: 2026-07-30
+date-modified: 2026-07-30
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    theme: cosmic
+    page-layout: article
+    include-in-header:
+      - text: |
+          <style>
+          .quarto-title-meta {
+            display: none !important;
+          }
+          .estado-badge {
+            display: inline-block;
+            font-size: 0.78em;
+            padding: 3px 10px;
+            border-radius: 10px;
+            color: #ffffff;
+            font-weight: 600;
+            white-space: nowrap;
+          }
+          .estado-completado { background-color: #2e7d32; }
+          .estado-encurso { background-color: #b7791f; }
+          .estado-planificado { background-color: #6c757d; }
+          table.tabla-roadmap {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92em;
+            margin: 16px 0 24px 0;
+          }
+          table.tabla-roadmap th, table.tabla-roadmap td {
+            border-bottom: 1px solid #e5e5e5;
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+          }
+          table.tabla-roadmap th {
+            background-color: #f7f7f7;
+          }
+          .metadatos-final {
+            font-size: 0.55em;
+            color: #777777;
+            line-height: 1.4;
+            margin-top: 40px;
+            border-top: 1px solid #eeeeee;
+            padding-top: 15px;
+          }
+          </style>
+---
+
+Este documento resume el estado de *interdomestic* por frente de trabajo, para tener una vista de conjunto sin tener que reconstruir el contexto revisando cada `.qmd` por separado. Por el momento se actualiza a mano "cada tanto" (no es un dashboard automático).
+
+## 1. Mapa de dependencias
+
+Los módulos técnicos sostienen la infraestructura de datos; los módulos de contenido y ruta de componentes (gobernanza) se apoyan en esa infraestructura para publicarse de forma abierta y reproducible.
+
+```{mermaid}
+graph LR
+    OJS[Motor OJS puro] --> Modulos[Modulos interactivos]
+    Modulos --> Contributorship[Contributorship y Relaciones]
+    Modulos --> Interacciones[Consultas de Interacciones Bioticas]
+    Modulos --> GeoDistrib[Distribucion Geografica GBIF]
+
+    Gobernanza[Base de Gobernanza 22+ paises] --> Sitio[Arquitectura del Sitio]
+    Contributorship --> Sitio
+    Interacciones --> Sitio
+    GeoDistrib --> Sitio
+
+    Sitio --> Pages[GitHub Pages]
+    Sitio --> OSF[Registro OSF]
+    OSF --> Zenodo[Zenodo DOI Open Code]
+
+    Documentacion[Bitacora y CHANGELOG] --> STAPLE[STAPLE fuente unica]
+    STAPLE --> OSF
+
+```
+
+## 2. Estado por frente de trabajo
+
+<table class="tabla-roadmap">
+<thead>
+<tr><th>Frente</th><th>Estado</th><th>Qué implica</th><th>Próximo paso</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Migración shinylive/webR → OJS puro</strong></td>
+<td><span class="estado-badge estado-completado">Consolidado</span></td>
+<td>Convenciones fijadas (<code>mutable</code> + <code>oninput</code>, Blob/setTimeout para descargas, clases <code>.bio-*</code>) usando <code>geodistribution.qmd</code> como plantilla. <code>interacciones.qmd</code> y <code>meta-search-OSF.qmd</code> ya migrados.</td>
+<td>Migrar los módulos que aún queden en shinylive/webR, si los hay.</td>
+</tr>
+<tr>
+<td><strong>Base de gobernanza</strong></td>
+<td><span class="estado-badge estado-encurso">En curso</span></td>
+<td>22+ países, 5 continentes, 7 dimensiones de recursos. <code>generar_entradas_pais.R</code> agiliza altas nuevas.</td>
+<td>Curaduría continua — sobre todo enlaces NBSAP de CBD, que requieren carga manual por no tener URL estable.</td>
+</tr>
+<tr>
+<td><strong>Arquitectura y navegación del sitio</strong></td>
+<td><span class="estado-badge estado-encurso">Beta3/Beta4</span></td>
+<td>Migrado de navbar simple a sidebar acoplado con tres facetas: Aprendizaje, Investigación, Síntesis.</td>
+<td>Cerrar la sincronización de documentación (ver frente siguiente) antes de subir de versión beta.</td>
+</tr>
+<tr>
+<td><strong>Documentación: bitácora → CHANGELOG → STAPLE</strong></td>
+<td><span class="estado-badge estado-planificado">Planificado</span></td>
+<td>Definido como fuente única de verdad en el roadmap del proyecto, pero la sincronización entre los tres todavía no está implementada de punta a punta.</td>
+<td>Definir el flujo de sincronización y quién/qué lo dispara.</td>
+</tr>
+<tr>
+<td><strong>Reconocimiento de contribuciones</strong></td>
+<td><span class="estado-badge estado-encurso">En curso</span></td>
+<td>Niveles definidos: core team, CRediT, comentaristas. El módulo <code>contributorship.qmd</code> ya soporta taxonomía híbrida CRediT/ciencia ciudadana y opción "Otro Rol".</td>
+<td>El nuevo módulo de <strong>relaciones humano-dispositivo</strong> (grafo de fuerza, exportación CSV) recién se agregó — falta pulir estética (tamaño del contenedor) y probarlo con datos "reales" (formales) del equipo.</td>
+</tr>
+<tr>
+<td><strong>Rollout en dos fases ("traslucid ovum")</strong></td>
+<td><span class="estado-badge estado-planificado">Planificado</span></td>
+<td>Estrategia de publicación gradual ya diseñada conceptualmente.</td>
+<td>Definir el disparador concreto de la fase 2 (¿fecha, hito de contenido, o revisión externa?).</td>
+</tr>
+<tr>
+<td><strong>Integración OSF / Zenodo</strong></td>
+<td><span class="estado-badge estado-completado">Activo</span></td>
+<td>Badge de Open Code activado, vinculado al DOI versionado de Zenodo (<code>10.5281/zenodo.21365402</code>). Arquitectura de tres piezas documentada (registro, snapshot congelado, proyecto activo con repo de GitHub).</td>
+<td>Mantener al día la wiki del proyecto activo cuando cambie la arquitectura (la wiki del registro es de solo lectura post-registro).</td>
+</tr>
+<tr>
+<td><strong><code>devices.qmd</code> — marco teórico</strong></td>
+<td><span class="estado-badge estado-completado">Redactado</span></td>
+<td>Define "dispositivos" como articuladores inorgánicos, integrando seis genealogías teóricas (niche construction/HIREC, postfenomenología, Verbeek, material engagement, ANT, Haraway).</td>
+<td>Enlazarlo explícitamente desde los módulos que hablan de dispositivos (incluyendo el nuevo módulo de relaciones).</td>
+</tr>
+</tbody>
+</table>
+
+## 3. Próximos hitos concretos
+- [ ] Pre-registro en OSF de proyecto macro y proyectos-componentes
+- [ ] Definir el flujo de sincronización bitácora → CHANGELOG → STAPLE.
+- [ ] Cargar agentes reales del equipo en el módulo de relaciones y revisar si la taxonomía de roles alcanza.
+- [ ] Ajustar la estética del gráfico de relaciones (tamaño del contenedor según cantidad de nodos).
+- [ ] Completar curaduría NBSAP pendiente en la base de gobernanza.
+- [ ] Decidir el disparador de la fase 2 del rollout "traslucid ovum".
+
+## 4. Cómo mantener este documento
+
+Este roadmap no se autoactualiza. Cuando cierres un frente o abras uno nuevo, alcanza con:
+
+1. Mover el `estado-badge` correspondiente (`completado` / `encurso` / `planificado`).
+2. Actualizar la columna "Próximo paso".
+3. Tachar o agregar ítems en la lista de hitos concretos.
+
+::: {.metadatos-final}
+**Autor:** {{< meta author >}}  
+**Fecha de publicación:** {{< meta date >}}  
+**Última modificación:** {{< meta date-modified >}}
+:::

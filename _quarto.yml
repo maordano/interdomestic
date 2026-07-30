@@ -111,6 +111,10 @@ website:
           - icon: heart-pulse
             text: "Bitácora"
             href: manual/bitacora.qmd
+          - icon: heart-pulse
+            text: "Mapa de rutas"
+            href: manual/roadmap.qmd
+            
 
   # ---------------------------------------------------------------
   # PAGE-FOOTER: sin cambios respecto de tu archivo actual.
