@@ -18,13 +18,13 @@ La construcción de conocimiento para la síntesis requiere aprendizaje e invest
 
 Esta división es operativa a diferentes objetivos, que se figuran como puertas de entrada para la interacción con el dispositivo, y para la interacción o participación en el desarrollo de los objetivos generales de investigación. Aquí los objetivos generales se enfocan en la variación fenotípica de la vida silvestre en el ámbito doméstico y nuestra relación humana-naturaleza, en donde una enorme diversidad de dispositivos inorgánicas puede mediar las interacciones orgánicas. 
 
-_Interdomestic_ está siendo 
-- esta página web como una interfase polifuncional 
-- una  especie de libro activo del proyecto de investigación  
-- un dispositivo de interacción (o ideación interactiva) para desarrollar formas de aprendizaje e investigación para nuestra base de conocimiento humana.
+_Interdomestic_ estaría definida como  
+  - esta página web como una interfase polifuncional 
+  - una especie de libro activo del proyecto de investigación  
+  - un dispositivo de interacción (o ideación interactiva) para desarrollar formas de aprendizaje e investigación para nuestra base de conocimiento humana.
 
 ```{=html}
-<div class="idx-diagram" role="img" aria-label="Persona humana interactúa con el ordenador. El ordenador integra un espacio de trabajo interdomestic, que integra drives o nubes, STAPLE, OSF, RStudio, GitHub y Zenodo. Desde ese espacio de trabajo se organizan tres facetas: Aprendizaje, Investigación y Síntesis.">
+<div class="idx-diagram" role="img" aria-label="Persona humana interactúa con el ordenador (ámbito co-habitado). El ordenador integra un espacio de trabajo interdomestic, que integra drives o nubes, STAPLE, OSF, RStudio, GitHub y Zenodo. Desde ese espacio de trabajo se organizan tres facetas: Aprendizaje, Investigación y Síntesis.">
 
   <div class="idx-row idx-row-top">
     <div class="idx-node idx-neutral">👤<br>PERSONA HUMANA</div>
