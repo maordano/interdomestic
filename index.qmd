@@ -10,9 +10,10 @@ Un dispositivo de interacción con infraestructura de artefacto, co-creado y med
 - *tic*: tecnologías de la información y comunicación
 :::
 
-## Cómo se organiza
+## Cómo se organiza el ecosistema de trabajo
 
-Al menos una persona humana interactúa con un ordenador (en cierto _ámbito_ co-habitado). El ordenador se conecta a Internet. Se forma un espacio de trabajo, en este caso con  _interdomestic_, interfase con drives/nubes, sistemas de comunicación (correos, chats, reuniones virtuales o presenciales), [STAPLE](htpps://staple.science), [OSF](htpps://osf.io), [RStudio](https://posit.co/downloads), [GitHub](https://github.com) y [Zenodo](https://zenodo.org). 
+Definimos un ecosistema de trabajo por el conjunto de personas humanas, otros seres orgánicos, dispositivos inorgánicos, interacciones entre elementos y flujos de energía. 
+Al menos una persona humana interactúa con un ordenador; en cierto _ámbito_ co-habitado. El ordenador se conecta a Internet. Se forma un espacio de trabajo, en este caso con  _interdomestic_, interfase con drives/nubes, sistemas de comunicación (correos, chats, reuniones virtuales o presenciales), [STAPLE](htpps://staple.science), [OSF](htpps://osf.io), [RStudio](https://posit.co/downloads), [GitHub](https://github.com) y [Zenodo](https://zenodo.org). 
 
 La construcción de conocimiento para la síntesis requiere aprendizaje e investigación, por lo que se organizan tres facetas del proceso de construcción: Aprendizaje, Investigación y Síntesis. 
 
