@@ -12,13 +12,16 @@ Un dispositivo de interacción con infraestructura de artefacto, co-creado y med
 
 ## Cómo se organiza
 
-Al menos una persona humana interactúa con un ordenador (en cierto _ámbito_). El ordenador se conecta a Internet. Se forma un espacio de trabajo con  _interdomestic_, interfase con drives/nubes, sistemas de comunicación (correos, chats, reuniones virtuales o presenciales), [STAPLE](htpps://staple.science), [OSF](htpps://osf.io), [RStudio](https://posit.co/downloads), [GitHub](https://github.com) y [Zenodo](https://zenodo.org). 
+Al menos una persona humana interactúa con un ordenador (en cierto _ámbito_ co-habitado). El ordenador se conecta a Internet. Se forma un espacio de trabajo, en este caso con  _interdomestic_, interfase con drives/nubes, sistemas de comunicación (correos, chats, reuniones virtuales o presenciales), [STAPLE](htpps://staple.science), [OSF](htpps://osf.io), [RStudio](https://posit.co/downloads), [GitHub](https://github.com) y [Zenodo](https://zenodo.org). 
 
 La construcción de conocimiento para la síntesis requiere aprendizaje e investigación, por lo que se organizan tres facetas del proceso de construcción: Aprendizaje, Investigación y Síntesis. 
 
-Esta división es operativa a diferentes objetivos, que se figuran como puertas de entrada para la interacción con el dispositivo, y el desarrollo de los objetivos generales de investigación sobre variación fenotípica de la vida silvestre en el ámbito doméstico y nuestra relación humana-naturaleza.
+Esta división es operativa a diferentes objetivos, que se figuran como puertas de entrada para la interacción con el dispositivo, y para la interacción o participación en el desarrollo de los objetivos generales de investigación. Aquí los objetivos generales se enfocan en la variación fenotípica de la vida silvestre en el ámbito doméstico y nuestra relación humana-naturaleza, en donde una enorme diversidad de dispositivos inorgánicas puede mediar las interacciones orgánicas. 
 
-_Interdomestic_ está siendo esta página web, una  especie de libro activo del proyecto de investigación general; una interfase polifuncional; un dispositivo de interacción (o ideación interactiva) para desarrollar formas de aprendizaje e investigación para nuestra base de conocimiento humana.
+_Interdomestic_ está siendo 
+- esta página web como una interfase polifuncional 
+- una  especie de libro activo del proyecto de investigación  
+- un dispositivo de interacción (o ideación interactiva) para desarrollar formas de aprendizaje e investigación para nuestra base de conocimiento humana.
 
 ```{=html}
 <div class="idx-diagram" role="img" aria-label="Persona humana interactúa con el ordenador. El ordenador integra un espacio de trabajo interdomestic, que integra drives o nubes, STAPLE, OSF, RStudio, GitHub y Zenodo. Desde ese espacio de trabajo se organizan tres facetas: Aprendizaje, Investigación y Síntesis.">
@@ -151,7 +154,7 @@ para lectores de pantalla). La navegación real ocurre por las tarjetas de abajo
 son accesibles y quedan cubiertas por el botón "Escuchar Página".
 -->
 
-## Tres facetas, tres puertas de entrada
+## Tres facetas
 
 En esta primera fase **en desarrollo** de _interdomestic_ diseñamos el dispositivo para satisfacer necesidades del proyecto general de síntesis "Variación fenotípica de la vida silvestre en el ámbito doméstico: una revisión sistemática", suponiendo además que el proceso de construcción se alimente con principios FAIR/CARE para aprendizaje e investigación abierta. 
 
